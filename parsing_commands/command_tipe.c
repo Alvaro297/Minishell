@@ -33,5 +33,4 @@ void	command_tipe(char *input, char **envp)
 		ft_strncmp(input, "echo ", 5) == 0)
 		internal_commands(input, envp);
 	
-	
 }
