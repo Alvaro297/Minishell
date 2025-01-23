@@ -9,6 +9,7 @@ void	minishell(char **envp)
 		input = readline("Minishell: ");
 		if (input == NULL || ft_strncmp(input, "exit", ft_strlen(input)) == 0)
 			break;
+		
 		printf("%s\n", input);
 		free(input);
 	}
