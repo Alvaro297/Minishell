@@ -1,5 +1,6 @@
 #include "../../minishell.h"
 
+/*
 static char	*handle_quotes_in_echo_while(char *first_quote_pos, char *input_mini, int c)
 {
 	char	*input;
@@ -52,6 +53,26 @@ static bool	handle_quotes_in_echo(t_minishell *minishell)
 	else if (!is_single_quote && first_quote_pos)
 		minishell->input = handle_quotes_in_echo_while(minishell->input, '"');
 	return (first_quote_pos != NULL);
+}*/
+
+char *remove_single_quotes(const char *str)
+{
+	size_t len = strlen(str);
+	char *result = malloc(len + 1); // +1 para el terminador nulo
+	if (result == NULL)
+		return NULL;
+
+	size_t j = 0;
+	for (size_t i = 0; i < len; i++)
+	{
+		if (str[i] != '\'')
+		{
+			result[j++] = str[i];
+		}
+	}
+	result[j] = '\0'; // Terminar la nueva cadena
+
+	return result;
 }
 
 int	handle_echo(t_minishell *minishell, char **envp)
@@ -73,7 +94,9 @@ int	handle_echo(t_minishell *minishell, char **envp)
 		newline = 0;
 	}
 	while (minishell->parsed_input[i] != NULL)
+	{
 		printf("%s ", minishell->parsed_input[i++]);
+	}
 	if (newline)
 		printf("\n");
 	return (1);
