@@ -12,23 +12,39 @@
 
 #include "minishell.h"
 
-static void	internal_commands(char *input, char **envp)
+static void	internal_commands_help(t_minishell *minishell, char **envp)
 {
-	if (ft_strnstr(input, "exit ", 5))
-		/* code */
-	else if (ft_strnstr(input, "cd ", 3))
-		/* code */
-	else if (ft_strnstr(input, "pwd ", 4))
-		/* code */
-	else if (ft_strnstr(input, "export ", 8))
-		/* code */
-	else if (ft_strnstr(input, "unset ", 6))
-		/* code */
-	else if (ft_strnstr(input, "env ", 4))
-		/* code */
-	else if (ft_strnstr(input, "echo ", 5))
-		/* code */
 	
+	if (ft_strncmp(minishell->parsed_input[0], "export", 7) == 0)
+		/* code */
+	else if (ft_strncmp(minishell->parsed_input[0], "unset", 5) == 0)
+		/* code */
+	else if (ft_strncmp(minishell->parsed_input[0], "env", 3) == 0)
+		/* code */
+	else if (ft_strncmp(minishell->parsed_input[0], "echo", 4) == 0)
+		handle_echo(minishell, envp);
+}
+
+static void	internal_commands(t_minishell *minishell, char **envp)
+{
+	char	cwd[2048];
+
+	if (ft_strncmp(minishell->parsed_input[0], "exit", 4) == 0)
+		exit (0);
+	else if (ft_strncmp(minishell->parsed_input[0], "pwd", 3) == 0)
+	{
+		if (getcwd(cwd, sizeof(cwd)) == NULL)
+			perror("pwd");
+		else
+			printf("%s\n", cwd);
+	}
+	else if (ft_strncmp(minishell->parsed_input[0], "cd", 3) == 0)
+	{
+		if (chdir(parsed_input[1]) != 0)
+			perror("Error:");
+	}
+	else
+		internal_commands_help(minishell, envp);
 }
 
 void	command_tipe(t_minishell *minishell, char **envp)
@@ -39,10 +55,7 @@ void	command_tipe(t_minishell *minishell, char **envp)
 	//Pipes: |
 	//Comandos en Segundo plano: &
 	//Todo este tipo de comandos irán aquí
-	if (ft_strncmp(minishell->input, "exit ", 5) == 0 || ft_strncmp(minishell->input, "cd ", 3) == 0 ||
-		ft_strncmp(minishell->input, "pwd ", 4) == 0 || ft_strncmp(minishell->input, "export ", 8) == 0 ||
-		ft_strncmp(minishell->input, "unset ", 6) == 0 || ft_strncmp(minishell->input, "env ", 4) == 0 ||
-		ft_strncmp(minishell->input, "echo ", 5) == 0)
-		internal_commands(minishell->input, envp);
+	if (minishell->parsed_input[0] != NULL)
+		internal_commands(minishell, envp);
 	
 }

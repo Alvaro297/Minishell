@@ -15,18 +15,19 @@
 void	minishell(char **envp)
 {
 	char		*input;
-	t_minishell	*minishell;
+	t_minishell	minishell;
 	int			i;
 
 	i = 0;
 	while (1) 
 	{
 		input = readline("Minishell: ");
-		if (input == NULL || ft_strncmp(input, "exit", ft_strlen(input)) == 0)
+		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0)
 			break;
-		fill_minishell(input, &minishell[i]);
-		command_tipe(&minishell[i], envp);
-		i++;
+		fill_minishell(input, &minishell, i, envp);
+		command_tipe(&minishell, envp,);
+		if (input && *input)
+			i++;
 		printf("%s\n", input);
 		free(input);
 	}
