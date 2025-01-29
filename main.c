@@ -25,7 +25,7 @@ void	minishell(char **envp)
 		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0)
 			break;
 		fill_minishell(input, &minishell, i, envp);
-		command_tipe(&minishell, envp,);
+		command_tipe(&minishell, envp);
 		if (input && *input)
 			i++;
 		printf("%s\n", input);

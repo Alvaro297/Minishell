@@ -34,7 +34,8 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 	new_history[i + 1] = NULL;
 	free(minishell->history);
 	minishell->history = new_history;
-	minishell->env_vars = envp;
+	if (i == 0)
+		minishell->env_vars = init_env(envp);
 	minishell->current_dir = getcwd();
 	minishell->is_interactive = false;
 }

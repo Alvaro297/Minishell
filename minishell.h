@@ -11,7 +11,18 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 
-# define IS_QUOTE(x) (x == '"' || x == '\'')
+typedef struct s_indices
+{
+	size_t i;
+	size_t j;
+} t_indices;
+
+typedef struct s_env
+{
+	char *name;
+	char *value;
+	struct s_env *next;
+} t_env;
 
 typedef struct s_minishell
 {
@@ -23,12 +34,16 @@ typedef struct s_minishell
 	char	*output;
 	char	*error_message;
 	char	**history;
-	char	**env_vars;
+	t_env	*env_vars;
 	char	*current_dir;
 	bool	is_interactive;
 } t_minishell;
 
 void	command_tipe(t_minishell *minishell, char **envp);
 void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp);
-void	handle_echo(t_minishell *minishell, char **envp);
+int		handle_echo(t_minishell *minishell);
+//** Envp **//
+t_env	*init_env(char **envp);
+char	*get_env_value(t_env *env, const char *name);
+void	set_env(t_env **env, const char *name, const char *value);
 #endif 

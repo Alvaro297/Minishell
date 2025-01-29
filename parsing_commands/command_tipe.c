@@ -16,13 +16,13 @@ static void	internal_commands_help(t_minishell *minishell, char **envp)
 {
 	
 	if (ft_strncmp(minishell->parsed_input[0], "export", 7) == 0)
-		/* code */
+		handle_export(minishell, envp);
 	else if (ft_strncmp(minishell->parsed_input[0], "unset", 5) == 0)
 		/* code */
 	else if (ft_strncmp(minishell->parsed_input[0], "env", 3) == 0)
 		/* code */
 	else if (ft_strncmp(minishell->parsed_input[0], "echo", 4) == 0)
-		handle_echo(minishell, envp);
+		handle_echo(minishell);
 }
 
 static void	internal_commands(t_minishell *minishell, char **envp)
