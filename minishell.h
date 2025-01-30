@@ -11,6 +11,9 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 
+# define INVALID_CHARACTERS "!@#$%^&*()-+=[]{}\\|;:'\",.<>/?`~ "
+# define INVALID_CHARACTERSV "!@#$%^&*()[]{}\\|;:'\",.<>/?`~ "
+
 typedef struct s_indices
 {
 	size_t i;

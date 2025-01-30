@@ -38,20 +38,23 @@ void	set_env(t_env **env, const char *name, const char *value)
 	t_env *new;
 	
 	tmp = *env;
-	while (tmp)
+	while (tmp->next != NULL)
 	{
 		if (ft_strcmp(tmp->name, name) == 0)
 		{
 			free(tmp->value);
-			tmp->value = ft_strdup(value);
+			new->value = value ? ft_strdup(value) : ft_strdup("");
 			return;
 		}
+		if (tmp->next == NULL)
+			break ;
 		tmp = tmp->next;
 	}
-	// Si no existe, la agregamos
 	*new = malloc(sizeof(t_env));
 	new->name = ft_strdup(name);
-	new->value = ft_strdup(value);
-	new->next = *env;
-	*env = new;
+	new->value = value ? ft_strdup(value) : ft_strdup("");
+	new->next = NULL;
+	if (new == NULL)
+		return (NULL);
+	tmp->next = new;
 }
