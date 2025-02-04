@@ -30,11 +30,21 @@ typedef struct s_env
 	struct s_env *next;
 } t_env;
 
+typedef struct s_cmd
+{
+	char	*cmd;          // Nombre del comando (ej: "ls", "echo", "grep", etc.)
+	char	**args;        // Argumentos del comando
+	char	*infile;       // Archivo de entrada si hay redirección (<)
+	char	*outfile;      // Archivo de salida si hay redirección (>)
+	int		append;        // 1 si es ">>", 0 si es ">"
+	bool	is_pipe;       // True si este comando está en una tubería
+	struct s_cmd *next;    // Siguiente comando (si hay pipes)
+}	t_cmd;
+
 typedef struct s_minishell
 {
 	char	*input;
-	char	**parsed_input;
-	bool	pipe;
+	t_cmd	*cmds;
 	pid_t	*pids;
 	bool	second_plane;
 	char	*output;
@@ -42,10 +52,9 @@ typedef struct s_minishell
 	char	**history;
 	t_env	*env_vars;
 	char	*current_dir;
-	bool	is_interactive;
 } t_minishell;
 
-void	command_tipe(t_minishell *minishell, char **envp);
+void	command_type(t_minishell *minishell, char **envp);
 //** Fill_minishell **//
 void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp);
 /* Expand_variable */
@@ -61,4 +70,9 @@ void	delete_env(t_env **env, const char *name);
 //** Internal_commands **//
 int		handle_echo(t_minishell *minishell);
 int		handle_export(t_minishell *minishell);
+//** Parsing Input **//
+void	parsing_input(t_minishell *minishell, char *input);
+//** Cmds **//
+void	delete_cmds(t_env *cmd);
+void	append_cmds(t_env *cmd, char *imput);
 #endif 

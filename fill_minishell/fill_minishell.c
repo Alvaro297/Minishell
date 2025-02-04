@@ -63,7 +63,7 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 	if (i == 0)
 		minishell->env_vars = init_env(envp);
 	minishell->input = fill_mini_expand_variables(input, minishell);
-	minishell->parsed_input = ft_split(input, ' ');
+	minishell->parsed_input = parsing_input(input, minishell->cmds)
 	if (ft_strchr(minishell->input '|') != NULL)
 		minishell->pipe = true;
 	else

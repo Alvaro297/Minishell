@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static void	internal_commands(t_minishell *minishell, char **envp)
+static void	internal_commands(t_minishell *minishell)
 {
 	if (ft_strncmp(minishell->parsed_input[0], "exit", 4) == 0)
 		exit (0);
@@ -30,7 +30,7 @@ static void	internal_commands(t_minishell *minishell, char **envp)
 		handle_echo(minishell);
 }
 
-void	command_tipe(t_minishell *minishell, char **envp)
+void	command_type(t_minishell *minishell, char **envp)
 {
 	//Estos son los comandos internos todavia hasy muchos mas tipos de comandos que son:
 	//Comandos externos: ls, grep, cat, gcc
@@ -38,7 +38,7 @@ void	command_tipe(t_minishell *minishell, char **envp)
 	//Pipes: |
 	//Comandos en Segundo plano: &
 	//Todo este tipo de comandos irán aquí
-	if (minishell->parsed_input[0] != NULL)
-		internal_commands(minishell, envp);
+	if (minishell->cmds-> != NULL)
+		internal_commands(minishell);
 	
 }
