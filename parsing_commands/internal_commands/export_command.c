@@ -66,7 +66,7 @@ static bool parsed_name_validation(char *var_name)
 	return true;
 }
 
-int		handle_export(t_minishell *minishell, char **envp)
+int		handle_export(t_minishell *minishell)
 {
 	int		i;
 	char	*var_name;

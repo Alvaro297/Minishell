@@ -1,15 +1,17 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+#include <readline/history.h>
+# include <readline/readline.h>
+# include <sys/wait.h>
 # include "libft_minishell/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-#include <readline/history.h>
-# include <readline/readline.h>
+# include <limits.h>
 # include <stdbool.h>
 # include <fcntl.h>
-# include <sys/wait.h>
+
 
 # define INVALID_CHARACTERS "!@#$%^&*()-+=[]{}\\|;:'\",.<>/?`~ "
 # define INVALID_CHARACTERSV "!@#$%^&*()[]{}\\|;:'\",.<>/?`~ "
@@ -22,8 +24,9 @@ typedef struct s_indices
 
 typedef struct s_env
 {
-	char *name;
-	char *value;
+	char	*name;
+	char	*value;
+	int		is_readonly;
 	struct s_env *next;
 } t_env;
 
@@ -43,10 +46,19 @@ typedef struct s_minishell
 } t_minishell;
 
 void	command_tipe(t_minishell *minishell, char **envp);
+//** Fill_minishell **//
 void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp);
-int		handle_echo(t_minishell *minishell);
+/* Expand_variable */
+char	*ft_quote_printf(t_minishell *minishell, char *str);
+/* Quote */
+int	ft_sd_quote_printf(char *str, bool *in_single_quote,
+		bool *in_double_quote, size_t *i);
 //** Envp **//
 t_env	*init_env(char **envp);
 char	*get_env_value(t_env *env, const char *name);
 void	set_env(t_env **env, const char *name, const char *value);
+void	delete_env(t_env **env, const char *name);
+//** Internal_commands **//
+int		handle_echo(t_minishell *minishell);
+int		handle_export(t_minishell *minishell);
 #endif 
