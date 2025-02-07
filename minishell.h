@@ -75,4 +75,5 @@ void	parsing_input(t_minishell *minishell, char *input);
 //** Cmds **//
 void	delete_cmds(t_env *cmd);
 void	append_cmds(t_env *cmd, char *imput);
+char	*find_command(char **command_splited);
 #endif 
