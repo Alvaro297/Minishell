@@ -1,10 +1,5 @@
 # include "../minishell.h"
 
-bool is_special_char(char c)
-{
-	return (c == '|' || c == '<' || c == '>');
-}
-
 int count_commands(const char *input)
 {
 	int count;
@@ -22,7 +17,7 @@ int count_commands(const char *input)
 			in_single_quote = !in_single_quote;
 		else if (input[i] == '"' && !in_single_quote)
 			in_double_quote = !in_double_quote;
-		if (is_special_char(input[i]) &&
+		if (input[i] == '|' &&
 				!in_single_quote && !in_double_quote)
 			count += 2;
 		i++;
@@ -58,6 +53,26 @@ char **split_commands(const char *input, int i,
 		commands[cmd_index++] = ft_strdup(input + start);
 	commands[cmd_index] = NULL;
 	return (commands);
+}
+
+static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char **array_commands)
+{
+	t_cmd	*tmp;
+	char	**command_splited;
+
+	tmp = *new_cmd;
+	command_splited = ft_split_modified(command, ' '); //Funcion a diseñar por ti Max tiene que hacer lo que te he dicho en el audio. 
+													   // Dividir por espacios o lo que sea excepto si está entre comillas simples o compuestas
+	tmp->cmd = find_command(command_splited);
+	tmp->args = find_args(command_splited);
+	tmp->infile = find_infile(command_splited);
+	tmp->outfile = find_outfile(command_splited);
+	tmp->append = is_append(command_splited);
+	tmp->is_pipe = have_pipe(array_commands, position);
+	tmp->next = NULL;
+	while (*command_splited)
+		free(*command_splited++);
+	free(command_splited);
 }
 
 static t_cmd	*parse_input(char *input)
