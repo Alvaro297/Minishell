@@ -12,9 +12,9 @@
 # include <stdbool.h>
 # include <fcntl.h>
 
-
 # define INVALID_CHARACTERS "!@#$%^&*()-+=[]{}\\|;:'\",.<>/?`~ "
 # define INVALID_CHARACTERSV "!@#$%^&*()[]{}\\|;:'\",.<>/?`~ "
+# define PATH_MAX 260
 
 typedef struct s_indices
 {
@@ -36,7 +36,7 @@ typedef struct s_cmd
 	char	**args;        // Argumentos del comando
 	char	*infile;       // Archivo de entrada si hay redirección (<)
 	char	*outfile;      // Archivo de salida si hay redirección (>)
-	int		append;        // 1 si es ">>", 0 si es ">"
+	bool		append;        // 1 si es ">>", 0 si es ">"
 	bool	is_pipe;       // True si este comando está en una tubería
 	struct s_cmd *next;    // Siguiente comando (si hay pipes)
 }	t_cmd;
@@ -71,9 +71,14 @@ void	delete_env(t_env **env, const char *name);
 int		handle_echo(t_minishell *minishell);
 int		handle_export(t_minishell *minishell);
 //** Parsing Input **//
-void	parsing_input(t_minishell *minishell, char *input);
+t_env	*parsing_input(t_minishell *minishell, char *input);
+bool	check_name_arg(char	*name);
 //** Cmds **//
-void	delete_cmds(t_env *cmd);
+void	delete_cmds(t_env **cmd);
 void	append_cmds(t_env *cmd, char *imput);
 char	*find_command(char **command_splited);
+char	**find_args(char **command_splited);
+char	*find_infile(char **command_splited);
+char	*find_outfile(char **command_splited);
+bool	have_pipe(char **command, int position);
 #endif 

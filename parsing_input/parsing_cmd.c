@@ -37,7 +37,7 @@ int count_commands(const char *input)
 	return (count + 1);
 }
 
-char **split_commands(const char *input, int i,
+static char **split_commands(const char *input, int i,
 		bool in_single_quote, bool in_double_quote)
 {
 	char	**commands;
@@ -55,7 +55,7 @@ char **split_commands(const char *input, int i,
 			in_double_quote = !in_double_quote;
 		if (is_special_char(input[i]) && !in_single_quote && !in_double_quote)
 		{
-			commands[cmd_index++] = ft_strndup(input + start, size_t (i - start));
+			commands[cmd_index++] = ft_strndup(input + start, i - start);
 			commands[cmd_index++] = ft_strndup(input + i, 1);
 			start = i + 1;
 		}
@@ -71,7 +71,9 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 {
 	t_cmd	*tmp;
 	char	**command_splited;
-
+	tmp = malloc(sizeof(t_cmd));
+	if (!tmp)
+		return ;
 	tmp = *new_cmd;
 	command_splited = ft_split_modified(command, ' '); //Funcion a diseñar por ti Max tiene que hacer lo que te he dicho en el audio. 
 													   // Dividir por espacios o lo que sea excepto si está entre comillas simples o compuestas
@@ -87,26 +89,29 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	free(command_splited);
 }
 
-static t_cmd	*parse_input(char *input)
+t_cmd	*parsing_input(t_minishell *minishell, char *input)
 {
 	t_cmd	*head = NULL;
 	t_cmd	*new_cmd = NULL;
 	char	**parsed_input;
 	int		i;
 
-	parsed_input = split_by_quotes(input, 0, false, false);
+	if (minishell->cmds)
+		delete_cmds(&minishell->cmds);
+	parsed_input = split_commands(input, 0, false, false);
 	i = 0;
+	if (parsed_input[0] && ft_strncmp(parsed_input[0], "|", 1) == 0)
+	{
+		ft_putstr_fd("Error: invalid command\n", 2);
+		free_double_array(parsed_input); // A implementar por Max liberar un array de doble puntero
+		return (NULL);
+	}
 	while(parsed_input[i])
 	{
 		parse_input_help(&new_cmd, parsed_input[i], i, parsed_input);
 		append_cmds(&head, new_cmd);
-		i++;
+		i += 2;
 	}
-}
-
-void	parsing_input(t_minishell *minishell, char *input)
-{
-	if (minishell->cmds)
-		delete_cmds(&minishell->cmds);
-	minishell->cmds = parse_input(input);
+	free_double_array(parsed_input); // A implementar por Max liberar un array de doble puntero
+	return (head);
 }

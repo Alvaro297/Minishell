@@ -36,7 +36,7 @@ static char *expand_variable(t_minishell *minishell, char *str)
 	return (ft_strdup(var_value));
 }
 
-static int ft_quote_printf_ev(t_minishell minishell, char *str, t_indices *indices, char **result)
+static int ft_quote_printf_ev(t_minishell *minishell, char *str, t_indices *indices, char **result)
 {
 	char *expanded;
 
@@ -86,7 +86,8 @@ char	*ft_quote_printf(t_minishell *minishell, char *str)
 	result[0] = '\0';
 	in_single_quote = false;
 	in_double_quote = false;
-	indices = {0, 0};
+	indices.i = 0;
+	indices.j = 0;
 	while (str[indices.i] != '\0')
 	{
 		if (ft_sd_quote_printf(str, &in_single_quote,

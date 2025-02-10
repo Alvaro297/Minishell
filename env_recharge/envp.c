@@ -36,10 +36,10 @@ char	*get_env_value(t_env *env, const char *var_name)
 	{
 		if (ft_strncmp(env->name, var_name, j) == 0 &&
 				(int)ft_strlen(env->name) == j)
-			return env->value;
+			return (env->value);
 		env = env->next;
 	}
-	return NULL;
+	return (NULL);
 }
 
 void	set_env(t_env **env, const char *name, const char *value)

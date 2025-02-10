@@ -12,24 +12,25 @@
 
 #include "./minishell.h"
 
-static char	*fill_mini_expand_variables(char *input, t_minishell *minishell)
-{
-	char	*trimmed_input;
-	bool	in_single_quote;
-	bool	in_double_quote;
-
-	trimmed_input = input;
-	in_double_quote = false;
-	in_single_quote = false;
-	while (*trimmed_input == ' ' && trimmed_input)
-		trimmed_input++;
-	if ((ft_strncmp(trimmed_input, "export", 6) == 0 && (trimmed_input[6] == ' ' || trimmed_input[6] == '\0')) ||
-		(ft_strncmp(trimmed_input, "unset", 5) == 0 && (trimmed_input[5] == ' ' || trimmed_input[5] == '\0')) ||
-		(ft_strncmp(trimmed_input, "declare", 7) == 0 && (trimmed_input[7] == ' ' || trimmed_input[7] == '\0')))
-		return (ft_strdup(trimmed_input));
-	else
-		return (ft_quote_printf(minishell, *trimmed_input));
-}
+//static char	*fill_mini_expand_variables(char *input, t_minishell *minishell)
+//{
+//	char	*trimmed_input;
+//	bool	in_single_quote;
+//	bool	in_double_quote;
+//
+//	trimmed_input = input;
+//	in_double_quote = false;
+//	in_single_quote = false;
+//	while (*trimmed_input == ' ' && trimmed_input)
+//		trimmed_input++;
+//	if ((ft_strncmp(trimmed_input, "export", 6) == 0 && (trimmed_input[6] == ' ' || trimmed_input[6] == '\0')) || 
+//		(ft_strncmp(trimmed_input, "unset", 5) == 0 && (trimmed_input[5] == ' ' || trimmed_input[5] == '\0')) ||
+//		(ft_strncmp(trimmed_input, "declare", 7) == 0 && (trimmed_input[7] == ' ' || trimmed_input[7] == '\0')) ||
+//		(ft_strncmp(trimmed_input, "env", 3) == 0 && (trimmed_input[7] == ' ' || trimmed_input[7] == '\0')))
+//		return (ft_strdup(trimmed_input));
+//	else
+//		return (ft_quote_printf(minishell, *trimmed_input));
+//}
 
 static void	fill_minishell_help(t_minishell *minishell, char *input, int i)
 {
@@ -55,19 +56,14 @@ static void	fill_minishell_help(t_minishell *minishell, char *input, int i)
 		perror("getcwd");
 		exit(EXIT_FAILURE);
 	}
-	minishell->is_interactive = false;
 }
 
 void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 {
 	if (i == 0)
 		minishell->env_vars = init_env(envp);
-	minishell->input = fill_mini_expand_variables(input, minishell);
-	minishell->parsed_input = parsing_input(input, minishell->cmds)
-	if (ft_strchr(minishell->input '|') != NULL)
-		minishell->pipe = true;
-	else
-		minishell->pipe = false;
+	minishell->input = ft_quote_printf(minishell, input);
+	minishell->cmds = parsing_input(minishell, input);
 	minishell->second_plane = false;
 	minishell->output = NULL;
 	minishell->error_message = NULL;

@@ -23,7 +23,7 @@ void	minishell(char **envp)
 	{
 		input = readline("Minishell: ");
 		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0)
-			break;
+			break ;
 		fill_minishell(input, &minishell, i, envp);
 		command_type(&minishell, envp);
 		if (input && *input)
