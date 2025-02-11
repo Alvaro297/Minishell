@@ -37,8 +37,8 @@ typedef struct s_cmd
 	char	**args;        // Argumentos del comando
 	char	*infile;       // Archivo de entrada si hay redirección (<)
 	char	*outfile;      // Archivo de salida si hay redirección (>)
-	int		outfile_modes;        // 1 si es ">>", 0 si es ">"
-	bool	is_pipe;       // True si este comando está en una tubería
+	int		outfile_modes;        // 2 si es ">>", 1 si es ">" y 0 si no hay nada
+	bool	is_pipe;       // True si este hay una tuberia despues
 	struct s_cmd *next;    // Siguiente comando (si hay pipes)
 }	t_cmd;
 
@@ -82,6 +82,7 @@ char	*find_command(char **command_splited);
 char	**find_args(char **command_splited);
 char	*find_infile(char **command_splited);
 char	*find_outfile(char **command_splited);
+int		is_append(char **command_splited);
 bool	have_pipe(char **command, int position);
 //** History **//
 void	load_history(t_minishell *minishell);

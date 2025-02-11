@@ -41,7 +41,7 @@ void	add_to_history(t_minishell *minishell, char *input)
 		perror("open");
 		return ;
 	}
-	if (write(fd, input, strlen(input)) == -1 || write(fd, "\n", 1) == -1)
+	if (write(fd, input, ft_strlen(input)) == -1 || write(fd, "\n", 1) == -1)
 	{
 		perror("write");
 		close(fd);

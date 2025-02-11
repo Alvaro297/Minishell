@@ -26,6 +26,7 @@ void	minishell(char **envp)
 		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0)
 			break ;
 		fill_minishell(input, &minishell, i, envp);
+//		error_control();
 		command_type(&minishell, envp);
 		if (input && *input)
 			i++;

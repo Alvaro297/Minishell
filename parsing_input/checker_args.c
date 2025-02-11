@@ -8,6 +8,8 @@ bool	check_name_arg(char	*name)
 	int		j;
 
 	i = 0;
+	in_double_quote = false;
+	in_single_quote = false;
 	while (name[i])
 	{
 		ft_sd_quote_printf(name, &in_single_quote, &in_double_quote, &i);
