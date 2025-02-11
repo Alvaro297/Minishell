@@ -19,6 +19,7 @@ void	minishell(char **envp)
 	int			i;
 
 	i = 0;
+	load_history(&minishell);
 	while (1) 
 	{
 		input = readline("Minishell: ");

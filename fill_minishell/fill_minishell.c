@@ -64,6 +64,9 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 	minishell->output = NULL;
 	minishell->error_message = NULL;
 	if (input && *input)
+	{
 		add_history(input);
+		add_to_history(minishell, input);
+	}
 	fill_minishell_help(minishell, input, i);
 }

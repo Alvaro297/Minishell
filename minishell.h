@@ -83,4 +83,7 @@ char	**find_args(char **command_splited);
 char	*find_infile(char **command_splited);
 char	*find_outfile(char **command_splited);
 bool	have_pipe(char **command, int position);
+//** History **//
+void	load_history(t_minishell *minishell);
+void	add_to_history(t_minishell *minishell, char *input);
 #endif 
