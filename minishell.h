@@ -15,6 +15,7 @@
 # define INVALID_CHARACTERS "!@#$%^&*()-+=[]{}\\|;:'\",.<>/?`~ "
 # define INVALID_CHARACTERSV "!@#$%^&*()[]{}\\|;:'\",.<>/?`~ "
 # define PATH_MAX 260
+# define HISTORY_FILE "/minishell_history"
 
 typedef struct s_indices
 {
