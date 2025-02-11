@@ -36,19 +36,15 @@ static void	fill_minishell_help(t_minishell *minishell, char *input, int i)
 {
 	char	**new_history;
 	char	cwd[PATH_MAX];
-
-	new_history = malloc((i + 2) * sizeof(char *));
-	if (new_history == NULL)
+	
+	minishell->history = ft_realloc(minishell->history, (i + 2) * sizeof(char *));
+	if (minishell->history == NULL)
 	{
-		perror("malloc");
+		perror("ft_realloc");
 		exit(EXIT_FAILURE);
 	}
-	if (minishell->history != NULL)
-		ft_memcpy(new_history, minishell->history, i * sizeof(char *));
-	new_history[i] = ft_strdup(input);
-	new_history[i + 1] = NULL;
-	free(minishell->history);
-	minishell->history = new_history;
+	minishell->history[i] = ft_strdup(input);
+	minishell->history[i + 1] = NULL;
 	if (getcwd(cwd, sizeof(cwd)) != NULL)
 		minishell->current_dir = ft_strdup(cwd);
 	else
@@ -60,7 +56,7 @@ static void	fill_minishell_help(t_minishell *minishell, char *input, int i)
 
 void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 {
-	if (i == 0)
+	if (minishell->env_vars == NULL)
 		minishell->env_vars = init_env(envp);
 	minishell->input = ft_quote_printf(minishell, input);
 	minishell->cmds = parsing_input(minishell, input);

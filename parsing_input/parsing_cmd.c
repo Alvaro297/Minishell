@@ -81,7 +81,7 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	tmp->args = find_args(command_splited);
 	tmp->infile = find_infile(command_splited);
 	tmp->outfile = find_outfile(command_splited);
-	tmp->append = is_append(command_splited);
+	tmp->outfile_modes = is_append(command_splited);
 	tmp->is_pipe = have_pipe(array_commands, position);
 	tmp->next = NULL;
 	while (*command_splited)

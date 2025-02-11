@@ -28,7 +28,6 @@ void	minishell(char **envp)
 		command_type(&minishell, envp);
 		if (input && *input)
 			i++;
-		printf("%s\n", input);
 		free(input);
 	}
 	//No hay que poner argumentos en la minishell a la hora de la ejecución.

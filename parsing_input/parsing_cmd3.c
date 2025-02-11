@@ -12,23 +12,23 @@ bool	have_pipe(char **command, int position)
 	return (false);
 }
 
-bool	is_append(char **command_splited)
+int	is_append(char **command_splited)
 {
-	bool	is_append;
+	int	is_append;
 	size_t	i;
 
-	is_append = false;
+	is_append = 0;
 	i = 0;
 	while (command_splited[i])
 	{
 		if (ft_strncmp(command_splited[i], ">>", 2) == 0 &&
 			ft_strlen(command_splited[i]) == 2)
-			is_append = true;
+			is_append = 2;
 		else if ((ft_strncmp(command_splited[i], ">", 1) == 0 &&
 					ft_strlen(command_splited[i]) == 1) ||
 				(ft_strncmp(command_splited[i], "1>", 2) == 0 &&
 					ft_strlen(command_splited[i]) == 2))
-			is_append = false;
+			is_append = 1;
 		i++;
 	}
 	return (is_append);

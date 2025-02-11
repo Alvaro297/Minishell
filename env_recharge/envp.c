@@ -12,7 +12,7 @@ t_env	*init_env(char **envp)
 		sep = ft_strchr(*envp, '=');
 		if (!new || !sep)
 			return NULL;
-		new->name = ft_strdup(*envp, sep - *envp);	// Nombre de la variable
+		new->name = ft_strndup(*envp, sep - *envp);	// Nombre de la variable
 		new->value = ft_strdup(sep + 1);			// Valor de la variable
 		new->is_readonly = 0;
 		new->next = head;

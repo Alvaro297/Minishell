@@ -36,7 +36,7 @@ typedef struct s_cmd
 	char	**args;        // Argumentos del comando
 	char	*infile;       // Archivo de entrada si hay redirección (<)
 	char	*outfile;      // Archivo de salida si hay redirección (>)
-	bool		append;        // 1 si es ">>", 0 si es ">"
+	int		outfile_modes;        // 1 si es ">>", 0 si es ">"
 	bool	is_pipe;       // True si este comando está en una tubería
 	struct s_cmd *next;    // Siguiente comando (si hay pipes)
 }	t_cmd;
@@ -52,6 +52,7 @@ typedef struct s_minishell
 	char	**history;
 	t_env	*env_vars;
 	char	*current_dir;
+	char	*history_file;
 } t_minishell;
 
 void	command_type(t_minishell *minishell, char **envp);
