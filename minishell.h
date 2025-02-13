@@ -4,6 +4,7 @@
 #include <readline/history.h>
 # include <readline/readline.h>
 # include <sys/wait.h>
+# include <signal.h>
 # include "libft_minishell/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
@@ -56,7 +57,7 @@ typedef struct s_minishell
 	char	*history_file;
 } t_minishell;
 
-void	command_type(t_minishell *minishell, char **envp);
+void	command_type(t_minishell *minishell);
 //** Fill_minishell **//
 void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp);
 /* Expand_variable */
@@ -87,4 +88,7 @@ bool	have_pipe(char **command, int position);
 //** History **//
 void	load_history(t_minishell *minishell);
 void	add_to_history(t_minishell *minishell, char *input);
+//** Signals **//
+void	manage_signals(void);
+void	handle_sigint(int sig);
 #endif 

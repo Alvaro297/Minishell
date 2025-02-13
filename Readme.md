@@ -14,3 +14,21 @@ A la hora de crear un t_cmd va a recibir lo siguiente de : echo "'Hello | world"
 Lo dividirá a: echo 'Hello | world, | y a grep  foo > output.txt
 Parsing_cmd recogera por partes primero echo 'Hello | world y luego grep  foo > output.txt porque salta de 2 en 2
 Una vez que tengas echo 'Hello | world' Lo quiero dividir en (echo) ('Hello | world'). Si tuviera mas espacios pues mas
+
+## Señales
+
+He implementado las señales. Pero es importante que entiendas que falta algo para las señales. A la hora de hacer la ejecucion necesitamos poner la señal de SIGINT (Ctr + C) en los procesos hijos SOLO en los hijos para que si en mitad del proceso lo quieren parar este finalize. Ej:
+
+ if (pid == 0) // Proceso hijo
+	{
+		signal(SIGINT, SIG_DFL); // Restaurar SIGINT en el hijo
+		char *args[] = {cmd, NULL};
+		execvp(args[0], args);
+		perror("execvp"); // Solo se ejecuta si execve falla
+		exit(1);
+	}
+	else if (pid > 0) // Proceso padre
+	{
+		int status;
+		waitpid(pid, &status, 0);
+	}

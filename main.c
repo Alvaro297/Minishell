@@ -20,14 +20,15 @@ void	minishell(char **envp)
 
 	i = 0;
 	load_history(&minishell);
+	manage_signals();
 	while (1) 
 	{
 		input = readline("Minishell: ");
-		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0)
+		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0 || !input)
 			break ;
 		fill_minishell(input, &minishell, i, envp);
-//		error_control();
-		command_type(&minishell, envp);
+		if (error_control(&minishell) == 0)
+			command_type(&minishell);
 		if (input && *input)
 			i++;
 		free(input);
