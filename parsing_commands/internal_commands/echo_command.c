@@ -8,20 +8,20 @@ int	handle_echo(t_minishell *minishell)
 	i = 1;
 	newline = 1;
 	if (minishell->input != NULL &&
-			ft_strncmp(minishell->parsed_input[i], "-n", 2) == 0 &&
-			ft_strlen(minishell->parsed_input[i]) == 2)
+			ft_strncmp(minishell->cmds->args[i], "-n", 2) == 0 &&
+			ft_strlen(minishell->cmds->args[i]) == 2)
 	{
 		i++;
 		newline = 0;
 	}
-	while (minishell->parsed_input[i] != NULL)
+	while (minishell->cmds->args[i] != NULL)
 	{
-		printf("%s", minishell->parsed_input[i]);
-		if (minishell->parsed_input[i + 1] != NULL)
+		printf("%s", minishell->cmds->args[i]);
+		if (minishell->cmds->args[i + 1] != NULL)
 			printf(" ");
 		i++;
 	}
 	if (newline)
 		printf("\n");
-	return (1);
+	return (0);
 }

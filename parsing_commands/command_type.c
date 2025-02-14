@@ -25,7 +25,7 @@ static void	internal_commands(t_minishell *minishell)
 	else if (ft_strncmp(minishell->cmds, "unset", 5) == 0)
 		handle_unset(minishell);
 	else if (ft_strncmp(minishell->cmds, "env", 3) == 0)
-		/* code */
+		handle_env(minishell);
 	else if (ft_strncmp(minishell->cmds, "echo", 4) == 0)
 		handle_echo(minishell);
 }

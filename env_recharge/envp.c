@@ -61,7 +61,7 @@ void	set_env(t_env **env, const char *name, const char *value)
 			break ;
 		tmp = tmp->next;
 	}
-	*new = malloc(sizeof(t_env));
+	new = malloc(sizeof(t_env));
 	new->name = ft_strdup(name);
 	new->value = value ? ft_strdup(value) : ft_strdup("");
 	new->is_readonly = 0;
@@ -99,7 +99,7 @@ void	delete_env(t_env **env, const char *name)
 	if (ft_strcmp(tmp->name, name, ft_strlen(name)) == 0 &&
 				ft_strlen(name) == ft_strlen(tmp->name))
 	{
-		*env = *env->next;
+		*env = tmp->next;
 		free(tmp->name);
 		free(tmp->value);
 		free(tmp);
