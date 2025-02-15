@@ -74,6 +74,7 @@ void	delete_env(t_env **env, const char *name);
 bool	is_readonly(t_minishell *minishell, char *var);
 //** Internal_commands **//
 int		handle_cd(t_minishell *minishell);
+int		handle_pwd(t_minishell *minishell);
 int		handle_echo(t_minishell *minishell);
 int		handle_export(t_minishell *minishell);
 int		handle_env(t_minishell *minishell);
