@@ -10,7 +10,7 @@ int	handle_env(t_minishell *minishell)
 	while (tmp)
 	{
 		if (minishell->cmds->is_pipe)
-			ft_strjoin(output, "%s=%s\n");
+			output = ft_strjoin_free(output, "%s=%s\n");
 		else
 			printf("%s=%s\n", tmp->name, tmp->value);
 		tmp = tmp->next;

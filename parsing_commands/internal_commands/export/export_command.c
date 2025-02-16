@@ -1,4 +1,4 @@
-#include  "../../minishell.h"
+#include  "../../../minishell.h"
 
 static char	*parsed_variable_name(char *str)
 {
@@ -72,8 +72,8 @@ int		handle_export(t_minishell *minishell)
 	char	*var_name;
 	char	*var_check;
 
-	i = 1;
-	while (minishell->cmds->args[i])
+	i = 0;
+	while (minishell->cmds->args[++i] && !minishell->cmds->is_pipe)
 	{
 		var_name = parsed_variable_name(minishell->cmds->args[i]);
 		var_check = ft_strchr(minishell->cmds->args[i], '=');
@@ -88,9 +88,11 @@ int		handle_export(t_minishell *minishell)
 			if (parsed_name_validation(var_name))
 				set_env(&minishell->env_vars, var_name, "");
 	}
-	if (i == 1)
+	if (minishell->cmds->is_pipe && minishell->cmds->args[1])
+		minishell->output = ft_strdup("");
+	if (i == 1 && !minishell->cmds->args[1])
 		print_entorn_variable(minishell); // Hay que hacer una funcion en la cual si solo le pasas (export) a la mini te ponga ALPHABETICAMENTE
 										  // TODAS las variables de entorno. Incluso las que se han creado. Si la variable de entorno necesita "" se ponen y sino no
 										  // incluso si se han creado con ella EJ: export HOLA="hola" se mostrara como define -x HOLA=hola
-	return (1);
+	return (0);
 }

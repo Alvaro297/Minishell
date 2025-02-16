@@ -32,6 +32,7 @@ typedef struct s_list
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_free(char *s1, char const *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dest, char *src, size_t size);
 size_t	ft_strlen(const char *str);
@@ -66,7 +67,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *ptr, int value, size_t num);
 char	*ft_strdup(const char *s);
-char *ft_strndup(const char *s, size_t len);
+char	*ft_strndup(const char *s, size_t len);
 //******//
 //WriteFileDescriptor//
 void	ft_putchar_fd(char c, int fd);

@@ -9,7 +9,7 @@ int	handle_unset(t_minishell *minishell)
 	is_var_readonly = false;
 	while (minishell->cmds->args[i])
 	{
-		if (!is_readonly(minishell->cmds->args[i]))
+		if (!is_readonly(minishell, minishell->cmds->args[i]))
 			delete_env(&minishell->env_vars, minishell->cmds->args[i]);
 		else
 		{

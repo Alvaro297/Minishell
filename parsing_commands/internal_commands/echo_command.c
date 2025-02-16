@@ -7,13 +7,13 @@ void	handle_echo_help(t_minishell *minishell, int i, int newline)
 	echo_print = ft_strdup("");
 	while (minishell->cmds->args[i] != NULL)
 	{
-		ft_strjoin(echo_print, minishell->cmds->args[i]);
+		echo_print = ft_strjoin_free(echo_print, minishell->cmds->args[i]);
 		if (minishell->cmds->args[i + 1] != NULL)
-			ft_strjoin(echo_print, " ");
+			echo_print = ft_strjoin_free(echo_print, " ");
 		i++;
 	}
 	if (newline)
-		ft_strjoin(echo_print, "\n");
+		echo_print = ft_strjoin_free(echo_print, "\n");
 	if (minishell->cmds->is_pipe)
 		minishell->output = echo_print;
 	else
