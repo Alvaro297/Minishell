@@ -91,8 +91,6 @@ int		handle_export(t_minishell *minishell)
 	if (minishell->cmds->is_pipe && minishell->cmds->args[1])
 		minishell->output = ft_strdup("");
 	if (i == 1 && !minishell->cmds->args[1])
-		print_entorn_variable(minishell); // Hay que hacer una funcion en la cual si solo le pasas (export) a la mini te ponga ALPHABETICAMENTE
-										  // TODAS las variables de entorno. Incluso las que se han creado. Si la variable de entorno necesita "" se ponen y sino no
-										  // incluso si se han creado con ella EJ: export HOLA="hola" se mostrara como define -x HOLA=hola
+		print_entorn_variable(minishell);
 	return (0);
 }

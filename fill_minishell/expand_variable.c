@@ -29,8 +29,13 @@ static char *expand_variable(t_minishell *minishell, char *str)
 
 	if (str[0] != '$')
 		return (ft_strdup(str));
-	var_name = str + 1;
-	var_value = get_env_value(minishell->env_vars, var_name);
+	if (str[1] == '?' && str[2] == ' ')
+		var_value = ft_itoa(minishell->last_exit_status);
+	else
+	{
+		var_name = str + 1;
+		var_value = get_env_value(minishell->env_vars, var_name);
+	}
 	if (var_value == NULL)
 		return (ft_strdup(""));
 	return (ft_strdup(var_value));

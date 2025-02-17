@@ -55,6 +55,7 @@ typedef struct s_minishell
 	t_env	*env_vars;
 	char	*current_dir;
 	char	*history_file;
+	int		last_exit_status;
 } t_minishell;
 
 void	command_type(t_minishell *minishell);

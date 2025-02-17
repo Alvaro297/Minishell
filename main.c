@@ -34,7 +34,8 @@ void	minishell(char **envp)
 			free(input);
 			continue ;
 		}
-		if (error_control(&minishell) == 0)
+		minishell.last_exit_status = error_control(&minishell);
+		if (minishell.last_exit_status == 0)
 			command_type(&minishell);
 		free(input);
 	}

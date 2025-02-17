@@ -58,6 +58,8 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 {
 	if (minishell->env_vars == NULL)
 		minishell->env_vars = init_env(envp);
+	if (minishell->last_exit_status == NULL)
+		minishell->last_exit_status = 0;
 	minishell->input = ft_quote_printf(minishell, input);
 	minishell->cmds = parsing_input(minishell, input);
 	minishell->second_plane = false;
@@ -69,4 +71,5 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 		add_to_history(minishell, input);
 	}
 	fill_minishell_help(minishell, input, i);
+	
 }
