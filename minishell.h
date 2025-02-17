@@ -77,6 +77,7 @@ int		handle_cd(t_minishell *minishell);
 int		handle_pwd(t_minishell *minishell);
 int		handle_echo(t_minishell *minishell);
 int		handle_export(t_minishell *minishell);
+void	print_entorn_variable(t_minishell *minishell);
 int		handle_env(t_minishell *minishell);
 int		handle_unset(t_minishell *minishell);
 //** Parsing Input **//

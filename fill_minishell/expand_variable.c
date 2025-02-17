@@ -82,8 +82,7 @@ char	*ft_quote_printf(t_minishell *minishell, char *str)
 	char		*new_result;
 	t_indices	indices;
 	
-	result = malloc(1);
-	result[0] = '\0';
+	result = ft_strdup("");
 	in_single_quote = false;
 	in_double_quote = false;
 	indices.i = 0;

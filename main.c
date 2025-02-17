@@ -27,10 +27,15 @@ void	minishell(char **envp)
 		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0 || !input)
 			break ;
 		fill_minishell(input, &minishell, i, envp);
-		if (error_control(&minishell) == 0)
-			command_type(&minishell);
 		if (input && *input)
 			i++;
+		if (minishell.cmds == NULL)
+		{
+			free(input);
+			continue ;
+		}
+		if (error_control(&minishell) == 0)
+			command_type(&minishell);
 		free(input);
 	}
 	//No hay que poner argumentos en la minishell a la hora de la ejecución.

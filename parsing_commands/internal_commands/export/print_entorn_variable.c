@@ -1,18 +1,42 @@
 #include  "../../../minishell.h"
 
-static int	count_nodes(t_env *head)
+static t_env *insert_sorted(t_env *sorted_env, t_env *new_node)
 {
-	int	count;
+	t_env *current;
 
-	count = 0;
-	while (head) 
+	if (sorted_env == NULL ||
+			ft_strncmp(new_node->name, sorted_env->name, ft_strlen(new_node->name)) < 0)
 	{
-		count++;
-		head = head->next;
+		new_node->next = sorted_env;
+		return (new_node);
 	}
-	return (count);
+	current = sorted_env;
+	while (current->next != NULL &&
+			ft_strncmp(new_node->name, current->next->name, ft_strlen(new_node->name)) > 0)
+		current = current->next;
+	new_node->next = current->next;
+	current->next = new_node;
+	return (sorted_env);
 }
-static	char *join_all(t_env *sorted_env)
+
+static t_env *insertion_sort(t_env *env)
+{
+	t_env *sorted_env = NULL;
+	t_env *current;
+	t_env *next;
+
+	current = env;
+	while (current != NULL)
+	{
+		next = current->next;
+		current->next = NULL;
+		sorted_env = insert_sorted(sorted_env, current);
+		current = next;
+	}
+	return (sorted_env);
+}
+
+static char	*join_all(t_env *sorted_env)
 {
 	char	*output;
 
@@ -33,12 +57,7 @@ void	print_entorn_variable(t_minishell *minishell)
 	t_env	*sorted_env;
 
 	env = minishell->env_vars;
-	sorted_env = NULL;
-	count = count_nodes(env);
-	if (count > 30)
-		sorted_env = merge_sort(env);
-	else
-		sorted_env = insertion_sort(env);
+	sorted_env = insertion_sort(env);
 	while (sorted_env)
 	{
 		if (minishell->cmds->is_pipe)

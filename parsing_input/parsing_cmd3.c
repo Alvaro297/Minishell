@@ -25,9 +25,7 @@ int	is_append(char **command_splited)
 			ft_strlen(command_splited[i]) == 2)
 			is_append = 2;
 		else if ((ft_strncmp(command_splited[i], ">", 1) == 0 &&
-					ft_strlen(command_splited[i]) == 1) ||
-				(ft_strncmp(command_splited[i], "1>", 2) == 0 &&
-					ft_strlen(command_splited[i]) == 2))
+					ft_strlen(command_splited[i]) == 1))
 			is_append = 1;
 		i++;
 	}
@@ -43,9 +41,7 @@ char	*find_infile(char **command_splited)
 	while (command_splited[i])
 	{
 		if ((ft_strncmp(command_splited[i], "<", 1) == 0 &&
-					ft_strlen(command_splited[i]) == 1) ||
-				(ft_strncmp(command_splited[i], "0<", 2) == 0 &&
-					ft_strlen(command_splited[i]) == 2))
+					ft_strlen(command_splited[i]) == 1))
 		{
 			i++;
 			if (!check_name_arg(command_splited[i]))
@@ -69,8 +65,6 @@ char	*find_outfile(char **command_splited)
 		if ((ft_strncmp(command_splited[i], ">", 1) == 0 &&
 					ft_strlen(command_splited[i]) == 1) ||
 				(ft_strncmp(command_splited[i], ">>", 2) == 0 &&
-					ft_strlen(command_splited[i]) == 2) ||
-				(ft_strncmp(command_splited[i], "1>", 2) == 0 &&
 					ft_strlen(command_splited[i]) == 2))
 		{
 			i++;
