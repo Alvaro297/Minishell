@@ -22,22 +22,29 @@ static void append_expanded_variable(char **result, size_t *j, const char *expan
 	*j += len;
 }
 
-static char *expand_variable(t_minishell *minishell, char *str)
+static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 {
-	const char	*var_name;
-	const char	*var_value;
+	char	*var_name;
+	char	*var_value;
+	size_t	i;
 
 	if (str[0] != '$')
 		return (ft_strdup(str));
-	if (str[1] == '?')
-		var_value = ft_itoa(minishell->last_exit_status);
-	else if (str[1] == '$')
-		var_value = ft_itoa(get_pid());
-	else
+	if (str[1] == '?' || str[1] == '$')
 	{
-		var_name = str + 1;
-		var_value = get_env_value(minishell->env_vars, var_name);
+		*len = 2;
+		if (str[1] == '?')
+			return (ft_itoa(minishell->last_exit_status));
+		else
+			return (ft_itoa(getpid()));
 	}
+	i = 1;
+	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
+		i++;
+	var_name = ft_strndup(str + 1, i - 1);
+	var_value = get_env_value(minishell->env_vars, var_name);
+	free(var_name);
+	*len = i;
 	if (var_value == NULL)
 		return (ft_strdup(""));
 	return (ft_strdup(var_value));
@@ -46,16 +53,13 @@ static char *expand_variable(t_minishell *minishell, char *str)
 static int ft_quote_printf_ev(t_minishell *minishell, char *str, t_indices *indices, char **result)
 {
 	char *expanded;
+	size_t len;
 
-	expanded = expand_variable(minishell, &str[indices->i]);
+	expanded = expand_variable(minishell, &str[indices->i], &len);
 	if (expanded != NULL)
 	{
 		append_expanded_variable(result, &indices->j, expanded);
-		while (str[indices->i] && str[indices->i] != ' ' &&
-				str[indices->i] != '\'' && str[indices->i] != '"')
-			indices->i++;
-		if (expanded[0] == '\0')
-			indices->i++;
+		indices->i += len;
 		free(expanded);
 		return (1);
 	}
