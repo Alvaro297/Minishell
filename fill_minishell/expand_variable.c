@@ -29,8 +29,10 @@ static char *expand_variable(t_minishell *minishell, char *str)
 
 	if (str[0] != '$')
 		return (ft_strdup(str));
-	if (str[1] == '?' && str[2] == ' ')
+	if (str[1] == '?')
 		var_value = ft_itoa(minishell->last_exit_status);
+	else if (str[1] == '$')
+		var_value = ft_itoa(get_pid());
 	else
 	{
 		var_name = str + 1;

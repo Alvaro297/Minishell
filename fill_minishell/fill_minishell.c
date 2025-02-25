@@ -61,7 +61,7 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 	if (minishell->last_exit_status == NULL)
 		minishell->last_exit_status = 0;
 	minishell->input = ft_quote_printf(minishell, input);
-	minishell->cmds = parsing_input(minishell, input);
+	minishell->cmds = parsing_input(minishell, minishell->input);
 	minishell->second_plane = false;
 	minishell->output = NULL;
 	minishell->error_message = NULL;

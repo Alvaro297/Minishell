@@ -12,6 +12,11 @@
 
 # include "../minishell.h"
 
+static bool is_special_char(char c)
+{
+	return (c == '|' || c == '<' || c == '>' || c == '&');
+}
+
 int count_commands(const char *input)
 {
 	int count;

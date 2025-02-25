@@ -38,31 +38,31 @@ Entiendo, quieres asegurarte de que todas las posibles comprobaciones de errores
 ### Comprobaciones de errores en error_control
 
 1. **Verificar la existencia de variables de entorno críticas**:
-   - `PWD`: Verifica si la variable de entorno `PWD` está presente y es válida.
-   - `HOME`: Verifica si la variable de entorno `HOME` está presente y es válida.
-   - `PATH`: Verifica si la variable de entorno `PATH` está presente y es válida.
+	 - `PWD`: Verifica si la variable de entorno `PWD` está presente y es válida.
+	 - `HOME`: Verifica si la variable de entorno `HOME` está presente y es válida.
+	 - `PATH`: Verifica si la variable de entorno `PATH` está presente y es válida.
 
 2. **Verificar la validez de los valores de las variables de entorno**:
-   - Asegúrate de que los valores de las variables de entorno no sean `NULL` o cadenas vacías.
+	 - Asegúrate de que los valores de las variables de entorno no sean `NULL` o cadenas vacías.
 
 3. **Verificar la existencia de archivos y directorios**:
-   - Para comandos que requieren archivos o directorios específicos (por ejemplo, `cd`, `pwd`), verifica si los archivos o directorios existen y son accesibles.
+	 - Para comandos que requieren archivos o directorios específicos (por ejemplo, `cd`, `pwd`), verifica si los archivos o directorios existen y son accesibles.
 
 4. **Verificar permisos de archivos y directorios**:
-   - Asegúrate de que el usuario tenga los permisos necesarios para acceder o modificar archivos y directorios.
+	 - Asegúrate de que el usuario tenga los permisos necesarios para acceder o modificar archivos y directorios.
 
 5. **Verificar la validez de los comandos**:
-   - Asegúrate de que los comandos ingresados sean válidos y estén disponibles en el sistema.
-   - Verifica si el comando es un comando interno o externo.
+	 - Asegúrate de que los comandos ingresados sean válidos y estén disponibles en el sistema.
+	 - Verifica si el comando es un comando interno o externo.
 
 6. **Verificar la sintaxis de los comandos**:
-   - Asegúrate de que la sintaxis de los comandos sea correcta (por ejemplo, no permitir pipes (`|`) al inicio o final de la línea de comandos).
+	 - Asegúrate de que la sintaxis de los comandos sea correcta (por ejemplo, no permitir pipes (`|`) al inicio o final de la línea de comandos).
 
 7. **Manejo de errores de redirección**:
-   - Verifica si las redirecciones de entrada (`<`) y salida (`>`, `>>`) son válidas y si los archivos especificados existen y son accesibles.
+	 - Verifica si las redirecciones de entrada (`<`) y salida (`>`, `>>`) son válidas y si los archivos especificados existen y son accesibles.
 
 8. **Verificar la validez de los argumentos**:
-   - Asegúrate de que los argumentos de los comandos sean válidos y no contengan caracteres no permitidos.
+	 - Asegúrate de que los argumentos de los comandos sean válidos y no contengan caracteres no permitidos.
 
 ### Ejemplo de error_control
 
@@ -103,16 +103,16 @@ int	error_control(t_minishell *minishell)
 ### Comprobaciones de errores en otras partes del código
 
 1. **Verificar la asignación de memoria**:
-   - Asegúrate de que todas las asignaciones de memoria (`malloc`, `calloc`, `realloc`) se verifiquen para evitar errores de memoria.
+	 - Asegúrate de que todas las asignaciones de memoria (`malloc`, `calloc`, `realloc`) se verifiquen para evitar errores de memoria.
 
 2. **Verificar la apertura de archivos**:
-   - Asegúrate de que todas las aperturas de archivos (`fopen`, `open`) se verifiquen para evitar errores de archivo.
+	 - Asegúrate de que todas las aperturas de archivos (`fopen`, `open`) se verifiquen para evitar errores de archivo.
 
 3. **Verificar la ejecución de comandos externos**:
-   - Asegúrate de que la ejecución de comandos externos (`execve`, `system`) se verifique para evitar errores de ejecución.
+	 - Asegúrate de que la ejecución de comandos externos (`execve`, `system`) se verifique para evitar errores de ejecución.
 
 4. **Manejo de señales**:
-   - Asegúrate de que las señales (`SIGINT`, `SIGQUIT`) se manejen adecuadamente para evitar que el programa se cierre inesperadamente.
+	 - Asegúrate de que las señales (`SIGINT`, `SIGQUIT`) se manejen adecuadamente para evitar que el programa se cierre inesperadamente.
 
 ### Resumen
 
@@ -136,45 +136,45 @@ Entiendo, quieres asegurarte de que todas las posibles comprobaciones de errores
 ### Comprobaciones de errores en error_control
 
 1. **Verificar la existencia de variables de entorno críticas**:
-   - `PWD`: Verifica si la variable de entorno `PWD` está presente y es válida.
-   - `HOME`: Verifica si la variable de entorno `HOME` está presente y es válida.
-   - `PATH`: Verifica si la variable de entorno `PATH` está presente y es válida.
+	 - `PWD`: Verifica si la variable de entorno `PWD` está presente y es válida.
+	 - `HOME`: Verifica si la variable de entorno `HOME` está presente y es válida.
+	 - `PATH`: Verifica si la variable de entorno `PATH` está presente y es válida.
 
 2. **Verificar la validez de los valores de las variables de entorno**:
-   - Asegúrate de que los valores de las variables de entorno no sean `NULL` o cadenas vacías.
+	 - Asegúrate de que los valores de las variables de entorno no sean `NULL` o cadenas vacías.
 
 3. **Verificar la existencia de archivos y directorios**:
-   - Para comandos que requieren archivos o directorios específicos (por ejemplo, `cd`, `pwd`), verifica si los archivos o directorios existen y son accesibles.
+	 - Para comandos que requieren archivos o directorios específicos (por ejemplo, `cd`, `pwd`), verifica si los archivos o directorios existen y son accesibles.
 
 4. **Verificar permisos de archivos y directorios**:
-   - Asegúrate de que el usuario tenga los permisos necesarios para acceder o modificar archivos y directorios.
+	 - Asegúrate de que el usuario tenga los permisos necesarios para acceder o modificar archivos y directorios.
 
 5. **Verificar la validez de los comandos**:
-   - Asegúrate de que los comandos ingresados sean válidos y estén disponibles en el sistema.
-   - Verifica si el comando es un comando interno o externo.
+	 - Asegúrate de que los comandos ingresados sean válidos y estén disponibles en el sistema.
+	 - Verifica si el comando es un comando interno o externo.
 
 6. **Verificar la sintaxis de los comandos**:
-   - Asegúrate de que la sintaxis de los comandos sea correcta (por ejemplo, no permitir pipes (`|`) al inicio o final de la línea de comandos).
+	 - Asegúrate de que la sintaxis de los comandos sea correcta (por ejemplo, no permitir pipes (`|`) al inicio o final de la línea de comandos).
 
 7. **Manejo de errores de redirección**:
-   - Verifica si las redirecciones de entrada (`<`) y salida (`>`, `>>`) son válidas y si los archivos especificados existen y son accesibles.
+	 - Verifica si las redirecciones de entrada (`<`) y salida (`>`, `>>`) son válidas y si los archivos especificados existen y son accesibles.
 
 8. **Verificar la validez de los argumentos**:
-   - Asegúrate de que los argumentos de los comandos sean válidos y no contengan caracteres no permitidos.
+	 - Asegúrate de que los argumentos de los comandos sean válidos y no contengan caracteres no permitidos.
 
 ### Comprobaciones de errores en otras partes del código
 
 1. **Verificar la asignación de memoria**:
-   - Asegúrate de que todas las asignaciones de memoria (`malloc`, `calloc`, `realloc`) se verifiquen para evitar errores de memoria.
+	 - Asegúrate de que todas las asignaciones de memoria (`malloc`, `calloc`, `realloc`) se verifiquen para evitar errores de memoria.
 
 2. **Verificar la apertura de archivos**:
-   - Asegúrate de que todas las aperturas de archivos (`fopen`, `open`) se verifiquen para evitar errores de archivo.
+	 - Asegúrate de que todas las aperturas de archivos (`fopen`, `open`) se verifiquen para evitar errores de archivo.
 
 3. **Verificar la ejecución de comandos externos**:
-   - Asegúrate de que la ejecución de comandos externos (`execve`, `system`) se verifique para evitar errores de ejecución.
+	 - Asegúrate de que la ejecución de comandos externos (`execve`, `system`) se verifique para evitar errores de ejecución.
 
 4. **Manejo de señales**:
-   - Asegúrate de que las señales (`SIGINT`, `SIGQUIT`) se manejen adecuadamente para evitar que el programa se cierre inesperadamente.
+	 - Asegúrate de que las señales (`SIGINT`, `SIGQUIT`) se manejen adecuadamente para evitar que el programa se cierre inesperadamente.
 
 ### Resumen
 
@@ -190,3 +190,12 @@ Entiendo, quieres asegurarte de que todas las posibles comprobaciones de errores
 - **Verificar la apertura de archivos**.
 - **Verificar la ejecución de comandos externos**.
 - **Manejo de señales**.
+
+
+### 25-02-2025
+
+Hola Max hace poco me he dado cuenta de un fallo en los builtin concretamente en el export. Este es un cambio sencillo de realizar. Lo que necesitas saber es sobre las variables de expansion especiales.
+Como lo son:
+	$$: Coje el pid
+	$?: El return del comando. 0 si ha ido bien 1 mal 127...
+Y estas variables no se pueden cambiar. Al igual que estas no se pueden cambiar tampoco nada que este seguido. Ej: $$$PATH no se puede cambiar ya que antes esta $$ tampoco tiene mucho sentido cambiar $PATH porque lo que hace bash es expandir antes. Igualmente tu misión en la carpeta de export es controlarme esos errores y mirar en los builtin si hay alguno mas de ese estilo.
