@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_variable.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-02-26 18:32:39 by alvamart          #+#    #+#             */
+/*   Updated: 2025-02-26 18:32:39 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "../minishell.h"
 
 static void append_expanded_variable(char **result, size_t *j, const char *expanded)

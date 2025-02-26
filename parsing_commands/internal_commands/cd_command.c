@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd_command.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-02-26 18:32:03 by alvamart          #+#    #+#             */
+/*   Updated: 2025-02-26 18:32:03 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "../../minishell.h"
 
 static void	handle_cd_help(t_minishell *minishell, char *path, char *cwd)
