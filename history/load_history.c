@@ -12,20 +12,9 @@
 
 # include "../minishell.h"
 
-static void	error_minishell_history(char **history)
+static void	error_minishell_history(char **history, int count, char *line, int fd)
 {
-	if (minishell->history[count] == NULL)
-	{
-		perror("Error al duplicar la línea del historial");
-		free(line);
-		close(fd);
-		return ;
-	}
-}
-
-static void	error_duplicate(char **history, int count)
-{
-	if (minishell->history[count] == NULL)
+	if (history[count] == NULL)
 	{
 		perror("Error al duplicar la línea del historial");
 		free(line);
@@ -51,7 +40,7 @@ void	load_history(t_minishell *minishell)
 		line[ft_strlen(line) - 1] = '\0';
 		add_history(line);
 		minishell->history = ft_realloc(minishell->history, (count + 2) * sizeof(char *));
-		error_minishell_history(minishell->history);
+		error_minishell_history(minishell->history, count, line, fd);
 		minishell->history[count] = ft_strdup(line);
 		error_duplicate(minishell->history, count);
 		minishell->history[count + 1] = NULL;
