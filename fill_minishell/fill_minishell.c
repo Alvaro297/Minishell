@@ -12,26 +12,6 @@
 
 #include "./minishell.h"
 
-//static char	*fill_mini_expand_variables(char *input, t_minishell *minishell)
-//{
-//	char	*trimmed_input;
-//	bool	in_single_quote;
-//	bool	in_double_quote;
-//
-//	trimmed_input = input;
-//	in_double_quote = false;
-//	in_single_quote = false;
-//	while (*trimmed_input == ' ' && trimmed_input)
-//		trimmed_input++;
-//	if ((ft_strncmp(trimmed_input, "export", 6) == 0 && (trimmed_input[6] == ' ' || trimmed_input[6] == '\0')) || 
-//		(ft_strncmp(trimmed_input, "unset", 5) == 0 && (trimmed_input[5] == ' ' || trimmed_input[5] == '\0')) ||
-//		(ft_strncmp(trimmed_input, "declare", 7) == 0 && (trimmed_input[7] == ' ' || trimmed_input[7] == '\0')) ||
-//		(ft_strncmp(trimmed_input, "env", 3) == 0 && (trimmed_input[7] == ' ' || trimmed_input[7] == '\0')))
-//		return (ft_strdup(trimmed_input));
-//	else
-//		return (ft_quote_printf(minishell, *trimmed_input));
-//}
-
 static void	fill_minishell_help(t_minishell *minishell, char *input, int i)
 {
 	char	**new_history;

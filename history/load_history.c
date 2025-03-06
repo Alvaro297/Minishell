@@ -1,4 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_history.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-02-26 18:31:06 by alvamart          #+#    #+#             */
+/*   Updated: 2025-02-26 18:31:06 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "../minishell.h"
+
+static void	error_minishell_history(char **history)
+{
+	if (minishell->history[count] == NULL)
+	{
+		perror("Error al duplicar la línea del historial");
+		free(line);
+		close(fd);
+		return ;
+	}
+}
+
+static void	error_duplicate(char **history, int count)
+{
+	if (minishell->history[count] == NULL)
+	{
+		perror("Error al duplicar la línea del historial");
+		free(line);
+		close(fd);
+		return ;
+	}
+}
 
 void	load_history(t_minishell *minishell)
 {
@@ -15,8 +49,11 @@ void	load_history(t_minishell *minishell)
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		line[ft_strlen(line) - 1] = '\0';
+		add_history(line);
 		minishell->history = ft_realloc(minishell->history, (count + 2) * sizeof(char *));
+		error_minishell_history(minishell->history);
 		minishell->history[count] = ft_strdup(line);
+		error_duplicate(minishell->history, count);
 		minishell->history[count + 1] = NULL;
 		count++;
 		free(line);
