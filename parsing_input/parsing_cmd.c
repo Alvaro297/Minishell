@@ -80,8 +80,7 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	if (!tmp)
 		return ;
 	tmp = *new_cmd;
-	command_splited = ft_split_modified(command, ' '); //Funcion a diseñar por ti Max tiene que hacer lo que te he dicho en el audio. 
-													   // Dividir por espacios o lo que sea excepto si está entre comillas simples o compuestas
+	command_splited = split_modified(command, ' '); //Diseñando
 	tmp->cmd = find_command(command_splited);
 	tmp->args = find_args(command_splited);
 	tmp->infile = find_infile(command_splited);
