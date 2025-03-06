@@ -48,7 +48,6 @@ typedef struct s_minishell
 	char	*input;
 	t_cmd	*cmds;
 	pid_t	*pids;
-	bool	second_plane;
 	char	*output;
 	char	*error_message;
 	char	**history;
@@ -65,6 +64,8 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp);
 char	*ft_quote_printf(t_minishell *minishell, char *str);
 /* Quote */
 int	ft_sd_quote_printf(char *str, bool *in_single_quote,
+		bool *in_double_quote, size_t *i);
+int	ft_sd_quote_printf_mod(char *str, bool *in_single_quote,
 		bool *in_double_quote, size_t *i);
 //** Envp **//
 t_env	*init_env(char **envp);

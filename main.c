@@ -39,8 +39,6 @@ void	minishell(char **envp)
 			command_type(&minishell);
 		free(input);
 	}
-	//No hay que poner argumentos en la minishell a la hora de la ejecución.
-	//Desde aqui comenzamos
 }
 
 int	main(int argc, char **argv, char **envp)

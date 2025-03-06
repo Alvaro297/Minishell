@@ -42,13 +42,11 @@ static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 
 	if (str[0] != '$')
 		return (ft_strdup(str));
-	if (str[1] == '?' || str[1] == '$')
+	if (str[1] == '?')
 	{
 		*len = 2;
 		if (str[1] == '?')
 			return (ft_itoa(minishell->last_exit_status));
-		else
-			return (ft_itoa(getpid()));
 	}
 	i = 1;
 	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
@@ -112,9 +110,12 @@ char	*ft_quote_printf(t_minishell *minishell, char *str)
 	indices.j = 0;
 	while (str[indices.i] != '\0')
 	{
-		if (ft_sd_quote_printf(str, &in_single_quote,
+		if (ft_sd_quote_printf_mod(str, &in_single_quote,
 				&in_double_quote, &indices.i))
-			continue ;
+				{
+					ft_quote_printf_help(&result, &indices, str);
+					continue ;
+				}
 		if ((!in_single_quote && str[indices.i] == '$') &&
 				ft_quote_printf_ev(minishell, str, &indices, &result))
 				continue ;
