@@ -31,17 +31,50 @@ int	ft_sd_quote_printf_mod(char *str, bool *in_single_quote,
 int	ft_sd_quote_printf(char *str, bool *in_single_quote,
 	bool *in_double_quote, size_t *i)
 {
-if (str[*i] == '\'' && !(*in_double_quote))
-{
-	*in_single_quote = !(*in_single_quote);
-	(*i)++;
-	return (1);
+	if (str[*i] == '\'' && !(*in_double_quote))
+	{
+		*in_single_quote = !(*in_single_quote);
+		(*i)++;
+		return (1);
+	}
+	if (str[*i] == '"' && !(*in_single_quote))
+	{
+		*in_double_quote = !(*in_double_quote);
+		(*i)++;
+		return (1);
+	}
+	return (0);
 }
-if (str[*i] == '"' && !(*in_single_quote))
+
+int	ft_sd_quote_printf_mod2(char **str, bool *in_single_quote,
+	bool *in_double_quote)
 {
-	*in_double_quote = !(*in_double_quote);
-	(*i)++;
-	return (1);
+	if (**str == '\'' && !(*in_double_quote))
+	{
+		*in_single_quote = !(*in_single_quote);
+		(*str)++;
+		return (1);
+	}
+	if (**str == '"' && !(*in_single_quote))
+	{
+		*in_double_quote = !(*in_double_quote);
+		(*str)++;
+		return (1);
+	}
+	return (0);
 }
-return (0);
+
+char *ft_sd_quote_printf_mod3(char *str, bool *in_single_quote, bool *in_double_quote)
+{
+	if (*str == '\'' && !(*in_double_quote))
+	{
+		*in_single_quote = !(*in_single_quote);
+		return (++str);
+	}
+	if (*str == '"' && !(*in_single_quote))
+	{
+		*in_double_quote = !(*in_double_quote);
+		return (++str);
+	}
+	return (str);
 }

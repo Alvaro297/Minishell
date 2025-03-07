@@ -15,7 +15,7 @@ static int	ft_count_words(char *command, bool in_single_quote, bool in_double_qu
 		if (command[i] == c && !in_single_quote && !in_double_quote)
 		{
 			count++;
-			while (command[i] == c);
+			while (command[i] == c)
 				i++;
 		}
 		else
@@ -26,6 +26,29 @@ static int	ft_count_words(char *command, bool in_single_quote, bool in_double_qu
 	if (in_single_quote || in_double_quote)
 		return (-1);
 	return (count);
+}
+
+static char	*get_next_word_help(char *start, char **command)
+{
+	size_t word_len;
+	char *word;
+	bool in_single_quote;
+	bool in_double_quote;
+
+	in_double_quote = false;
+	in_single_quote = false;
+	word_len = 0;
+	word = malloc((*command - start) + 1);
+	if (!word)
+		return (NULL);
+	while (start < *command)
+	{
+		start = ft_sd_quote_printf_mod3(start, &in_single_quote, &in_double_quote);
+		word[word_len++] = *start;
+		start++;
+	}
+	word[word_len] = '\0';
+	return (word);
 }
 
 static char	*get_next_word(char **command, bool *in_single_quote, bool *in_double_quote)
@@ -40,19 +63,16 @@ static char	*get_next_word(char **command, bool *in_single_quote, bool *in_doubl
 	start = *command;
 	while (**command && (!(**command == ' ' || **command == '\t' || **command == '\n') || *in_single_quote || *in_double_quote))
 	{
-		if (**command == '\'' && !*in_double_quote)
-			*in_single_quote = !*in_single_quote;
-		else if (**command == '"' && !*in_single_quote)
-			*in_double_quote = !*in_double_quote;
+		if (ft_sd_quote_printf_mod2(command, in_single_quote,
+				in_double_quote))
+			continue;
 		(*command)++;
 		len++;
 	}
 	word = malloc(len + 1);
 	if (!word)
 		return (NULL);
-	ft_strncpy(word, start, len);
-	word[len] = '\0';
-	return (word);
+	return (get_next_word_help(start, command));
 }
 
 static char	**split_modified_help(char **result, char *command)
@@ -95,5 +115,5 @@ char	**split_modified(char *command, int c)
 	result = malloc(sizeof(char *) * (count_words + 1));
 	if (!result)
 		return (NULL);
-	return (split_modified_help(result, command, c));
+	return (split_modified_help(result, command));
 }
