@@ -32,8 +32,9 @@ static char	*get_next_word(char **command, bool *in_single_quote, bool *in_doubl
 {
 	char	*start;
 	char	*word;
-	size_t	len = 0;
+	size_t	len;
 
+	len = 0;
 	while (**command && (**command == ' ' || **command == '\t' || **command == '\n'))
 		(*command)++;
 	start = *command;

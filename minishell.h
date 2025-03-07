@@ -85,6 +85,7 @@ int		handle_unset(t_minishell *minishell);
 //** Parsing Input **//
 t_env	*parsing_input(t_minishell *minishell, char *input);
 bool	check_name_arg(char	*name);
+char	**split_modified(char *command, int c);
 //** Cmds **//
 void	delete_cmds(t_env **cmd);
 void	append_cmds(t_env *cmd, char *imput);
