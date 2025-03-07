@@ -1,6 +1,6 @@
 # include "../minishell.h"
 
-static int	ft_count_words(char *command, bool in_single_quote, bool in_double_quote, int c)
+static int ft_count_words(char *command, bool in_single_quote, bool in_double_quote, int c)
 {
 	size_t	i;
 	int		count;
@@ -11,7 +11,7 @@ static int	ft_count_words(char *command, bool in_single_quote, bool in_double_qu
 		i++;
 	while (command[i])
 	{
-		ft_sd_quote_printf(command, &in_single_quote, &in_double_quote, &i);
+		ft_sd_quote_printf_mod(command, &in_single_quote, &in_double_quote, &i);
 		if (command[i] == c && !in_single_quote && !in_double_quote)
 		{
 			count++;
@@ -28,7 +28,7 @@ static int	ft_count_words(char *command, bool in_single_quote, bool in_double_qu
 	return (count);
 }
 
-static char	*get_next_word_help(char *start, char **command)
+static char *get_next_word_help(char *start, char **command)
 {
 	size_t word_len;
 	char *word;
@@ -44,6 +44,8 @@ static char	*get_next_word_help(char *start, char **command)
 	while (start < *command)
 	{
 		start = ft_sd_quote_printf_mod3(start, &in_single_quote, &in_double_quote);
+		if ((in_single_quote && *start == '\'') || (in_double_quote && *start == '"'))
+			continue;
 		word[word_len++] = *start;
 		start++;
 	}
@@ -51,11 +53,11 @@ static char	*get_next_word_help(char *start, char **command)
 	return (word);
 }
 
-static char	*get_next_word(char **command, bool *in_single_quote, bool *in_double_quote)
+static char *get_next_word(char **command, bool *in_single_quote, bool *in_double_quote)
 {
-	char	*start;
-	char	*word;
-	size_t	len;
+	char *start;
+	char *word;
+	size_t len;
 
 	len = 0;
 	while (**command && (**command == ' ' || **command == '\t' || **command == '\n'))
@@ -63,8 +65,7 @@ static char	*get_next_word(char **command, bool *in_single_quote, bool *in_doubl
 	start = *command;
 	while (**command && (!(**command == ' ' || **command == '\t' || **command == '\n') || *in_single_quote || *in_double_quote))
 	{
-		if (ft_sd_quote_printf_mod2(command, in_single_quote,
-				in_double_quote))
+		if (ft_sd_quote_printf_mod2(command, in_single_quote, in_double_quote))
 			continue;
 		(*command)++;
 		len++;
@@ -75,11 +76,11 @@ static char	*get_next_word(char **command, bool *in_single_quote, bool *in_doubl
 	return (get_next_word_help(start, command));
 }
 
-static char	**split_modified_help(char **result, char *command)
+static char **split_modified_help(char **result, char *command)
 {
-	int		i;
-	bool	in_single_quote;
-	bool	in_double_quote;
+	int i;
+	bool in_single_quote;
+	bool in_double_quote;
 
 	i = 0;
 	in_single_quote = false;

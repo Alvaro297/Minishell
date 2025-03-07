@@ -30,11 +30,31 @@ static void	internal_commands(t_minishell *minishell)
 		handle_echo(minishell);
 }
 
+bool	is_builtin(t_cmd	*builtin)
+{
+	if (ft_strncmp(builtin->cmd, "exit", 4) == 0 ||
+		ft_strncmp(builtin->cmd, "pwd", 3) == 0 ||
+		ft_strncmp(builtin->cmd, "cd", 2) == 0 ||
+		ft_strncmp(builtin->cmd, "export", 6) == 0 ||
+		ft_strncmp(builtin->cmd, "unset", 5) == 0 ||
+		ft_strncmp(builtin->cmd, "env", 3) == 0 ||
+		ft_strncmp(builtin->cmd, "echo", 4) == 0)
+		return (true);
+	return (false);
+}
+
 void	command_type(t_minishell *minishell)
 {
 	//Estos son los comandos internos todavia hasy muchos mas tipos de comandos que son:
 	//Todo este tipo de comandos irán aquí
-	if (minishell->cmds != NULL)
-		internal_commands(minishell);
-	
+	int		count;
+
+	count = 0;
+	while (minishell->cmds)
+	{
+		if (is_builtin(minishell->cmds) && count == 0)
+			internal_commands(minishell);
+		else if (!is_builtin(minishell->cmds))
+			execute_external(minishell->cmds, minishell->env_vars);
+	}
 }
