@@ -15,7 +15,7 @@
 static void	internal_commands(t_minishell *minishell)
 {
 	if (ft_strncmp(minishell->cmds, "exit", 4) == 0)
-		exit (0);
+		exit(0);
 	else if (ft_strncmp(minishell->cmds, "pwd", 3) == 0)
 		handle_pwd(minishell);
 	else if (ft_strncmp(minishell->cmds, "cd", 2) == 0)
@@ -48,6 +48,7 @@ void	command_type(t_minishell *minishell)
 	//Estos son los comandos internos todavia hasy muchos mas tipos de comandos que son:
 	//Todo este tipo de comandos irán aquí
 	int		count;
+	char	*result;
 
 	count = 0;
 	while (minishell->cmds)

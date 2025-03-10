@@ -56,7 +56,9 @@ static char	*join_all(t_env *sorted_env)
 	output = ft_strjoin_free(output, "declare -x ");
 	output = ft_strjoin_free(output, sorted_env->name);
 	output = ft_strjoin_free(output, "=");
+	output = ft_strjoin_free(output, "\"");
 	output = ft_strjoin_free(output, sorted_env->value);
+	output = ft_strjoin_free(output, "\"");
 	output = ft_strjoin_free(output, "\n");
 	return (output);
 }

@@ -111,7 +111,7 @@ char	*ft_quote_printf(t_minishell *minishell, char *str)
 	while (str[indices.i] != '\0')
 	{
 		if (ft_sd_quote_printf_mod(str, &in_single_quote,
-				&in_double_quote, &indices.i))
+				&in_double_quote, indices.i))
 				{
 					ft_quote_printf_help(&result, &indices, str);
 					continue ;

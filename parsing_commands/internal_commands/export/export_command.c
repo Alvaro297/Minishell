@@ -89,8 +89,7 @@ int		handle_export(t_minishell *minishell)
 	{
 		var_name = parsed_variable_name(minishell->cmds->args[i]);
 		var_check = ft_strchr(minishell->cmds->args[i], '=');
-		if (var_check != NULL && *(var_check + 1) != '\0' &&
-			minishell->cmds->args[i][0] != '=')
+		if (var_check != NULL && minishell->cmds->args[i][0] != '=')
 		{
 			var_check++;
 			if (parsed_name_validation(var_name) && parsed_value_validation(var_check))
