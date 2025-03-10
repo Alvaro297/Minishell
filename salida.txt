@@ -1,0 +1,14 @@
+cmds
+env_recharge
+error_control
+fill_minishell
+history
+libft_minishell
+main.c
+minishell
+minishell.h
+parsing_commands
+parsing_input
+Readme.md
+salida.txt
+signals

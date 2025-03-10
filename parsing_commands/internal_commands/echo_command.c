@@ -17,10 +17,10 @@ void	handle_echo_help(t_minishell *minishell, int i, int newline)
 	char	*echo_print;
 
 	echo_print = ft_strdup("");
-	while (minishell->cmds->args[i] != NULL)
+	while (current_cmd->args[i] != NULL)
 	{
-		echo_print = ft_strjoin_free(echo_print, minishell->cmds->args[i]);
-		if (minishell->cmds->args[i + 1] != NULL)
+		echo_print = ft_strjoin_free(echo_print, current_cmd->args[i]);
+		if (current_cmd->args[i + 1] != NULL)
 			echo_print = ft_strjoin_free(echo_print, " ");
 		i++;
 	}
@@ -32,7 +32,7 @@ void	handle_echo_help(t_minishell *minishell, int i, int newline)
 		printf("%s", echo_print);
 }
 
-int	handle_echo(t_minishell *minishell)
+int	handle_echo(t_cmd *current_cmd, t_minishell *minishell)
 {
 	int		i;
 	int		newline;
@@ -40,16 +40,16 @@ int	handle_echo(t_minishell *minishell)
 	i = 1;
 	newline = 1;
 	if (minishell->input != NULL &&
-			ft_strncmp(minishell->cmds->args[i], "-n", 2) == 0 &&
-			ft_strlen(minishell->cmds->args[i]) == 2)
+			ft_strncmp(current_cmd->args[i], "-n", 2) == 0 &&
+			ft_strlen(current_cmd->args[i]) == 2)
 	{
 		i++;
 		newline = 0;
 	}
-	while (minishell->cmds->args[i] != NULL)
+	while (current_cmd->args[i] != NULL)
 	{
-		printf("%s", minishell->cmds->args[i]);
-		if (minishell->cmds->args[i + 1] != NULL)
+		printf("%s", current_cmd->args[i]);
+		if (current_cmd->args[i + 1] != NULL)
 			printf(" ");
 		i++;
 	}

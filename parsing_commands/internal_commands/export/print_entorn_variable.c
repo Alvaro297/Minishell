@@ -63,7 +63,7 @@ static char	*join_all(t_env *sorted_env)
 	return (output);
 }
 
-void	print_entorn_variable(t_minishell *minishell)
+void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell)
 {
 	char	*output;
 	int		count;
@@ -74,7 +74,7 @@ void	print_entorn_variable(t_minishell *minishell)
 	sorted_env = insertion_sort(env);
 	while (sorted_env)
 	{
-		if (minishell->cmds->is_pipe)
+		if (current_cmd->is_pipe)
 			output = join_all(sorted_env);
 		else
 			printf("declare -x %s=\"%s\"\n", sorted_env->name, sorted_env->value);

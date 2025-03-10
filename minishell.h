@@ -76,13 +76,13 @@ void	set_env(t_env **env, const char *name, const char *value);
 void	delete_env(t_env **env, const char *name);
 bool	is_readonly(t_minishell *minishell, char *var);
 //** Internal_commands **//
-int		handle_cd(t_minishell *minishell);
-int		handle_pwd(t_minishell *minishell);
-int		handle_echo(t_minishell *minishell);
-int		handle_export(t_minishell *minishell);
-void	print_entorn_variable(t_minishell *minishell);
-int		handle_env(t_minishell *minishell);
-int		handle_unset(t_minishell *minishell);
+int		handle_cd(t_cmd *current_cmd, t_minishell *minishell);
+int		handle_pwd(t_cmd *current_cmd, t_minishell *minishell);
+int		handle_echo(t_cmd *current_cmd, t_minishell *minishell);
+int		handle_export(t_cmd *current_cmd, t_minishell *minishell);
+void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell);
+int		handle_env(t_cmd *current_cmd, t_minishell *minishell);
+int		handle_unset(t_cmd *current_cmd, t_minishell *minishell);
 //** Parsing Input **//
 t_env	*parsing_input(t_minishell *minishell, char *input);
 bool	check_name_arg(char	*name);

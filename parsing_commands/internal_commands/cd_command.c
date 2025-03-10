@@ -21,30 +21,30 @@ static void	handle_cd_help(t_minishell *minishell, char *path, char *cwd)
 	free(cwd);
 }
 
-static char	*cd_path(t_minishell *minishell)
+static char	*cd_path(t_cmd *current_cmd, t_minishell *minishell)
 {
 	char	*path;
 
-	if (minishell->cmds->args[1] &&
-		minishell->cmds->args[1][0] == '~' && minishell->cmds->args[1][1] == '\0')
+	if (current_cmd->args[1] &&
+		current_cmd->args[1][0] == '~' && current_cmd->args[1][1] == '\0')
 		path = get_env_value(minishell->env_vars, "HOME");
 	else
-		path = minishell->cmds->args[1] ? ft_strdup(minishell->cmds->args[1]) :
+		path = current_cmd->args[1] ? ft_strdup(current_cmd->args[1]) :
 			get_env_value(minishell->env_vars, "HOME");
 	return (path);
 }
 
-int		handle_cd(t_minishell *minishell)
+int		handle_cd(t_cmd *current_cmd, t_minishell *minishell)
 {
 	char	*path;
 	char	*cwd;
 
-	if (minishell->cmds->args[2])
+	if (current_cmd->args[2])
 	{
 		write(2, "minishell: cd: too many arguments\n", 34);
 		return (1);
 	}
-	path = cd_path(minishell);
+	path = cd_path(current_cmd, minishell);
 	if (!path)
 	{
 		write(2, "minishell: cd: HOME not set\n", 28);

@@ -12,17 +12,17 @@
 
 # include "../../minishell.h"
 
-int	handle_unset(t_minishell *minishell)
+int	handle_unset(t_cmd *current_cmd, t_minishell *minishell)
 {
 	int		i;
 	bool	is_var_readonly;
 
 	i = 1;
 	is_var_readonly = false;
-	while (minishell->cmds->args[i])
+	while (current_cmd->args[i])
 	{
-		if (!is_readonly(minishell, minishell->cmds->args[i]))
-			delete_env(&minishell->env_vars, minishell->cmds->args[i]);
+		if (!is_readonly(minishell, current_cmd->args[i]))
+			delete_env(&minishell->env_vars, current_cmd->args[i]);
 		else
 		{
 			write(2, "minishell: unset: %s: cannot unset: readonly variable\n", 55);

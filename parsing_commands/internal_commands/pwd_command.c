@@ -12,7 +12,7 @@
 
 # include "../../minishell.h"
 
-int	handle_pwd(t_minishell *minishell)
+int	handle_pwd(t_cmd *current_cmd, t_minishell *minishell)
 {
 	char	*cwd;
 
@@ -22,7 +22,7 @@ int	handle_pwd(t_minishell *minishell)
 		perror("minishell: pwd");
 		return (1);
 	}
-	if (minishell->cmds->is_pipe)
+	if (current_cmd->is_pipe)
 		minishell->output = cwd;
 	else
 		printf("%s\n", cwd);

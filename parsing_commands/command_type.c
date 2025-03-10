@@ -12,22 +12,22 @@
 
 #include "minishell.h"
 
-static void	internal_commands(t_minishell *minishell)
+static void	internal_commands(t_cmd *current_cmd, t_minishell *minishell)
 {
-	if (ft_strncmp(minishell->cmds, "exit", 4) == 0)
+	if (ft_strncmp(current_cmd->cmd, "exit", 4) == 0)
 		exit(0);
-	else if (ft_strncmp(minishell->cmds, "pwd", 3) == 0)
-		handle_pwd(minishell);
-	else if (ft_strncmp(minishell->cmds, "cd", 2) == 0)
-		handle_cd(minishell);
-	else if (ft_strncmp(minishell->cmds, "export", 7) == 0)
-		handle_export(minishell);
-	else if (ft_strncmp(minishell->cmds, "unset", 5) == 0)
-		handle_unset(minishell);
-	else if (ft_strncmp(minishell->cmds, "env", 3) == 0)
-		handle_env(minishell);
-	else if (ft_strncmp(minishell->cmds, "echo", 4) == 0)
-		handle_echo(minishell);
+	else if (ft_strncmp(current_cmd->cmd, "pwd", 3) == 0)
+		handle_pwd(current_cmd, minishell);
+	else if (ft_strncmp(current_cmd->cmd, "cd", 2) == 0)
+		handle_cd(current_cmd, minishell);
+	else if (ft_strncmp(current_cmd->cmd, "export", 7) == 0)
+		handle_export(current_cmd, minishell);
+	else if (ft_strncmp(current_cmd->cmd, "unset", 5) == 0)
+		handle_unset(current_cmd, minishell);
+	else if (ft_strncmp(current_cmd->cmd, "env", 3) == 0)
+		handle_env(current_cmd, minishell);
+	else if (ft_strncmp(current_cmd->cmd, "echo", 4) == 0)
+		handle_echo(current_cmd, minishell);
 }
 
 bool	is_builtin(t_cmd	*builtin)
@@ -47,15 +47,19 @@ void	command_type(t_minishell *minishell)
 {
 	//Estos son los comandos internos todavia hasy muchos mas tipos de comandos que son:
 	//Todo este tipo de comandos irán aquí
-	int		count;
-	char	*result;
+	t_cmd	*current_cmd;
 
-	count = 0;
+	current_cmd = minishell->cmds;
 	while (minishell->cmds)
 	{
-		if (is_builtin(minishell->cmds) && count == 0)
-			internal_commands(minishell);
-		else if (!is_builtin(minishell->cmds))
-			execute_external(minishell->cmds, minishell->env_vars);
+		if (is_builtin(minishell->cmds))
+			internal_commands(current_cmd, minishell);
+		else if (!is_builtin(current_cmd, minishell->cmds))
+			execute_external(current_cmd, minishell->env_vars);
+		if (current_cmd->outfile)
+			minishell->output = ft_strdup("");
+		current_cmd = current_cmd->next;
+		//Como he puesto en el readline cuando el comando tiene un outfile es como si
+		//no le pasases nada al siguiente comando por eso he puesto el if
 	}
 }

@@ -78,18 +78,18 @@ static bool parsed_name_validation(char *var_name)
 	return true;
 }
 
-int		handle_export(t_minishell *minishell)
+int		handle_export(t_cmd *current_cmd, t_minishell *minishell)
 {
 	int		i;
 	char	*var_name;
 	char	*var_check;
 
 	i = 0;
-	while (minishell->cmds->args[++i] && !minishell->cmds->is_pipe)
+	while (current_cmd->args[++i] && !current_cmd->is_pipe)
 	{
-		var_name = parsed_variable_name(minishell->cmds->args[i]);
-		var_check = ft_strchr(minishell->cmds->args[i], '=');
-		if (var_check != NULL && minishell->cmds->args[i][0] != '=')
+		var_name = parsed_variable_name(current_cmd->args[i]);
+		var_check = ft_strchr(current_cmd->args[i], '=');
+		if (var_check != NULL && current_cmd->args[i][0] != '=')
 		{
 			var_check++;
 			if (parsed_name_validation(var_name) && parsed_value_validation(var_check))
@@ -99,9 +99,9 @@ int		handle_export(t_minishell *minishell)
 			if (parsed_name_validation(var_name))
 				set_env(&minishell->env_vars, var_name, "");
 	}
-	if (minishell->cmds->is_pipe && minishell->cmds->args[1])
+	if (current_cmd->is_pipe && current_cmd->args[1])
 		minishell->output = ft_strdup("");
 	if (i == 1 && !minishell->cmds->args[1])
-		print_entorn_variable(minishell);
+		print_entorn_variable(current_cmd, minishell);
 	return (0);
 }
