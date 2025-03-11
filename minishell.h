@@ -49,7 +49,6 @@ typedef struct s_minishell
 	t_cmd	*cmds;
 	pid_t	*pids;
 	char	*output;
-	char	*error_message;
 	char	**history;
 	t_env	*env_vars;
 	char	*current_dir;
@@ -83,6 +82,7 @@ int		handle_export(t_cmd *current_cmd, t_minishell *minishell);
 void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_env(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_unset(t_cmd *current_cmd, t_minishell *minishell);
+int		error_management(t_minishell *minishell);
 //** Parsing Input **//
 t_env	*parsing_input(t_minishell *minishell, char *input);
 bool	check_name_arg(char	*name);

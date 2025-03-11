@@ -50,7 +50,7 @@ static char **split_commands(const char *input, int i,
 	int		start;
 	
 	commands = malloc((count_commands(input) + 1) * sizeof(char *));
-	cmd_index = 0,
+	cmd_index = 0;
 	start = 0;
 	while (input[i])
 	{
