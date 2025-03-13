@@ -31,7 +31,7 @@ void	load_history(t_minishell *minishell)
 
 	count = 0;
 	if (access(HISTORY_FILE, F_OK) == -1)
-		return ;	
+		return ;
 	fd = open(HISTORY_FILE, O_RDONLY);
 	if (fd == -1)
 		return;
