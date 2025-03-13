@@ -108,7 +108,7 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	if (parsed_input[0] && ft_strncmp(parsed_input[0], "|", 1) == 0)
 	{
 		ft_putstr_fd("Error: invalid command\n", 2);
-		free_double_array(parsed_input); // A implementar por Max liberar un array de doble puntero
+		free_double_array((void **)parsed_input);
 		return (NULL);
 	}
 	while(parsed_input[i])
@@ -117,6 +117,6 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 		append_cmds(&head, new_cmd);
 		i += 2;
 	}
-	free_double_array(parsed_input); // A implementar por Max liberar un array de doble puntero
+	free_double_array((void **)parsed_input);
 	return (head);
 }

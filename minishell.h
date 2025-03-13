@@ -102,4 +102,6 @@ void	add_to_history(t_minishell *minishell, char *input);
 //** Signals **//
 void	manage_signals(void);
 void	handle_sigint(int sig);
+//** Free Minishell **//
+void	free_double_aray(void **double_array);
 #endif 
