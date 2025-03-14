@@ -38,6 +38,7 @@ typedef struct s_cmd
 	char	**args;        // Argumentos del comando
 	char	*infile;       // Archivo de entrada si hay redirección (<)
 	char	*outfile;      // Archivo de salida si hay redirección (>)
+	char	**outfile_array;
 	int		outfile_modes;        // 2 si es ">>", 1 si es ">" y 0 si no hay nada
 	bool	is_pipe;       // True si este hay una tuberia despues del comando
 	struct s_cmd *next;    // Siguiente comando (si hay pipes)
