@@ -114,6 +114,7 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	while(parsed_input[i])
 	{
 		parse_input_help(&new_cmd, parsed_input[i], i, parsed_input);
+		delete_quotes(&new_cmd);
 		append_cmds(&head, new_cmd);
 		i += 2;
 	}
