@@ -37,5 +37,7 @@ int	error_management(t_minishell *minishell)
 		return (1);
 	if (!check_syntax(minishell))
 		return (1);
-
+	if (handle_redirection(minishell) != 0)
+		return (1);
+	return (0);
 }

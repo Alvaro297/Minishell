@@ -20,6 +20,7 @@ int	handle_infile(char *infile)
 		close(fd);
 		return (-1);
 	}
+	return (0);
 }
 
 int	handle_outfile(char *outfile)
