@@ -69,6 +69,7 @@ int	ft_sd_quote_printf(char *str, bool *in_single_quote,
 int	ft_sd_quote_printf_mod(char *str, bool *in_single_quote,
 		bool *in_double_quote, size_t *i);
 char *ft_sd_quote_printf_mod3(char *str, bool *in_single_quote, bool *in_double_quote);
+int	ft_sd_quote_printf_mod2(char **str, bool *in_single_quote, bool *in_double_quote);
 //** Envp **//
 t_env	*init_env(char **envp);
 char	*get_env_value(t_env *env, const char *name);
