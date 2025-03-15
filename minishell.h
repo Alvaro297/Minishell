@@ -91,6 +91,7 @@ t_env	*parsing_input(t_minishell *minishell, char *input);
 bool	check_name_arg(char	*name);
 char	**split_modified(char *command, int c);
 //** Cmds **//
+char	**get_outfiles(char **command_splited);
 void	delete_cmds(t_env **cmd);
 void	append_cmds(t_env *cmd, char *imput);
 char	*find_command(char **command_splited);
