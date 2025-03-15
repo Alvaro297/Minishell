@@ -12,7 +12,6 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <fcntl.h>
-#include <errno.h>
 
 # define INVALID_CHARACTERS "!@#$%^&*()-+=[]{}\\|;:'\",.<>/?`~ "
 # define INVALID_CHARACTERSV "!@#$%^&*()[]{}\\|;:'\",.<>/?`~ "

@@ -35,7 +35,15 @@ int	error_management(t_minishell *minishell)
 	c = 0;
 	if (minishell->input == NULL || minishell->input == 0)
 		return (1);
-	if (!check_syntax(minishell))
+	if (check_syntax(minishell) != 0)
 		return (1);
 
+	while (minishell->cmds->args[c])
+	{
+		if (minishell->cmds->args[0] == "")
+		{
+			ft_error(t_minishell);
+		}
+		if ()
+	}
 }
