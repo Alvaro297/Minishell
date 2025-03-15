@@ -70,18 +70,13 @@ char	**find_args(char **command_splited)
 {
 	int		i;
 	int		count;
-
+	
 	count = 0;
 	i = 0;
 	while (command_splited[i])
 	{
 		if (is_redirected(command_splited[i]))
-		{
 			i++;
-			if (is_redirected(command_splited[i]))
-				return (NULL);
-			i++;
-		}
 		else
 			count++;
 		i++;

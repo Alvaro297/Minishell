@@ -69,12 +69,12 @@ char *ft_sd_quote_printf_mod3(char *str, bool *in_single_quote, bool *in_double_
 	if (*str == '\'' && !(*in_double_quote))
 	{
 		*in_single_quote = !(*in_single_quote);
-		return (++str);
+		return (str);
 	}
 	if (*str == '"' && !(*in_single_quote))
 	{
 		*in_double_quote = !(*in_double_quote);
-		return (++str);
+		return (str);
 	}
 	return (str);
 }

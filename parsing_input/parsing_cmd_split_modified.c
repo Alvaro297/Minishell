@@ -44,8 +44,6 @@ static char *get_next_word_help(char *start, char **command)
 	while (start < *command)
 	{
 		start = ft_sd_quote_printf_mod3(start, &in_single_quote, &in_double_quote);
-		if ((in_single_quote && *start == '\'') || (in_double_quote && *start == '"'))
-			continue;
 		word[word_len++] = *start;
 		start++;
 	}
