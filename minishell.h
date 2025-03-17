@@ -35,7 +35,6 @@ typedef struct s_env
 {
 	char	*name;
 	char	*value;
-	int		is_readonly;
 	struct s_env *next;
 } t_env;
 
@@ -72,15 +71,13 @@ char	*ft_quote_printf(t_minishell *minishell, char *str);
 /* Quote */
 int	ft_sd_quote_printf(char *str, t_quotes *quotes, size_t *i);
 int	ft_sd_quote_printf_mod(char *str, t_quotes *quotes, size_t i);
-char *ft_sd_quote_printf_mod3(char *str, t_quotes *quotes);
-int	ft_sd_quote_printf_mod2(char **str, t_quotes *quotes);
+char *ft_sd_quote_printf_mod2(char *str, t_quotes *quotes);
 //** Envp **//
 t_env	*init_env(char **envp);
 char	*get_env_value(t_env *env, const char *name);
 t_env	*get_env(t_env *env, const char *var_name);
 void	set_env(t_env **env, const char *name, const char *value);
 void	delete_env(t_env **env, const char *name);
-bool	is_readonly(t_minishell *minishell, char *var);
 //** Internal_commands **//
 int		handle_cd(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_pwd(t_cmd *current_cmd, t_minishell *minishell);

@@ -47,7 +47,7 @@ static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 	{
 		*len = 2;
 		if (str[1] == '?')
-			return (ft_itoa(minishell->last_exit_status));
+			return (minishell->last_exit_status);
 	}
 	i = 1;
 	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
@@ -57,7 +57,7 @@ static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 	free(var_name);
 	*len = i;
 	if (var_value == NULL)
-		return (ft_strdup(""));
+		return (NULL);
 	return (ft_strdup(var_value));
 }
 
@@ -74,6 +74,7 @@ static int ft_quote_printf_ev(t_minishell *minishell, char *str, t_indices *indi
 		free(expanded);
 		return (1);
 	}
+	indices->i += len;
 	return (0);
 }
 

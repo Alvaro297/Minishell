@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-int	get_size(char **input)
+static int	get_size(char **input)
 {
 	int	c;
 	int	count;
@@ -25,7 +25,7 @@ char	**get_outfiles(char **command_splited)
 	char	**outfile_array;
 	int	c;
 	int	c1;
-    int size;
+	int size;
 
     size = get_size(command_splited);
 	c1 = 0;

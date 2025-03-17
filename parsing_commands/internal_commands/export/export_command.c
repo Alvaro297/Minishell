@@ -22,9 +22,13 @@ static char	*parsed_variable_name(char *str)
 	if (equal_pos != NULL) {
 		name_len = equal_pos - str;
 		var_name = malloc(name_len + 1);
+		if (!var_name)
+			return (NULL);
 		ft_strlcpy(var_name, str, name_len);
 		var_name[name_len] = '\0';
 	}
+	else
+		var_name = NULL;
 	return (var_name);
 }
 
@@ -97,11 +101,12 @@ int		handle_export(t_cmd *current_cmd, t_minishell *minishell)
 		}
 		else if (var_check == NULL && var_name != NULL)
 			if (parsed_name_validation(var_name))
-				set_env(&minishell->env_vars, var_name, "");
+				set_env(&minishell->env_vars, var_name, NULL);
+		free(var_name);
 	}
 	if (current_cmd->is_pipe && current_cmd->args[1])
 		minishell->output = ft_strdup("");
-	if (i == 1 && !minishell->cmds->args[1])
+	if (minishell->cmds->args[1])
 		print_entorn_variable(current_cmd, minishell);
 	return (0);
 }

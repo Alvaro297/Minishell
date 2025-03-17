@@ -39,7 +39,7 @@ static char *get_next_word_help(char *start, char **command, t_quotes *quotes)
 		return (NULL);
 	while (start < *command)
 	{
-		start = ft_sd_quote_printf_mod3(start, quotes);
+		start = ft_sd_quote_printf_mod2(start, quotes);
 		if ((*start == '\'' && !quotes->in_double_quote) || (*start == '"' && !quotes->in_single_quote))
 		{
 			start++;
@@ -64,7 +64,7 @@ static char *get_next_word(char **command, t_quotes *quotes)
 	start = *command;
 	while (**command && (!(**command == ' ' || **command == '\t' || **command == '\n') || quotes->in_single_quote || quotes->in_double_quote))
 	{
-		*command = ft_sd_quote_printf_mod3(*command, quotes);
+		*command = ft_sd_quote_printf_mod2(*command, quotes);
 		if ((*command == start) || (**command == '\'' && !quotes->in_double_quote) || (**command == '"' && !quotes->in_single_quote))
 		{
 			(*command)++;

@@ -1,15 +1,5 @@
 # include "../minishell.h"
 
-bool	is_readonly(t_minishell *minishell, char *var)
-{
-	t_env *env;
-
-	env = get_env(minishell, var);
-	if (env && env->is_readonly == 0)
-		return (false);
-	return (true);
-}
-
 t_env	*get_env(t_env *env, const char *var_name)
 {
 	size_t len;

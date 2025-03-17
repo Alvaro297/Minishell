@@ -44,34 +44,17 @@ int	ft_sd_quote_printf(char *str, t_quotes *quotes, size_t *i)
 	return (0);
 }
 
-int	ft_sd_quote_printf_mod2(char **str, t_quotes *quotes)
-{
-	if (**str == '\'' && !(quotes->in_double_quote))
-	{
-		quotes->in_single_quote = !(quotes->in_single_quote);
-		(*str)++;
-		return (1);
-	}
-	if (**str == '"' && !(quotes->in_single_quote))
-	{
-		quotes->in_double_quote = !(quotes->in_double_quote);
-		(*str)++;
-		return (1);
-	}
-	return (0);
-}
-
-char *ft_sd_quote_printf_mod3(char *str, t_quotes *quotes)
+char *ft_sd_quote_printf_mod2(char *str, t_quotes *quotes)
 {
 	if (*str == '\'' && !(quotes->in_double_quote))
 	{
 		quotes->in_single_quote = !(quotes->in_single_quote);
-		return ++str;
+		return (++str);
 	}
 	if (*str == '"' && !(quotes->in_single_quote))
 	{
 		quotes->in_double_quote = !(quotes->in_double_quote);
-		return ++str;
+		return (++str);
 	}
-	return str;
+	return (str);
 }
