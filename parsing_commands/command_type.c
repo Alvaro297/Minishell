@@ -55,7 +55,7 @@ void	command_type(t_minishell *minishell)
 		if (is_builtin(minishell->cmds))
 			internal_commands(current_cmd, minishell);
 		else if (!is_builtin(current_cmd, minishell->cmds))
-			execute_external(current_cmd, minishell->env_vars);
+			execute(current_cmd->args, minishell->env_vars);
 		if (current_cmd->outfile)
 			minishell->output = ft_strdup("");
 		current_cmd = current_cmd->next;

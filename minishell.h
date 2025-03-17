@@ -56,6 +56,7 @@ typedef struct s_minishell
 	char	*current_dir;
 	char	*history_file;
 	int		last_exit_status;
+	int		howmanycmd;
 } t_minishell;
 
 void	command_type(t_minishell *minishell);
@@ -78,6 +79,7 @@ void	set_env(t_env **env, const char *name, const char *value);
 void	delete_env(t_env **env, const char *name);
 bool	is_readonly(t_minishell *minishell, char *var);
 //** Internal_commands **//
+int		howmanycmds(char **argv);
 int		handle_cd(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_pwd(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_echo(t_cmd *current_cmd, t_minishell *minishell);
