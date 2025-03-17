@@ -12,6 +12,7 @@
 
 # include "../minishell.h"
 
+
 static void append_expanded_variable(char **result, size_t *j, const char *expanded)
 {
 	size_t		len;
@@ -97,26 +98,24 @@ static void	ft_quote_printf_help(char **result, t_indices *indices, char *str)
 
 char	*ft_quote_printf(t_minishell *minishell, char *str)
 {
-	bool		in_single_quote;
-	bool		in_double_quote;
+	t_quotes	quotes;
 	char		*result;
 	char		*new_result;
 	t_indices	indices;
 	
 	result = ft_strdup("");
-	in_single_quote = false;
-	in_double_quote = false;
+	quotes.in_single_quote = false;
+	quotes.in_double_quote = false;
 	indices.i = 0;
 	indices.j = 0;
 	while (str[indices.i] != '\0')
 	{
-		if (ft_sd_quote_printf_mod(str, &in_single_quote,
-				&in_double_quote, indices.i))
-				{
-					ft_quote_printf_help(&result, &indices, str);
-					continue ;
-				}
-		if ((!in_single_quote && str[indices.i] == '$') &&
+		if (ft_sd_quote_printf_mod(str, &quotes, indices.i))
+		{
+			ft_quote_printf_help(&result, &indices, str);
+			continue ;
+		}
+		if ((!quotes.in_single_quote && str[indices.i] == '$') &&
 				ft_quote_printf_ev(minishell, str, &indices, &result))
 				continue ;
 		ft_quote_printf_help(&result, &indices, str);
