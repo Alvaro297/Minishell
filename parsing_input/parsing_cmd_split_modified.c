@@ -11,7 +11,7 @@ static int ft_count_words(char *command, bool in_single_quote, bool in_double_qu
 		i++;
 	while (command[i])
 	{
-		ft_sd_quote_printf_mod(command, &in_single_quote, &in_double_quote, &i);
+		ft_sd_quote_printf_mod(command, &in_single_quote, &in_double_quote, i);
 		if (command[i] == c && !in_single_quote && !in_double_quote)
 		{
 			count++;
