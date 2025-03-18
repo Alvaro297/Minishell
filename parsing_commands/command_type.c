@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-static void	internal_commands(t_cmd *current_cmd, t_minishell *minishell)
+void	internal_commands(t_cmd *current_cmd, t_minishell *minishell)
 {
 	if (ft_strncmp(current_cmd->cmd, "exit", 4) == 0)
 		exit(0);
@@ -54,7 +54,7 @@ void	command_type(t_minishell *minishell)
 	{
 		if (is_builtin(minishell->cmds))
 			internal_commands(current_cmd, minishell);
-		else if (!is_builtin(current_cmd, minishell->cmds))
+		else if (!is_builtin(current_cmd))
 			execute(current_cmd->args, minishell->env_vars);
 		if (current_cmd->outfile)
 			minishell->output = ft_strdup("");

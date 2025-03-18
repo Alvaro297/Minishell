@@ -21,7 +21,7 @@ t_env	*init_env(char **envp)
 	}
 	return (head);
 }
-char	*get_env_value(t_env *env, const char *var_name)
+char	*get_env_value(t_env *env, char *var_name)
 {
 	int i;
 	int j;
@@ -42,7 +42,7 @@ char	*get_env_value(t_env *env, const char *var_name)
 	return (NULL);
 }
 
-void	set_env(t_env **env, const char *name, const char *value)
+void	set_env(t_env **env, char *name, char *value)
 {
 	t_env *tmp;
 	t_env *new;
@@ -50,7 +50,7 @@ void	set_env(t_env **env, const char *name, const char *value)
 	tmp = *env;
 	while (tmp->next != NULL)
 	{
-		if (ft_strncmp(tmp->name, name) == 0 &&
+		if (ft_strncmp(tmp->name, name, ft_strlen(name)) == 0 &&
 			ft_strlen(name) == ft_strlen(tmp->name))
 		{
 			free(tmp->value);
@@ -66,16 +66,15 @@ void	set_env(t_env **env, const char *name, const char *value)
 	new->value = value ? ft_strdup(value) : ft_strdup("");
 	new->is_readonly = 0;
 	new->next = NULL;
-	if (new == NULL)
-		return (NULL);
-	tmp->next = new;
+	if (new != NULL)
+		tmp->next = new;
 }
 
-static void	delete_env_help(t_env **env, t_env *prev, t_env *tmp, const char *name)
+static void	delete_env_help(t_env **env, t_env *prev, t_env *tmp, char *name)
 {
 	while (tmp->next != NULL)
 	{
-		if (ft_strcmp(tmp->name, name, ft_strlen(name)) == 0 &&
+		if (ft_strncmp(tmp->name, name, ft_strlen(name)) == 0 &&
 				ft_strlen(name) == ft_strlen(tmp->name))
 		{
 			prev->next = tmp->next;
@@ -91,12 +90,12 @@ static void	delete_env_help(t_env **env, t_env *prev, t_env *tmp, const char *na
 	}
 }
 
-void	delete_env(t_env **env, const char *name)
+void	delete_env(t_env **env, char *name)
 {
 	t_env	*tmp;
 
 	tmp = *env;
-	if (ft_strcmp(tmp->name, name, ft_strlen(name)) == 0 &&
+	if (ft_strncmp(tmp->name, name, ft_strlen(name)) == 0 &&
 				ft_strlen(name) == ft_strlen(tmp->name))
 	{
 		*env = tmp->next;

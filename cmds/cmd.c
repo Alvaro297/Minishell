@@ -12,12 +12,12 @@
 
 # include "../minishell.h"
 
-void	delete_cmds(t_env **cmd)
+void	delete_cmds(t_cmd *cmd)
 {
 	t_cmd	*current;
 	t_cmd	*next;
 
-	current = *cmd;
+	current = cmd;
 	while (current != NULL)
 	{
 		next = current->next;
@@ -35,17 +35,17 @@ void	delete_cmds(t_env **cmd)
 		free(current);
 		current = next;
 	}
-	*cmd = NULL;
+	cmd = NULL;
 }
-void append_cmds(t_cmd **cmds, t_cmd *new_cmd)
+void append_cmds(t_cmd *cmds, t_cmd *new_cmd)
 {
 	t_cmd *current;
 
-	if (*cmds == NULL)
-		*cmds = new_cmd;
+	if (cmds == NULL)
+		cmds = new_cmd;
 	else
 	{
-		current = *cmds;
+		current = cmds;
 		while (current->next != NULL)
 		{
 			current = current->next;

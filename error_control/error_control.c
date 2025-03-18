@@ -25,9 +25,9 @@ void	ft_error(t_minishell minishell)
 	free(minishell.pids);
 	free(minishell.output);
 	//minishell.last_exit_status = -1;
-	printf("%s", minishell.error_message);
+	printf("error");
 }
-
+/*
 int	error_management(t_minishell *minishell)
 {
 	int c;
@@ -40,4 +40,4 @@ int	error_management(t_minishell *minishell)
 	if (handle_redirection(minishell) != 0)
 		return (1);
 	return (0);
-}
+}*/

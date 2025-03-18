@@ -13,28 +13,27 @@
 #include "pipex.h"
 #include "../minishell.h"
 
-void	execute(t_minishell minishell, t_cmd *cmd)
+void	execute(t_minishell *minishell, t_cmd *cmd)
 {
-	char	**split_cmd;
 	char	*path;
+	char	**split_envs;
 	
+	split_envs = ft_split(minishell->env_vars, '\n');//TODO convertir t_env en char**
 	if (is_builtin(cmd))
 		internal_commands(cmd, minishell);
 	else
 	{
-		split_cmd = ft_split(cmd->args, ' ');
-		path = getpath(split_cmd[0], minishell->env__vars);
-		if (execve(path, split_cmd, minishell->env_vars) == -1)
+		path = getpath(cmd->args[0], split_envs);
+		if (execve(path, cmd->args, split_envs) == -1)
 		{
 			ft_putstr_fd("pipex: command not found: ", 2);
-			ft_putendl_fd(split_cmd[0], 2);
-			freeall(split_cmd);
+			ft_putendl_fd(cmd->args[0], 2);
 			exit(0);
 		}
 	}
 }
 
-void	child(t_cmd *cmd, t_minishell minishell, int *p_fd)
+void	child(t_cmd *cmd, t_minishell *minishell, int *p_fd)
 {
 	int	fd;
 
@@ -50,7 +49,7 @@ void	child(t_cmd *cmd, t_minishell minishell, int *p_fd)
 	execute(minishell, cmd);
 }
 
-void	parent(t_cmd *cmd, t_minishell minishell, int *p_fd)
+void	parent(t_cmd *cmd, t_minishell *minishell, int *p_fd)
 {
 	int	fd;
 	t_cmd *next;
@@ -77,12 +76,17 @@ int	pipex(t_minishell *minishell)
 {
 	pid_t	pid[minishell->howmanycmd];
 	int		p_fd[2 * (minishell->howmanycmd - 1)];
-	t_cmd	cmd;
+	t_cmd	*cmd;
 	int		count;
 	int		i;
 
 	i = 0;
-	count = howmanycmds(minishell->input);//TODO comprobar que los pipes no estan entrecomillados
+	count = minishell->howmanycmd;//TODO comprobar que los pipes no estan entrecomillados
+	if (count == 1 && is_builtin(minishell->cmds))
+	{
+		internal_commands(minishell->cmds, minishell);
+		return(0);
+	}
 	while (i < count - 1)
 	{
 		if (pipe(p_fd + i * 2) == -1)
@@ -95,18 +99,16 @@ int	pipex(t_minishell *minishell)
 	i = 0;
 	cmd = minishell->cmds;
 	while (i < count)
-    {
-		if (count == 0 && isbuiltin(cmd))
-			break;
-	    pid[i] = fork();
-        if (pid == -1)
-		    exit (-1);
-        if (!pid)
-			child(cmd, minishell);
+  {
+	  pid[i] = fork();
+	  if (pid[i] == -1)
+			exit (-1);
+    if (!pid[i])
+			child(cmd, minishell, &i);
 		close (p_fd[i + 1]);
 		cmd = cmd->next;
-		count--;
-    }
-	parent(cmd, minishell);
+		i++;
+  }
+	parent(cmd, minishell, &i);
 	return (0);
 }

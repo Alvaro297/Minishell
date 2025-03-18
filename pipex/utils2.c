@@ -1,13 +1,13 @@
 #include "pipex.h"
 
-int howmanycmds(char **argv)
+int howmanycmds(char *argv)
 {
     int c;
     int count;
 
     while (argv[c])
     {
-        if(!ft_strcmp(argv[c], "|"))
+        if(argv[c] == '|')
             count++;
         c++;
     }

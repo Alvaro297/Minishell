@@ -59,6 +59,7 @@ typedef struct s_minishell
 	int		howmanycmd;
 } t_minishell;
 
+int	ft_strcmp(char *s1, char *s2);
 void	command_type(t_minishell *minishell);
 //** Fill_minishell **//
 void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp);
@@ -68,18 +69,18 @@ char	*ft_quote_printf(t_minishell *minishell, char *str);
 int	ft_sd_quote_printf(char *str, bool *in_single_quote,
 		bool *in_double_quote, size_t *i);
 int	ft_sd_quote_printf_mod(char *str, bool *in_single_quote,
-		bool *in_double_quote, size_t *i);
+		bool *in_double_quote, size_t i);
 char *ft_sd_quote_printf_mod3(char *str, bool *in_single_quote, bool *in_double_quote);
 int	ft_sd_quote_printf_mod2(char **str, bool *in_single_quote, bool *in_double_quote);
 //** Envp **//
 t_env	*init_env(char **envp);
-char	*get_env_value(t_env *env, const char *name);
-t_env	*get_env(t_env *env, const char *var_name);
-void	set_env(t_env **env, const char *name, const char *value);
-void	delete_env(t_env **env, const char *name);
+char	*get_env_value(t_env *env, char *name);
+t_env	*get_env(t_env *env, char *var_name);
+void	set_env(t_env **env, char *name, char *value);
+void	delete_env(t_env **env, char *name);
 bool	is_readonly(t_minishell *minishell, char *var);
 //** Internal_commands **//
-int		howmanycmds(char **argv);
+int		howmanycmds(char *argv);
 int		handle_cd(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_pwd(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_echo(t_cmd *current_cmd, t_minishell *minishell);
@@ -89,13 +90,15 @@ int		handle_env(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_unset(t_cmd *current_cmd, t_minishell *minishell);
 int		error_management(t_minishell *minishell);
 //** Parsing Input **//
-t_env	*parsing_input(t_minishell *minishell, char *input);
+t_cmd	*parsing_input(t_minishell *minishell, char *input);
 bool	check_name_arg(char	*name);
+bool	is_builtin(t_cmd	*builtin);
+void	internal_commands(t_cmd *current_cmd, t_minishell *minishell);
 char	**split_modified(char *command, int c);
 //** Cmds **//
 char	**get_outfiles(char **command_splited);
-void	delete_cmds(t_env **cmd);
-void	append_cmds(t_env *cmd, char *imput);
+void	delete_cmds(t_cmd *cmd);
+void append_cmds(t_cmd *cmds, t_cmd *new_cmd);
 char	*find_command(char **command_splited);
 char	**find_args(char **command_splited);
 char	*find_infile(char **command_splited);

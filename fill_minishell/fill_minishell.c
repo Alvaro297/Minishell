@@ -38,12 +38,12 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 {
 	if (minishell->env_vars == NULL)
 		minishell->env_vars = init_env(envp);
-	if (minishell->last_exit_status == NULL)
-		minishell->last_exit_status = 0;
+//	if (minishell->last_exit_status == NULL)
+	//	minishell->last_exit_status = 0;
 	minishell->input = ft_quote_printf(minishell, input);
 	minishell->cmds = parsing_input(minishell, minishell->input);
 	minishell->output = NULL;
-	minishell->howmanycmd = howmanycmds(minishell->cmds)
+	minishell->howmanycmd = howmanycmds(minishell->input);
 	if (input && *input)
 	{
 		add_history(input);
