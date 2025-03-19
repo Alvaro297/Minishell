@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-void	free_double_aray(void **double_array)
+void	free_double_array(void **double_array)
 {
 	int	i;
 

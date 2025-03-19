@@ -20,17 +20,5 @@ int	handle_unset(t_cmd *current_cmd, t_minishell *minishell)
 	i = 1;
 	is_var_readonly = false;
 	while (current_cmd->args[i])
-	{
-		if (!is_readonly(minishell, current_cmd->args[i]))
-			delete_env(&minishell->env_vars, current_cmd->args[i]);
-		else
-		{
-			write(2, "minishell: unset: %s: cannot unset: readonly variable\n", 55);
-			is_var_readonly = 1;
-		}
-	}
-	if (is_var_readonly)
-		return (1);
-	else
-		return (0);
+		delete_env(&minishell->env_vars, current_cmd->args[i]);
 }

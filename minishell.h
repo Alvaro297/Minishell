@@ -14,22 +14,27 @@
 # include <fcntl.h>
 #include <errno.h>
 
-# define INVALID_CHARACTERS "!@#$%^&*()-+=[]{}\\|;:'\",.<>/?`~ "
+# define INVALID_CHARACTERS "!@#$%^&*()-+=[]{}\\|;:'\"<>/?`~ "
 # define INVALID_CHARACTERSV "!@#$%^&*()[]{}\\|;:'\",.<>/?`~ "
-# define PATH_MAX 260
 # define HISTORY_FILE "/minishell_history"
 
 typedef struct s_indices
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 } t_indices;
+
+typedef struct s_quotes
+{
+	bool	in_single_quote;
+	bool	in_double_quote;
+} t_quotes;
+
 
 typedef struct s_env
 {
 	char	*name;
 	char	*value;
-	int		is_readonly;
 	struct s_env *next;
 } t_env;
 
@@ -66,12 +71,9 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp);
 /* Expand_variable */
 char	*ft_quote_printf(t_minishell *minishell, char *str);
 /* Quote */
-int	ft_sd_quote_printf(char *str, bool *in_single_quote,
-		bool *in_double_quote, size_t *i);
-int	ft_sd_quote_printf_mod(char *str, bool *in_single_quote,
-		bool *in_double_quote, size_t i);
-char *ft_sd_quote_printf_mod3(char *str, bool *in_single_quote, bool *in_double_quote);
-int	ft_sd_quote_printf_mod2(char **str, bool *in_single_quote, bool *in_double_quote);
+int	ft_sd_quote_printf(char *str, t_quotes *quotes, size_t *i);
+int	ft_sd_quote_printf_mod(char *str, t_quotes *quotes, size_t i);
+char *ft_sd_quote_printf_mod2(char *str, t_quotes *quotes);
 //** Envp **//
 t_env	*init_env(char **envp);
 char	*get_env_value(t_env *env, char *name);
@@ -111,5 +113,5 @@ void	add_to_history(t_minishell *minishell, char *input);
 //** Signals **//
 void	manage_signals(void);
 //** Free Minishell **//
-void	free_double_aray(void **double_array);
+void	free_double_array(void **double_array);
 #endif 

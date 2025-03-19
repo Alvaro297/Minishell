@@ -14,23 +14,22 @@
 
 bool	check_name_arg(char	*name)
 {
-	bool	in_single_quote;
-	bool	in_double_quote;
-	size_t	i;
-	int		j;
+	t_quotes	quotes;
+	size_t		i;
+	int			j;
 
 	i = 0;
-	in_double_quote = false;
-	in_single_quote = false;
+	quotes.in_double_quote = false;
+	quotes.in_single_quote = false;
 	while (name[i])
 	{
-		ft_sd_quote_printf(name, &in_single_quote, &in_double_quote, &i);
-		if (!in_single_quote && !in_double_quote)
+		ft_sd_quote_printf(name, &quotes, &i);
+		if (!quotes.in_single_quote && !quotes.in_double_quote)
 		{
 			j = 0;
-			while (INVALID_CHARACTERSV[j])
+			while (INVALID_CHARACTERS[j])
 			{
-				if (INVALID_CHARACTERSV[j] == name[i])
+				if (INVALID_CHARACTERS[j] == name[i])
 					return (false);
 				j++;
 			}

@@ -12,6 +12,7 @@
 
 # include "../minishell.h"
 
+
 static void append_expanded_variable(char **result, size_t *j, const char *expanded)
 {
 	size_t		len;
@@ -46,7 +47,7 @@ static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 	{
 		*len = 2;
 		if (str[1] == '?')
-			return (ft_itoa(minishell->last_exit_status));
+			return (minishell->last_exit_status);
 	}
 	i = 1;
 	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
@@ -56,7 +57,7 @@ static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 	free(var_name);
 	*len = i;
 	if (var_value == NULL)
-		return (ft_strdup(""));
+		return (NULL);
 	return (ft_strdup(var_value));
 }
 
@@ -73,6 +74,7 @@ static int ft_quote_printf_ev(t_minishell *minishell, char *str, t_indices *indi
 		free(expanded);
 		return (1);
 	}
+	indices->i += len;
 	return (0);
 }
 
@@ -97,26 +99,24 @@ static void	ft_quote_printf_help(char **result, t_indices *indices, char *str)
 
 char	*ft_quote_printf(t_minishell *minishell, char *str)
 {
-	bool		in_single_quote;
-	bool		in_double_quote;
+	t_quotes	quotes;
 	char		*result;
 	char		*new_result;
 	t_indices	indices;
 	
 	result = ft_strdup("");
-	in_single_quote = false;
-	in_double_quote = false;
+	quotes.in_single_quote = false;
+	quotes.in_double_quote = false;
 	indices.i = 0;
 	indices.j = 0;
 	while (str[indices.i] != '\0')
 	{
-		if (ft_sd_quote_printf_mod(str, &in_single_quote,
-				&in_double_quote, &indices.i))
-				{
-					ft_quote_printf_help(&result, &indices, str);
-					continue ;
-				}
-		if ((!in_single_quote && str[indices.i] == '$') &&
+		if (ft_sd_quote_printf_mod(str, &quotes, indices.i))
+		{
+			ft_quote_printf_help(&result, &indices, str);
+			continue ;
+		}
+		if ((!quotes.in_single_quote && str[indices.i] == '$') &&
 				ft_quote_printf_ev(minishell, str, &indices, &result))
 				continue ;
 		ft_quote_printf_help(&result, &indices, str);

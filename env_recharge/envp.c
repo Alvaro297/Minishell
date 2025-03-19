@@ -14,7 +14,6 @@ t_env	*init_env(char **envp)
 			return NULL;
 		new->name = ft_strndup(*envp, sep - *envp);	// Nombre de la variable
 		new->value = ft_strdup(sep + 1);			// Valor de la variable
-		new->is_readonly = 0;
 		new->next = head;
 		head = new;
 		envp++;
@@ -54,7 +53,7 @@ void	set_env(t_env **env, char *name, char *value)
 			ft_strlen(name) == ft_strlen(tmp->name))
 		{
 			free(tmp->value);
-			new->value = value ? ft_strdup(value) : ft_strdup("");
+			new->value = value ? ft_strdup(value) : NULL;
 			return ;
 		}
 		if (tmp->next == NULL)
@@ -63,10 +62,11 @@ void	set_env(t_env **env, char *name, char *value)
 	}
 	new = malloc(sizeof(t_env));
 	new->name = ft_strdup(name);
-	new->value = value ? ft_strdup(value) : ft_strdup("");
-	new->is_readonly = 0;
+	new->value = value ? ft_strdup(value) : NULL;
 	new->next = NULL;
-	if (new != NULL)
+	if (*env == NULL)
+		*env = new;
+	else
 		tmp->next = new;
 }
 
