@@ -106,7 +106,6 @@ static char **split_modified_help(char **result, char *command)
 char	**split_modified(char *command, int c)
 {
 	int		count_words;
-	int		i;
 	char	**result;
 	t_quotes	quotes;
 

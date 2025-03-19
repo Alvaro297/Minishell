@@ -18,7 +18,7 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 	char	*path;
 	char	**split_envs;
 	
-	split_envs = ft_split(minishell->env_vars, '\n');//TODO convertir t_env en char**
+	split_envs = ft_split(minishell->input, '\n');//TODO convertir t_env en char**
 	if (is_builtin(cmd))
 		internal_commands(cmd, minishell);
 	else
@@ -53,8 +53,6 @@ void	parent(t_cmd *cmd, t_minishell *minishell, int *p_fd)
 {
 	int	fd;
 	t_cmd *next;
-	int	tmp_fd[2];
-	int	pid;
 
 	next = cmd->next;
 	if(cmd->outfile != NULL)
@@ -66,7 +64,7 @@ void	parent(t_cmd *cmd, t_minishell *minishell, int *p_fd)
 	}
 	if (next == NULL || !next->is_pipe)
 	{
-		dup2(tmp_fd[0], STDIN_FILENO);
+		dup2(p_fd[0], STDIN_FILENO);
 		close (p_fd[1]);
 		execute(minishell, cmd);
 	}

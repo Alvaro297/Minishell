@@ -21,26 +21,11 @@ int		count_characters(char *array)
 	return (count);
 }
 
-char	**delete_quotes_double_array(char **double_array)
-{
-	int		i;
-	char	**tmp;
-
-	i = 0;
-	tmp = double_array;
-	while (tmp[i])
-	{
-		tmp[i] = delete_quotes_array(tmp[i])
-		i++;
-	}
-	return (tmp);
-}
-
 char	*delete_quotes_array(char *array)
 {
 	char		*tmp;
 	t_quotes	quotes;
-	int			i;
+	size_t			i;
 	int			j;
 
 	quotes.in_double_quote = false;
@@ -58,6 +43,21 @@ char	*delete_quotes_array(char *array)
 		}
 	}
 	tmp[j] = '\0';
+	return (tmp);
+}
+
+char	**delete_quotes_double_array(char **double_array)
+{
+	int		i;
+	char	**tmp;
+
+	i = 0;
+	tmp = double_array;
+	while (tmp[i])
+	{
+		tmp[i] = delete_quotes_array(tmp[i]);
+		i++;
+	}
 	return (tmp);
 }
 

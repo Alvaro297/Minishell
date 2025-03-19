@@ -14,7 +14,6 @@
 
 static void	fill_minishell_help(t_minishell *minishell, char *input, int i)
 {
-	char	**new_history;
 	char	cwd[PATH_MAX];
 	
 	minishell->history = ft_realloc(minishell->history, (i + 2) * sizeof(char *));

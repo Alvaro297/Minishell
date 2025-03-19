@@ -66,7 +66,6 @@ static char	*join_all(t_env *sorted_env)
 void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell)
 {
 	char	*output;
-	int		count;
 	t_env	*env;
 	t_env	*sorted_env;
 

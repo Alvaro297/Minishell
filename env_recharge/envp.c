@@ -22,13 +22,9 @@ t_env	*init_env(char **envp)
 }
 char	*get_env_value(t_env *env, char *var_name)
 {
-	int i;
 	int j;
-	size_t len;
 	
 	j = 0;
-	i = 0;
-	len = ft_strlen(var_name);
 	while (var_name[j] != ' ' && var_name[j] != '\t' && var_name)
 		j++;
 	while (env)
@@ -46,6 +42,7 @@ void	set_env(t_env **env, char *name, char *value)
 	t_env *tmp;
 	t_env *new;
 	
+	new = malloc(sizeof(t_env));
 	tmp = *env;
 	while (tmp->next != NULL)
 	{
@@ -60,7 +57,6 @@ void	set_env(t_env **env, char *name, char *value)
 			break ;
 		tmp = tmp->next;
 	}
-	new = malloc(sizeof(t_env));
 	new->name = ft_strdup(name);
 	new->value = value ? ft_strdup(value) : NULL;
 	new->next = NULL;
@@ -70,7 +66,7 @@ void	set_env(t_env **env, char *name, char *value)
 		tmp->next = new;
 }
 
-static void	delete_env_help(t_env **env, t_env *prev, t_env *tmp, char *name)
+static void	delete_env_help(t_env *prev, t_env *tmp, char *name)
 {
 	while (tmp->next != NULL)
 	{
@@ -104,5 +100,5 @@ void	delete_env(t_env **env, char *name)
 		free(tmp);
 	}
 	else
-		delete_env_help(env, tmp, tmp->next, name);
+		delete_env_help(tmp, tmp->next, name);
 }

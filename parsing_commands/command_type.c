@@ -43,7 +43,7 @@ bool	is_builtin(t_cmd	*builtin)
 	return (false);
 }
 
-void	command_type(t_minishell *minishell)
+/*void	command_type(t_minishell *minishell)
 {
 	//Estos son los comandos internos todavia hasy muchos mas tipos de comandos que son:
 	//Todo este tipo de comandos irán aquí
@@ -63,3 +63,4 @@ void	command_type(t_minishell *minishell)
 		//no le pasases nada al siguiente comando por eso he puesto el if
 	}
 }
+*/

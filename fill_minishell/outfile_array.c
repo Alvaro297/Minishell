@@ -31,7 +31,9 @@ char	**get_outfiles(char **command_splited)
 	c1 = 0;
 	c = 0;
     if (size == 0)
-        return (NULL);
+	{
+    	return (NULL);
+	}
 	outfile_array = malloc(sizeof(char *) * (size + 1));
 	while (command_splited[c])
 	{

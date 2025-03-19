@@ -8,7 +8,7 @@ t_env	*get_env(t_env *env, char *var_name)
 	while (env)
 	{
 		if (ft_strncmp(env->name, var_name, len) == 0 &&
-				(int)ft_strlen(env->name) == len)
+				ft_strlen(env->name) == len)
 			return (env);
 		env = env->next;
 	}

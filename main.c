@@ -35,16 +35,16 @@ void	minishell(char **envp)
 			free(input);
 			continue ;
 		}
-		minishell.last_exit_status = error_control(&minishell);
+		//minishell.last_exit_status = error_control(&minishell);
 		if (minishell.last_exit_status == 0)
-			command_type(&minishell);
+			pipex(&minishell);
 		free(input);
 	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc >= 2)
+	if (argc >= 2 || ft_strcmp(argv[0],"minishell"))
 	{
 		printf("Bad arguments in the program");
 		return (EXIT_SUCCESS);

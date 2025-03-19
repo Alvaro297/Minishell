@@ -11,11 +11,14 @@ SRC = cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c \
 			parsing_commands/internal_commands/env_command.c \
 			parsing_commands/internal_commands/pwd_command.c \
 			parsing_commands/internal_commands/unset_command.c \
-			parsing_command/command_type.c parsing_input/checker_args.c \
+			parsing_commands/command_type.c parsing_input/checker_args.c \
 			parsing_input/parsing_cmd.c parsing_input/parsing_cmd2.c \
 			parsing_input/parsing_cmd3.c parsing_input/parsing_cmd_split_modified.c \
 			signals/handle_sig.c main.c \
-			delete_quotes/delete_quotes.c
+			delete_quotes/delete_quotes.c \
+			pipex/pipex.c pipex/utils.c pipex/libutils.c \
+			pipex/ft_split.c pipex/ft_fd.c 
+
 NAME = Minishell
 
 RM = rm -rf
@@ -30,15 +33,8 @@ LIBFT = libft_minishell
 
 LIBFTPATH = libft_minishell/libft.a
 
-PIPEX_DIR = ./pipex
-
-PIPEX = pipex/pipex.a
-
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(PIPEX) $(LIBFT) -o $(NAME)
-
-$(PIPEX):
-	@make -sC $(PIPEX_DIR)
+	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
 
 $(LIBFTPATH):
 	@make -sC $(LIBFT)

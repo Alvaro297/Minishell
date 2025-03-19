@@ -15,7 +15,9 @@
 void	handle_echo_help(t_minishell *minishell, int i, int newline)
 {
 	char	*echo_print;
+	t_cmd	*current_cmd;
 
+	current_cmd = minishell->cmds;
 	echo_print = ft_strdup("");
 	while (current_cmd->args[i] != NULL)
 	{

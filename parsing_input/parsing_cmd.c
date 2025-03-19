@@ -102,7 +102,7 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	t_quotes	quotes;
 
 	if (minishell->cmds)
-		delete_cmds(&minishell->cmds);
+		delete_cmds(minishell->cmds);
 	quotes.in_single_quote = false;
 	quotes.in_double_quote = false;
 	parsed_input = split_commands(input, 0, &quotes);
@@ -115,7 +115,7 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	while(parsed_input[i])
 	{
 		parse_input_help(&new_cmd, parsed_input[i], i, parsed_input);
-		append_cmds(&head, new_cmd);
+		append_cmds(head, new_cmd);
 		i += 2;
 	}
 	free_double_array((void **)parsed_input);

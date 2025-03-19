@@ -47,7 +47,7 @@ static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 	{
 		*len = 2;
 		if (str[1] == '?')
-			return (minishell->last_exit_status);
+			return (ft_itoa(minishell->last_exit_status));
 	}
 	i = 1;
 	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
@@ -101,7 +101,6 @@ char	*ft_quote_printf(t_minishell *minishell, char *str)
 {
 	t_quotes	quotes;
 	char		*result;
-	char		*new_result;
 	t_indices	indices;
 	
 	result = ft_strdup("");

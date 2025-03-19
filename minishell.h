@@ -65,7 +65,7 @@ typedef struct s_minishell
 } t_minishell;
 
 int	ft_strcmp(char *s1, char *s2);
-void	command_type(t_minishell *minishell);
+//void	command_type(t_minishell *minishell);
 //** Fill_minishell **//
 void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp);
 /* Expand_variable */
@@ -92,6 +92,7 @@ int		handle_env(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_unset(t_cmd *current_cmd, t_minishell *minishell);
 int		error_management(t_minishell *minishell);
 //** Parsing Input **//
+void	delete_quotes(t_cmd *cmd);
 t_cmd	*parsing_input(t_minishell *minishell, char *input);
 bool	check_name_arg(char	*name);
 bool	is_builtin(t_cmd	*builtin);
@@ -114,4 +115,15 @@ void	add_to_history(t_minishell *minishell, char *input);
 void	manage_signals(void);
 //** Free Minishell **//
 void	free_double_array(void **double_array);
+//**PIPEX **/
+int		pipex(t_minishell *minishell);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+void	freeall(char **m);
+void	exitaux(void);
+char	**ft_split(char const *s, char c);
+char	*getpathaux(char *path, char **env);
+char	*getpath(char *cmd, char **env);
+int		open_f(char *file, int sw);
 #endif 
