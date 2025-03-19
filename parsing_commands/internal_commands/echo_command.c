@@ -35,16 +35,16 @@ void	handle_echo_help(t_minishell *minishell, int i, int newline)
 int	handle_echo(t_cmd *current_cmd, t_minishell *minishell)
 {
 	int		i;
-	int		newline;
+	bool	newline;
 
 	i = 1;
-	newline = 1;
+	newline = true;
 	if (minishell->input != NULL &&
 			ft_strncmp(current_cmd->args[i], "-n", 2) == 0 &&
 			ft_strlen(current_cmd->args[i]) == 2)
 	{
 		i++;
-		newline = 0;
+		newline = false;
 	}
 	while (current_cmd->args[i] != NULL)
 	{

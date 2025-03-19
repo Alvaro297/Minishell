@@ -14,16 +14,15 @@ SRC = cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c \
 			parsing_command/command_type.c parsing_input/checker_args.c \
 			parsing_input/parsing_cmd.c parsing_input/parsing_cmd2.c \
 			parsing_input/parsing_cmd3.c parsing_input/parsing_cmd_split_modified.c \
-			signals/handle_sig.c main.c
-
-
+			signals/handle_sig.c main.c \
+			delete_quotes/delete_quotes.c
 NAME = Minishell
 
 RM = rm -rf
 
 CC = gcc 
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -lreadline
 
 OBJ = ${SRC:.c=.o}
 

@@ -14,11 +14,10 @@
 
 int	handle_unset(t_cmd *current_cmd, t_minishell *minishell)
 {
-	int		i;
-	bool	is_var_readonly;
+	int	i;
 
 	i = 1;
-	is_var_readonly = false;
 	while (current_cmd->args[i])
 		delete_env(&minishell->env_vars, current_cmd->args[i]);
+	return (0);
 }
