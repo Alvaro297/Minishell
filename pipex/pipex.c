@@ -43,6 +43,7 @@ void	child(t_cmd *cmd, t_minishell *minishell, int *p_fd)
 		if (fd == -1)
 			exit(-1);
 		dup2(fd, STDIN_FILENO);
+		close(fd);
 	}
 	dup2(p_fd[1], STDOUT_FILENO);
 	close (p_fd[0]);
@@ -52,9 +53,7 @@ void	child(t_cmd *cmd, t_minishell *minishell, int *p_fd)
 void	parent(t_cmd *cmd, t_minishell *minishell, int *p_fd)
 {
 	int	fd;
-	t_cmd *next;
 
-	next = cmd->next;
 	if(cmd->outfile != NULL)
 	{
 		fd = open_f(cmd->outfile, 1);
@@ -62,12 +61,9 @@ void	parent(t_cmd *cmd, t_minishell *minishell, int *p_fd)
 			exit(0);
 		dup2(fd, STDOUT_FILENO);
 	}
-	if (next == NULL || !next->is_pipe)
-	{
-		dup2(p_fd[0], STDIN_FILENO);
-		close (p_fd[1]);
-		execute(minishell, cmd);
-	}
+	dup2(p_fd[0], STDIN_FILENO);
+	close (p_fd[1]);
+	execute(minishell, cmd);
 }
 
 int	pipex(t_minishell *minishell)
@@ -97,16 +93,26 @@ int	pipex(t_minishell *minishell)
 	i = 0;
 	cmd = minishell->cmds;
 	while (i < count)
-  {
-	  pid[i] = fork();
-	  if (pid[i] == -1)
+	{
+		pid[i] = fork();
+		if (pid[i] == -1)
 			exit (-1);
-    if (!pid[i])
-			child(cmd, minishell, &i);
+	    if (!pid[i])
+			child(cmd, minishell, p_fd + i * 2);
 		close (p_fd[i + 1]);
 		cmd = cmd->next;
 		i++;
-  }
+	}
 	parent(cmd, minishell, &i);
+	i = 0;
+	while (pid[i])
+	{
+		if (waitpid(pid[i], NULL, 0) != 0)
+		{
+			minishell->last_exit_status = waitpid(pid[i], NULL, 0);
+			break;
+		}
+		i++;
+	}
 	return (0);
 }
