@@ -82,7 +82,7 @@ void	set_env(t_env **env, char *name, char *value);
 void	delete_env(t_env **env, char *name);
 bool	is_readonly(t_minishell *minishell, char *var);
 //** Internal_commands **//
-int		howmanycmds(char *argv);
+int		howmanycmds(t_cmd *cmd);
 int		handle_cd(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_pwd(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_echo(t_cmd *current_cmd, t_minishell *minishell);

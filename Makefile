@@ -1,4 +1,4 @@
-SRC = cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c \
+SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c \
 			error_control/check_archives.c error_control/check_syntax.c \
 			error_control/error_control.c fill_minishell/fill_minishell.c \
 			fill_minishell/expand_variable.c fill_minishell/outfile_array.c \
@@ -27,28 +27,23 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -lreadline
 
-OBJ = ${SRC:.c=.o}
+LIBFT = libft_minishell/
 
-LIBFT = libft_minishell
-
-LIBFTPATH = libft_minishell/libft.a
+OBJ = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
-
-$(LIBFTPATH):
-	@make -sC $(LIBFT)
-
-%.o: %.c
-	${CC} $(CFLAGS) -c $< -o $@
-
-all: $(NAME)
+	@make -sC libft_minishell/
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)libft.a
 
 clean:
 	$(RM) $(OBJ)
+	make clean -sC $(LIBFT)
 
-fclean: $(clean)
+fclean: clean
 	$(RM) $(NAME)
-	$(RM) $(OBJ)
+	$(RM) $(LIBFTPATH)
+	make clean -sC $(LIBFT) 
 
 re: fclean all
+
+all: $(NAME)
