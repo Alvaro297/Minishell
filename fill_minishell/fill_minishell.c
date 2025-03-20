@@ -36,6 +36,7 @@ static void	fill_minishell_help(t_minishell *minishell, char *input, int i)
 void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 {
 	t_cmd	*tmp_cmd;
+	
 	if (minishell->env_vars == NULL)
 		minishell->env_vars = init_env(envp);
 	minishell->input = ft_quote_printf(minishell, input);
