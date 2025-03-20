@@ -21,11 +21,12 @@ void	minishell(char **envp)
 	i = 0;
 	load_history(&minishell);
 	manage_signals();
-	while (1) 
+	printf("hola\n");
+	while (1)
 	{
 		input = readline("Minishell: ");
-		if (ft_strncmp(input, "exit", ft_strlen(input)) == 0)
-			break ;
+	//	if (ft_strcmp(input, "exit") == 0)
+	//		break ;
 		fill_minishell(input, &minishell, i, envp);
 		//error_management(&minishell);
 		if (input && *input)
