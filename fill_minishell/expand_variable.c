@@ -12,7 +12,6 @@
 
 # include "../minishell.h"
 
-
 static void append_expanded_variable(char **result, size_t *j, const char *expanded)
 {
 	size_t		len;
@@ -46,8 +45,7 @@ static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 	if (str[1] == '?')
 	{
 		*len = 2;
-		if (str[1] == '?')
-			return (ft_itoa(minishell->last_exit_status));
+		return (ft_itoa(minishell->last_exit_status));
 	}
 	i = 1;
 	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
@@ -81,7 +79,7 @@ static int ft_quote_printf_ev(t_minishell *minishell, char *str, t_indices *indi
 static void	ft_quote_printf_help(char **result, t_indices *indices, char *str)
 {
 	char *new_result;
-	
+
 	new_result = malloc(indices->j + 2);
 	if (new_result == NULL)
 	{
@@ -102,7 +100,7 @@ char	*ft_quote_printf(t_minishell *minishell, char *str)
 	t_quotes	quotes;
 	char		*result;
 	t_indices	indices;
-	
+
 	result = ft_strdup("");
 	quotes.in_single_quote = false;
 	quotes.in_double_quote = false;
@@ -120,5 +118,6 @@ char	*ft_quote_printf(t_minishell *minishell, char *str)
 				continue ;
 		ft_quote_printf_help(&result, &indices, str);
 	}
+	result[indices.j] = '\0';
 	return (result);
 }

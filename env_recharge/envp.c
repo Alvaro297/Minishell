@@ -20,12 +20,13 @@ t_env	*init_env(char **envp)
 	}
 	return (head);
 }
+
 char	*get_env_value(t_env *env, char *var_name)
 {
 	int j;
 	
 	j = 0;
-	while (var_name[j] != ' ' && var_name[j] != '\t' && var_name)
+	while (var_name[j] != ' ' && var_name[j] != '\t' && var_name[j] != '\0')
 		j++;
 	while (env)
 	{

@@ -74,6 +74,7 @@ char	*ft_quote_printf(t_minishell *minishell, char *str);
 int	ft_sd_quote_printf(char *str, t_quotes *quotes, size_t *i);
 int	ft_sd_quote_printf_mod(char *str, t_quotes *quotes, size_t i);
 char *ft_sd_quote_printf_mod2(char *str, t_quotes *quotes);
+void	ft_sd_quote_printf_mod3(char *str, t_quotes *quotes);
 //** Envp **//
 t_env	*init_env(char **envp);
 char	*get_env_value(t_env *env, char *name);

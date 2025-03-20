@@ -25,6 +25,7 @@ static int ft_count_words(char *command, t_quotes *quotes, int c)
 		count++;
 	if (quotes->in_single_quote || quotes->in_double_quote)
 		return (-1);
+	printf("ft_count_words: count = %d\n", count);
 	return (count);
 }
 
@@ -39,16 +40,12 @@ static char *get_next_word_help(char *start, char **command, t_quotes *quotes)
 		return (NULL);
 	while (start < *command)
 	{
-		start = ft_sd_quote_printf_mod2(start, quotes);
-		if ((*start == '\'' && !quotes->in_double_quote) || (*start == '"' && !quotes->in_single_quote))
-		{
-			start++;
-			continue;
-		}
+		ft_sd_quote_printf_mod3(start, quotes);
 		word[word_len++] = *start;
 		start++;
 	}
 	word[word_len] = '\0';
+	printf("get_next_word_help: word = %s\n", word);
 	return (word);
 }
 
@@ -64,18 +61,16 @@ static char *get_next_word(char **command, t_quotes *quotes)
 	start = *command;
 	while (**command && (!(**command == ' ' || **command == '\t' || **command == '\n') || quotes->in_single_quote || quotes->in_double_quote))
 	{
-		*command = ft_sd_quote_printf_mod2(*command, quotes);
-		if ((*command == start) || (**command == '\'' && !quotes->in_double_quote) || (**command == '"' && !quotes->in_single_quote))
-		{
-			(*command)++;
-			continue; // Saltar la comilla
-		}
+		ft_sd_quote_printf_mod3(*command, quotes);
 		(*command)++;
 		len++;
 	}
 	word = malloc(len + 1);
 	if (!word)
 		return (NULL);
+	ft_strncpy(word, start, len);
+	word[len] = '\0';
+	printf("get_next_word: word = %s\n", word);
 	return (get_next_word_help(start, command, quotes));
 }
 
@@ -97,6 +92,7 @@ static char **split_modified_help(char **result, char *command)
 			free(result);
 			return (NULL);
 		}
+		printf("split_modified_help: result[%d] = %s\n", i, result[i]);
 		i++;
 	}
 	result[i] = NULL;
@@ -120,5 +116,6 @@ char	**split_modified(char *command, int c)
 	result = malloc(sizeof(char *) * (count_words + 1));
 	if (!result)
 		return (NULL);
+	printf("split_modified: count_words = %d\n", count_words);
 	return (split_modified_help(result, command));
 }

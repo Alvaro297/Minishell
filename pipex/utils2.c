@@ -8,7 +8,7 @@ int howmanycmds(t_cmd *cmd)
 	while (cmd)
 	{
 		count++;
-		cmd->next;
+		cmd = cmd->next;
 	}
 	return (count);
 }

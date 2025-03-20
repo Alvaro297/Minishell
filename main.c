@@ -12,6 +12,30 @@
 
 #include "minishell.h"
 
+static void	init_minishell(t_minishell *minishell)
+{
+	minishell->env_vars = NULL;
+	minishell->history = NULL;
+	minishell->current_dir = NULL;
+	minishell->input = NULL;
+	minishell->cmds = NULL;
+	minishell->output = NULL;
+	minishell->howmanycmd = 0;
+	minishell->last_exit_status = 0;
+}
+
+static bool	exitMinishell(char *input)
+{
+	if(ft_strcmp(input, "exit") == 0)
+		return (true);
+	if (input == NULL)
+	{
+		printf("\nexit\n");
+		return (true);
+	}
+	return (false);
+}
+
 void	minishell(char **envp)
 {
 	char		*input;
@@ -21,12 +45,12 @@ void	minishell(char **envp)
 	i = 0;
 	load_history(&minishell);
 	manage_signals();
-	printf("hola\n");
+	init_minishell(&minishell);
 	while (1)
 	{
 		input = readline("Minishell: ");
-	//	if (ft_strcmp(input, "exit") == 0)
-	//		break ;
+		if (exitMinishell(input))
+			break ;
 		fill_minishell(input, &minishell, i, envp);
 		//error_management(&minishell);
 		if (input && *input)
@@ -45,9 +69,9 @@ void	minishell(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc >= 2 || ft_strcmp(argv[0],"minishell"))
+	if (argc >= 2 || ft_strcmp(argv[0],"./Minishell"))
 	{
-		printf("Bad arguments in the program");
+		printf("Bad arguments in the program\n");
 		return (EXIT_SUCCESS);
 	}
 	minishell(envp);

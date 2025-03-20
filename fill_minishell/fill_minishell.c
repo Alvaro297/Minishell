@@ -35,14 +35,11 @@ static void	fill_minishell_help(t_minishell *minishell, char *input, int i)
 
 void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 {
-	t_cmd *tmp_cmd; //variable de prueba
-
+	t_cmd	*tmp_cmd;
 	if (minishell->env_vars == NULL)
 		minishell->env_vars = init_env(envp);
-//	if (minishell->last_exit_status == NULL)
-	//	minishell->last_exit_status = 0;
 	minishell->input = ft_quote_printf(minishell, input);
-	printf("%s", minishell->input);
+	printf("%s\n", minishell->input);
 	minishell->cmds = parsing_input(minishell, minishell->input);
 	tmp_cmd = minishell->cmds;
 	while (tmp_cmd)

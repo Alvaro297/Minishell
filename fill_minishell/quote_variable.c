@@ -58,3 +58,16 @@ char *ft_sd_quote_printf_mod2(char *str, t_quotes *quotes)
 	}
 	return (str);
 }
+void	ft_sd_quote_printf_mod3(char *str, t_quotes *quotes)
+{
+	if (*str == '\'' && !(quotes->in_double_quote))
+	{
+		quotes->in_single_quote = !(quotes->in_single_quote);
+		++str;
+	}
+	if (*str == '"' && !(quotes->in_single_quote))
+	{
+		quotes->in_double_quote = !(quotes->in_double_quote);
+		++str;
+	}
+}

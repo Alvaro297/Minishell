@@ -17,7 +17,7 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c \
 			signals/handle_sig.c main.c \
 			delete_quotes/delete_quotes.c \
 			pipex/pipex.c pipex/utils.c pipex/libutils.c \
-			pipex/ft_split.c pipex/ft_fd.c 
+			pipex/ft_split.c pipex/ft_fd.c pipex/utils2.c
 
 NAME = Minishell
 
@@ -25,7 +25,7 @@ RM = rm -rf
 
 CC = gcc 
 
-CFLAGS = -Wall -Wextra -Werror -lreadline
+CFLAGS = -Wall -Wextra -Werror 
 
 LIBFT = libft_minishell/
 
@@ -33,7 +33,7 @@ OBJ = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
 	@make -sC libft_minishell/
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)libft.a
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)libft.a -lreadline
 
 clean:
 	$(RM) $(OBJ)

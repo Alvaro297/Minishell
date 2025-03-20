@@ -12,11 +12,6 @@
 
 # include "../minishell.h"
 
-static bool is_special_char(char c)
-{
-	return (c == '|' || c == '<' || c == '>' || c == '&');
-}
-
 int count_commands(const char *input)
 {
 	int count;
@@ -55,7 +50,7 @@ static char **split_commands(const char *input, int i, t_quotes *quotes)
 			quotes->in_single_quote = !quotes->in_single_quote;
 		else if (input[i] == '"' && !quotes->in_single_quote)
 			quotes->in_double_quote = !quotes->in_double_quote;
-		if (is_special_char(input[i]) && !quotes->in_single_quote && !quotes->in_double_quote)
+		if (input[i] == '|' && !quotes->in_single_quote && !quotes->in_double_quote)
 		{
 			commands[cmd_index++] = ft_strndup(input + start, i - start);
 			commands[cmd_index++] = ft_strndup(input + i, 1);
@@ -77,9 +72,10 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	tmp = malloc(sizeof(t_cmd));
 	if (!tmp)
 		return ;
-	tmp = *new_cmd;
+	*new_cmd = tmp;
 	command_splited = split_modified(command, ' ');
 	tmp->cmd = find_command(command_splited);
+	printf("tmp->cmd: %s\n", tmp->cmd);
 	tmp->args = find_args(command_splited);
 	tmp->is_pipe = have_pipe(array_commands, position);
 	tmp->infile = find_infile(command_splited);
