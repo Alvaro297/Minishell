@@ -39,7 +39,6 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 	if (minishell->env_vars == NULL)
 		minishell->env_vars = init_env(envp);
 	minishell->input = ft_quote_printf(minishell, input);
-	printf("%s\n", minishell->input);
 	minishell->cmds = parsing_input(minishell, minishell->input);
 	tmp_cmd = minishell->cmds;
 	while (tmp_cmd)

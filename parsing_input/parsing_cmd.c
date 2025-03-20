@@ -75,15 +75,14 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	*new_cmd = tmp;
 	command_splited = split_modified(command, ' ');
 	tmp->cmd = find_command(command_splited);
-	printf("tmp->cmd: %s\n", tmp->cmd);
-	tmp->args = find_args(command_splited);
+	tmp->args = find_args(command_splited); 
 	tmp->is_pipe = have_pipe(array_commands, position);
 	tmp->infile = find_infile(command_splited);
 	tmp->outfile = find_outfile(command_splited);
 	tmp->outfile_array = get_outfiles(command_splited);
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->next = NULL;
-	delete_quotes(tmp);
+	delete_quotes(tmp); //TODO: Funciona hasta aqui
 	while (*command_splited)
 		free(*command_splited++);
 	free(command_splited);

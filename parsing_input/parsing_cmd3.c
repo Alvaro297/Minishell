@@ -50,6 +50,7 @@ char	*find_infile(char **command_splited)
 	int		i;
 
 	i = 0;
+	infile = NULL;
 	while (command_splited[i])
 	{
 		if ((ft_strncmp(command_splited[i], "<", 1) == 0 &&
@@ -72,12 +73,11 @@ char	*find_outfile(char **command_splited)
 	int		i;
 
 	i = 0;
+	outfile = NULL;
 	while (command_splited[i])
 	{
 		if ((ft_strncmp(command_splited[i], ">", 1) == 0 &&
-					ft_strlen(command_splited[i]) == 1) ||
-				(ft_strncmp(command_splited[i], ">>", 2) == 0 &&
-					ft_strlen(command_splited[i]) == 2))
+					ft_strlen(command_splited[i]) == 1))
 		{
 			i++;
 			if (!check_name_arg(command_splited[i]))
