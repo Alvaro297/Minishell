@@ -27,8 +27,9 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 		if (execve(path, cmd->args, split_envs) == -1)
 		{
 			ft_putstr_fd("pipex: command not found: ", 2);
+			minishell->last_exit_status = 127;
 			ft_putendl_fd(cmd->args[0], 2);
-			exit(0);
+			exit(127);
 		}
 	}
 }
@@ -75,8 +76,8 @@ int	pipex(t_minishell *minishell)
 	int		i;
 
 	i = 0;
-	count = minishell->howmanycmd;//TODO comprobar que los pipes no estan entrecomillados
-	if (count == 1 && is_builtin(minishell->cmds))
+	count = minishell->howmanycmd;
+	if (is_builtin(minishell->cmds))
 	{
 		internal_commands(minishell->cmds, minishell);
 		return(0);
@@ -97,7 +98,7 @@ int	pipex(t_minishell *minishell)
 		pid[i] = fork();
 		if (pid[i] == -1)
 			exit (-1);
-	    if (!pid[i])
+		if (!pid[i])
 			child(cmd, minishell, p_fd + i * 2);
 		close (p_fd[i + 1]);
 		cmd = cmd->next;

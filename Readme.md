@@ -22,3 +22,12 @@ He añadido la funcion free_double_array en una carpeta llamada free_minishell q
 Free_double_array elimina cualquier tipo de array doble no solo los de char. Eso si antes de llamarla casteala a (void **) a lo que quieras eliminar.
 Ej:
 free_double_array((void **)parsed_input);
+
+
+## 20/03/2025
+
+Holi que tal. He hecho la funcion de howmanycmds por tí al ver que era una tonteria. No tienes que comprobar si los pipes estan entre comillas solo contar cuantas listas encadenadas hay.
+Haz pull.
+
+He estado mirando el codigo y creo que debemos dividirlo en 1er comando los del medio y ultimo. 
+1er comando que comprobaremos si este es un builtin para crear hijos o no. Los del medio que comprobaremos si es builtin o no pero crearemos el hijo independientemente y el del final para la redireccion del outfile. Ahora mismo creo que lo tenemos como un pipex basico.

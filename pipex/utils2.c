@@ -1,16 +1,14 @@
 #include "pipex.h"
+#include "../minishell.h"
 
-int howmanycmds(char *argv)
+int howmanycmds(t_cmd *cmd)
 {
-    int c;
-    int count;
+	int	count;
 
-    while (argv[c])
-    {
-        if(argv[c] == '|')
-            count++;
-        c++;
-    }
-    c += 1;
-    return (count);
+	while (cmd)
+	{
+		count++;
+		cmd->next;
+	}
+	return (count);
 }

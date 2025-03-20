@@ -42,7 +42,7 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 	minishell->input = ft_quote_printf(minishell, input);
 	minishell->cmds = parsing_input(minishell, minishell->input);
 	minishell->output = NULL;
-	minishell->howmanycmd = howmanycmds(minishell->input);
+	minishell->howmanycmd = howmanycmds(minishell->cmds);
 	if (input && *input)
 	{
 		add_history(input);
