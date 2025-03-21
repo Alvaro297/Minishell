@@ -52,6 +52,7 @@ char	**delete_quotes_double_array(char **double_array)
 	char	**tmp;
 
 	i = 0;
+	tmp = (char **)malloc(sizeof(char) * ft_strlen(*double_array));
 	tmp = double_array;
 	while (tmp[i])
 	{

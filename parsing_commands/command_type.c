@@ -30,16 +30,18 @@ void	internal_commands(t_cmd *current_cmd, t_minishell *minishell)
 		handle_echo(current_cmd, minishell);
 }
 
-bool	is_builtin(t_cmd	*builtin)
+bool	is_builtin(t_cmd *builtin)
 {
-	if (ft_strncmp(builtin->cmd, "exit", 4) == 0 ||
-		ft_strncmp(builtin->cmd, "pwd", 3) == 0 ||
-		ft_strncmp(builtin->cmd, "cd", 2) == 0 ||
-		ft_strncmp(builtin->cmd, "export", 6) == 0 ||
-		ft_strncmp(builtin->cmd, "unset", 5) == 0 ||
-		ft_strncmp(builtin->cmd, "env", 3) == 0 ||
-		ft_strncmp(builtin->cmd, "echo", 4) == 0)
+	if (ft_strcmp(builtin->cmd, "exit") == 0 ||
+		ft_strcmp(builtin->cmd, "pwd") == 0 ||
+		ft_strcmp(builtin->cmd, "cd") == 0 ||
+		ft_strcmp(builtin->cmd, "export") == 0 ||
+		ft_strcmp(builtin->cmd, "unset") == 0 ||
+		ft_strcmp(builtin->cmd, "env") == 0 ||
+		ft_strcmp(builtin->cmd, "echo") == 0)
+	{
 		return (true);
+	}
 	return (false);
 }
 

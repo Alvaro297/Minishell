@@ -53,16 +53,22 @@ void	minishell(char **envp)
 			break ;
 		fill_minishell(input, &minishell, i, envp);
 		//error_management(&minishell);
-		if (input && *input)
-			i++;
+//		if (input && *input)
+//			i++;
 		if (minishell.cmds == NULL)
 		{
 			free(input);
 			continue ;
 		}
+		printf("ES BUITIN?: %s\n", minishell.cmds->cmd);
+		if (is_builtin(minishell.cmds))
+		{
+			printf("BUILTIN\n");
+			internal_commands(minishell.cmds, &minishell);
+		}
 		//minishell.last_exit_status = error_control(&minishell);
-		if (minishell.last_exit_status == 0)
-			pipex(&minishell);
+		//if (minishell.last_exit_status == 0)
+	//		pipex(&minishell);
 		free(input);
 	}
 }

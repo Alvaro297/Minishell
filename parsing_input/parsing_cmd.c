@@ -63,7 +63,7 @@ static char **split_commands(const char *input, int i, t_quotes *quotes)
 	commands[cmd_index] = NULL;
 	return (commands);
 }
-
+/*
 static void print_cmd(t_cmd *cmd)
 {
     int i;
@@ -101,7 +101,7 @@ static void print_cmd(t_cmd *cmd)
     printf("\n");
     printf("Outfile Modes: %d", cmd->outfile_modes);
     printf("\n");
-}
+}*/
 
 void init_cmd(t_cmd *cmd)
 {
@@ -137,12 +137,13 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->next = NULL;
 	delete_quotes(tmp);
-	while (command_splited[i])
+	i = 0;
+	while (command_splited[i] != NULL)
 	{
 		free(command_splited[i]);
 		i++;
 	}
-	free(command_splited);
+	free(command_splited);//FUNCIONA CORRECTAMENTE
 }
 
 t_cmd	*parsing_input(t_minishell *minishell, char *input)
@@ -181,6 +182,5 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 		printf("Iteration %d: appended command '%s'\n", i, parsed_input[i]);
 		i += 2;
 	}
-	free_double_array((void **)parsed_input);
-	return (head);
+	return (head);//FUNCIONA BIEN
 }
