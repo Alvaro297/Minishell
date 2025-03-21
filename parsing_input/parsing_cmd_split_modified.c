@@ -65,13 +65,16 @@ static char *get_next_word(char **command, t_quotes *quotes)
 		(*command)++;
 		len++;
 	}
-	word = malloc(len + 1);
-	if (!word)
-		return (NULL);
-	ft_strncpy(word, start, len);
-	word[len] = '\0';
-	printf("get_next_word: word = %s\n", word);
-	return (get_next_word_help(start, command, quotes));
+	if (len != 0)
+	{
+		word = malloc(len + 1);
+		if (!word)
+			return (NULL);
+		ft_strncpy(word, start, len);
+		word[len] = '\0';
+		return (get_next_word_help(start, command, quotes));
+	}
+	return (NULL);
 }
 
 static char **split_modified_help(char **result, char *command)
@@ -86,12 +89,7 @@ static char **split_modified_help(char **result, char *command)
 	{
 		result[i] = get_next_word(&command, &quotes);
 		if (!result[i])
-		{
-			while (i > 0)
-				free(result[--i]);
-			free(result);
-			return (NULL);
-		}
+			break ;
 		printf("split_modified_help: result[%d] = %s\n", i, result[i]);
 		i++;
 	}

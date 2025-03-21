@@ -63,9 +63,14 @@ char	**delete_quotes_double_array(char **double_array)
 
 void	delete_quotes(t_cmd *cmd)
 {
-	cmd->cmd = delete_quotes_array(cmd->cmd);
-	cmd->args = delete_quotes_double_array(cmd->args);
-	cmd->infile = delete_quotes_array(cmd->infile);
-	cmd->outfile = delete_quotes_array(cmd->outfile);
-	cmd->outfile_array = delete_quotes_double_array(cmd->outfile_array);
+	if (cmd->cmd)
+		cmd->cmd = delete_quotes_array(cmd->cmd);
+	if (cmd->args)
+		cmd->args = delete_quotes_double_array(cmd->args);
+	if (cmd->infile)
+		cmd->infile = delete_quotes_array(cmd->infile);
+	if (cmd->outfile)
+		cmd->outfile = delete_quotes_array(cmd->outfile);
+	if (cmd->outfile_array)
+		cmd->outfile_array = delete_quotes_double_array(cmd->outfile_array);
 }

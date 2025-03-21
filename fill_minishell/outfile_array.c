@@ -9,7 +9,8 @@ static int	get_size(char **input)
 	count = 0;
 	while (input[c])
 	{
-		if ((!ft_strncmp(input[c], ">", 1) && ft_strlen(input[c]) == 1) || (!ft_strncmp(input[c], ">>", 2) && ft_strlen(input[c]) == 2))
+		if ((!ft_strncmp(input[c], ">", 1) && ft_strlen(input[c]) == 1)
+			|| (!ft_strncmp(input[c], ">>", 2) && ft_strlen(input[c]) == 2))
 		{
 			if (!check_name_arg(input[c + 1]))
 				break;
@@ -23,17 +24,15 @@ static int	get_size(char **input)
 char	**get_outfiles(char **command_splited)
 {
 	char	**outfile_array;
-	int	c;
-	int	c1;
-	int size;
+	int		c;
+	int		c1;
+	int		size;
 
     size = get_size(command_splited);
 	c1 = 0;
 	c = 0;
     if (size == 0)
-	{
-    	return (NULL);
-	}
+		return (NULL);
 	outfile_array = malloc(sizeof(char *) * (size + 1));
 	while (command_splited[c])
 	{
@@ -48,5 +47,6 @@ char	**get_outfiles(char **command_splited)
 		}
 		c++;
 	}
+	outfile_array[c1] = NULL;
 	return (outfile_array);
 }

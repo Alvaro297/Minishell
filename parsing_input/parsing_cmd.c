@@ -64,14 +64,68 @@ static char **split_commands(const char *input, int i, t_quotes *quotes)
 	return (commands);
 }
 
+static void print_cmd(t_cmd *cmd)
+{
+    int i;
+
+    if (!cmd)
+    {
+        printf("Command is NULL\n");
+        return;
+    }
+
+    printf("Command: %s\n", cmd->cmd);
+
+    printf("Arguments: ");
+    if (cmd->args)
+    {
+        for (i = 0; cmd->args[i]; i++)
+        {
+            printf("%s ", cmd->args[i]);
+        }
+    }
+    printf("\n");
+
+    printf("Is Pipe: %d\n", cmd->is_pipe);
+    printf("Infile: %s\n", cmd->infile);
+    printf("Outfile: %s\n", cmd->outfile);
+
+    printf("Outfile Array: ");
+    if (cmd->outfile_array)
+    {
+        for (i = 0; cmd->outfile_array[i]; i++)
+        {
+            printf("%s ", cmd->outfile_array[i]);
+        }
+    }
+    printf("\n");
+    printf("Outfile Modes: %d", cmd->outfile_modes);
+    printf("\n");
+}
+
+void init_cmd(t_cmd *cmd)
+{
+    if (!cmd)
+        return;
+
+    cmd->cmd = NULL;
+    cmd->args = NULL;
+    cmd->is_pipe = false;
+    cmd->infile = NULL;
+    cmd->outfile = NULL;
+    cmd->outfile_array = NULL;
+    cmd->outfile_modes = 0;
+    cmd->next = NULL;
+}
+
 static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char **array_commands)
 {
 	t_cmd	*tmp;
 	char	**command_splited;
+	int		i;
 	
 	tmp = malloc(sizeof(t_cmd));
-	if (!tmp)
-		return ;
+	init_cmd(tmp); 
 	*new_cmd = tmp;
 	command_splited = split_modified(command, ' ');
 	tmp->cmd = find_command(command_splited);
@@ -82,9 +136,12 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	tmp->outfile_array = get_outfiles(command_splited);
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->next = NULL;
-	delete_quotes(tmp); //TODO: Funciona hasta aqui
-	while (*command_splited)
-		free(*command_splited++);
+	delete_quotes(tmp);
+	while (command_splited[i])
+	{
+		free(command_splited[i]);
+		i++;
+	}
 	free(command_splited);
 }
 
@@ -101,6 +158,16 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	quotes.in_single_quote = false;
 	quotes.in_double_quote = false;
 	parsed_input = split_commands(input, 0, &quotes);
+	if (parsed_input) {
+    int j = 0;
+    printf("split_commands returned:\n");
+    while (parsed_input[j]) {
+        printf("parsed_input[%d]: %s\n", j, parsed_input[j]);
+        j++;
+    }
+	} else {
+    	printf("split_commands returned NULL\n");
+	}
 	i = 0;
 	if (parsed_input[0] && ft_strncmp(parsed_input[0], "|", 1) == 0)
 	{
@@ -111,6 +178,7 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	{
 		parse_input_help(&new_cmd, parsed_input[i], i, parsed_input);
 		append_cmds(head, new_cmd);
+		printf("Iteration %d: appended command '%s'\n", i, parsed_input[i]);
 		i += 2;
 	}
 	free_double_array((void **)parsed_input);
