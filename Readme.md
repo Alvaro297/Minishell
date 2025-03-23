@@ -41,3 +41,10 @@ declare -x roo="prueba"
 	No se puede hacer export y crear una variable en el primer comando. Da doble freeze pero mira a ver si es porque es NULL el tipo minishell->env_vars
 	Se crea la variable _="./Minishell" (Creo que lo coge de la ejecucion). Esto sin ponerle nada
 	Las variables que se crean les falta la ultima letra (Seguramente sea un simple +1 pero investiga)
+
+## 23\03\2025
+
+P:El programa tiene que entrar el pipex siempre porque si hay redireccion internal_commands no lo 
+gestiona. Por tanto hay que hacerlo dentro de pipex aunnque no haya que crear ningun proceso hijo.
+Tengo que arreglar pipex entero creando la estructura desde cero porque siino me voy a volver loco.
+Primero gestionar los pipes creando bien los porcesos hijos y despues ya gestiona las redirecciones que será más sencillo. 

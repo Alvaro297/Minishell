@@ -3,12 +3,17 @@
 
 int howmanycmds(t_cmd *cmd)
 {
-	int	count;
-
+	t_cmd	**tmp;
+	int		i;
+	
+	i = 0;
+	tmp = (t_cmd **)malloc(sizeof(t_cmd));
 	while (cmd)
 	{
-		count++;
+		tmp[i] = cmd;
 		cmd = cmd->next;
+		i++;
 	}
-	return (count);
+	cmd = tmp[0];
+	return (i);
 }

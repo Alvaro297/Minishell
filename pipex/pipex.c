@@ -77,12 +77,7 @@ int	pipex(t_minishell *minishell)
 
 	i = 0;
 	count = minishell->howmanycmd;
-	printf("PIPEX\n");
-	if (is_builtin(minishell->cmds))
-	{
-		internal_commands(minishell->cmds, minishell);
-		return(0);
-	}
+	printf("PIPEX  HOWMANYCMD= %d\n", minishell->howmanycmd);
 	while (i < count - 1)
 	{
 		if (pipe(p_fd + i * 2) == -1)
@@ -94,18 +89,18 @@ int	pipex(t_minishell *minishell)
 	}
 	i = 0;
 	cmd = minishell->cmds;
-	while (i < count)
+	while (i < count - 1)
 	{
 		pid[i] = fork();
 		if (pid[i] == -1)
 			exit (-1);
 		if (!pid[i])
 			child(cmd, minishell, p_fd + i * 2);
+		printf("CHILD\n");
 		close (p_fd[i + 1]);
 		cmd = cmd->next;
 		i++;
 	}
-	parent(cmd, minishell, &i);
 	i = 0;
 	while (pid[i])
 	{
