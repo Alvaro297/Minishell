@@ -20,7 +20,7 @@ static char	*parsed_variable_name(char *str)
 	
 	equal_pos = ft_strchr(str, '=');
 	if (equal_pos != NULL) {
-		name_len = equal_pos - str;
+		name_len =equal_pos - str + 1;
 		var_name = malloc(name_len + 1);
 		if (!var_name)
 			return (NULL);
@@ -29,7 +29,8 @@ static char	*parsed_variable_name(char *str)
 	}
 	else
 		var_name = NULL;
-	return (var_name);
+//	printf("VAR NAME: %s\n", var_name);
+return (var_name);
 }
 
 static bool parsed_value_validation(char *var_value)
