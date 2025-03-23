@@ -29,7 +29,6 @@ char	*find_command(char **command_splited)
     i = 0;
     while (command_splited[i])
     {
-        printf("find_command: find_command[%d] = %s\n", i, command_splited[i]);
         if (is_redirected(command_splited[i]))
         {
             i++;
@@ -39,7 +38,7 @@ char	*find_command(char **command_splited)
         }
         else
         {
-            printf("command: find_command[%d] = %s\n", i, command_splited[i]);
+            printf("find_command: command found: %s\n", command_splited[i]);
             return (command_splited[i]);
         }
     }
@@ -65,14 +64,14 @@ static char	**find_args_help(char **command_splited, int count)
         if (is_redirected(command_splited[i]))
             i++;
         else
-            args[j++] = ft_strdup(command_splited[i]);
+        {
+            args[j] = ft_strdup(command_splited[i]);
+            printf("find_args_help: arg[%d] = %s\n", j, args[j]);
+            j++;
+        }
         i++;
     }
     args[j] = NULL;
-    printf("find_args_help: args = ");
-    for (int k = 0; args[k]; k++)
-        printf("%s ", args[k]);
-    printf("\n");
     return (args);
 }
 
@@ -85,13 +84,12 @@ char	**find_args(char **command_splited)
     i = 0;
     while (command_splited[i])
     {
-        printf("find_args: command_splited[%d] = %s\n", i, command_splited[i]);
         if (is_redirected(command_splited[i]))
             i++;
         else
             count++;
         i++;
     }
-    printf("find_args: count = %d\n", count);
+    printf("find_args: total args count = %d\n", count);
     return (find_args_help(command_splited, count));
 }

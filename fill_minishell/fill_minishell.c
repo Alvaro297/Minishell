@@ -55,4 +55,5 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 		add_to_history(minishell, input);
 	}
 	fill_minishell_help(minishell, input, i);
+	printf("Heeeey\n");
 }

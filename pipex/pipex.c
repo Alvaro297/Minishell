@@ -77,6 +77,7 @@ int	pipex(t_minishell *minishell)
 
 	i = 0;
 	count = minishell->howmanycmd;
+	printf("PIPEX\n");
 	if (is_builtin(minishell->cmds))
 	{
 		internal_commands(minishell->cmds, minishell);
