@@ -125,7 +125,6 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	int		i;
 	
 	tmp = malloc(sizeof(t_cmd));
-	init_cmd(tmp); 
 	*new_cmd = tmp;
 	command_splited = split_modified(command, ' ');
 	tmp->cmd = find_command(command_splited);
@@ -159,28 +158,15 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	quotes.in_single_quote = false;
 	quotes.in_double_quote = false;
 	parsed_input = split_commands(input, 0, &quotes);
-	if (parsed_input) {
-	int j = 0;
-	printf("split_commands returned:\n");
-	while (parsed_input[j]) {
-		printf("parsed_input[%d]: %s\n", j, parsed_input[j]);
-		j++;
-	}
-	} else {
-		printf("split_commands returned NULL\n");
-	}
 	i = 0;
-	if (parsed_input[0] && ft_strncmp(parsed_input[0], "|", 1) == 0)
-	{
-		free_double_array((void **)parsed_input);
-		return (NULL);
-	}
 	while(parsed_input[i])
 	{
 		parse_input_help(&new_cmd, parsed_input[i], i, parsed_input);
 		append_cmds(&head, new_cmd);
-		printf("Iteration %d: appended command '%s'\n", i, parsed_input[i]);
-		i += 2;
+		if (head->is_pipe)
+			i += 2;
+		else
+			break ;
 	}
-	return (head);//FUNCIONA BIEN
+	return (head);
 }
