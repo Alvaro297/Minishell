@@ -56,11 +56,36 @@ static char	*join_all(t_env *sorted_env)
 	output = ft_strjoin_free(output, "declare -x ");
 	output = ft_strjoin_free(output, sorted_env->name);
 	output = ft_strjoin_free(output, "=");
-	output = ft_strjoin_free(output, "\"");
+	output = ft_strjoin_free(output, "\'");
 	output = ft_strjoin_free(output, sorted_env->value);
-	output = ft_strjoin_free(output, "\"");
+	output = ft_strjoin_free(output, "\'");
 	output = ft_strjoin_free(output, "\n");
 	return (output);
+}
+
+static t_env *duplicate_env_list(t_env *env)
+{
+	t_env *new_list = NULL;
+	t_env *current = env;
+	t_env *new_node;
+	t_env *last = NULL;
+
+	while (current)
+	{
+		new_node = malloc(sizeof(t_env));
+		if (!new_node)
+			return (NULL);
+		new_node->name = ft_strdup(current->name);
+		new_node->value = ft_strdup(current->value);
+		new_node->next = NULL;
+		if (!new_list)
+			new_list = new_node;
+		else
+			last->next = new_node;
+		last = new_node;
+		current = current->next;
+	}
+	return (new_list);
 }
 
 void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell)
@@ -69,16 +94,18 @@ void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell)
 	t_env	*env;
 	t_env	*sorted_env;
 
-	env = minishell->env_vars;
+	env = duplicate_env_list(minishell->env_vars);
 	sorted_env = insertion_sort(env);
 	while (sorted_env)
 	{
 		if (current_cmd->is_pipe)
 			output = join_all(sorted_env);
 		else
-			printf("declare -x %s=\"%s\"\n", sorted_env->name, sorted_env->value);
+			printf("declare -x %s=\'%s\'\n", sorted_env->name, sorted_env->value);
 		sorted_env = sorted_env->next;
 	}
 	if (output)
 		minishell->output = output;
+	free(env);
+	free(sorted_env);
 }

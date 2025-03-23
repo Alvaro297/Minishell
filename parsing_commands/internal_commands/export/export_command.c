@@ -27,6 +27,8 @@ static char	*parsed_variable_name(char *str)
 		ft_strlcpy(var_name, str, name_len);
 		var_name[name_len] = '\0';
 	}
+	else if (str)
+		var_name = ft_strdup(str);
 	else
 		var_name = NULL;
 //	printf("VAR NAME: %s\n", var_name);
@@ -68,19 +70,19 @@ static bool parsed_name_validation(char *var_name)
 
 	i = 0;
 	if (ft_isdigit(var_name[i]))
-		return false;
+		return (false);
 	while (var_name[i])
 	{
 		j = 0;
 		while (INVALID_CHARACTERS[j])
 		{
 			if (INVALID_CHARACTERS[j] == var_name[i])
-				return false;
+				return (false);
 			j++;
 		}
 		i++;
 	}
-	return true;
+	return (true);
 }
 
 int		handle_export(t_cmd *current_cmd, t_minishell *minishell)
@@ -94,6 +96,8 @@ int		handle_export(t_cmd *current_cmd, t_minishell *minishell)
 	{
 		var_name = parsed_variable_name(current_cmd->args[i]);
 		var_check = ft_strchr(current_cmd->args[i], '=');
+		printf("var_name es: %s\n", var_name);
+		printf("var_check es: %s\n", var_check);
 		if (var_check != NULL && current_cmd->args[i][0] != '=')
 		{
 			var_check++;
@@ -102,7 +106,10 @@ int		handle_export(t_cmd *current_cmd, t_minishell *minishell)
 		}
 		else if (var_check == NULL && var_name != NULL)
 			if (parsed_name_validation(var_name))
+			{
+				printf("Im in\n");
 				set_env(&minishell->env_vars, var_name, NULL);
+			}
 		free(var_name);
 	}
 	if (current_cmd->is_pipe && current_cmd->args[1])

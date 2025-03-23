@@ -5,6 +5,7 @@
 		"minishell.h": "c",
 		"libft.h": "c",
 		"cstdlib": "c",
-		"signal.h": "c"
+		"signal.h": "c",
+		"type_traits": "c"
 	}
 }

@@ -30,7 +30,7 @@ static bool	exitMinishell(char *input)
 		return (true);
 	if (input == NULL)
 	{
-		printf("\nexit\n");
+		printf("exit\n");
 		return (true);
 	}
 	return (false);
