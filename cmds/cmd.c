@@ -37,19 +37,17 @@ void	delete_cmds(t_cmd *cmd)
 	}
 	cmd = NULL;
 }
-void append_cmds(t_cmd *cmds, t_cmd *new_cmd)
+void	append_cmds(t_cmd **cmds, t_cmd *new_cmd)
 {
 	t_cmd *current;
 
-	if (cmds == NULL)
-		cmds = new_cmd;
+	if (*cmds == NULL)
+		*cmds = new_cmd;
 	else
 	{
-		current = cmds;
+		current = *cmds;
 		while (current->next != NULL)
-		{
 			current = current->next;
-		}
 		current->next = new_cmd;
 	}
 }

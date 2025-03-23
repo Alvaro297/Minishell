@@ -31,3 +31,13 @@ Haz pull.
 
 He estado mirando el codigo y creo que debemos dividirlo en 1er comando los del medio y ultimo. 
 1er comando que comprobaremos si este es un builtin para crear hijos o no. Los del medio que comprobaremos si es builtin o no pero crearemos el hijo independientemente y el del final para la redireccion del outfile. Ahora mismo creo que lo tenemos como un pipex basico.
+
+## 23/03/2025
+
+Hola qui pasa tenes segarro? Pues bueno he estado mirando y ya he solucionado el error estaba en append_cmds en el parsing_cmd tienes que corregir export te lo dejo a ti y asi miras la funcion de los builtin mas compleja. He corregido cd y funciona perfectamente al igual que echo.
+El problema en export son 3:
+declare -x _="./Minishell"
+declare -x roo="prueba"
+	No se puede hacer export y crear una variable en el primer comando. Da doble freeze pero mira a ver si es porque es NULL el tipo minishell->env_vars
+	Se crea la variable _="./Minishell" (Creo que lo coge de la ejecucion). Esto sin ponerle nada
+	Las variables que se crean les falta la ultima letra (Seguramente sea un simple +1 pero investiga)

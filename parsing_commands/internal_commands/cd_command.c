@@ -14,23 +14,31 @@
 
 static void	handle_cd_help(t_minishell *minishell, char *path, char *cwd)
 {
+	printf("handle_cd_help: path = %s\n", path);
 	free(path);
 	set_env(&minishell->env_vars, "OLDPWD", getenv("PWD"));
 	getcwd(cwd, sizeof(cwd));
+	printf("handle_cd_help: new cwd = %s\n", cwd);
 	set_env(&minishell->env_vars, "PWD", cwd);
-	free(cwd);
 }
 
 static char	*cd_path(t_cmd *current_cmd, t_minishell *minishell)
 {
 	char	*path;
 
-	if (current_cmd->args[1] &&
+	if ((current_cmd->args[1] &&
 		current_cmd->args[1][0] == '~' && current_cmd->args[1][1] == '\0')
+		|| !current_cmd->args[1])
+	{
 		path = get_env_value(minishell->env_vars, "HOME");
+		printf("cd_path: HOME path = %s\n", path);
+	}
 	else
+	{
 		path = current_cmd->args[1] ? ft_strdup(current_cmd->args[1]) :
 			get_env_value(minishell->env_vars, "HOME");
+		printf("cd_path: specified path = %s\n", path);
+	}
 	return (path);
 }
 
@@ -39,6 +47,7 @@ int		handle_cd(t_cmd *current_cmd, t_minishell *minishell)
 	char	*path;
 	char	cwd[1024];
 
+	printf("handle_cd: current_cmd->args[1] = %s\n", current_cmd->args[1]);
 	if (current_cmd->args[2])
 	{
 		write(2, "minishell: cd: too many arguments\n", 34);
@@ -53,7 +62,6 @@ int		handle_cd(t_cmd *current_cmd, t_minishell *minishell)
 	if (chdir(path) != 0)
 	{
 		perror("minishell: cd");
-		free(path);
 		return (1);
 	}
 	handle_cd_help(minishell, path, cwd);

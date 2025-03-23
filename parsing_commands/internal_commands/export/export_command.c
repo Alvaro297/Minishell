@@ -89,7 +89,7 @@ int		handle_export(t_cmd *current_cmd, t_minishell *minishell)
 	char	*var_check;
 
 	i = 0;
-	while (current_cmd->args[++i] && !current_cmd->is_pipe)
+	while (current_cmd->args[++i])
 	{
 		var_name = parsed_variable_name(current_cmd->args[i]);
 		var_check = ft_strchr(current_cmd->args[i], '=');
@@ -106,7 +106,7 @@ int		handle_export(t_cmd *current_cmd, t_minishell *minishell)
 	}
 	if (current_cmd->is_pipe && current_cmd->args[1])
 		minishell->output = ft_strdup("");
-	if (minishell->cmds->args[1])
+	if (!minishell->cmds->args[1])
 		print_entorn_variable(current_cmd, minishell);
 	return (0);
 }

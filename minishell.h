@@ -102,7 +102,7 @@ char	**split_modified(char *command, int c);
 //** Cmds **//
 char	**get_outfiles(char **command_splited);
 void	delete_cmds(t_cmd *cmd);
-void append_cmds(t_cmd *cmds, t_cmd *new_cmd);
+void	append_cmds(t_cmd **cmds, t_cmd *new_cmd);
 char	*find_command(char **command_splited);
 char	**find_args(char **command_splited);
 char	*find_infile(char **command_splited);
