@@ -73,19 +73,22 @@ void	set_env(t_env **env, char *name, char *value)
 
 static void	delete_env_help(t_env *prev, t_env *tmp, char *name)
 {
-	while (tmp->next != NULL)
+	t_env *to_free;
+
+	while (tmp != NULL)
 	{
 		if (ft_strncmp(tmp->name, name, ft_strlen(name)) == 0 &&
 				ft_strlen(name) == ft_strlen(tmp->name))
 		{
-			prev->next = tmp->next;
-			free(tmp->name);
-			free(tmp->value);
-			free(tmp);
+			if (prev)
+				prev->next = tmp->next;
+			to_free = tmp;
+			tmp = tmp->next;
+			free(to_free->name);
+			free(to_free->value);
+			free(to_free);
 			return ;
 		}
-		if (tmp->next == NULL)
-			break ;
 		prev = tmp;
 		tmp = tmp->next;
 	}
