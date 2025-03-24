@@ -55,15 +55,12 @@ void	minishell(char **envp)
 		//error_management(&minishell);
 //		if (input && *input)
 //			i++;
-		if (minishell.cmds == NULL)
+	/*	if (minishell.cmds == NULL)
 		{
 			free(input);
 			continue ;
-		}
-		if (is_builtin(minishell.cmds) && (howmanycmds(minishell.cmds) == 1))
-			internal_commands(minishell.cmds, &minishell);
-		else
-			pipex(&minishell);
+		}*/
+		pipex(&minishell, envp);
 		free(input);
 	}
 }

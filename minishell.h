@@ -117,12 +117,13 @@ void	manage_signals(void);
 //** Free Minishell **//
 void	free_double_array(void **double_array);
 //**PIPEX **/
-int		pipex(t_minishell *minishell);
+void	pipex(t_minishell *minishell, char **envp);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	freeall(char **m);
 void	exitaux(void);
+char	**returntoenvp(t_env *env);
 char	**ft_split(char const *s, char c);
 char	*getpathaux(char *path, char **env);
 char	*getpath(char *cmd, char **env);

@@ -38,7 +38,6 @@ char	*find_command(char **command_splited)
         }
         else
         {
-            printf("find_command: command found: %s\n", command_splited[i]);
             return (command_splited[i]);
         }
     }
@@ -66,7 +65,6 @@ static char	**find_args_help(char **command_splited, int count)
         else
         {
             args[j] = ft_strdup(command_splited[i]);
-            printf("find_args_help: arg[%d] = %s\n", j, args[j]);
             j++;
         }
         i++;
@@ -90,6 +88,5 @@ char	**find_args(char **command_splited)
             count++;
         i++;
     }
-    printf("find_args: total args count = %d\n", count);
     return (find_args_help(command_splited, count));
 }

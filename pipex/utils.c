@@ -25,7 +25,7 @@ int	open_f(char *file, int sw)
 	if (sw == 0)
 		r = open(file, O_RDONLY, 0777);
 	if (sw == 1)
-		r = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		r = open(file, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
 	return (r);
 }
 

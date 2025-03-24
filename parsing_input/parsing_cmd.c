@@ -159,16 +159,6 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	quotes.in_single_quote = false;
 	quotes.in_double_quote = false;
 	parsed_input = split_commands(input, 0, &quotes);
-	if (parsed_input) {
-	int j = 0;
-	printf("split_commands returned:\n");
-	while (parsed_input[j]) {
-		printf("parsed_input[%d]: %s\n", j, parsed_input[j]);
-		j++;
-	}
-	} else {
-		printf("split_commands returned NULL\n");
-	}
 	i = 0;
 	if (parsed_input[0] && ft_strncmp(parsed_input[0], "|", 1) == 0)
 	{
@@ -179,7 +169,6 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	{
 		parse_input_help(&new_cmd, parsed_input[i], i, parsed_input);
 		append_cmds(&head, new_cmd);
-		printf("Iteration %d: appended command '%s'\n", i, parsed_input[i]);
 		i += 2;
 	}
 	return (head);//FUNCIONA BIEN

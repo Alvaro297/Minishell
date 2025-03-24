@@ -44,7 +44,6 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 	tmp_cmd = minishell->cmds;
 	while (tmp_cmd)
 	{
-		printf("%s", tmp_cmd->cmd);
 		tmp_cmd  = tmp_cmd->next;
 	}
 	minishell->output = NULL;
@@ -55,5 +54,4 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 		add_to_history(minishell, input);
 	}
 	fill_minishell_help(minishell, input, i);
-	printf("Heeeey\n");
 }

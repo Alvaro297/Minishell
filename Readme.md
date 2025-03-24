@@ -47,4 +47,9 @@ declare -x roo="prueba"
 P:El programa tiene que entrar el pipex siempre porque si hay redireccion internal_commands no lo 
 gestiona. Por tanto hay que hacerlo dentro de pipex aunnque no haya que crear ningun proceso hijo.
 Tengo que arreglar pipex entero creando la estructura desde cero porque siino me voy a volver loco.
-Primero gestionar los pipes creando bien los porcesos hijos y despues ya gestiona las redirecciones que será más sencillo. 
+Primero gestionar los pipes creando bien los porcesos hijos y despues ya gestiona las redirecciones que será más sencillo.
+
+## 24/03/2025
+
+No estoy seguro de si tengo que usar nuestras env_vars en pipex o puedo usar envp. Aunque pase env_vars a char** execve sigue dando problemas, y no consigo que funcione igual con env_vars que con envp. De momento lo dejo con envp, hasta implementar el pipex, y despues sii es necesario (que creo que si, ya que podemos usar variables que hayamos definido a posteriori) hago los cambios necesarios para que funcione con nuestras variables de entorno, que no creo que sea dificil.
+Por otra parte el problema de open: Permission denied me esta volviendoo loco, no entiendo que carajo puede estar pasando ya que aunque no haya redirecciones ni archivos en el comando sigue dando ese error, no hay forma de quitarselo.
