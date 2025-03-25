@@ -6,3 +6,41 @@ echo ft_itoa
 echo hola
 echoasdfhiasdgoñiadshgpoadjg`kas
 echo hola
+echo hola
+ls -l
+echo hola | cat
+echo hola
+echo hola | cat
+echo hola | cat
+echo hola | cat
+ls | cat
+pwd
+pwd | grep pa
+echo hola | grep h
+echo hola | grep p
+echo hola | grep p
+echo hola | grep p
+echo hola | grep h
+echo hola | grep p
+echo hola | grep h
+pwd
+pwd
+pwd | grep h
+pwd | grep p
+pwd | grep p
+ls -la | grep p
+ls -la | grep git
+pwd | echo hola | cat
+hola
+Minishell: exit
+Minishell: exit
+echo hola | cat | cat | cat
+echo hola | cat | cat | cat
+echo hola | cat
+echo hola | cat | cat | cat
+echo hola | cat
+echo hola | cat | cat
+echo hola | cat | cat | cat
+echo hola | cat
+echo hola | cat | cat
+echo hola | cat | cat | cat

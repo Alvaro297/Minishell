@@ -18,7 +18,6 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 	char	*path;
 	char	**split_envs;
 
-	printf("Hola\n");
 	split_envs = returntoenvp(minishell->env_vars);
 	if (is_builtin(cmd))
 		internal_commands(cmd, minishell);
@@ -83,25 +82,23 @@ void	redir(int *p_fd, t_minishell *minishell, int i)
 		dup2(fd, STDOUT_FILENO);
 		close(fd);
 	}
-	if (i > 0)
-	{
-	//	printf("DUPLICAMOS STDIN\n");
-		if (dup2(p_fd[(i - 1) * 2], STDIN_FILENO) == -1)
-		{
-			perror("dup2 failed (input)");
-			return ;
-		}
-	//	close(p_fd[i * 2 + 1]);
-	}
 	if (i < minishell->howmanycmd - 1)
 	{
-	//	printf("DUPLICAMOS STDOUT\n");		
 		if (dup2(p_fd[i * 2 + 1], STDOUT_FILENO) == -1)
 		{
 			perror("dup2 failed(output)");
 			return ;
 		}
-	//	close(p_fd[(i - 1) * 2]);
+		close(p_fd[i * 2 + 1]);
+	}
+	if (i > 0)
+	{
+		if (dup2(p_fd[(i - 1) * 2], STDIN_FILENO) == -1)
+		{
+			perror("dup2 failed (input)");
+			return ;
+		}
+		close(p_fd[(i - 1) * 2]);
 	}
 }
 
@@ -145,7 +142,7 @@ void	pipex(t_minishell *minishell)
 			}
 			i++;
 		}
-		i = 0;
+		i = 1;//TODO solo funciona si entro coon i = 1 por tanto tengo que usar no_pipes o similar para ejecutar ell primer comando y redirigirlo
 		while (i < minishell->howmanycmd)
 		{
 			pid[i] = fork();
@@ -157,10 +154,7 @@ void	pipex(t_minishell *minishell)
 			if (pid[i] == 0)
 			{
 				redir(fd, minishell, i);
-				if (i > 0)
-					close(fd[(i - 1) * 2]);
-				if (i < minishell->howmanycmd - 1)
-					close(fd[i * 2]);
+				closefds(fd, minishell);
 				execute(minishell, cmd);
 			}
 			i++;
