@@ -43,17 +43,8 @@ static char	*cd_path(t_cmd *current_cmd, t_minishell *minishell)
 	return (path);
 }
 
-int		handle_cd(t_cmd *current_cmd, t_minishell *minishell)
+static int	error_cd(char *path)
 {
-	char	*path;
-	char	cwd[1024];
-
-	if (current_cmd->args[2])
-	{
-		write(2, "minishell: cd: too many arguments\n", 34);
-		return (1);
-	}
-	path = cd_path(current_cmd, minishell);
 	if (!path)
 	{
 		write(2, "minishell: cd: HOME not set\n", 28);
@@ -65,9 +56,26 @@ int		handle_cd(t_cmd *current_cmd, t_minishell *minishell)
 		free(path);
 		return (1);
 	}
+	return (0);
+}
+
+int		handle_cd(t_cmd *current_cmd, t_minishell *minishell)
+{
+	char	*path;
+	char	cwd[1024];
+
+	if (current_cmd->args[2])
+	{
+		write(2, "minishell: cd: too many arguments\n", 34);
+		return (1);
+	}
+	path = cd_path(current_cmd, minishell);
+	if (error_cd(path) == 1)
+		return (1);
 	if (chdir(path) != 0)
 	{
 		perror("minishell: cd");
+		free(path);
 		return (1);
 	}
 	handle_cd_help(minishell, path, cwd);
