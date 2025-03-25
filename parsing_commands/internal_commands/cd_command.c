@@ -27,7 +27,8 @@ static char	*cd_path(t_cmd *current_cmd, t_minishell *minishell)
 	char	*path;
 
 	if ((current_cmd->args[1] &&
-		current_cmd->args[1][0] == '~' && current_cmd->args[1][1] == '\0')
+		(((current_cmd->args[1][0] == '~' && current_cmd->args[1][1] == '\0')
+			|| (current_cmd->args[1][0] == '-' && current_cmd->args[1][1] == '-' && current_cmd->args[1][2] == '\0'))))
 		|| !current_cmd->args[1])
 	{
 		path = get_env_value(minishell->env_vars, "HOME");
@@ -42,6 +43,22 @@ static char	*cd_path(t_cmd *current_cmd, t_minishell *minishell)
 	return (path);
 }
 
+static int	error_cd(char *path)
+{
+	if (!path)
+	{
+		write(2, "minishell: cd: HOME not set\n", 28);
+		return (1);
+	}
+	if (access(path, R_OK | X_OK) != 0)
+	{
+		perror("minishell: cd");
+		free(path);
+		return (1);
+	}
+	return (0);
+}
+
 int		handle_cd(t_cmd *current_cmd, t_minishell *minishell)
 {
 	char	*path;
@@ -54,11 +71,8 @@ int		handle_cd(t_cmd *current_cmd, t_minishell *minishell)
 		return (1);
 	}
 	path = cd_path(current_cmd, minishell);
-	if (!path)
-	{
-		write(2, "minishell: cd: HOME not set\n", 28);
+	if (error_cd(path) == 1)
 		return (1);
-	}
 	if (chdir(path) != 0)
 	{
 		perror("minishell: cd");
