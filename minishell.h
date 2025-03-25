@@ -16,7 +16,7 @@
 
 # define INVALID_CHARACTERS "!@#$%^&*()-+=[]{}\\|;:'\"<>/?`~ "
 # define INVALID_CHARACTERSV "!@#$%^&*()[]{}\\|;:'\",.<>/?`~ "
-# define HISTORY_FILE "/minishell_history"
+# define HISTORY_FILE "./minishell_history"
 
 typedef struct s_indices
 {
@@ -117,7 +117,7 @@ void	manage_signals(void);
 //** Free Minishell **//
 void	free_double_array(void **double_array);
 //**PIPEX **/
-void	pipex(t_minishell *minishell, char **envp);
+void	pipex(t_minishell *minishell);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);

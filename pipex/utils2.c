@@ -36,6 +36,7 @@ char	**returntoenvp(t_env *env)
 		env = env->next;
 		i++;
 	}
+	envchar[i] = NULL;
 	env = tmp[0];
 	return (envchar);
 }

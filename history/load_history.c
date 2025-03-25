@@ -61,10 +61,10 @@ void	add_to_history(t_minishell *minishell, char *input)
 	minishell->history = ft_realloc(minishell->history, (i + 2) * sizeof(char *));
 	minishell->history[i] = ft_strdup(input);
 	minishell->history[i + 1] = NULL;
-	fd = open(HISTORY_FILE, O_WRONLY | O_APPEND | O_CREAT);
+	fd = open(HISTORY_FILE, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd == -1)
 	{
-		perror("open");
+		perror("open"); //ES AQUI
 		return ;
 	}
 	if (write(fd, input, ft_strlen(input)) == -1 || write(fd, "\n", 1) == -1)

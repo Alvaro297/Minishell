@@ -60,15 +60,15 @@ void	minishell(char **envp)
 			free(input);
 			continue ;
 		}
-		printf("ES BUITIN?: %s\n", minishell.cmds->cmd);
+		/*printf("ES BUITIN?: %s\n", minishell.cmds->cmd);
 		if (is_builtin(minishell.cmds))
 		{
 			printf("BUILTIN\n");
 			internal_commands(minishell.cmds, &minishell);
-		}
+		}*/
 		//minishell.last_exit_status = error_control(&minishell);
 		//if (minishell.last_exit_status == 0)
-	//		pipex(&minishell);
+		pipex(&minishell);
 		free(input);
 	}
 }

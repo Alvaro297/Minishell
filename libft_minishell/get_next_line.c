@@ -67,7 +67,7 @@ static char	*full_line(char *tline)
 static char	*ft_get_line(int fd, char *tline)
 {
 	char	*line;
-	ssize_t	bytesread;
+	size_t	bytesread;
 
 	bytesread = 1;
 	line = ft_calloc(sizeof(char), BUFFER_SIZE + 1);

@@ -13,11 +13,12 @@
 #include "pipex.h"
 #include "../minishell.h"
 
-void	execute(t_minishell *minishell, t_cmd *cmd, char **envp)
+void	execute(t_minishell *minishell, t_cmd *cmd)
 {
 	char	*path;
 	char	**split_envs;
 
+	printf("Hola\n");
 	split_envs = returntoenvp(minishell->env_vars);
 	if (is_builtin(cmd))
 		internal_commands(cmd, minishell);
@@ -25,7 +26,7 @@ void	execute(t_minishell *minishell, t_cmd *cmd, char **envp)
 	{
 		path = getpath(cmd->args[0], split_envs);
 		printf("%s\n", path);
-		if (execve(path, cmd->args, envp) == -1)
+		if (execve(path, cmd->args, split_envs) == -1)
 		{
 			ft_putstr_fd("pipex: command not found: ", 2);
 			minishell->last_exit_status = 127;
@@ -35,7 +36,7 @@ void	execute(t_minishell *minishell, t_cmd *cmd, char **envp)
 	}
 }
 
-void	no_pipes(t_minishell *minishell, char **envp)
+void	no_pipes(t_minishell *minishell)
 {
 	int	fd;
 	pid_t	pid;
@@ -58,7 +59,7 @@ void	no_pipes(t_minishell *minishell, char **envp)
 	{
 		pid = fork();
 		if (!pid)
-			execute(minishell, minishell->cmds, envp);
+			execute(minishell, minishell->cmds);
 		else
 			waitpid(pid, &minishell->last_exit_status, 0);
 	}
@@ -117,7 +118,7 @@ void	closefds(int *fd, t_minishell *minishell)
 	}
 }
 
-void	pipex(t_minishell *minishell, char **envp)
+void	pipex(t_minishell *minishell)
 {
 	pid_t pid[minishell->howmanycmd];
 	int		fd[(minishell->howmanycmd - 1) * 2];
@@ -129,7 +130,7 @@ void	pipex(t_minishell *minishell, char **envp)
 		return ;
 	if (minishell->howmanycmd == 1)
 	{
-		no_pipes(minishell, envp);
+		no_pipes(minishell);
 		return ;
 	}
 	else
@@ -160,7 +161,7 @@ void	pipex(t_minishell *minishell, char **envp)
 					close(fd[(i - 1) * 2]);
 				if (i < minishell->howmanycmd - 1)
 					close(fd[i * 2]);
-				execute(minishell, cmd, envp);
+				execute(minishell, cmd);
 			}
 			i++;
 			cmd = cmd->next;
