@@ -108,6 +108,7 @@ char	*get_next_line(int fd)
 		line = NULL;
 		tline = NULL;
 	}
+	printf("%s\n", line);
 	return (line);
 }
 
