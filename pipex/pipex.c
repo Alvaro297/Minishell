@@ -13,18 +13,19 @@
 #include "pipex.h"
 #include "../minishell.h"
 
-void	execute(t_minishell *minishell, t_cmd *cmd)
+void	execute(t_minishell *minishell, t_cmd *cmd, char **envp)
 {
 	char	*path;
 	char	**split_envs;
-	
-	split_envs = ft_split(minishell->input, '\n');//TODO convertir t_env en char**
+
+	split_envs = returntoenvp(minishell->env_vars);
 	if (is_builtin(cmd))
 		internal_commands(cmd, minishell);
 	else
 	{
 		path = getpath(cmd->args[0], split_envs);
-		if (execve(path, cmd->args, split_envs) == -1)
+		printf("%s\n", path);
+		if (execve(path, cmd->args, envp) == -1)
 		{
 			ft_putstr_fd("pipex: command not found: ", 2);
 			minishell->last_exit_status = 127;
@@ -34,87 +35,142 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 	}
 }
 
-void	child(t_cmd *cmd, t_minishell *minishell, int *p_fd)
+void	no_pipes(t_minishell *minishell, char **envp)
+{
+	int	fd;
+	pid_t	pid;
+
+	if (minishell->cmds->infile)
+	{
+		fd = open_f(minishell->cmds->infile, 0);
+		dup2(fd, STDIN_FILENO);
+		close(STDIN_FILENO);
+	}
+	if (minishell->cmds->outfile)
+	{
+		fd = open_f(minishell->cmds->outfile, 1);
+		dup2(fd, STDOUT_FILENO);
+		close(STDOUT_FILENO);
+	}
+	if (is_builtin(minishell->cmds))
+		internal_commands(minishell->cmds, minishell);
+	else
+	{
+		pid = fork();
+		if (!pid)
+			execute(minishell, minishell->cmds, envp);
+		else
+			waitpid(pid, &minishell->last_exit_status, 0);
+	}
+}
+
+void	redir(int *p_fd, t_minishell *minishell, int i)
 {
 	int	fd;
 
-	if(cmd->infile != NULL)
+	if (minishell->cmds->infile)
 	{
-		fd = open_f(cmd->infile, 0);
-		if (fd == -1)
-			exit(-1);
+		printf("INFILE\n");
+		fd = open_f(minishell->cmds->infile, 0);
 		dup2(fd, STDIN_FILENO);
 		close(fd);
 	}
-	dup2(p_fd[1], STDOUT_FILENO);
-	close (p_fd[0]);
-	execute(minishell, cmd);
-}
-
-void	parent(t_cmd *cmd, t_minishell *minishell, int *p_fd)
-{
-	int	fd;
-
-	if(cmd->outfile != NULL)
+	if (minishell->cmds->outfile)
 	{
-		fd = open_f(cmd->outfile, 1);
-		if (fd == -1)
-			exit(0);
+		printf("OUTFILE\n");
+		fd = open_f(minishell->cmds->outfile, 1);
 		dup2(fd, STDOUT_FILENO);
+		close(fd);
 	}
-	dup2(p_fd[0], STDIN_FILENO);
-	close (p_fd[1]);
-	execute(minishell, cmd);
+	if (i > 0)
+	{
+	//	printf("DUPLICAMOS STDIN\n");
+		if (dup2(p_fd[(i - 1) * 2], STDIN_FILENO) == -1)
+		{
+			perror("dup2 failed (input)");
+			return ;
+		}
+	//	close(p_fd[i * 2 + 1]);
+	}
+	if (i < minishell->howmanycmd - 1)
+	{
+	//	printf("DUPLICAMOS STDOUT\n");		
+		if (dup2(p_fd[i * 2 + 1], STDOUT_FILENO) == -1)
+		{
+			perror("dup2 failed(output)");
+			return ;
+		}
+	//	close(p_fd[(i - 1) * 2]);
+	}
 }
 
-int	pipex(t_minishell *minishell)
+void	closefds(int *fd, t_minishell *minishell)
 {
-	pid_t	pid[minishell->howmanycmd];
-	int		p_fd[2 * (minishell->howmanycmd - 1)];
-	t_cmd	*cmd;
-	int		count;
-	int		i;
+	int	i;
 
 	i = 0;
-	count = minishell->howmanycmd;
-	printf("PIPEX\n");
-	if (is_builtin(minishell->cmds))
+	while (i < minishell->howmanycmd - 1)
 	{
-		internal_commands(minishell->cmds, minishell);
-		return(0);
-	}
-	while (i < count - 1)
-	{
-		if (pipe(p_fd + i * 2) == -1)
-		{
-			perror("pipe");
-			exit(1);
-		}
+		close(fd[i * 2]);
+		close(fd[i * 2 + 1]);
 		i++;
 	}
-	i = 0;
+}
+
+void	pipex(t_minishell *minishell, char **envp)
+{
+	pid_t pid[minishell->howmanycmd];
+	int		fd[(minishell->howmanycmd - 1) * 2];
+	int		i;
+	t_cmd	*cmd;
+
 	cmd = minishell->cmds;
-	while (i < count)
+	if (minishell->howmanycmd == 0)
+		return ;
+	if (minishell->howmanycmd == 1)
 	{
-		pid[i] = fork();
-		if (pid[i] == -1)
-			exit (-1);
-		if (!pid[i])
-			child(cmd, minishell, p_fd + i * 2);
-		close (p_fd[i + 1]);
-		cmd = cmd->next;
-		i++;
+		no_pipes(minishell, envp);
+		return ;
 	}
-	parent(cmd, minishell, &i);
-	i = 0;
-	while (pid[i])
+	else
 	{
-		if (waitpid(pid[i], NULL, 0) != 0)
+		i = 0;
+		while (i < minishell->howmanycmd - 1)
 		{
-			minishell->last_exit_status = waitpid(pid[i], NULL, 0);
-			break;
+			if (pipe(fd + i * 2) == -1)
+			{
+				perror("error pipex\n");
+				break ;
+			}
+			i++;
 		}
-		i++;
+		i = 0;
+		while (i < minishell->howmanycmd)
+		{
+			pid[i] = fork();
+			if (pid[i] == -1)
+			{
+				perror("error en el foork\n");
+				break ;
+			}
+			if (pid[i] == 0)
+			{
+				redir(fd, minishell, i);
+				if (i > 0)
+					close(fd[(i - 1) * 2]);
+				if (i < minishell->howmanycmd - 1)
+					close(fd[i * 2]);
+				execute(minishell, cmd, envp);
+			}
+			i++;
+			cmd = cmd->next;
+		}
+		closefds(fd, minishell);
+		i = 0;
+		while (i < minishell->howmanycmd)
+		{
+			waitpid(pid[i], &minishell->last_exit_status, 0);
+			i++;
+		}
 	}
-	return (0);
 }

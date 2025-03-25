@@ -25,7 +25,6 @@ static int ft_count_words(char *command, t_quotes *quotes, int c)
 		count++;
 	if (quotes->in_single_quote || quotes->in_double_quote)
 		return (-1);
-	printf("ft_count_words: count = %d\n", count);
 	return (count);
 }
 
@@ -45,7 +44,6 @@ static char *get_next_word_help(char *start, char **command, t_quotes *quotes)
 		start++;
 	}
 	word[word_len] = '\0';
-	printf("get_next_word_help: word = %s\n", word);
 	return (word);
 }
 
@@ -90,7 +88,6 @@ static char **split_modified_help(char **result, char *command)
 		result[i] = get_next_word(&command, &quotes);
 		if (!result[i])
 			break ;
-		printf("split_modified_help: result[%d] = %s\n", i, result[i]);
 		i++;
 	}
 	result[i] = NULL;
@@ -114,6 +111,5 @@ char	**split_modified(char *command, int c)
 	result = malloc(sizeof(char *) * (count_words + 1));
 	if (!result)
 		return (NULL);
-	printf("split_modified: count_words = %d\n", count_words);
 	return (split_modified_help(result, command));
 }
