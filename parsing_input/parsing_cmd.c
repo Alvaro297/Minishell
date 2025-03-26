@@ -107,7 +107,6 @@ void init_cmd(t_cmd *cmd)
 {
 	if (!cmd)
 		return;
-
 	cmd->cmd = NULL;
 	cmd->args = NULL;
 	cmd->is_pipe = false;
