@@ -105,6 +105,7 @@ char	**split_modified(char *command, int c);
 bool	is_heredoc(char **command_splited);
 char	**here_doc_delim(char **command_splited);
 bool	is_redirected(char *command_splited);
+char	**process_redirection(char **command_splited);
 //** Cmds **//
 char	**get_outfiles(char **command_splited);
 void	delete_cmds(t_cmd *cmd);

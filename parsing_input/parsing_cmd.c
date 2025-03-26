@@ -129,6 +129,12 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	init_cmd(tmp);
 	*new_cmd = tmp;
 	command_splited = split_modified(command, ' ');
+	command_splited = process_redirection(command_splited);
+	printf("Tokens in command_splited:\n");
+	for (i = 0; command_splited[i] != NULL; i++)
+	{
+		printf("  Token %d: %s\n", i, command_splited[i]);
+	}
 	tmp->cmd = find_command(command_splited);
 	tmp->args = find_args(command_splited);
 	tmp->is_pipe = have_pipe(array_commands, position);

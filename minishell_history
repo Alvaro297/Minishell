@@ -104,3 +104,13 @@ echo hola <PRUEBA<PRUEBA3
 echo hola >PRUEBA">PRUEBA3"
 <"PRUEBA3" echo hola
 <PRUEBA3< PRUEBA2 > PRUEBA1 echo hola
+<Prueba< Prueba2 echo hola
+<Prueba"< Prueba2" echo hola
+<Prueba"< Prueba2" echo hola
+<Prueba"< Prueba2" echo hola
+<Prueba"< Prueba2" echo hola
+<Prueba"< Prueba2" echo hola
+echo "hola > que tal"
+echo "hola > que tal" >Outfile>Outfile2
+echo "hola > que tal" >Outfile">Outfile2"
+echo "hola > que tal" >Outfile">Outfile2"
