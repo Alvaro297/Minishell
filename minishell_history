@@ -46,3 +46,34 @@ echo hola | cat | cat
 echo hola | cat | cat | cat
 echo hola | cat | cat | cat
 echo hola $USER$PATH
+echo << FIN1 << FIN2
+echo << FIN1 << FIN2
+echo << FIN1 << "FIN2"
+echo << FIN1 << "FIN2"
+echo << FIN1 << "FIN2"
+echo << FIN1 << "FIN2"
+echo << FIN1 << "FIN2"
+echo << FIN1 << "FIN2"
+echo hola
+echo hola que tal
+echo hola
+echo hola
+echo hola << FIN1 << FIN2
+echo hola << FIN1 << FIN2
+echo hola << FIN1 << "FIN2"
+echo hola << FIN1 << "FIN2" que
+echo hola << FIN1 << "FIN2" que no entiendo nada XD
+echo hola << FIN1 << "FIN2" << FIN500
+echo hola
+echo aksjdhgioupasdhg
+echo hola << FIN1 << "FIN2" << FIN500
+echo hola << FIN1 << "FIN2" que no entiendo nada XD
+echo hola
+echo hola << FIN1 << "FIN2" que no entiendo nada XD
+echo hola
+echo hola << FIN1 << "FIN2" que no entiendo nada XD
+echo hola
+echo hola << FIN1 << "FIN2" que no entiendo nada XD
+echo hola << FIN1 << "FIN2" que no entiendo nada XD
+echo hola << << "FIN2" que no entiendo nada 
+echo hola "<<" FIN1 

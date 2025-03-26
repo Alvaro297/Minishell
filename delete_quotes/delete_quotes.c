@@ -74,4 +74,6 @@ void	delete_quotes(t_cmd *cmd)
 		cmd->outfile = delete_quotes_array(cmd->outfile);
 	if (cmd->outfile_array)
 		cmd->outfile_array = delete_quotes_double_array(cmd->outfile_array);
+	if (cmd->here_doc_delim && cmd->is_heredoc)
+		cmd->here_doc_delim = delete_quotes_double_array(cmd->here_doc_delim);
 }

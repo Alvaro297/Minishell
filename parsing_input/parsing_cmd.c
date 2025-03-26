@@ -115,6 +115,8 @@ void init_cmd(t_cmd *cmd)
 	cmd->outfile = NULL;
 	cmd->outfile_array = NULL;
 	cmd->outfile_modes = 0;
+	cmd->is_heredoc = false;
+	cmd->here_doc_delim = NULL;
 	cmd->next = NULL;
 }
 
@@ -125,15 +127,18 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	int		i;
 	
 	tmp = malloc(sizeof(t_cmd));
+	init_cmd(tmp);
 	*new_cmd = tmp;
 	command_splited = split_modified(command, ' ');
 	tmp->cmd = find_command(command_splited);
-	tmp->args = find_args(command_splited); 
+	tmp->args = find_args(command_splited);
 	tmp->is_pipe = have_pipe(array_commands, position);
 	tmp->infile = find_infile(command_splited);
 	tmp->outfile = find_outfile(command_splited);
 	tmp->outfile_array = get_outfiles(command_splited);
 	tmp->outfile_modes = is_append(command_splited);
+	tmp->is_heredoc = is_heredoc(command_splited);
+	tmp->here_doc_delim = here_doc_delim(command_splited);
 	tmp->next = NULL;
 	delete_quotes(tmp);
 	i = 0;
@@ -142,7 +147,7 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 		free(command_splited[i]);
 		i++;
 	}
-	free(command_splited);//FUNCIONA CORRECTAMENTE
+	free(command_splited);
 }
 
 t_cmd	*parsing_input(t_minishell *minishell, char *input)

@@ -49,6 +49,7 @@ void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp)
 	}
 	minishell->output = NULL;
 	minishell->howmanycmd = howmanycmds(minishell->cmds);
+	printf("Llega hasta aqui?\n");
 	if (input && *input)
 	{
 		add_history(input);

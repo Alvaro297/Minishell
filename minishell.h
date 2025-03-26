@@ -48,7 +48,7 @@ typedef struct s_cmd
 	int		outfile_modes;        // 2 si es ">>", 1 si es ">" y 0 si no hay nada
 	bool	is_pipe;       // True si este hay una tuberia despues del comando
 	bool	is_heredoc;	   // Comprobar si es un here_doc TODO
-	char	*here_doc_delim; // Comprobar el delimitador de este TODO
+	char	**here_doc_delim; // Comprobar el delimitador de este TODO
 	struct s_cmd *next;    // Siguiente comando (si hay pipes)
 }	t_cmd;
 
@@ -101,6 +101,9 @@ bool	check_name_arg(char	*name);
 bool	is_builtin(t_cmd	*builtin);
 void	internal_commands(t_cmd *current_cmd, t_minishell *minishell);
 char	**split_modified(char *command, int c);
+bool	is_heredoc(char **command_splited);
+char	**here_doc_delim(char **command_splited);
+bool	is_redirected(char *command_splited);
 //** Cmds **//
 char	**get_outfiles(char **command_splited);
 void	delete_cmds(t_cmd *cmd);

@@ -8,6 +8,9 @@ void	free_double_array(void **double_array)
 	if (!double_array)
 		return ;
 	while (double_array[i])
+	{
 		free(double_array[i]);
+		i++;
+	}
 	free(double_array);
 }
