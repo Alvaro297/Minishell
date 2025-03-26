@@ -76,14 +76,17 @@ static char	*ft_get_line(int fd, char *tline)
 	while (bytesread > 0 && !ft_strchr(tline, '\n'))
 	{
 		bytesread = read(fd, line, BUFFER_SIZE);
-		if (bytesread < 0)
+		if (bytesread <= 0)
 		{
 			free(tline);
 			free(line);
 			return (NULL);
 		}
 		line[bytesread] = '\0';
-		tline = ft_strjoin(tline, line);
+		if (!tline) // Si tline es NULL, asignamos directamente line
+			tline = ft_strdup(line);
+		else
+			tline = ft_strjoin(tline, line);
 	}
 	free(line);
 	return (tline);
@@ -108,7 +111,6 @@ char	*get_next_line(int fd)
 		line = NULL;
 		tline = NULL;
 	}
-	printf("%s\n", line);
 	return (line);
 }
 

@@ -44,3 +44,5 @@ echo hola | cat | cat | cat
 echo hola | cat
 echo hola | cat | cat
 echo hola | cat | cat | cat
+echo hola | cat | cat | cat
+echo hola $USER$PATH

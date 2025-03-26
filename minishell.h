@@ -47,6 +47,8 @@ typedef struct s_cmd
 	char	**outfile_array;
 	int		outfile_modes;        // 2 si es ">>", 1 si es ">" y 0 si no hay nada
 	bool	is_pipe;       // True si este hay una tuberia despues del comando
+	bool	is_heredoc;	   // Comprobar si es un here_doc TODO
+	char	*here_doc_delim; // Comprobar el delimitador de este TODO
 	struct s_cmd *next;    // Siguiente comando (si hay pipes)
 }	t_cmd;
 
