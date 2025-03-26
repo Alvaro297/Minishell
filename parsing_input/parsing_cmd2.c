@@ -14,10 +14,10 @@
 
 bool	is_redirected(char *command_splited)
 {
-	if (ft_strcmp(command_splited, "<") == 0 ||
-			ft_strcmp(command_splited, ">") == 0 ||
-			ft_strcmp(command_splited, ">>") == 0 ||
-			ft_strcmp(command_splited, "<<") == 0)
+	if (ft_strncmp(command_splited, "<", 1) == 0 ||
+			ft_strncmp(command_splited, ">", 1) == 0 ||
+			ft_strncmp(command_splited, ">>", 2) == 0 ||
+			ft_strncmp(command_splited, "<<", 2) == 0)
 			return (true);
 	return (false);
 }
@@ -32,6 +32,8 @@ char	*find_command(char **command_splited)
 		if (is_redirected(command_splited[i]))
 		{
 			i++;
+			if (command_splited[i-1][2] || ((command_splited[i-1][0] == '>' || command_splited[i-1][0] == '<')  && command_splited[i-1][1]))
+				continue ;
 			if (is_redirected(command_splited[i]))
 				return (NULL);
 			i++;
@@ -81,7 +83,11 @@ char	**find_args(char **command_splited)
 	while (command_splited[i])
 	{
 		if (is_redirected(command_splited[i]))
+		{
 			i++;
+			if (ft_strncmp(command_splited[i-1], "<<", 2) == 0 && command_splited[i-1][2])
+				continue ;
+		}
 		else
 			count++;
 		i++;

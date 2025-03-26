@@ -77,3 +77,30 @@ echo hola << FIN1 << "FIN2" que no entiendo nada XD
 echo hola << FIN1 << "FIN2" que no entiendo nada XD
 echo hola << << "FIN2" que no entiendo nada 
 echo hola "<<" FIN1 
+./Minishell 
+echo hola
+echo hoola >PRueba
+cat >Prueba
+echo hola > Prueba
+echo hoola >Prueba
+echo hola >Prueba>Prueba2">PRueba3"
+echo hola >Prueba
+echo hola >Prueba>Prueba2">PRueba3"
+echo hola >Prueba>Prueba2
+echo hola >Prueba>Prueba2">Prueba3"
+echo hola >Prueba>Prueba2>Prueba3
+<Prueba3<Prueba2 cat
+<Prueba3<Prueba2 cat
+echo hola >Prueba>Prueba2>Prueba3
+echo hola >PRUEBA
+echo hola >PRUEBA>PRUEBA2>PRUEBA3
+echo hola <PRUEBA<PRUEBA3
+echo hola <PRUEBA<PRUEBA3
+echo hola <PRUEBA<PRUEBA3
+<"PRUEBA3" echo hola
+echo hola <PRUEBA"<PRUEBA3"
+echo hola <PRUEBA<PRUEBA3
+echo hola <PRUEBA<PRUEBA3
+echo hola >PRUEBA">PRUEBA3"
+<"PRUEBA3" echo hola
+<PRUEBA3< PRUEBA2 > PRUEBA1 echo hola

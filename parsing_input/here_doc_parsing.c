@@ -23,9 +23,13 @@ static int	ft_count_heredocs(char **command_splited)
 	count = 0;
 	while (command_splited[i])
 	{
-		if (ft_strcmp(command_splited[i], "<<") == 0)
+		if (ft_strncmp(command_splited[i], "<<", 2) == 0)
 		{
-			if (command_splited[i + 1] && !is_redirected(command_splited[i + 1]))
+			if (command_splited[i][2])
+			{
+				/* code */
+			}
+			else if (command_splited[i + 1] && !is_redirected(command_splited[i + 1]))
 			{
 				i++;
 				count++;
@@ -47,7 +51,7 @@ static char	**here_doc_delim_help(char **command_splited, char **heredocs_delim)
 	count = 0;
 	while (command_splited[i])
 	{
-		if (ft_strcmp(command_splited[i], "<<") == 0)
+		if (ft_strncmp(command_splited[i], "<<", 2) == 0)
 		{
 			if (command_splited[i + 1] && !is_redirected(command_splited[i + 1]))
 			{
