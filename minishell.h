@@ -105,6 +105,8 @@ char	**split_modified(char *command, int c);
 bool	is_heredoc(char **command_splited);
 char	**here_doc_delim(char **command_splited);
 bool	is_redirected(char *command_splited);
+int		ft_count_command_splited(char **command_splited);
+int		ft_count_newarray(char **command_splited, int i, t_quotes *quotes, int count_total_array);
 char	**process_redirection(char **command_splited);
 //** Cmds **//
 char	**get_outfiles(char **command_splited);

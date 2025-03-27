@@ -15,6 +15,7 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c \
 			parsing_input/parsing_cmd.c parsing_input/parsing_cmd2.c \
 			parsing_input/parsing_cmd3.c parsing_input/parsing_cmd_split_modified.c \
 			parsing_input/here_doc_parsing.c parsing_input/process_redirections.c \
+			parsing_input/process_redirection2.c \
 			signals/handle_sig.c main.c \
 			delete_quotes/delete_quotes.c \
 			pipex/pipex.c pipex/utils.c pipex/libutils.c \

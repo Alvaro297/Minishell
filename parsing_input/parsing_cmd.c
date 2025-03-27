@@ -130,17 +130,24 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	*new_cmd = tmp;
 	command_splited = split_modified(command, ' ');
 	command_splited = process_redirection(command_splited);
-	printf("Tokens in command_splited:\n");
-	for (i = 0; command_splited[i] != NULL; i++)
-	{
-		printf("  Token %d: %s\n", i, command_splited[i]);
-	}
 	tmp->cmd = find_command(command_splited);
 	tmp->args = find_args(command_splited);
 	tmp->is_pipe = have_pipe(array_commands, position);
 	tmp->infile = find_infile(command_splited);
 	tmp->outfile = find_outfile(command_splited);
 	tmp->outfile_array = get_outfiles(command_splited);
+	if (tmp->outfile_array)
+	{
+	    printf("Outfile Array:\n");
+	    for (i = 0; tmp->outfile_array[i] != NULL; i++)
+	    {
+	        printf("  Outfile %d: %s\n", i, tmp->outfile_array[i]);
+	    }
+	}
+	else
+	{
+	    printf("Outfile Array is NULL\n");
+	}
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->is_heredoc = is_heredoc(command_splited);
 	tmp->here_doc_delim = here_doc_delim(command_splited);

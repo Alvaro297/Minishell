@@ -28,10 +28,10 @@ char	**get_outfiles(char **command_splited)
 	int		c1;
 	int		size;
 
-    size = get_size(command_splited);
+	size = get_size(command_splited);
 	c1 = 0;
 	c = 0;
-    if (size == 0)
+	if (size == 0)
 		return (NULL);
 	outfile_array = malloc(sizeof(char *) * (size + 1));
 	while (command_splited[c])

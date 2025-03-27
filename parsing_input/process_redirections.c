@@ -1,173 +1,81 @@
 # include "../minishell.h"
 
-static bool	is_redirection_char(char c)
+
+
+static int	ft_add_token(char *cmd, char **tokens, int *k, int *j)
 {
-    return (c == '<' || c == '>');
+	if (cmd[*j] == cmd[*j + 1])
+	{
+		tokens[*k] = ft_strndup(&cmd[*j], 2);
+		(*j)++;
+	}
+	else
+		tokens[*k] = ft_strndup(&cmd[*j], 1);
+	(*k)++;
+	(*j)++;
+	return (*j);
 }
 
-static int	calculate_processed_size(char **command_splited)
+static int	ft_handle_redirection(char *cmd, char **tokens, int *k, t_quotes *quotes)
 {
-    int	total_size;
-    int	i;
-    int	j;
+	int	j;
+	int	start;
 
-    total_size = 0;
-    i = 0;
-    while (command_splited[i])
-    {
-        j = 0;
-        while (command_splited[i][j])
-        {
-            if (is_redirection_char(command_splited[i][j]))
-            {
-                total_size++;
-                if (command_splited[i][j + 1] && command_splited[i][j] == command_splited[i][j + 1])
-                    j++;
-                j++;
-            }
-            else
-            {
-                while (command_splited[i][j] && !is_redirection_char(command_splited[i][j]))
-                    j++;
-                total_size++;
-            }
-        }
-        i++;
-    }
-    return (total_size);
+	j = 0;
+	start = 0;
+	while (cmd[j])
+	{
+		ft_sd_quote_printf_mod(cmd, quotes, j);
+		if ((cmd[j] == '<' || cmd[j] == '>') && 
+			!quotes->in_single_quote && !quotes->in_double_quote)
+		{
+			if (j > start)
+				tokens[(*k)++] = ft_strndup(&cmd[start], j - start);
+			start = ft_add_token(cmd, tokens, k, &j);
+		}
+		else
+			j++;
+	}
+	if (j > start)
+		tokens[(*k)++] = ft_strndup(&cmd[start], j - start);
+	return (*k);
 }
 
-static char	**split_redirection(char *token)
+static char	**process_redirection_help(char **cmd_split, char **tokens)
 {
-    char	**result;
-    int		i;
-    int		j;
-    int		k;
-    int		count;
-    t_quotes quotes;
+	int		i;
+	int		k;
+	t_quotes	quotes;
 
-    quotes.in_single_quote = false;
-    quotes.in_double_quote = false;
-
-    // Contar cuántos tokens se generarán
-    count = 0;
-    i = 0;
-    while (token[i])
-    {
-        // Actualizar el estado de las comillas
-        if (token[i] == '\'' && !quotes.in_double_quote)
-            quotes.in_single_quote = !quotes.in_single_quote;
-        else if (token[i] == '"' && !quotes.in_single_quote)
-            quotes.in_double_quote = !quotes.in_double_quote;
-
-        if (is_redirection_char(token[i]) && !quotes.in_single_quote && !quotes.in_double_quote)
-        {
-            count++;
-            if (token[i + 1] && token[i] == token[i + 1]) // Redirección doble (<< o >>)
-                i++;
-        }
-        else
-        {
-            while (token[i] && (!is_redirection_char(token[i]) || quotes.in_single_quote || quotes.in_double_quote))
-                i++;
-            count++;
-        }
-        i++;
-    }
-
-    // Reservar memoria para los tokens
-    result = malloc(sizeof(char *) * (count + 1));
-    if (!result)
-    {
-        perror("malloc");
-        exit(EXIT_FAILURE);
-    }
-
-    // Dividir el token en partes
-    i = 0;
-    k = 0;
-    while (token[i])
-    {
-        // Actualizar el estado de las comillas
-        if (token[i] == '\'' && !quotes.in_double_quote)
-            quotes.in_single_quote = !quotes.in_single_quote;
-        else if (token[i] == '"' && !quotes.in_single_quote)
-            quotes.in_double_quote = !quotes.in_double_quote;
-
-        if (is_redirection_char(token[i]) && !quotes.in_single_quote && !quotes.in_double_quote)
-        {
-            j = i;
-            if (token[i + 1] && token[i] == token[i + 1]) // Redirección doble
-                i += 2;
-            else
-                i++;
-            result[k++] = ft_strndup(token + j, i - j);
-        }
-        else
-        {
-            j = i;
-            while (token[i] && (!is_redirection_char(token[i]) || quotes.in_single_quote || quotes.in_double_quote))
-                i++;
-            result[k++] = ft_strndup(token + j, i - j);
-        }
-    }
-    result[k] = NULL;
-    return (result);
+	i = 0;
+	k = 0;
+	quotes.in_single_quote = false;
+	quotes.in_double_quote = false;
+	while (cmd_split[i])
+	{
+		ft_handle_redirection(cmd_split[i], tokens, &k, &quotes);
+		i++;
+	}
+	tokens[k] = NULL;
+	return (tokens);
 }
 
-bool	is_valid_redirection(char *token, t_quotes *quotes)
-{
-    int	i;
-
-    i = 0;
-    while (token[i])
-    {
-        if (token[i] == '\'' && !quotes->in_double_quote)
-            quotes->in_single_quote = !quotes->in_single_quote;
-        else if (token[i] == '"' && !quotes->in_single_quote)
-            quotes->in_double_quote = !quotes->in_double_quote;
-        if (is_redirection_char(token[i]) && !quotes->in_single_quote && !quotes->in_double_quote)
-            return (true);
-
-        i++;
-    }
-    return (false);
-}
 
 char	**process_redirection(char **command_splited)
 {
-    char	**processed;
-    int		i;
-    int		j;
-    int		total_size;
-    t_quotes quotes;
+	int		count_newarray;
+	char	**command_splited_token;
+	t_quotes	quotes;
 
-    quotes.in_single_quote = false;
-    quotes.in_double_quote = false;
-    total_size = calculate_processed_size(command_splited);
-    processed = malloc(sizeof(char *) * (total_size + 1)); 
-    if (!processed)
-    {
-        perror("malloc");
-        exit(EXIT_FAILURE);
-    }
-
-    i = 0;
-    j = 0;
-    while (command_splited[i])
-    {
-        if (is_valid_redirection(command_splited[i], &quotes))
-        {
-            char **split = split_redirection(command_splited[i]);
-            int k = 0;
-            while (split[k])
-                processed[j++] = split[k++];
-            free(split);
-        }
-        else
-            processed[j++] = ft_strdup(command_splited[i]);
-        i++;
-    }
-    processed[j] = NULL;
-    return (processed);
+	quotes.in_single_quote = false;
+	quotes.in_double_quote = false;
+	count_newarray = ft_count_command_splited(command_splited);
+	count_newarray = ft_count_newarray(command_splited, 0, &quotes, count_newarray);
+	command_splited_token = malloc(sizeof(char *) * (count_newarray + 1));
+	if (!command_splited_token)
+	{
+		perror("malloc");
+		return (NULL);
+	}
+	return (process_redirection_help(command_splited, command_splited_token));
 }

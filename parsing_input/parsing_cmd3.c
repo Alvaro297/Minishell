@@ -45,7 +45,6 @@ int	is_append(char **command_splited)
 char *find_infile(char **command_splited)
 {
 	char	*infile;
-	char	*last_less_than;
 	int		i;
 
 	i = 0;
@@ -55,27 +54,13 @@ char *find_infile(char **command_splited)
 		if ((ft_strncmp(command_splited[i], "<", 1) == 0 &&
 			 ft_strlen(command_splited[i]) == 1))
 		{
-			if (!check_name_arg(command_splited[i + 1]))
+			if (!command_splited[i + 1] || !check_name_arg(command_splited[i + 1]))
 				return (NULL);
 			else
 			{
 				if (infile)
 					free(infile);
 				infile = ft_strdup(command_splited[i + 1]);
-			}
-		}
-		else if ((last_less_than = ft_strrchr(command_splited[i], '<')) != NULL)
-		{
-			const char *p = command_splited[i];
-			while (*p)
-			{
-				if (*p == '<' && !is_within_quotes(command_splited[i], p))
-				{
-					if (infile)
-						free(infile);
-					infile = ft_strdup(p + 1);
-				}
-				p++;
 			}
 		}
 		i++;
@@ -85,8 +70,8 @@ char *find_infile(char **command_splited)
 
 char *find_outfile(char **command_splited)
 {
-	char *outfile;
-	int i;
+	char	*outfile;
+	int		i;
 
 	i = 0;
 	outfile = NULL;
@@ -97,7 +82,7 @@ char *find_outfile(char **command_splited)
 			 (ft_strncmp(command_splited[i], ">>", 2) == 0 &&
 			 ft_strlen(command_splited[i]) == 2))
 		{
-			if (!check_name_arg(command_splited[i + 1]))
+			if (!command_splited[i + 1] || !check_name_arg(command_splited[i + 1]))
 				return (NULL);
 			else
 			{
