@@ -23,13 +23,9 @@ static int	ft_count_heredocs(char **command_splited)
 	count = 0;
 	while (command_splited[i])
 	{
-		if (ft_strncmp(command_splited[i], "<<", 2) == 0)
+		if (ft_strcmp(command_splited[i], "<<") == 0)
 		{
-			if (command_splited[i][2])
-			{
-				/* code */
-			}
-			else if (command_splited[i + 1] && !is_redirected(command_splited[i + 1]))
+			if (command_splited[i + 1] && !is_redirected(command_splited[i + 1]))
 			{
 				i++;
 				count++;
@@ -42,21 +38,21 @@ static int	ft_count_heredocs(char **command_splited)
 	return (count);
 }
 
-static char	**here_doc_delim_help(char **command_splited, char **heredocs_delim)
+static char	**here_doc_delim_help(char **heredocs_delim, char **split_input_inic)
 {
 	int	count;
 	int	i;
 
 	i = 0;
 	count = 0;
-	while (command_splited[i])
+	while (split_input_inic[i])
 	{
-		if (ft_strncmp(command_splited[i], "<<", 2) == 0)
+		if (ft_strncmp(split_input_inic[i], "<<", 2) == 0)
 		{
-			if (command_splited[i + 1] && !is_redirected(command_splited[i + 1]))
+			if (split_input_inic[i + 1] && !is_redirected(split_input_inic[i + 1]))
 			{
 				i++;
-				heredocs_delim[count] = ft_strdup(command_splited[i]);
+				heredocs_delim[count] = ft_strdup(split_input_inic[i]);
 				if (!heredocs_delim[count])
 					return (free_double_array((void **) heredocs_delim), NULL);
 				count++;
@@ -70,17 +66,20 @@ static char	**here_doc_delim_help(char **command_splited, char **heredocs_delim)
 	return (heredocs_delim);
 }
 
-char	**here_doc_delim(char **command_splited)
+char	**here_doc_delim(char *input)
 {
 	char		**heredocs_delim;
+	char		**split_input_inic;
 	int			count_heredocs;
 
-	count_heredocs = ft_count_heredocs(command_splited);
+	split_input_inic = split_modified(input, ' ');
+	split_input_inic = process_redirection(split_input_inic);
+	count_heredocs = ft_count_heredocs(split_input_inic);
 	if (count_heredocs == -1)
 	{
 		ft_putstr_fd("Syntax error near unexpected token\n", 2);
 		return (NULL);
 	}
 	heredocs_delim = malloc(sizeof(char *) * (count_heredocs + 1));
-	return(here_doc_delim_help(command_splited, heredocs_delim));
+	return(here_doc_delim_help(heredocs_delim, split_input_inic));
 }

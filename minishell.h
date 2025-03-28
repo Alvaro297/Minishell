@@ -30,6 +30,14 @@ typedef struct s_quotes
 	bool	in_double_quote;
 } t_quotes;
 
+typedef struct s_parse_data
+{
+	char    *command;
+	int     position;
+	char    **array_commands;
+	char    *input;
+}   t_parse_data;
+
 
 typedef struct s_env
 {
@@ -72,6 +80,8 @@ int	ft_strcmp(char *s1, char *s2);
 void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp);
 /* Expand_variable */
 char	*ft_quote_printf(t_minishell *minishell, char *str);
+void	append_expanded_variable(char **result, size_t *j, char *expanded);
+void	append_expanded_variable_no_quotes(char **result, size_t *j, char *expanded);
 /* Quote */
 int		ft_sd_quote_printf(char *str, t_quotes *quotes, size_t *i);
 int		ft_sd_quote_printf_mod(char *str, t_quotes *quotes, size_t i);
@@ -96,14 +106,14 @@ int		handle_env(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_unset(t_cmd *current_cmd, t_minishell *minishell);
 int		error_management(t_minishell *minishell);
 //** Parsing Input **//
-void	delete_quotes(t_cmd *cmd);
+void	delete_quotes(t_minishell *minishell, t_cmd *cmd);
 t_cmd	*parsing_input(t_minishell *minishell, char *input);
 bool	check_name_arg(char	*name);
 bool	is_builtin(t_cmd	*builtin);
 void	internal_commands(t_cmd *current_cmd, t_minishell *minishell);
 char	**split_modified(char *command, int c);
 bool	is_heredoc(char **command_splited);
-char	**here_doc_delim(char **command_splited);
+char	**here_doc_delim(char *input);
 bool	is_redirected(char *command_splited);
 int		ft_count_command_splited(char **command_splited);
 int		ft_count_newarray(char **command_splited, int i, t_quotes *quotes, int count_total_array);
