@@ -22,7 +22,7 @@ bool	is_redirected(char *command_splited)
 	return (false);
 }
 
-char	*find_command(char **command_splited)
+char	*find_command(t_minishell *minishell, char **command_splited)
 {
 	int		i;
 
@@ -36,13 +36,15 @@ char	*find_command(char **command_splited)
 				return (NULL);
 			i++;
 		}
+		else if (is_env_var_null(minishell, command_splited[i]))
+			i++;
 		else
 			return (command_splited[i]);
 	}
 	return (NULL);
 }
 
-static char	**find_args_help(char **command_splited, int count)
+static char	**find_args_help(t_minishell *minishell, char **command_splited, int count)
 {
 	char	**args;
 	int		i;
@@ -60,7 +62,7 @@ static char	**find_args_help(char **command_splited, int count)
 	{
 		if (is_redirected(command_splited[i]))
 			i++;
-		else
+		else if (!is_env_var_null(minishell, command_splited[i]))
 		{
 			args[j] = ft_strdup(command_splited[i]);
 			j++;
@@ -71,7 +73,7 @@ static char	**find_args_help(char **command_splited, int count)
 	return (args);
 }
 
-char	**find_args(char **command_splited)
+char	**find_args(t_minishell *minishell, char **command_splited)
 {
 	int		i;
 	int		count;
@@ -82,9 +84,11 @@ char	**find_args(char **command_splited)
 	{
 		if (is_redirected(command_splited[i]))
 			i++;
+		else if (is_env_var_null(minishell, command_splited[i]))
+			i++;
 		else
 			count++;
 		i++;
 	}
-	return (find_args_help(command_splited, count));
+	return (find_args_help(minishell, command_splited, count));
 }

@@ -130,15 +130,27 @@ static void	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_da
 	*new_cmd = tmp;
 	command_splited = split_modified(data->command, ' ');
 	command_splited = process_redirection(command_splited);
-	tmp->cmd = find_command(command_splited);
-	tmp->args = find_args(command_splited);
+	tmp->cmd = find_command(minishell, command_splited);
+	tmp->args = find_args(minishell, command_splited);
 	tmp->is_pipe = have_pipe(data->array_commands, data->position);
-	tmp->infile = find_infile(command_splited);
-	tmp->outfile = find_outfile(command_splited);
-	tmp->outfile_array = get_outfiles(command_splited);
+	tmp->infile = find_infile(minishell, command_splited);
+	tmp->outfile = find_outfile(minishell, command_splited);
+	tmp->outfile_array = get_outfiles(minishell, command_splited);
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->is_heredoc = is_heredoc(command_splited);
 	tmp->here_doc_delim = here_doc_delim(data->input);
+	if (tmp->here_doc_delim)
+	{
+	    printf("Here-doc Delimiters:\n");
+	    for (i = 0; tmp->here_doc_delim[i] != NULL; i++)
+	    {
+	        printf("  Delimiter %d: %s\n", i, tmp->here_doc_delim[i]);
+	    }
+	}
+	else
+	{
+	    printf("Here-doc Delimiters: NULL\n");
+	}
 	tmp->next = NULL;
 	delete_quotes(minishell, tmp);
 	i = 0;

@@ -79,3 +79,16 @@ void set_env(t_env **env, char *name, char *value)
 	else
 		tmp->next = create_env_var(name, value);
 }
+
+bool	is_env_var_null(t_minishell *minishell, char *arg)
+{
+	char	*expanded_value;
+
+	if (arg[0] == '$')
+	{
+		expanded_value = get_env_value(minishell->env_vars, arg + 1);
+		if (expanded_value == NULL)
+			return (true);
+	}
+	return (false);
+}

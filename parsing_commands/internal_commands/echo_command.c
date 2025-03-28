@@ -48,7 +48,6 @@ int	handle_echo(t_cmd *current_cmd, t_minishell *minishell)
 		i++;
 		newline = false;
 	}
-	printf("Hola he llegado\n");
 	while (current_cmd->args[i] != NULL)
 	{
 		printf("%s", current_cmd->args[i]);

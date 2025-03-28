@@ -95,6 +95,7 @@ t_env	*get_env(t_env *env, char *var_name);
 void	set_env(t_env **env, char *name, char *value);
 void	delete_env(t_env **env, char *name);
 bool	is_readonly(t_minishell *minishell, char *var);
+bool	is_env_var_null(t_minishell *minishell, char *arg);
 //** Internal_commands **//
 int		howmanycmds(t_cmd *cmd);
 int		handle_cd(t_cmd *current_cmd, t_minishell *minishell);
@@ -119,13 +120,13 @@ int		ft_count_command_splited(char **command_splited);
 int		ft_count_newarray(char **command_splited, int i, t_quotes *quotes, int count_total_array);
 char	**process_redirection(char **command_splited);
 //** Cmds **//
-char	**get_outfiles(char **command_splited);
+char	**get_outfiles(t_minishell *minishell, char **command_splited);
 void	delete_cmds(t_cmd *cmd);
 void	append_cmds(t_cmd **cmds, t_cmd *new_cmd);
-char	*find_command(char **command_splited);
-char	**find_args(char **command_splited);
-char	*find_infile(char **command_splited);
-char	*find_outfile(char **command_splited);
+char	*find_command(t_minishell *minishell, char **command_splited);
+char	**find_args(t_minishell *minishell, char **command_splited);
+char	*find_infile(t_minishell *minishell, char **command_splited);
+char	*find_outfile(t_minishell *minishell, char **command_splited);
 int		is_append(char **command_splited);
 bool	have_pipe(char **command, int position);
 //** History **//

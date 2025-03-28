@@ -67,7 +67,7 @@ void	delete_quotes(t_minishell *minishell, t_cmd *cmd)
 {
 	if (cmd->cmd)
 		cmd->cmd = delete_quotes_array(minishell, cmd->cmd, true);
-	if (cmd->args && ft_strcmp(cmd->cmd, "export") != 0)
+	if (cmd->args)
 		cmd->args = delete_quotes_double_array(minishell, cmd->args, true);
 	if (cmd->infile)
 		cmd->infile = delete_quotes_array(minishell, cmd->infile, true);

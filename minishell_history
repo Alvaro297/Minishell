@@ -229,3 +229,40 @@ export
 << $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $USER << $PRUEBA2
 << $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $USER << $PRUEBA2
 << $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $USER << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal "$NOEXISTE" root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal "$NOEXISTE"root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTEroot que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal "" "" "" "" "" "" "" root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal        root que tal chaval << $PRUEBA2
+export $NOEXISTE
+export 
+export $NOEXISTE
+export $NOEXISTE
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+export $NOEXISTE
+export $NOEXISTE
+export $NOEXISTE
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+export $NOEXISTE
+export $NOEXISTE
+export $NOEXISTE
+echo $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+echo $HOLA
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+$INEXISTENTE echo hola
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+$INEXISTENTE echo hola
+$INEXISTENTE echo hola
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
