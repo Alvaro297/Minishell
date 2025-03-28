@@ -77,3 +77,32 @@ echo hola << FIN1 << "FIN2" que no entiendo nada XD
 echo hola << FIN1 << "FIN2" que no entiendo nada XD
 echo hola << << "FIN2" que no entiendo nada 
 echo hola "<<" FIN1 
+echo hola
+echo hola | cat
+echo hola | cat | cat | cat
+pwd 
+ls 
+ls -la 
+cat hola
+cat pipex/pipex.c
+echo pipex/pipex.c | cat
+echo pipex/pipex.c |cat
+< pipex/pipex.c grep h
+echo hola
+echo hola | grep h
+hola
+2004hMinishell: 
+2004l
+Llega hasta aqui?
+2004hMinishell: 
+2004l
+Llega hasta aqui?
+2004hMinishell: < pipex/pipex.c grep h
+Minishell: Pecho hola | grep h
+Minishell: 2004l
+ls -la
+ls -la | grep minishell
+ls -la | echo hola
+ls 
+ls | grep Makefile
+cd | grep h

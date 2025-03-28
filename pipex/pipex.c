@@ -24,7 +24,7 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 	else
 	{
 		path = getpath(cmd->args[0], split_envs);
-		printf("%s\n", path);
+	//	printf("%s\n", path);
 		if (execve(path, cmd->args, split_envs) == -1)
 		{
 			ft_putstr_fd("pipex: command not found: ", 2);
@@ -66,9 +66,9 @@ void	no_pipes(t_minishell *minishell)
 
 void	redir(int *p_fd, t_minishell *minishell, int i)
 {
-	int	fd;
+//	int	fd;
 
-	if (minishell->cmds->infile)
+/*	if (minishell->cmds->infile)
 	{
 		printf("INFILE\n");
 		fd = open_f(minishell->cmds->infile, 0);
@@ -81,8 +81,8 @@ void	redir(int *p_fd, t_minishell *minishell, int i)
 		fd = open_f(minishell->cmds->outfile, 1);
 		dup2(fd, STDOUT_FILENO);
 		close(fd);
-	}
-	if (i < minishell->howmanycmd - 1)
+	}*/
+	if (i < minishell->howmanycmd)
 	{
 		if (dup2(p_fd[i * 2 + 1], STDOUT_FILENO) == -1)
 		{
@@ -102,15 +102,52 @@ void	redir(int *p_fd, t_minishell *minishell, int i)
 	}
 }
 
-void	closefds(int *fd, t_minishell *minishell)
+int	*create_pipes(t_minishell *minishell)
+{
+	int	*fd;
+	t_cmd	*tmp;
+	int	i;
+
+	i = 0;
+	tmp = minishell->cmds;
+	fd = malloc(sizeof(int) * (minishell->howmanycmd - 1) * 2);
+	while (tmp)
+	{
+		if (tmp->is_pipe)
+		{
+			if (pipe(fd + (i * 2)) != 0)
+				return NULL;
+			i++;
+		}
+		tmp = tmp->next;
+	}
+	return (&fd[0]);
+}
+
+pid_t	first_cmd(t_minishell *minishell, int *pfd)
+{
+	pid_t pid;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		close (pfd[0]);
+		dup2(pfd[1], STDOUT_FILENO);
+		close (pfd[1]);
+		execute(minishell, minishell->cmds);
+	}
+	return (pid);
+}
+
+void	closefds(int *fd, int skip1, int skip2)
 {
 	int	i;
 
 	i = 0;
-	while (i < minishell->howmanycmd - 1)
+	while (fd[i])
 	{
-		close(fd[i * 2]);
-		close(fd[i * 2 + 1]);
+		if (i != skip1 && i != skip2)
+			close(fd[i]);
 		i++;
 	}
 }
@@ -118,7 +155,7 @@ void	closefds(int *fd, t_minishell *minishell)
 void	pipex(t_minishell *minishell)
 {
 	pid_t pid[minishell->howmanycmd];
-	int		fd[(minishell->howmanycmd - 1) * 2];
+	int		*fd;
 	int		i;
 	t_cmd	*cmd;
 
@@ -132,35 +169,27 @@ void	pipex(t_minishell *minishell)
 	}
 	else
 	{
-		i = 0;
-		while (i < minishell->howmanycmd - 1)
-		{
-			if (pipe(fd + i * 2) == -1)
-			{
-				perror("error pipex\n");
-				break ;
-			}
-			i++;
-		}
+		fd = create_pipes(minishell);
+		pid[0] = first_cmd(minishell, fd);
 		i = 1;//TODO solo funciona si entro coon i = 1 por tanto tengo que usar no_pipes o similar para ejecutar ell primer comando y redirigirlo
 		while (i < minishell->howmanycmd)
 		{
 			pid[i] = fork();
 			if (pid[i] == -1)
 			{
-				perror("error en el foork\n");
+				perror("error en el fork\n");
 				break ;
 			}
 			if (pid[i] == 0)
 			{
+				closefds(fd, i - 1, i + 2);
 				redir(fd, minishell, i);
-				closefds(fd, minishell);
 				execute(minishell, cmd);
 			}
 			i++;
 			cmd = cmd->next;
 		}
-		closefds(fd, minishell);
+		closefds(fd, minishell->howmanycmd * 3, minishell->howmanycmd * 3);
 		i = 0;
 		while (i < minishell->howmanycmd)
 		{
