@@ -161,11 +161,11 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	quotes.in_double_quote = false;
 	parsed_input = split_commands(input, 0, &quotes);
 	data.position = 0;
+	data.array_commands = parsed_input;
+	data.input = input;
 	while (parsed_input[data.position])
 	{
 		data.command = parsed_input[data.position];
-		data.array_commands = parsed_input;
-		data.input = input;
 		parse_input_help(minishell, &new_cmd, &data);
 		append_cmds(&head, new_cmd);
 		if (head->is_pipe)
