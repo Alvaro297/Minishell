@@ -266,3 +266,18 @@ $INEXISTENTE echo hola
 $INEXISTENTE echo hola
 $INEXISTENTE echo hola
 << $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+$INEXISTENTE echo hola
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+export
+export HOLA
+export HOLA
+export HOLA
+export HOLA
+export HOLA
+export HOLA
+echo $HOLA soy tonto
+$INEXISTENTE
+$INEXISTENTE
+export $HOLA
+echo $HOLA

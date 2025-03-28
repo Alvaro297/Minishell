@@ -93,7 +93,6 @@ int		handle_export(t_cmd *current_cmd, t_minishell *minishell)
 	char	*var_check;
 
 	i = 0;
-	printf("%d\n", current_cmd->args[1][0]);
 	while (current_cmd->args[++i])
 	{
 		var_name = parsed_variable_name(current_cmd->args[i]);

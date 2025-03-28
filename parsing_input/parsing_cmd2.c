@@ -32,7 +32,7 @@ char	*find_command(t_minishell *minishell, char **command_splited)
 		if (is_redirected(command_splited[i]))
 		{
 			i++;
-			if (is_redirected(command_splited[i]))
+			if (!command_splited[i] || is_redirected(command_splited[i]))
 				return (NULL);
 			i++;
 		}
@@ -88,6 +88,8 @@ char	**find_args(t_minishell *minishell, char **command_splited)
 			i++;
 		else
 			count++;
+		if (!command_splited[i])
+			break ;
 		i++;
 	}
 	return (find_args_help(minishell, command_splited, count));

@@ -139,18 +139,6 @@ static void	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_da
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->is_heredoc = is_heredoc(command_splited);
 	tmp->here_doc_delim = here_doc_delim(data->input);
-	if (tmp->here_doc_delim)
-	{
-	    printf("Here-doc Delimiters:\n");
-	    for (i = 0; tmp->here_doc_delim[i] != NULL; i++)
-	    {
-	        printf("  Delimiter %d: %s\n", i, tmp->here_doc_delim[i]);
-	    }
-	}
-	else
-	{
-	    printf("Here-doc Delimiters: NULL\n");
-	}
 	tmp->next = NULL;
 	delete_quotes(minishell, tmp);
 	i = 0;
