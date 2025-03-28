@@ -63,12 +63,12 @@ void	no_pipes(t_minishell *minishell)
 			waitpid(pid, &minishell->last_exit_status, 0);
 	}
 }
-
+/*
 void	redir(int *p_fd, t_minishell *minishell, int i)
 {
 //	int	fd;
 
-/*	if (minishell->cmds->infile)
+	if (minishell->cmds->infile)
 	{
 		printf("INFILE\n");
 		fd = open_f(minishell->cmds->infile, 0);
@@ -81,7 +81,7 @@ void	redir(int *p_fd, t_minishell *minishell, int i)
 		fd = open_f(minishell->cmds->outfile, 1);
 		dup2(fd, STDOUT_FILENO);
 		close(fd);
-	}*/
+	}
 	if (i < minishell->howmanycmd)
 	{
 		if (dup2(p_fd[i * 2 + 1], STDOUT_FILENO) == -1)
@@ -102,28 +102,6 @@ void	redir(int *p_fd, t_minishell *minishell, int i)
 	}
 }
 
-int	*create_pipes(t_minishell *minishell)
-{
-	int	*fd;
-	t_cmd	*tmp;
-	int	i;
-
-	i = 0;
-	tmp = minishell->cmds;
-	fd = malloc(sizeof(int) * (minishell->howmanycmd - 1) * 2);
-	while (tmp)
-	{
-		if (tmp->is_pipe)
-		{
-			if (pipe(fd + (i * 2)) != 0)
-				return NULL;
-			i++;
-		}
-		tmp = tmp->next;
-	}
-	return (&fd[0]);
-}
-
 pid_t	first_cmd(t_minishell *minishell, int *pfd)
 {
 	pid_t pid;
@@ -137,19 +115,6 @@ pid_t	first_cmd(t_minishell *minishell, int *pfd)
 		execute(minishell, minishell->cmds);
 	}
 	return (pid);
-}
-
-void	closefds(int *fd, int skip1, int skip2)
-{
-	int	i;
-
-	i = 0;
-	while (fd[i])
-	{
-		if (i != skip1 && i != skip2)
-			close(fd[i]);
-		i++;
-	}
 }
 
 void	pipex(t_minishell *minishell)
@@ -198,3 +163,4 @@ void	pipex(t_minishell *minishell)
 		}
 	}
 }
+*/

@@ -68,7 +68,7 @@ void	minishell(char **envp)
 		}*/
 		//minishell.last_exit_status = error_control(&minishell);
 		//if (minishell.last_exit_status == 0)
-		pipex(&minishell);
+		execute_all(&minishell);
 		free(input);
 	}
 }

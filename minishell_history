@@ -106,3 +106,71 @@ ls -la | echo hola
 ls 
 ls | grep Makefile
 cd | grep h
+echo hola
+echo hola
+pwd | cat
+echo hola
+echo hola
+pwd
+pwd | cat
+pwd | cat
+pwd | cat
+pwd | cat | echo hola
+pwd | cat | echo hola | cat
+pwd | cat
+pwd | cat | echo hola | cat
+pwd | cat | echo hola | cat
+pwd | cat | echo hola
+echo hola | cat
+pwd | cat > t.txt
+pwd | cat
+pwd | cat > t.txt
+cat t.txt
+pwd | cat > t.txt
+cat t.txt
+pwd | cat
+echo hola | cat
+echo hola 
+echo hola | cat
+echo hola | cat
+echo hola | cat
+echo hola
+pwd | cat
+echo hola
+pwd | cat
+pwd | cat
+echo holas | cat
+echo holas | cat | cat | cat
+echo holas | cat | cat | cat
+echo holas | cat
+pwd | cat
+pwd | cat
+pwd | cat
+pwd | cat
+pwd | cat | cat
+pwd | cat | cat
+pwd | cat
+cat hola
+cat pipex/pipex.c
+clear
+echo hola | cat
+echo hola | cat
+echo hola | cat
+echo hola
+echo hola | cat
+echo hola | cat
+echo hola | cat | cat | cart
+echo hola | cat | cat | cat
+echo hola | cat | cat | cat
+echo hola
+echo hola | cat | cat | cat
+echo hola | cat
+echo hola
+echo hola | cat
+echo hola | cat
+echo hola
+echo hola | cat
+echo hola | cat
+echo
+echo hola | cat
+echo hola | cat | cat | cat

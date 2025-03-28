@@ -122,6 +122,9 @@ void	manage_signals(void);
 //** Free Minishell **//
 void	free_double_array(void **double_array);
 //**PIPEX **/
+void	no_pipes(t_minishell *minishell);
+void	execute(t_minishell *minishell, t_cmd *cmd);
+void	execute_all(t_minishell *minishell);
 void	pipex(t_minishell *minishell);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
