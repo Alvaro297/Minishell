@@ -281,3 +281,5 @@ $INEXISTENTE
 $INEXISTENTE
 export $HOLA
 echo $HOLA
+./Minishell
+./Minishell
