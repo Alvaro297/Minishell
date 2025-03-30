@@ -32,11 +32,11 @@ typedef struct s_quotes
 
 typedef struct s_parse_data
 {
-	char    *command;
-	int     position;
-	char    **array_commands;
-	char    *input;
-}   t_parse_data;
+	char	*command;
+	int		position;
+	char	**array_commands;
+	char	*input;
+}	t_parse_data;
 
 
 typedef struct s_env
@@ -148,4 +148,7 @@ char	**ft_split(char const *s, char c);
 char	*getpathaux(char *path, char **env);
 char	*getpath(char *cmd, char **env);
 int		open_f(char *file, int sw);
+//**  Pipex prueba**//
+int		pipex_prueba(t_minishell *minishell);
+
 #endif 

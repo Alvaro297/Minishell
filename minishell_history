@@ -283,3 +283,23 @@ export $HOLA
 echo $HOLA
 ./Minishell
 ./Minishell
+<< 'EOF'
+hola 
+que
+tal
+<< 'EOF'
+hola 
+que
+tal
+echo << 'EOF'
+hola 
+que
+tal
+echo << 'EOF'
+echo hola EOF
+./Minishell
+echo $INEXISTENTE$USER hola
+echo $INEXISTENTE$USER hola
+echo $INEXISTENTE hola
+echo $INEXISTENTE$haha hola
+echo $USER$USER hola

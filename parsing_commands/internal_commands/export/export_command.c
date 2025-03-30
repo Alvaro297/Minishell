@@ -43,7 +43,6 @@ static bool parsed_value_validation(char *var_value)
 	i = 0;
 	if (ft_isdigit(var_value[i]))
 		return (false);
-	printf("%s\n", var_value);
 	if ((var_value[i] == '\'' && var_value[ft_strlen(var_value) - 1] == '\'') ||
 		(var_value[i] == '"' && var_value[ft_strlen(var_value) - 1] == '"'))
 		return (true);
