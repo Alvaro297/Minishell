@@ -41,37 +41,37 @@ typedef struct s_parse_data
 
 typedef struct s_env
 {
-	char	*name;
-	char	*value;
-	struct s_env *next;
+	char	*name;          // Nombre de la variable de entorno (ej: "PATH", "HOME").
+	char	*value;         // Valor de la variable de entorno (ej: "/usr/bin", "/home/user").
+	struct s_env *next; // Puntero al siguiente nodo en la lista enlazada de variables de entorno.
 } t_env;
 
 typedef struct s_cmd
 {
-	char	*cmd;          // Nombre del comando (ej: "ls", "echo", "grep", etc.)
-	char	**args;        // Argumentos del comando
-	char	*infile;       // Archivo de entrada si hay redirección (<)
-	char	*outfile;      // Archivo de salida si hay redirección (>)
-	char	**outfile_array;
-	int		outfile_modes;        // 2 si es ">>", 1 si es ">" y 0 si no hay nada
-	bool	is_pipe;       // True si este hay una tuberia despues del comando
-	bool	is_heredoc;	   // Comprobar si es un here_doc TODO
-	char	**here_doc_delim; // Comprobar el delimitador de este TODO
-	struct s_cmd *next;    // Siguiente comando (si hay pipes)
+	char	*cmd;          // Nombre del comando (ej: "ls", "echo", "grep").
+	char	**args;        // Array de argumentos del comando (ej: ["ls", "-l", NULL]).
+	char	*infile;       // Archivo de entrada para redirección (<).
+	char	*outfile;      // Archivo de salida para redirección (> o >>).
+	char	**outfile_array; // Array de archivos de salida si hay múltiples redirecciones.
+	int		outfile_modes; // Modo de redirección: 2 para ">>", 1 para ">", 0 para ninguno.
+	bool	is_pipe;       // Indica si el comando está seguido por un pipe (|).
+	bool	is_heredoc;	   // Indica si el comando utiliza un heredoc (<<).
+	char	**here_doc_delim; // Array de delimitadores para heredoc.
+	struct s_cmd *next;    // Puntero al siguiente comando en una lista enlazada (para pipes).
 }	t_cmd;
 
 typedef struct s_minishell
 {
-	char	*input;
-	t_cmd	*cmds;
-	pid_t	*pids;
-	char	*output;
-	char	**history;
-	t_env	*env_vars;
-	char	*current_dir;
-	char	*history_file;
-	int		last_exit_status;
-	int		howmanycmd;
+	char	*input;        // Entrada del usuario (línea de comando completa).
+	t_cmd	*cmds;         // Lista enlazada de comandos parseados.
+	pid_t	*pids;         // Array de PIDs para procesos hijos.
+	char	*output;       // Salida del comando (si se almacena en memoria).
+	char	**history;     // Historial de comandos.
+	t_env	*env_vars;     // Lista enlazada de variables de entorno.
+	char	*current_dir;  // Directorio actual del shell.
+	char	*history_file; // Ruta al archivo de historial.
+	int		last_exit_status; // Código de salida del último comando ejecutado.
+	int		howmanycmd;    // Número de comandos en la línea de entrada.
 } t_minishell;
 
 int	ft_strcmp(char *s1, char *s2);
