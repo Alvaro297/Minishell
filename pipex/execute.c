@@ -7,21 +7,37 @@ void	closefds(t_minishell *minishell, int **fd)
 	i = 0;
 	while (i < minishell->howmanycmd - 1)
 	{
-		if (i != minishell->howmanycmd - 2)
-		{
-			close(fd[i][0]);
-			close(fd[i][1]);
-		}
-		else
-			close(fd[i][1]);
+		close(fd[i][0]);
+		close(fd[i][1]);
 		i++;
 	}
+}
+
+void logadd(const char *log_entry) {
+    // Abrir el archivo en modo de anexado ("a")
+    FILE *file = fopen("minishell.log", "a");
+    if (file == NULL) {
+        perror("No se pudo abrir el archivo");
+        return;
+    }
+
+    // Escribir la entrada de log en una nueva línea
+    fprintf(file, "%s\n", log_entry);
+
+    // Cerrar el archivo
+    fclose(file);
 }
 
 void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
 {
 	//int	fd;
-
+	logadd("ESTOY EN EL ULTIMO HIJO\n");
+	if (cmd->cmd)
+	{
+		logadd(cmd->cmd);
+	}
+	else
+		logadd("NO HAY CMD");
 	//fd = open_f(cmd->outfile, 1);
 	dup2(pfd[minishell->howmanycmd - 2][0], STDIN_FILENO);
 	dup2(std_out, STDOUT_FILENO);
@@ -33,8 +49,15 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
 
 void	first_child(t_minishell *minishell, t_cmd *cmd, int **pfd)
 {
+	logadd("ESTOY EN EL PRIMER HIJO:\n");
+	if (cmd->cmd)
+	{
+		logadd(cmd->cmd);
+	}
+	else
+		logadd("NO HAY CMD");
 	//TODO implementar los heredocs
-	dup2(pfd[0][0], STDIN_FILENO);
+	//dup2(pfd[0][0], STDIN_FILENO);
 	dup2(pfd[0][1], STDOUT_FILENO);
 	closefds(minishell, pfd);
 	execute(minishell, cmd);
@@ -68,6 +91,7 @@ int	**create_pipes(t_minishell *minishell)
 	return (fd);
 }
 
+
 void	execute_all(t_minishell *minishell)
 {
 	int	**pfd;
@@ -83,11 +107,16 @@ void	execute_all(t_minishell *minishell)
 		no_pipes(minishell);
 		return ;
 	}
+	i = 0;
 	pids = malloc(sizeof(pid_t) * minishell->howmanycmd);
 	pfd = create_pipes(minishell);
+	printf("HOWMANYCMDS :%i\n", minishell->howmanycmd);
 	while (i < minishell->howmanycmd)
 	{
-		pids[i] = fork();
+		if (getpid() != 0)
+			pids[i] = fork();
+		else
+			exit(0) ;
 		if (pids[i] == 0)
 		{
 			if (i == 0)
@@ -104,6 +133,7 @@ void	execute_all(t_minishell *minishell)
 	i = 0;
 	while (i < minishell->howmanycmd)//TODO hacer una funcion que se quede con el primer codigo de error si los hay.
 	{
+		logadd("EN EL PADRE ESPERANDO\n");
 		waitpid(pids[i], &minishell->last_exit_status, 0);
 		i++;
 	}
