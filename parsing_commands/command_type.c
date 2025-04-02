@@ -12,22 +12,22 @@
 
 #include "../minishell.h"
 
-void	internal_commands(t_cmd *current_cmd, t_minishell *minishell)
+int	internal_commands(t_cmd *current_cmd, t_minishell *minishell)
 {
 	if (ft_strncmp(current_cmd->cmd, "exit", 4) == 0)
-		exit(0);
+		return (exit(0), 0);
 	else if (ft_strncmp(current_cmd->cmd, "pwd", 3) == 0)
-		handle_pwd(current_cmd, minishell);
+		return (handle_pwd(current_cmd, minishell));
 	else if (ft_strncmp(current_cmd->cmd, "cd", 2) == 0)
-		handle_cd(current_cmd, minishell);
+		return (handle_cd(current_cmd, minishell));
 	else if (ft_strncmp(current_cmd->cmd, "export", 7) == 0)
-		handle_export(current_cmd, minishell);
+		return (handle_export(current_cmd, minishell));
 	else if (ft_strncmp(current_cmd->cmd, "unset", 5) == 0)
-		handle_unset(current_cmd, minishell);
+		return (handle_unset(current_cmd, minishell));
 	else if (ft_strncmp(current_cmd->cmd, "env", 3) == 0)
-		handle_env(current_cmd, minishell);
+		return (handle_env(current_cmd, minishell));
 	else if (ft_strncmp(current_cmd->cmd, "echo", 4) == 0)
-		handle_echo(current_cmd, minishell);
+		return (handle_echo(current_cmd, minishell));
 }
 
 bool	is_builtin(t_cmd *builtin)

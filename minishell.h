@@ -111,7 +111,7 @@ void	delete_quotes(t_minishell *minishell, t_cmd *cmd);
 t_cmd	*parsing_input(t_minishell *minishell, char *input);
 bool	check_name_arg(char	*name);
 bool	is_builtin(t_cmd	*builtin);
-void	internal_commands(t_cmd *current_cmd, t_minishell *minishell);
+int		internal_commands(t_cmd *current_cmd, t_minishell *minishell);
 char	**split_modified(char *command, int c);
 bool	is_heredoc(char **command_splited);
 char	**here_doc_delim(char *input);
