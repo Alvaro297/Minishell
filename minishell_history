@@ -1771,3 +1771,50 @@ echo
 echo hooa 
 echo hooa wenas
 echo hooa wenas | cat
+echo hola
+cat pipex/pipex.c
+echo
+echo hola
+echo h"olawenas"
+echo h  "olawenas"
+echo h     "olawenas"
+echo h  "olawenas"
+echo h     "olawenas"
+ech ohola
+echo hola
+echo echo
+cat eee
+echo hola 1 cat
+echo hola | cat
+reset
+echo hola
+cat pipex/pipex.c
+ç
+echo hola | cat 
+pwd
+grep hola
+grep pipex/pipex.c pipex
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | cat
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex | echo
+/*   pipex.c                                            :+:      :+:    :+:   */
+#include "pipex.h"
+ft_putstr_fd("pipex: command not found: ", 2);
+voidpipex(t_minishell *minishell)
+cat pipex/pipex.c | grep pipex | grep p
+cat pipex/pipex.c | grep pipex | grep p
+cat pipex/pipex.c | grep pipex | grep pv
+cat pipex/pipex.c | grep pipex | grep pipex
+cat pipex/pipex.c | grep pipex | echo hola
+echo hola | cat
+cat pipex/pipex.c | grep pipex | grep pipex
+cat pipex/pipex.c | cat
+cat pipex/pipex.c | cat | cat
+cat pipex/pipex.c | cat | cat
+cat pipex/pipex.c | cat | cat
+cat pipex/pipex.c | cat
+cat pipex/pipex.c | cat
+cat pipex/pipex.c | cat
+cat pipex/pipex.c | cat | grep pipex

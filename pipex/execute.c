@@ -5,7 +5,7 @@ void	closefds(t_minishell *minishell, int **fd)
 	int	i;
 
 	i = 0;
-	while (i < minishell->howmanycmd - 1)
+	while (i < minishell->howmanycmd)
 	{
 		close(fd[i][0]);
 		close(fd[i][1]);
@@ -20,10 +20,8 @@ void logadd(const char *log_entry) {
         perror("No se pudo abrir el archivo");
         return;
     }
-
     // Escribir la entrada de log en una nueva línea
     fprintf(file, "%s\n", log_entry);
-
     // Cerrar el archivo
     fclose(file);
 }
@@ -42,7 +40,6 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
 	dup2(pfd[minishell->howmanycmd - 2][0], STDIN_FILENO);
 	dup2(std_out, STDOUT_FILENO);
 	close(std_out);
-	close(pfd[minishell->howmanycmd - 2][0]);
 	closefds(minishell, pfd);
 	execute(minishell, cmd);
 }
@@ -113,10 +110,7 @@ void	execute_all(t_minishell *minishell)
 	printf("HOWMANYCMDS :%i\n", minishell->howmanycmd);
 	while (i < minishell->howmanycmd)
 	{
-		if (getpid() != 0)
-			pids[i] = fork();
-		else
-			exit(0) ;
+		pids[i] = fork();
 		if (pids[i] == 0)
 		{
 			if (i == 0)
