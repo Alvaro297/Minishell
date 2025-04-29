@@ -119,7 +119,7 @@ void init_cmd(t_cmd *cmd)
 	cmd->next = NULL;
 }
 
-static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char **array_commands)
+static void	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_data *data)
 {
 	t_cmd	*tmp;
 	char	**command_splited;
@@ -128,24 +128,22 @@ static void	parse_input_help(t_cmd **new_cmd, char *command, int position, char 
 	tmp = malloc(sizeof(t_cmd));
 	init_cmd(tmp);
 	*new_cmd = tmp;
-	command_splited = split_modified(command, ' ');
-	tmp->cmd = find_command(command_splited);
-	tmp->args = find_args(command_splited);
-	tmp->is_pipe = have_pipe(array_commands, position);
-	tmp->infile = find_infile(command_splited);
-	tmp->outfile = find_outfile(command_splited);
-	tmp->outfile_array = get_outfiles(command_splited);
+	command_splited = split_modified(data->command, ' ');
+	command_splited = process_redirection(command_splited);
+	tmp->cmd = find_command(minishell, command_splited);
+	tmp->args = find_args(minishell, command_splited);
+	tmp->is_pipe = have_pipe(data->array_commands, data->position);
+	tmp->infile = find_infile(minishell, command_splited);
+	tmp->outfile = find_outfile(minishell, command_splited);
+	tmp->outfile_array = get_outfiles(minishell, command_splited);
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->is_heredoc = is_heredoc(command_splited);
-	tmp->here_doc_delim = here_doc_delim(command_splited);
+	tmp->here_doc_delim = here_doc_delim(data->input);
 	tmp->next = NULL;
-	delete_quotes(tmp);
+	delete_quotes(minishell, tmp);
 	i = 0;
 	while (command_splited[i] != NULL)
-	{
-		free(command_splited[i]);
-		i++;
-	}
+		free(command_splited[i++]);
 	free(command_splited);
 }
 
@@ -154,21 +152,24 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	t_cmd		*head = NULL;
 	t_cmd		*new_cmd = NULL;
 	char		**parsed_input;
-	int			i;
 	t_quotes	quotes;
+	t_parse_data data;
 
 	if (minishell->cmds)
 		delete_cmds(minishell->cmds);
 	quotes.in_single_quote = false;
 	quotes.in_double_quote = false;
 	parsed_input = split_commands(input, 0, &quotes);
-	i = 0;
-	while(parsed_input[i])
+	data.position = 0;
+	data.array_commands = parsed_input;
+	data.input = input;
+	while (parsed_input[data.position])
 	{
-		parse_input_help(&new_cmd, parsed_input[i], i, parsed_input);
+		data.command = parsed_input[data.position];
+		parse_input_help(minishell, &new_cmd, &data);
 		append_cmds(&head, new_cmd);
 		if (head->is_pipe)
-			i += 2;
+			data.position += 2;
 		else
 			break ;
 	}

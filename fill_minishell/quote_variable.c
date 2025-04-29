@@ -71,3 +71,24 @@ void	ft_sd_quote_printf_mod3(char *str, t_quotes *quotes)
 		++str;
 	}
 }
+
+
+bool is_within_quotes(const char *str, const char *pos)
+{
+	bool in_single_quote;
+	bool in_double_quote;
+	const char *p;
+
+	p = str;
+	in_double_quote = false;
+	in_single_quote = false;
+	while (p < pos)
+	{
+		if (*p == '\'' && !in_double_quote)
+			in_single_quote = !in_single_quote;
+		else if (*p == '"' && !in_single_quote)
+			in_double_quote = !in_double_quote;
+		p++;
+	}
+	return (in_single_quote || in_double_quote);
+}

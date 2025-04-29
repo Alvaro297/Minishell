@@ -77,1744 +77,229 @@ echo hola << FIN1 << "FIN2" que no entiendo nada XD
 echo hola << FIN1 << "FIN2" que no entiendo nada XD
 echo hola << << "FIN2" que no entiendo nada 
 echo hola "<<" FIN1 
-echo hola
-echo hola | cat
-echo hola | cat | cat | cat
-pwd 
-ls 
-ls -la 
-cat hola
-cat pipex/pipex.c
-echo pipex/pipex.c | cat
-echo pipex/pipex.c |cat
-< pipex/pipex.c grep h
-echo hola
-echo hola | grep h
-hola
-2004hMinishell: 
-2004l
-Llega hasta aqui?
-2004hMinishell: 
-2004l
-Llega hasta aqui?
-2004hMinishell: < pipex/pipex.c grep h
-Minishell: Pecho hola | grep h
-Minishell: 2004l
-ls -la
-ls -la | grep minishell
-ls -la | echo hola
-ls 
-ls | grep Makefile
-cd | grep h
-echo hola
-echo hola
-pwd | cat
-echo hola
-echo hola
-pwd
-pwd | cat
-pwd | cat
-pwd | cat
-pwd | cat | echo hola
-pwd | cat | echo hola | cat
-pwd | cat
-pwd | cat | echo hola | cat
-pwd | cat | echo hola | cat
-pwd | cat | echo hola
-echo hola | cat
-pwd | cat > t.txt
-pwd | cat
-pwd | cat > t.txt
-cat t.txt
-pwd | cat > t.txt
-cat t.txt
-pwd | cat
-echo hola | cat
-echo hola 
-echo hola | cat
-echo hola | cat
-echo hola | cat
-echo hola
-pwd | cat
-echo hola
-pwd | cat
-pwd | cat
-echo holas | cat
-echo holas | cat | cat | cat
-echo holas | cat | cat | cat
-echo holas | cat
-pwd | cat
-pwd | cat
-pwd | cat
-pwd | cat
-pwd | cat | cat
-pwd | cat | cat
-pwd | cat
-cat hola
-cat pipex/pipex.c
-clear
-echo hola | cat
-echo hola | cat
-echo hola | cat
-echo hola
-echo hola | cat
-echo hola | cat
-echo hola | cat | cat | cart
-echo hola | cat | cat | cat
-echo hola | cat | cat | cat
-echo hola
-echo hola | cat | cat | cat
-echo hola | cat
-echo hola
-echo hola | cat
-echo hola | cat
-echo hola
-echo hola | cat
-echo hola | cat
-echo
-echo hola | cat
-echo hola | cat | cat | cat
-echo hola
-echo hola | cat
-echo hola | cat | cat
-echo hola | cat | cat
-echo hola | cat
-echo hola | cat
-echo hola | cat
-echo hola | cat | cat
-echo hola | cat | cat 
-echo hola | cat | cat   
-echo hola | cat | cat
-echo hola | cat | cat
-echo hola | cat
-echo
-echo hola
-echo hola | cat
-echo hola buenas
-cat pipex/pipex.c
-pwd
-pwd | echo
-echo hola | cat
-e
-echo hola 
-echo hola | cat
-echo hola | cat
-echo hola | cat | cat
-echo hola | cat
-cat minishell.log
-echo hola | cat
-cat minishell.log
-echo hola | cat
-Minishell: EN EL PADRE ESPERANDO
-Minishell: 
-Minishell: Minishell: EN EL PADRE ESPERANDO
-Minishell:
-Minishell: Minishell: 
-Minishell:
-Minishell: Minishell: Minishell: EN EL PADRE ESPERANDO
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: EN EL PADRE ESPERANDO
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: EN EL PADRE ESPERANDO
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: EN EL PADRE ESPERANDO
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: EN EL PADRE ESPERANDO
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: EN EL PADRE ESPERANDO
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: EN EL PADRE ESPERANDO 
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: EN EL PADRE ESPERANDO Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: EN EL PADRE ESPERANDO
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-echo hola
-echo hola | cat
-Minishell: Minishell: 
-Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: 
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell:
-Minishell:
-Minishell: Minishell:
-Minishell:
-Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: Minishell: 
-cat minishell.log
-echo hola | cat
-./Min
 ./Minishell 
-echo hola | cat
-echo hola | cat
-echo hola | cat
-echo hola | cat
-echo hola | cat
-echo hola | cat
-echo hola | cat
-echo hola | cat
 echo hola
-echo hola wea
-echo hola wea | cat
-echo hola 
-hola
-echo hoa
-echo hola wenas tardez
-echo hola wea | cat
-echo hola
-echo hola | cat
-echo hola 
-echo hola | cat
-echo hola 
+echo hoola >PRueba
+cat >Prueba
+echo hola > Prueba
+echo hoola >Prueba
+echo hola >Prueba>Prueba2">PRueba3"
+echo hola >Prueba
+echo hola >Prueba>Prueba2">PRueba3"
+echo hola >Prueba>Prueba2
+echo hola >Prueba>Prueba2">Prueba3"
+echo hola >Prueba>Prueba2>Prueba3
+<Prueba3<Prueba2 cat
+<Prueba3<Prueba2 cat
+echo hola >Prueba>Prueba2>Prueba3
+echo hola >PRUEBA
+echo hola >PRUEBA>PRUEBA2>PRUEBA3
+echo hola <PRUEBA<PRUEBA3
+echo hola <PRUEBA<PRUEBA3
+echo hola <PRUEBA<PRUEBA3
+<"PRUEBA3" echo hola
+echo hola <PRUEBA"<PRUEBA3"
+echo hola <PRUEBA<PRUEBA3
+echo hola <PRUEBA<PRUEBA3
+echo hola >PRUEBA">PRUEBA3"
+<"PRUEBA3" echo hola
+<PRUEBA3< PRUEBA2 > PRUEBA1 echo hola
+<Prueba< Prueba2 echo hola
+<Prueba"< Prueba2" echo hola
+<Prueba"< Prueba2" echo hola
+<Prueba"< Prueba2" echo hola
+<Prueba"< Prueba2" echo hola
+<Prueba"< Prueba2" echo hola
+echo "hola > que tal"
+echo "hola > que tal" >Outfile>Outfile2
+echo "hola > que tal" >Outfile">Outfile2"
+echo "hola > que tal" >Outfile">Outfile2"
+echo "hola > que tal" >>>>>Outfile">Outfile2"
+echo "hola > que tal" >hola>estoy>>siendo un cabron>Outfile">Outfile2"
+echo "hola > que tal" >>hola>>estoy>>siendo un cabron>Outfile">Outfile2"
+echo "hola > que tal" >hola>>estoy>>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>>estoy>>siendo un cabron>Outfile">Outfile2"
+echo "hola > que tal" >hola>>estoy>>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>>estoy >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>>estoy >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>>estoy>>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>>estoy>>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>>estoy>>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola >>estoy >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>>estoy>>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>>estoy>>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola> e>stoy >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola> e>stoy >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>e>stoy >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>e>stoy>>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola> e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola> e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola> e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola>e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola> e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola> e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >hola> e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+echo "hola > que tal" >>>>>Outfile">Outfile2"
+<Prueba"< Prueba2" echo hola
+echo "hola > que tal" >>>>>Outfile">Outfile2"
+echo "hola > que tal" >hola> e>st>oy> a >>siendo un cabron Outfile">Outfile2"
+export HOLA=">>"
+export
+export
+echo $HOLA
+export HOLA=prueba
+echo $HOLA
+export HOLA=">>"
+echo $HOLA
+echo $HOLA
+export HOLA=">>"
+export HOLA=">>"
+export HOLA=">>"
+export
+export HOLA=">>"
 echo
-echo hola
-echo hola | cat
-echo hola 
-echo
-echo hooa 
-echo hooa wenas
-echo hooa wenas | cat
-echo hola
-cat pipex/pipex.c
-echo
-echo hola
-echo h"olawenas"
-echo h  "olawenas"
-echo h     "olawenas"
-echo h  "olawenas"
-echo h     "olawenas"
-ech ohola
-echo hola
-echo echo
-cat eee
-echo hola 1 cat
-echo hola | cat
-reset
-echo hola
-cat pipex/pipex.c
-ç
-echo hola | cat 
-pwd
-grep hola
-grep pipex/pipex.c pipex
-cat pipex/pipex.c | grep pipex
-cat pipex/pipex.c | grep pipex
-cat pipex/pipex.c | cat
-cat pipex/pipex.c | grep pipex
-cat pipex/pipex.c | grep pipex | echo
-/*   pipex.c                                            :+:      :+:    :+:   */
-#include "pipex.h"
-ft_putstr_fd("pipex: command not found: ", 2);
-voidpipex(t_minishell *minishell)
-cat pipex/pipex.c | grep pipex | grep p
-cat pipex/pipex.c | grep pipex | grep p
-cat pipex/pipex.c | grep pipex | grep pv
-cat pipex/pipex.c | grep pipex | grep pipex
-cat pipex/pipex.c | grep pipex | echo hola
-echo hola | cat
-cat pipex/pipex.c | grep pipex | grep pipex
-cat pipex/pipex.c | cat
-cat pipex/pipex.c | cat | cat
-cat pipex/pipex.c | cat | cat
-cat pipex/pipex.c | cat | cat
-cat pipex/pipex.c | cat
-cat pipex/pipex.c | cat
-cat pipex/pipex.c | cat
-cat pipex/pipex.c | cat | grep pipex
+echo $NADA
+export
+echo $NADA
+echo $HOLA
+export HOLA=">>"
+echo $HOLA
+export
+export REDIRECCION=">> salida.txt"
+export
+echo "Hola mundo" $REDIRECCION
+export REDIRECCION="> salida.txt"
+echo "Hola mundo" $REDIRECCION
+echo "Hola mundo" > salida.txt
+export REDIRECCION="> salida.txt"
+echo "Hola mundo" > salida.txt
+export REDIRECCION="> salida.txt"
+echo "Hola mundo" $REDIRECCION
+export REDIRECCION="> salida.txt"
+export
+echo "Hola mundo" $REDIRECCION
+echo "Hola mundo $REDIRECCION"
+echo "Hola mundo" $REDIRECCION
+echo "Hola mundo $REDIRECCION"
+echo "Hola mundo" $REDIRECCION
+echo "Hola mundo $REDIRECCION"
+echo "Hola mundo $REDIRECCION"
+echo "Hola mundo $REDIRECCION"
+echo "Hola mundo" $REDIRECCION
+export REDIRECCION="> salida.txt"
+export
+export REDIRECCION="> salida.txt"
+export REDIRECCION="> salida.txt"
+export REDIRECCION="> salida.txt"
+export REDIRECCION="> salida.txt"
+export
+echo "Hola mundo $REDIRECCION"
+export REDIRECCION="> salida.txt"
+echo $REDIRECCION
+export REDIRECCION="> salida.txt"
+export
+echo $REDIRECCION
+echo $REDIRECCION
+echo REDIRECCION
+export REDIRECCION="> salida.txt"
+echo $REDIRECCION
+export REDIRECCION="> salida.txt"
+export REDIRECCION="> salida.txt"
+export REDIRECCION="> salida.txt"
+export
+export REDIRECCION="> salida.txt"
+export
+echo $REDIRECCION
+echo "$REDIRECCION"
+echo '$REDIRECCION'
+echo "$REDIRECCION"
+echo "$REDIRECCION"
+export
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que $USER << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $USER << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $USER << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $USER << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal "$NOEXISTE" root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal "$NOEXISTE"root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTEroot que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal "" "" "" "" "" "" "" root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal        root que tal chaval << $PRUEBA2
+export $NOEXISTE
+export 
+export $NOEXISTE
+export $NOEXISTE
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+export $NOEXISTE
+export $NOEXISTE
+export $NOEXISTE
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+export $NOEXISTE
+export $NOEXISTE
+export $NOEXISTE
+echo $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+export $HOLA
+echo $HOLA
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+$INEXISTENTE echo hola
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+$INEXISTENTE echo hola
+$INEXISTENTE echo hola
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+$INEXISTENTE echo hola
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+<< $PRUEBA << $EJEMPLO << $USER << $QUE echo hola que tal $NOEXISTE root que tal chaval << $PRUEBA2
+export
+export HOLA
+export HOLA
+export HOLA
+export HOLA
+export HOLA
+export HOLA
+echo $HOLA soy tonto
+$INEXISTENTE
+$INEXISTENTE
+export $HOLA
+echo $HOLA
+./Minishell
+./Minishell
+<< 'EOF'
+hola 
+que
+tal
+<< 'EOF'
+hola 
+que
+tal
+echo << 'EOF'
+hola 
+que
+tal
+echo << 'EOF'
+echo hola EOF
+./Minishell
+echo $INEXISTENTE$USER hola
+echo $INEXISTENTE$USER hola
+echo $INEXISTENTE hola
+echo $INEXISTENTE$haha hola
+echo $USER$USER hola

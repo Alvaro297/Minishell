@@ -33,18 +33,16 @@ int	is_append(char **command_splited)
 	i = 0;
 	while (command_splited[i])
 	{
-		if (ft_strncmp(command_splited[i], ">>", 2) == 0 &&
-			ft_strlen(command_splited[i]) == 2)
+		if (ft_strncmp(command_splited[i], ">>", 2) == 0)
 			is_append = 2;
-		else if ((ft_strncmp(command_splited[i], ">", 1) == 0 &&
-					ft_strlen(command_splited[i]) == 1))
+		else if (ft_strncmp(command_splited[i], ">", 1) == 0)
 			is_append = 1;
 		i++;
 	}
 	return (is_append);
 }
 
-char	*find_infile(char **command_splited)
+char	*find_infile(t_minishell *minishell, char **command_splited)
 {
 	char	*infile;
 	int		i;
@@ -54,20 +52,24 @@ char	*find_infile(char **command_splited)
 	while (command_splited[i])
 	{
 		if ((ft_strncmp(command_splited[i], "<", 1) == 0 &&
-					ft_strlen(command_splited[i]) == 1))
+			 ft_strlen(command_splited[i]) == 1))
 		{
-			i++;
-			if (!check_name_arg(command_splited[i]))
+			if (!command_splited[i + 1] || is_redirected(command_splited[i + 1]) ||
+				is_env_var_null(minishell, command_splited[i + 1]))
 				return (NULL);
 			else
-				infile = ft_strdup(command_splited[i]);
+			{
+				if (infile)
+					free(infile);
+				infile = ft_strdup(command_splited[i + 1]);
+			}
 		}
 		i++;
 	}
 	return (infile);
 }
 
-char	*find_outfile(char **command_splited)
+char	*find_outfile(t_minishell *minishell, char **command_splited)
 {
 	char	*outfile;
 	int		i;
@@ -77,13 +79,19 @@ char	*find_outfile(char **command_splited)
 	while (command_splited[i])
 	{
 		if ((ft_strncmp(command_splited[i], ">", 1) == 0 &&
-					ft_strlen(command_splited[i]) == 1))
+			 ft_strlen(command_splited[i]) == 1) || 
+			 (ft_strncmp(command_splited[i], ">>", 2) == 0 &&
+			 ft_strlen(command_splited[i]) == 2))
 		{
-			i++;
-			if (!check_name_arg(command_splited[i]))
+			if (!command_splited[i + 1] || is_redirected(command_splited[i + 1]) ||
+				is_env_var_null(minishell, command_splited[i + 1]))
 				return (NULL);
 			else
-				outfile = ft_strdup(command_splited[i]);
+			{
+				if (outfile)
+					free(outfile);
+				outfile = ft_strdup(command_splited[i + 1]);
+			}
 		}
 		i++;
 	}

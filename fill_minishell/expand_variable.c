@@ -12,28 +12,6 @@
 
 # include "../minishell.h"
 
-static void append_expanded_variable(char **result, size_t *j, const char *expanded)
-{
-	size_t		len;
-	size_t		current_len;
-	char		*adapted_result;
-
-	len = ft_strlen(expanded);
-	current_len = *j;
-	adapted_result = malloc(current_len + len + 1);
-	if (adapted_result == NULL)
-	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
-	}
-	ft_strlcpy(adapted_result, *result, current_len + 1);
-	adapted_result[current_len] = '\0';
-	ft_strlcat(adapted_result, expanded, current_len + len + 1);
-	free(*result);
-	*result = adapted_result;
-	*j += len;
-}
-
 static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 {
 	char	*var_name;
@@ -55,25 +33,33 @@ static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 	free(var_name);
 	*len = i;
 	if (var_value == NULL)
-		return (NULL);
+		return (NULL); // Devuelve NULL si la variable no existe
 	return (ft_strdup(var_value));
 }
 
-static int ft_quote_printf_ev(t_minishell *minishell, char *str, t_indices *indices, char **result)
+static int ft_quote_printf_ev(t_minishell *minishell, char *str, t_indices *indices, char **result, t_quotes *quotes)
 {
-	char *expanded;
-	size_t len;
+	char	*expanded;
+	size_t	len;
 
 	expanded = expand_variable(minishell, &str[indices->i], &len);
 	if (expanded != NULL)
 	{
-		append_expanded_variable(result, &indices->j, expanded);
-		indices->i += len;
+		// Si la expansión no es NULL, agregarla al resultado
+		if (!quotes->in_single_quote && !quotes->in_double_quote)
+			append_expanded_variable(result, &indices->j, expanded);
+		else
+			append_expanded_variable_no_quotes(result, &indices->j, expanded);
 		free(expanded);
-		return (1);
+	}
+	else
+	{
+		// Si la expansión es NULL y está entre comillas, agregar una cadena vacía
+		if (quotes->in_single_quote || quotes->in_double_quote)
+			append_expanded_variable_no_quotes(result, &indices->j, "");
 	}
 	indices->i += len;
-	return (0);
+	return (expanded != NULL || (quotes->in_single_quote || quotes->in_double_quote));
 }
 
 static void	ft_quote_printf_help(char **result, t_indices *indices, char *str)
@@ -113,9 +99,13 @@ char	*ft_quote_printf(t_minishell *minishell, char *str)
 			ft_quote_printf_help(&result, &indices, str);
 			continue ;
 		}
-		if ((!quotes.in_single_quote && str[indices.i] == '$') &&
-				ft_quote_printf_ev(minishell, str, &indices, &result))
+		if ((!quotes.in_single_quote && str[indices.i] == '$'))
+		{
+			if (ft_quote_printf_ev(minishell, str, &indices, &result, &quotes))
 				continue ;
+			if (!quotes.in_single_quote && !quotes.in_double_quote)
+				continue ;
+		}
 		ft_quote_printf_help(&result, &indices, str);
 	}
 	result[indices.j] = '\0';

@@ -42,35 +42,6 @@ char	*get_env_value(t_env *env, char *var_name)
 	return (NULL);
 }
 
-void	set_env(t_env **env, char *name, char *value)
-{
-	t_env *tmp;
-	t_env *new;
-	
-	new = malloc(sizeof(t_env));
-	tmp = *env;
-	while (tmp)
-	{
-		if (ft_strncmp(tmp->name, name, ft_strlen(name)) == 0 &&
-			ft_strlen(name) == ft_strlen(tmp->name))
-		{
-			free(tmp->value);
-			new->value = value ? ft_strdup(value) : NULL;
-			return ;
-		}
-		if (tmp->next == NULL)
-			break ;
-		tmp = tmp->next;
-	}
-	new->name = ft_strdup(name);
-	new->value = value ? ft_strdup(value) : NULL;
-	new->next = NULL;
-	if (*env == NULL)
-		*env = new;
-	else
-		tmp->next = new;
-}
-
 static void	delete_env_help(t_env *prev, t_env *tmp, char *name)
 {
 	t_env *to_free;

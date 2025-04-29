@@ -3,6 +3,7 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c \
 			error_control/error_control.c fill_minishell/fill_minishell.c \
 			fill_minishell/expand_variable.c fill_minishell/outfile_array.c \
 			fill_minishell/quote_variable.c free_minishell/free_double_array.c \
+			fill_minishell/expand_variable2.c \
 			history/load_history.c \
 			parsing_commands/internal_commands/export/export_command.c \
 			parsing_commands/internal_commands/export/print_entorn_variable.c \
@@ -14,7 +15,8 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c \
 			parsing_commands/command_type.c parsing_input/checker_args.c \
 			parsing_input/parsing_cmd.c parsing_input/parsing_cmd2.c \
 			parsing_input/parsing_cmd3.c parsing_input/parsing_cmd_split_modified.c \
-			parsing_input/here_doc_parsing.c \
+			parsing_input/here_doc_parsing.c parsing_input/process_redirections.c \
+			parsing_input/process_redirection2.c \
 			signals/handle_sig.c main.c \
 			delete_quotes/delete_quotes.c \
 			pipex/pipex.c pipex/utils.c pipex/libutils.c \

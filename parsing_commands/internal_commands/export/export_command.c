@@ -96,8 +96,6 @@ int		handle_export(t_cmd *current_cmd, t_minishell *minishell)
 	{
 		var_name = parsed_variable_name(current_cmd->args[i]);
 		var_check = ft_strchr(current_cmd->args[i], '=');
-		printf("var_name es: %s\n", var_name);
-		printf("var_check es: %s\n", var_check);
 		if (var_check != NULL && current_cmd->args[i][0] != '=')
 		{
 			var_check++;
@@ -106,10 +104,7 @@ int		handle_export(t_cmd *current_cmd, t_minishell *minishell)
 		}
 		else if (var_check == NULL && var_name != NULL)
 			if (parsed_name_validation(var_name))
-			{
-				printf("Im in\n");
 				set_env(&minishell->env_vars, var_name, NULL);
-			}
 		free(var_name);
 	}
 	if (current_cmd->is_pipe && current_cmd->args[1])

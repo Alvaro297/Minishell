@@ -14,15 +14,15 @@
 
 bool	is_redirected(char *command_splited)
 {
-	if (ft_strcmp(command_splited, "<") == 0 ||
-			ft_strcmp(command_splited, ">") == 0 ||
-			ft_strcmp(command_splited, ">>") == 0 ||
-			ft_strcmp(command_splited, "<<") == 0)
+	if (ft_strncmp(command_splited, "<", 1) == 0 ||
+			ft_strncmp(command_splited, ">", 1) == 0 ||
+			ft_strncmp(command_splited, ">>", 2) == 0 ||
+			ft_strncmp(command_splited, "<<", 2) == 0)
 			return (true);
 	return (false);
 }
 
-char	*find_command(char **command_splited)
+char	*find_command(t_minishell *minishell, char **command_splited)
 {
 	int		i;
 
@@ -32,17 +32,19 @@ char	*find_command(char **command_splited)
 		if (is_redirected(command_splited[i]))
 		{
 			i++;
-			if (is_redirected(command_splited[i]))
+			if (!command_splited[i] || is_redirected(command_splited[i]))
 				return (NULL);
 			i++;
 		}
+		else if (is_env_var_null(minishell, command_splited[i]))
+			i++;
 		else
 			return (command_splited[i]);
 	}
 	return (NULL);
 }
 
-static char	**find_args_help(char **command_splited, int count)
+static char	**find_args_help(t_minishell *minishell, char **command_splited, int count)
 {
 	char	**args;
 	int		i;
@@ -60,7 +62,7 @@ static char	**find_args_help(char **command_splited, int count)
 	{
 		if (is_redirected(command_splited[i]))
 			i++;
-		else
+		else if (!is_env_var_null(minishell, command_splited[i]))
 		{
 			args[j] = ft_strdup(command_splited[i]);
 			j++;
@@ -71,7 +73,7 @@ static char	**find_args_help(char **command_splited, int count)
 	return (args);
 }
 
-char	**find_args(char **command_splited)
+char	**find_args(t_minishell *minishell, char **command_splited)
 {
 	int		i;
 	int		count;
@@ -82,9 +84,13 @@ char	**find_args(char **command_splited)
 	{
 		if (is_redirected(command_splited[i]))
 			i++;
+		else if (is_env_var_null(minishell, command_splited[i]))
+			i++;
 		else
 			count++;
+		if (!command_splited[i])
+			break ;
 		i++;
 	}
-	return (find_args_help(command_splited, count));
+	return (find_args_help(minishell, command_splited, count));
 }

@@ -1,5 +1,16 @@
 # include "../minishell.h"
 
+void signals_ignore(void)
+{
+	struct sigaction sa;
+
+	sa.sa_handler = SIG_IGN;
+	sa.sa_flags = SA_RESTART;
+	sigemptyset(&sa.sa_mask);
+	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGQUIT, &sa, NULL);
+}
+
 static void	handle_sigint(int sig)
 {
 	(void)sig;
