@@ -28,6 +28,7 @@ int	internal_commands(t_cmd *current_cmd, t_minishell *minishell)
 		return (handle_env(current_cmd, minishell));
 	else if (ft_strncmp(current_cmd->cmd, "echo", 4) == 0)
 		return (handle_echo(current_cmd, minishell));
+	return (1);
 }
 
 bool	is_builtin(t_cmd *builtin)

@@ -303,3 +303,78 @@ echo $INEXISTENTE$USER hola
 echo $INEXISTENTE hola
 echo $INEXISTENTE$haha hola
 echo $USER$USER hola
+export $HOLA
+echo hola que tal                         hola
+echo hola que tal            $HOLA$QUE              hola
+export $HOLA
+export HOLA=HOLA HOLA3=HOLA3 HOLA2=HOLA2
+export
+cat pipex/pipex.c
+cat pipex/pipex.c
+cat pipex/pipex.c | cat 
+cat pipex/pipex.c > hola
+cat pipex/pipex.c | cat 
+ls -l
+ls -l | cat
+ç
+echo hola
+ls -l 
+ls -l | grep fill
+cat pipex/pipex.c 
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex | cat
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c 
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex | cat
+cat pipex/pipex.c
+cat pipex/pipex.c cat
+cat pipex/pipex.c
+cat pipex/pipex.c
+ls -l
+ls -l | ca
+cat hola
+echo hola 
+cat pipex/pipex.c
+echo hola
+cat pipex/pipex.c
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex | cat
+echo hola
+cat pipex/pipex.c
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex | cat
+cat pipex/pipex.c | grep pipex | cat
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex
+echo hola
+cat pipex/pipex.c | grep pipex
+echo hola
+cat pipex/pipex.c
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c |
+cat pipex/pipex.c |
+cat pipex/pipex.c | echo hola
+cat pipex/pipex.c |
+cat pipex/pipex.c |
+cat pipex/pipex.c
+cat pipex/pipex.c | echo hola
+cat pipex/pipex.c | echo hola
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: paperez- <marvin@42.fr>                    +#+  +:+       +#+        */
+cat pipex/pipex.c | grep pipex
+cat pipex/pipex.c | cat
+cat pipex/pipex.c | cat | cat | cat
+cat pipex/pipex.c | cat | cat | cat | grep pipex
+cat pipex/pipex.c | cat | cat | cat | grep pipex | grep void

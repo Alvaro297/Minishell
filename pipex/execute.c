@@ -5,7 +5,7 @@ void	closefds(t_minishell *minishell, int **fd)
 	int	i;
 
 	i = 0;
-	while (i < minishell->howmanycmd)
+	while (i < minishell->howmanycmd - 1)
 	{
 		close(fd[i][0]);
 		close(fd[i][1]);
@@ -31,15 +31,13 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
 	//int	fd;
 	logadd("ESTOY EN EL ULTIMO HIJO\n");
 	if (cmd->cmd)
-	{
 		logadd(cmd->cmd);
-	}
 	else
 		logadd("NO HAY CMD");
 	//fd = open_f(cmd->outfile, 1);
 	dup2(pfd[minishell->howmanycmd - 2][0], STDIN_FILENO);
 	dup2(std_out, STDOUT_FILENO);
-	close(std_out);
+	//close(std_out);
 	closefds(minishell, pfd);
 	execute(minishell, cmd);
 }
@@ -48,9 +46,7 @@ void	first_child(t_minishell *minishell, t_cmd *cmd, int **pfd)
 {
 	logadd("ESTOY EN EL PRIMER HIJO:\n");
 	if (cmd->cmd)
-	{
 		logadd(cmd->cmd);
-	}
 	else
 		logadd("NO HAY CMD");
 	//TODO implementar los heredocs
