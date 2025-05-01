@@ -168,7 +168,7 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 		data.command = parsed_input[data.position];
 		parse_input_help(minishell, &new_cmd, &data);
 		append_cmds(&head, new_cmd);
-		if (head->is_pipe)
+		if (new_cmd->is_pipe)
 			data.position += 2;
 		else
 			break ;
