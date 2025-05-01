@@ -28,15 +28,20 @@ void	handle_echo_help(t_minishell *minishell, int i, int newline)
 	}
 	if (newline)
 		echo_print = ft_strjoin_free(echo_print, "\n");
-	if (minishell->cmds->is_pipe)
-		minishell->output = echo_print;
-	else
-		printf("%s", echo_print);
+	//if (minishell->cmds->is_pipe)
+		//minishell->output = echo_print;
+	//else
+		while (echo_print)
+		{
+			write(STDOUT_FILENO, &echo_print, 1);
+			echo_print++;
+		}
 }
 
 int	handle_echo(t_cmd *current_cmd, t_minishell *minishell)
 {
 	int		i;
+	int		j;
 	bool	newline;
 
 	i = 1;
@@ -50,12 +55,17 @@ int	handle_echo(t_cmd *current_cmd, t_minishell *minishell)
 	}
 	while (current_cmd->args[i] != NULL)
 	{
-		printf("%s", current_cmd->args[i]);
+		j = 0;
+		while (current_cmd->args[i][j] != '\0')
+		{
+			write(STDOUT_FILENO, &current_cmd->args[i][j], 1);
+			j++;
+		}
 		if (current_cmd->args[i + 1] != NULL)
-			printf(" ");
+			write(STDOUT_FILENO, " ", 1);
 		i++;
 	}
 	if (newline)
-		printf("\n");
+		write(STDOUT_FILENO, "\n", 1);
 	return (0);
 }

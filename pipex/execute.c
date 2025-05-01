@@ -37,10 +37,12 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
 	//fd = open_f(cmd->outfile, 1);
 	dup2(pfd[minishell->howmanycmd - 2][0], STDIN_FILENO);
 	dup2(std_out, STDOUT_FILENO);
-	//close(std_out);
+	close(std_out);
 	closefds(minishell, pfd);
 	execute(minishell, cmd);
 }
+
+ 
 
 void	first_child(t_minishell *minishell, t_cmd *cmd, int **pfd)
 {
@@ -53,11 +55,39 @@ void	first_child(t_minishell *minishell, t_cmd *cmd, int **pfd)
 	//dup2(pfd[0][0], STDIN_FILENO);
 	dup2(pfd[0][1], STDOUT_FILENO);
 	closefds(minishell, pfd);
+	//close(pfd[0][1]);
+	execute(minishell, cmd);
+}
+
+void	first_cmd_builtin(t_minishell *minishell, t_cmd *cmd, int **pfd)
+{
+	logadd("ESTOY EN EL PRIMER HIJO:\n");
+	if (cmd->cmd)
+		logadd(cmd->cmd);
+	else
+		logadd("NO HAY CMD");
+	if (ft_strcmp(minishell->cmds->cmd, "cd") == 0 || 
+			ft_strcmp(minishell->cmds->cmd, "exit") == 0 || 
+			ft_strcmp(minishell->cmds->cmd, "unset") == 0 ||
+				ft_strcmp(minishell->cmds->cmd, "export") == 0)
+				{
+					minishell->cmds = minishell->cmds->next;
+					minishell->howmanycmd = minishell->howmanycmd -1;
+					printf("ESTE ES EL · CMD: %s\n", minishell->cmds->next->cmd);
+					execute_all(minishell);
+					return ;
+				}
+	//TODO implementar los heredocs
+	//dup2(pfd[0][0], STDIN_FILENO);
+	dup2(pfd[0][1], STDOUT_FILENO);
+	//closefds(minishell, pfd);
+	close(pfd[0][1]);
 	execute(minishell, cmd);
 }
 
 void	execute_command(t_minishell *minishell, t_cmd *cmd, int ** pfd, int i)
 {
+	logadd("ESTOY EN EL n HIJO:\n");
 	dup2(pfd[i - 1][0], STDIN_FILENO);
 	dup2(pfd[i][1], STDOUT_FILENO);
 	closefds(minishell, pfd);
@@ -84,6 +114,48 @@ int	**create_pipes(t_minishell *minishell)
 	return (fd);
 }
 
+void	executebuiltin(t_minishell *minishell)
+{
+	int	**pfd;
+	int	i;
+	pid_t *pids;
+	t_cmd	*current_cmd;
+	int	std_out;
+	
+	i = 1;
+	current_cmd = minishell->cmds;
+	std_out = dup(STDOUT_FILENO);
+	pids = malloc(sizeof(pid_t) * (minishell->howmanycmd - 1));
+	pfd = create_pipes(minishell);
+	first_cmd_builtin(minishell, current_cmd, pfd);
+	if (minishell->cmds->cmd == NULL)
+		return ;
+	close(pfd[0][1]);
+	current_cmd = current_cmd->next;
+	while (i < minishell->howmanycmd)
+	{
+		logadd("ESTOY EN LA N EJECUCIÖN:\n");
+		pids[i - 1] = fork();
+		if (pids[i - 1] == 0)
+		{
+			if (i == minishell->howmanycmd - 1)
+				last_child(minishell, current_cmd, pfd, std_out);
+			else
+				execute_command(minishell, current_cmd, pfd, i);
+		}
+		current_cmd = current_cmd->next;
+		close(pfd[i - 1][0]);
+		i++;
+	}
+	closefds(minishell, pfd);
+	i = 0;
+	while (i < minishell->howmanycmd - 1)//TODO hacer una funcion que se quede con el primer codigo de error si los hay.
+	{
+		logadd("EN EL PADRE ESPERANDO\n");
+		waitpid(pids[i], &minishell->last_exit_status, 0);
+		i++;
+	}
+}
 
 void	execute_all(t_minishell *minishell)
 {
@@ -100,10 +172,14 @@ void	execute_all(t_minishell *minishell)
 		no_pipes(minishell);
 		return ;
 	}
+	/*if (is_builtin(minishell->cmds))
+	{
+		executebuiltin(minishell);
+		return ;
+	}*/
 	i = 0;
 	pids = malloc(sizeof(pid_t) * minishell->howmanycmd);
 	pfd = create_pipes(minishell);
-	printf("HOWMANYCMDS :%i\n", minishell->howmanycmd);
 	while (i < minishell->howmanycmd)
 	{
 		pids[i] = fork();
@@ -116,6 +192,8 @@ void	execute_all(t_minishell *minishell)
 			else
 				execute_command(minishell, current_cmd, pfd, i);
 		}
+		if (pids[i] == 0)
+			exit (0);
 		current_cmd = current_cmd->next;
 		i++;
 	}
