@@ -153,7 +153,7 @@ char	**returntoenvp(t_env *env);
 char	**ft_split(char const *s, char c);
 char	*getpathaux(char *path, char **env);
 char	*getpath(char *cmd, char **env);
-int		open_f(char *file, int sw);
+int		open_f(char *file, int sw, t_cmd *cmd);
 //**  Pipex prueba**//
 int		pipex_prueba(t_minishell *minishell);
 

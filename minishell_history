@@ -618,3 +618,30 @@ cat t.txt
 < t.txt cat | <pipex/pipex.c grep pipex
 < t.txt cat | <pipex/pipex.c grep pipex
 echo hola > t1.txt > t2.txt > t3.txt > t4.txt
+echo hola > t1.txt > t2.txt > t3.txt > t4.txt
+ls
+ls
+< t.txt cat | <pipex/pipex.c grep pipex
+< t.txt cat | grep
+< pipex/pipex.c cat > t.txt
+cat t.txt
+echo hola
+export
+          cat pipex/pipex.c | grep pipex | wc -l
+          cat pipex/pipex.c | grep pipex
+          cat pipex/pipex.c
+echo hola > t.txt
+          cat pipex/pipex.c
+          cat pipex/pipex.c | grep pipex
+echo hola > t.txt
+echo hola
+cat pipex/pipex.c
+< minishell.log cat
+cat hola > hola.txt | ls -l > hola2.txt
+cat hola
+ls
+echo hola > hola.txt | ls -l > hola2.txt
+cat hola.txt 
+cat hola2.txt 
+echo que tal >> hola.txt
+cat hola.txt 

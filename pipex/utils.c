@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include "../minishell.h"
 
 void	exitaux(void)
 {
@@ -18,14 +19,16 @@ void	exitaux(void)
 	exit(0);
 }
 
-int	open_f(char *file, int sw)
+int	open_f(char *file, int sw, t_cmd *cmd)
 {
 	int	r;
 
 	if (sw == 0)
 		r = open(file, O_RDONLY, 0777);
-	if (sw == 1)
+	if (sw == 1 && cmd->outfile_modes == 1)
 		r = open(file, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	if (sw == 1 && cmd->outfile_modes == 2)
+		r = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
 	return (r);
 }
 

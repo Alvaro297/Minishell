@@ -1,0 +1,25 @@
+total 180
+-rw-r--r-- 1 ubuntu ubuntu     0 Apr 30 11:02 +#+
+-rw-r--r-- 1 ubuntu ubuntu  1699 Apr 30 11:02 Makefile
+-rwxr-xr-x 1 ubuntu ubuntu 66160 May 12 17:57 Minishell
+-rw-r--r-- 1 ubuntu ubuntu  3952 Mar 27 16:27 Readme.md
+drwxr-xr-x 2 ubuntu ubuntu  4096 May 12 17:57 cmds
+drwxr-xr-x 2 ubuntu ubuntu  4096 May 12 17:57 delete_quotes
+drwxr-xr-x 2 ubuntu ubuntu  4096 May 12 17:57 env_recharge
+drwxr-xr-x 2 ubuntu ubuntu  4096 May 12 17:57 error_control
+drwxr-xr-x 2 ubuntu ubuntu  4096 May 12 17:57 fill_minishell
+drwxr-xr-x 2 ubuntu ubuntu  4096 May 12 17:57 free_minishell
+drwxr-xr-x 2 ubuntu ubuntu  4096 May 12 17:57 history
+-rw------- 1 ubuntu ubuntu     5 May 12 17:59 hola.txt
+-rw------- 1 ubuntu ubuntu     0 May 12 17:59 hola2.txt
+drwxr-xr-x 2 ubuntu ubuntu  4096 May 12 17:57 libft_minishell
+-rw-r--r-- 1 ubuntu ubuntu  2434 Apr 30 11:02 main.c
+-rw-r--r-- 1 ubuntu ubuntu  2936 May 12 17:57 main.o
+-rw-r--r-- 1 ubuntu ubuntu  6420 May 12 17:44 minishell.h
+-rw-r--r-- 1 ubuntu ubuntu 10869 May 12 17:59 minishell.log
+-rw-r--r-- 1 ubuntu ubuntu 18386 May 12 17:59 minishell_history
+drwxr-xr-x 3 ubuntu ubuntu  4096 May 12 17:57 parsing_commands
+drwxr-xr-x 2 ubuntu ubuntu  4096 May 12 17:57 parsing_input
+drwxr-xr-x 2 ubuntu ubuntu  4096 May 12 17:57 pipex
+drwxr-xr-x 2 ubuntu ubuntu  4096 May 12 17:57 signals
+-rw------- 1 ubuntu ubuntu     5 May 12 17:57 t.txt

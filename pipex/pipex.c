@@ -41,7 +41,7 @@ void	redirimput(t_cmd *cmd)
 
 	if (cmd->infile)
 	{
-		fdi = open_f(cmd->infile, 0);
+		fdi = open_f(cmd->infile, 0, cmd);
 		if (fdi < 0)
 		{
 			perror("open");
@@ -59,15 +59,18 @@ void	rediroutput(t_cmd *cmd)
 	int	i;
 
 	i = 0;
-	while (cmd->outfile_array[i])
+	if (cmd->outfile_array != NULL)
 	{
-		fdo = open_f(cmd->outfile_array[i], 1);
-		close(fdo);
-		i++;
+		while (cmd->outfile_array[i])
+		{
+			fdo = open_f(cmd->outfile_array[i], 1, cmd);
+			close(fdo);
+			i++;
+		}
 	}
 	if (cmd->outfile)
 	{
-		fdo = open_f(cmd->outfile, 1);
+		fdo = open_f(cmd->outfile, 1, cmd);
 		if (fdo < 0)
 		{
 			perror("open");
