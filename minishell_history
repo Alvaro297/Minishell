@@ -645,3 +645,4 @@ cat hola.txt
 cat hola2.txt 
 echo que tal >> hola.txt
 cat hola.txt 
+echo hola
