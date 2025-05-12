@@ -71,6 +71,7 @@ void	minishell(char **envp)
 		execute_all(&minishell);
 		free(input);
 	}
+	free_all(&minishell);
 }
 
 int	main(int argc, char **argv, char **envp)

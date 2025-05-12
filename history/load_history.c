@@ -41,7 +41,6 @@ void	load_history(t_minishell *minishell)
 		minishell->history = ft_realloc(minishell->history, (count + 2) * sizeof(char *));
 		minishell->history[count] = ft_strdup(line);
 		error_minishell_history(minishell->history, count, fd);
-//		error_duplicate(minishell->history, count);//TODO 
 		minishell->history[count + 1] = NULL;
 		count++;
 		free(line);
