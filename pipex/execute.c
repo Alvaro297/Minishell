@@ -35,9 +35,17 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
 	else
 		logadd("NO HAY CMD");
 	//fd = open_f(cmd->outfile, 1);
-	dup2(pfd[minishell->howmanycmd - 2][0], STDIN_FILENO);
-	dup2(std_out, STDOUT_FILENO);
-	close(std_out);
+	if (cmd->infile)
+		redirimput(cmd);
+	else
+		dup2(pfd[minishell->howmanycmd - 2][0], STDIN_FILENO);
+	if (cmd->outfile)
+		rediroutput(cmd);
+	else
+	{
+		dup2(std_out, STDOUT_FILENO);
+		close(std_out);
+	}
 	closefds(minishell, pfd);
 	execute(minishell, cmd);
 }
@@ -46,14 +54,25 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
 
 void	first_child(t_minishell *minishell, t_cmd *cmd, int **pfd)
 {
+//	int	fd;
+
 	logadd("ESTOY EN EL PRIMER HIJO:\n");
 	if (cmd->cmd)
 		logadd(cmd->cmd);
 	else
 		logadd("NO HAY CMD");
+/*	if (cmd->output != NULL)
+	{
+		fd = open_f();
+	}*/
 	//TODO implementar los heredocs
 	//dup2(pfd[0][0], STDIN_FILENO);
-	dup2(pfd[0][1], STDOUT_FILENO);
+	if (cmd->infile)
+		redirimput(cmd);
+	if (cmd->outfile)
+		rediroutput(cmd);
+	else
+		dup2(pfd[0][1], STDOUT_FILENO);
 	closefds(minishell, pfd);
 	//close(pfd[0][1]);
 	execute(minishell, cmd);
@@ -88,8 +107,14 @@ void	first_cmd_builtin(t_minishell *minishell, t_cmd *cmd, int **pfd)
 void	execute_command(t_minishell *minishell, t_cmd *cmd, int ** pfd, int i)
 {
 	logadd("ESTOY EN EL n HIJO:\n");
-	dup2(pfd[i - 1][0], STDIN_FILENO);
-	dup2(pfd[i][1], STDOUT_FILENO);
+	if (cmd->infile)
+		redirimput(cmd);
+	else
+		dup2(pfd[i - 1][0], STDIN_FILENO);
+	if (cmd->outfile)
+		rediroutput(cmd);
+	else
+		dup2(pfd[i][1], STDOUT_FILENO);
 	closefds(minishell, pfd);
 	execute(minishell, cmd);
 }

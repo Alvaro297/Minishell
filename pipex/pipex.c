@@ -35,23 +35,61 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 	}
 }
 
+void	redirimput(t_cmd *cmd)
+{
+	int	fdi;
+
+	if (cmd->infile)
+	{
+		fdi = open_f(cmd->infile, 0);
+		if (fdi < 0)
+		{
+			perror("open");
+			return ;
+		}
+		if (dup2(fdi, STDIN_FILENO) < 0)
+			perror("dup2");
+		close(fdi);
+	}
+}
+
+void	rediroutput(t_cmd *cmd)
+{
+	int fdo;
+	int	i;
+
+	i = 0;
+	while (cmd->outfile_array[i])
+	{
+		fdo = open_f(cmd->outfile_array[i], 1);
+		close(fdo);
+		i++;
+	}
+	if (cmd->outfile)
+	{
+		fdo = open_f(cmd->outfile, 1);
+		if (fdo < 0)
+		{
+			perror("open");
+			return ;
+		}
+		if (dup2(fdo, STDOUT_FILENO) < 0)
+			perror("dup2");
+		close(fdo);
+	}
+}
+
 void	no_pipes(t_minishell *minishell)
 {
-	int	fd;
+//	int	fd;
 	pid_t	pid;
+	int	stdo;
+	int stdi;
 
-	if (minishell->cmds->infile)
-	{
-		fd = open_f(minishell->cmds->infile, 0);
-		dup2(fd, STDIN_FILENO);
-		close(STDIN_FILENO);
-	}
-	if (minishell->cmds->outfile)
-	{
-		fd = open_f(minishell->cmds->outfile, 1);
-		dup2(fd, STDOUT_FILENO);
-		close(STDOUT_FILENO);
-	}
+	stdo = dup(STDOUT_FILENO);
+	stdi = dup(STDIN_FILENO);
+	redirimput(minishell->cmds);
+	rediroutput(minishell->cmds);
 	if (is_builtin(minishell->cmds))
 		internal_commands(minishell->cmds, minishell);
 	else
@@ -62,6 +100,11 @@ void	no_pipes(t_minishell *minishell)
 		else
 			waitpid(pid, &minishell->last_exit_status, 0);
 	}
+	dup2(stdo, STDOUT_FILENO);
+	dup2(stdi, STDIN_FILENO);
+	close (stdo);
+	close (stdi);
+	//close (fd);
 }
 /*
 void	redir(int *p_fd, t_minishell *minishell, int i)

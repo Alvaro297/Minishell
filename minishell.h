@@ -137,6 +137,9 @@ void	manage_signals(void);
 //** Free Minishell **//
 void	free_double_array(void **double_array);
 //**PIPEX **/
+void	redir(t_minishell *minishell);
+void	rediroutput(t_cmd *cmd);
+void	redirimput(t_cmd *cmd);
 void	no_pipes(t_minishell *minishell);
 void	execute(t_minishell *minishell, t_cmd *cmd);
 void	execute_all(t_minishell *minishell);
