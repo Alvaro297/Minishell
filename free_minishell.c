@@ -15,28 +15,25 @@ void	free_env_list(t_env *env)
 
 void	free_cmd_list(t_cmd *cmd)
 {
-	t_cmd *tmp;
-	int i;
+	t_cmd	*tmp;
+	
 	while (cmd)
 	{
 		tmp = cmd->next;
 		free(cmd->cmd);
 		if (cmd->args)
 		{
-			for (i = 0; cmd->args[i]; i++)
-				free(cmd->args[i]);
+			free_double_array((void **)cmd->args);
 			free(cmd->args);
 		}
 		if (cmd->outfile_array)
 		{
-			for (i = 0; cmd->outfile_array[i]; i++)
-				free(cmd->outfile_array[i]);
+			free_double_array((void **)cmd->outfile_array);
 			free(cmd->outfile_array);
 		}
 		if (cmd->here_doc_delim)
 		{
-			for (i = 0; cmd->here_doc_delim[i]; i++)
-				free(cmd->here_doc_delim[i]);
+			free_double_array((void **)cmd->here_doc_delim);
 			free(cmd->here_doc_delim);
 		}
 		free(cmd->infile);
@@ -48,10 +45,24 @@ void	free_cmd_list(t_cmd *cmd)
 
 void	free_all(t_minishell *minishell)
 {
-	free_double_array((void **)minishell->history);
-	free(minishell->current_dir);
-	free(minishell->input);
-	free(minishell->output);
-	free_cmd_list(minishell->cmds);
-	free_env_list(minishell->env_vars);
+	if (!minishell)
+		return;
+	if (minishell->history)
+		free_double_array((void **)minishell->history);
+	if (minishell->current_dir)
+		free(minishell->current_dir);
+	if (minishell->input)
+		free(minishell->input);
+	if (minishell->output)
+		free(minishell->output);
+	if (minishell->cmds)
+		free_cmd_list(minishell->cmds);
+	if (minishell->env_vars)
+		free_env_list(minishell->env_vars);
+	if (minishell->pids)
+		free(minishell->pids);
+	if (minishell->history_file)
+		free(minishell->history_file);
+	free(minishell);
 }
+

@@ -49,9 +49,8 @@ static char *get_next_word_help(char *start, char **command, t_quotes *quotes)
 
 static char *get_next_word(char **command, t_quotes *quotes)
 {
-	char *start;
-	char *word;
-	size_t len;
+	char	*start;
+	size_t	len;
 
 	len = 0;
 	while (**command && (**command == ' ' || **command == '\t' || **command == '\n'))
@@ -64,21 +63,14 @@ static char *get_next_word(char **command, t_quotes *quotes)
 		len++;
 	}
 	if (len != 0)
-	{
-		word = malloc(len + 1);
-		if (!word)
-			return (NULL);
-		ft_strncpy(word, start, len);
-		word[len] = '\0';
 		return (get_next_word_help(start, command, quotes));
-	}
 	return (NULL);
 }
 
 static char **split_modified_help(char **result, char *command)
 {
-	int i;
-	t_quotes quotes;
+	int			i;
+	t_quotes	quotes;
 
 	i = 0;
 	quotes.in_single_quote = false;

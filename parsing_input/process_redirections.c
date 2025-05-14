@@ -1,7 +1,5 @@
 # include "../minishell.h"
 
-
-
 static int	ft_add_token(char *cmd, char **tokens, int *k, int *j)
 {
 	if (cmd[*j] == cmd[*j + 1])
@@ -57,6 +55,7 @@ static char	**process_redirection_help(char **cmd_split, char **tokens)
 		i++;
 	}
 	tokens[k] = NULL;
+	free_double_array((void **)cmd_split);
 	return (tokens);
 }
 

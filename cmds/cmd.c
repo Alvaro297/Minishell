@@ -21,11 +21,14 @@ void	delete_cmds(t_cmd *cmd)
 	while (current != NULL)
 	{
 		next = current->next;
-		free(current->cmd);
+		if (current->cmd)
+			free(current->cmd);
 		if (current->args)
 			free_double_array((void **) current->args);
-		free(current->infile);
-		free(current->outfile);
+		if (current->infile)
+			free(current->infile);
+		if (current->outfile)
+			free(current->outfile);
 		if (current->outfile_array)
 			free_double_array((void **) current->outfile_array);
 		if (current->here_doc_delim)

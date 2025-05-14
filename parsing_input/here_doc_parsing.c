@@ -54,15 +54,24 @@ static char	**here_doc_delim_help(char **heredocs_delim, char **split_input_inic
 				i++;
 				heredocs_delim[count] = ft_strdup(split_input_inic[i]);
 				if (!heredocs_delim[count])
-					return (free_double_array((void **) heredocs_delim), NULL);
+				{
+					free_double_array((void **)heredocs_delim);
+					free_double_array((void **)split_input_inic);
+					return (NULL);
+				}
 				count++;
 			}
 			else
+			{
+				free_double_array((void **)heredocs_delim);
+				free_double_array((void **)split_input_inic);
 				return (NULL);
+			}
 		}
 		i++;
 	}
 	heredocs_delim[count] = NULL;
+	free_double_array((void **) split_input_inic);
 	return (heredocs_delim);
 }
 
@@ -78,8 +87,14 @@ char	**here_doc_delim(char *input)
 	if (count_heredocs == -1)
 	{
 		ft_putstr_fd("Syntax error near unexpected token\n", 2);
+		free_double_array((void **)split_input_inic);
 		return (NULL);
 	}
 	heredocs_delim = malloc(sizeof(char *) * (count_heredocs + 1));
+	if (!heredocs_delim)
+	{
+		free_double_array((void **)split_input_inic);
+		return (NULL);
+	}
 	return(here_doc_delim_help(heredocs_delim, split_input_inic));
 }

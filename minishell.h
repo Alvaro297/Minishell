@@ -77,7 +77,7 @@ typedef struct s_minishell
 int	ft_strcmp(char *s1, char *s2);
 //void	command_type(t_minishell *minishell);
 //** Fill_minishell **//
-void	fill_minishell(char *input, t_minishell *minishell, int i, char **envp);
+void	fill_minishell(char *input, t_minishell *minishell, char **envp);
 void	free_all(t_minishell *minishell);
 /* Expand_variable */
 char	*ft_quote_printf(t_minishell *minishell, char *str);

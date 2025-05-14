@@ -40,36 +40,24 @@ void	minishell(char **envp)
 {
 	char		*input;
 	t_minishell	minishell;
-	int			i;
 
-	i = 0;
+	init_minishell(&minishell);
 	load_history(&minishell);
 	manage_signals();
-	init_minishell(&minishell);
 	while (1)
 	{
 		input = readline("Minishell: ");
 		if (exitMinishell(input))
-			break ;
-		fill_minishell(input, &minishell, i, envp);
-		//error_management(&minishell);
-//		if (input && *input)
-//			i++;
-		if (minishell.cmds == NULL)
 		{
 			free(input);
-			continue ;
+			break ;
 		}
-		/*printf("ES BUITIN?: %s\n", minishell.cmds->cmd);
-		if (is_builtin(minishell.cmds))
-		{
-			printf("BUILTIN\n");
-			internal_commands(minishell.cmds, &minishell);
-		}*/
-		//minishell.last_exit_status = error_control(&minishell);
-		//if (minishell.last_exit_status == 0)
+		fill_minishell(input, &minishell, envp);
+		//error_management(&minishell);
+		if (minishell.cmds == NULL)
+			continue ;
 		execute_all(&minishell);
-		free(input);
+		free(input);	
 	}
 	free_all(&minishell);
 }

@@ -63,45 +63,6 @@ static char **split_commands(const char *input, int i, t_quotes *quotes)
 	commands[cmd_index] = NULL;
 	return (commands);
 }
-/*
-static void print_cmd(t_cmd *cmd)
-{
-	int i;
-
-	if (!cmd)
-	{
-		printf("Command is NULL\n");
-		return;
-	}
-
-	printf("Command: %s\n", cmd->cmd);
-
-	printf("Arguments: ");
-	if (cmd->args)
-	{
-		for (i = 0; cmd->args[i]; i++)
-		{
-			printf("%s ", cmd->args[i]);
-		}
-	}
-	printf("\n");
-
-	printf("Is Pipe: %d\n", cmd->is_pipe);
-	printf("Infile: %s\n", cmd->infile);
-	printf("Outfile: %s\n", cmd->outfile);
-
-	printf("Outfile Array: ");
-	if (cmd->outfile_array)
-	{
-		for (i = 0; cmd->outfile_array[i]; i++)
-		{
-			printf("%s ", cmd->outfile_array[i]);
-		}
-	}
-	printf("\n");
-	printf("Outfile Modes: %d", cmd->outfile_modes);
-	printf("\n");
-}*/
 
 void init_cmd(t_cmd *cmd)
 {
@@ -123,7 +84,6 @@ static void	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_da
 {
 	t_cmd	*tmp;
 	char	**command_splited;
-	int		i;
 	
 	tmp = malloc(sizeof(t_cmd));
 	init_cmd(tmp);
@@ -141,19 +101,16 @@ static void	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_da
 	tmp->here_doc_delim = here_doc_delim(data->input);
 	tmp->next = NULL;
 	delete_quotes(minishell, tmp);
-	i = 0;
-	while (command_splited[i] != NULL)
-		free(command_splited[i++]);
-	free(command_splited);
 }
 
 t_cmd	*parsing_input(t_minishell *minishell, char *input)
 {
-	t_cmd		*head = NULL;
-	t_cmd		*new_cmd = NULL;
-	char		**parsed_input;
-	t_quotes	quotes;
-	t_parse_data data;
+	t_cmd			*head = NULL;
+	t_cmd			*new_cmd = NULL;
+	char			**parsed_input;
+	t_quotes		quotes;
+	t_parse_data	data;
+	int			i;
 
 	if (minishell->cmds)
 		delete_cmds(minishell->cmds);
@@ -173,5 +130,9 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 		else
 			break ;
 	}
+	i = 0;
+	while (parsed_input[i] != NULL)
+		free(parsed_input[i++]);
+	free(parsed_input);
 	return (head);
 }

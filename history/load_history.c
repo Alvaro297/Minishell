@@ -12,14 +12,41 @@
 
 # include "../minishell.h"
 
-static void	error_minishell_history(char **history, int count, int fd)
+static int	history_realloc_and_store(t_minishell *minishell, char *line, int count)
 {
-	if (history[count] == NULL)
+	int		old_count;
+	char	**new_history;
+
+	old_count = 0;
+	if (minishell->history)
+		while (minishell->history[old_count])
+			old_count++;
+	new_history = ft_realloc(
+		minishell->history,
+		(old_count + 1) * sizeof(char *),
+		(count + 2) * sizeof(char *)
+	);
+	if (!new_history)
+		return (0);
+	minishell->history = new_history;
+	minishell->history[count] = ft_strdup(line);
+	if (!minishell->history[count])
+		return (0);
+	minishell->history[count + 1] = NULL;
+	return (1);
+}
+
+static void	load_history_line(t_minishell *minishell, char *line, int *count)
+{
+	line[ft_strlen(line) - 1] = '\0';
+	add_history(line);
+	if (!history_realloc_and_store(minishell, line, *count))
 	{
-		perror("Error al duplicar la línea del historial");
-		close(fd);
+		free(line);
 		return ;
 	}
+	(*count)++;
+	free(line);
 }
 
 void	load_history(t_minishell *minishell)
@@ -35,16 +62,7 @@ void	load_history(t_minishell *minishell)
 	if (fd == -1)
 		return;
 	while ((line = get_next_line(fd)) != NULL)
-	{
-		line[ft_strlen(line) - 1] = '\0';
-		add_history(line);
-		minishell->history = ft_realloc(minishell->history, (count + 2) * sizeof(char *));
-		minishell->history[count] = ft_strdup(line);
-		error_minishell_history(minishell->history, count, fd);
-		minishell->history[count + 1] = NULL;
-		count++;
-		free(line);
-	}
+		load_history_line(minishell, line, &count);
 	close(fd);
 }
 
@@ -52,17 +70,33 @@ void	add_to_history(t_minishell *minishell, char *input)
 {
 	int		fd;
 	int		i;
+	char	**new_history;
 
 	i = 0;
 	while (minishell->history && minishell->history[i])
 		i++;
-	minishell->history = ft_realloc(minishell->history, (i + 2) * sizeof(char *));
+	new_history = ft_realloc(
+		minishell->history,
+		(i + 1) * sizeof(char *),
+		(i + 2) * sizeof(char *)
+	);
+	if (!new_history)
+	{
+		perror("ft_realloc");
+		return;
+	}
+	minishell->history = new_history;
 	minishell->history[i] = ft_strdup(input);
+	if (!minishell->history[i])
+	{
+		perror("ft_strdup");
+		return;
+	}
 	minishell->history[i + 1] = NULL;
 	fd = open(HISTORY_FILE, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd == -1)
 	{
-		perror("open"); //ES AQUI
+		perror("open");
 		return ;
 	}
 	if (write(fd, input, ft_strlen(input)) == -1 || write(fd, "\n", 1) == -1)
