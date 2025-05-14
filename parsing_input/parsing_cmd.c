@@ -101,6 +101,7 @@ static void	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_da
 	tmp->here_doc_delim = here_doc_delim(data->input);
 	tmp->next = NULL;
 	delete_quotes(minishell, tmp);
+	free_double_array((void **)command_splited);
 }
 
 t_cmd	*parsing_input(t_minishell *minishell, char *input)

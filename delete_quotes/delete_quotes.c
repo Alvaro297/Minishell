@@ -74,10 +74,13 @@ char	**delete_quotes_double_array(t_minishell *minishell, char **double_array, b
 	i = 0;
 	while (double_array[i])
 	{
-		tmp[i] = delete_quotes_array(minishell, double_array[i], is_not_here_doc);
+		char *old_str = double_array[i];
+		tmp[i] = delete_quotes_array(minishell, old_str, is_not_here_doc);
+		free(old_str);
 		i++;
 	}
 	tmp[i] = NULL;
+	free(double_array); // libera el array de punteros original
 	return (tmp);
 }
 
