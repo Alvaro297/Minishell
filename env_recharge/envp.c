@@ -36,7 +36,10 @@ char	*get_env_value(t_env *env, char *var_name)
 	{
 		if (ft_strncmp(env->name, var_name, j) == 0 &&
 				(int)ft_strlen(env->name) == j)
-			return (env->value);
+				{
+					free(var_name);
+					return (env->value);
+				}
 		env = env->next;
 	}
 	return (NULL);

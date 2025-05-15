@@ -221,3 +221,41 @@ echo hola
 echo hola
 echo hola
 echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
+Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt
+Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+Minishell: echo hola que tal  estas             $USR < prueba > prueba1.txt > prueba2.txt << $END
+Minishell: echo hola que tal  estas             $USR < prueba > prueba1.txt > prueba2.txt << $END
+Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
