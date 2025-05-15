@@ -52,14 +52,18 @@ char	*find_infile(t_minishell *minishell, char **command_splited)
 	while (command_splited[i])
 	{
 		if ((ft_strncmp(command_splited[i], "<", 1) == 0 &&
-			 ft_strlen(command_splited[i]) == 1))
+		     ft_strlen(command_splited[i]) == 1))
 		{
 			if (!command_splited[i + 1] || is_redirected(command_splited[i + 1]) ||
 				is_env_var_null(minishell, command_splited[i + 1]))
+			{
+				if (infile != NULL)
+					free(infile);
 				return (NULL);
+			}
 			else
 			{
-				if (infile)
+				if (infile != NULL)
 					free(infile);
 				infile = ft_strdup(command_splited[i + 1]);
 			}
@@ -85,10 +89,14 @@ char	*find_outfile(t_minishell *minishell, char **command_splited)
 		{
 			if (!command_splited[i + 1] || is_redirected(command_splited[i + 1]) ||
 				is_env_var_null(minishell, command_splited[i + 1]))
-				return (NULL);
+				{
+					if (outfile != NULL)
+						free(outfile);
+					return (NULL);
+				}
 			else
 			{
-				if (outfile)
+				if (outfile != NULL)
 					free(outfile);
 				outfile = ft_strdup(command_splited[i + 1]);
 			}

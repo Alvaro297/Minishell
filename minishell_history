@@ -259,3 +259,39 @@ echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt 
 echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt << $END
 echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
 echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola
+echo hola que tal  estas             << $END
+echo hola que tal  estas             << $END
+echo hola que tal  estas             << $END
+echo hola que tal  estas        $END
+echo hola que tal  estas        $END
+echo hola que tal  estas        $END
+echo hola que tal  estas        $END
+echo hola que tal  estas        $USER
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt << $END
+echo hola que tal  estas             $USER < prueba > prueba1.txt
+echo hola que tal  estas             $USER < pruebaprueba1.txt
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola < prueba2
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola < prueba2
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj
+echo hola que tal  estas             $USER
+echo hola que tal  estas             $USER
+echo hola que tal  estas             $USER
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj
+echo hola que tal  estas             $USER
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola < que > tal

@@ -42,6 +42,7 @@ char	*get_env_value(t_env *env, char *var_name)
 				}
 		env = env->next;
 	}
+	free(var_name);
 	return (NULL);
 }
 

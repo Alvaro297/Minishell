@@ -32,6 +32,7 @@ char	*delete_quotes_array(t_minishell *minishell, char *array, bool is_not_here_
 	if (is_not_here_doc)
 	{
 		to_free = ft_quote_printf(minishell, array);
+		free(array);
 		array = to_free;
 	}
 	quotes.in_double_quote = false;
@@ -84,16 +85,6 @@ char	**delete_quotes_double_array(t_minishell *minishell, char **double_array, b
 	return (tmp);
 }
 
-static void	delete_quotes_arrays(t_minishell *minishell, t_cmd *cmd)
-{
-	if (cmd->args)
-		cmd->args = delete_quotes_double_array(minishell, cmd->args, true);
-	if (cmd->outfile_array)
-		cmd->outfile_array = delete_quotes_double_array(minishell, cmd->outfile_array, true);
-	if (cmd->here_doc_delim && cmd->is_heredoc)
-		cmd->here_doc_delim = delete_quotes_double_array(minishell, cmd->here_doc_delim, false);
-}
-
 void	delete_quotes(t_minishell *minishell, t_cmd *cmd)
 {
 	if (cmd->cmd)
@@ -102,5 +93,10 @@ void	delete_quotes(t_minishell *minishell, t_cmd *cmd)
 		cmd->infile = delete_quotes_array(minishell, cmd->infile, true);
 	if (cmd->outfile)
 		cmd->outfile = delete_quotes_array(minishell, cmd->outfile, true);
-	delete_quotes_arrays(minishell, cmd);
+	if (cmd->args)
+		cmd->args = delete_quotes_double_array(minishell, cmd->args, true);
+	if (cmd->outfile_array)
+		cmd->outfile_array = delete_quotes_double_array(minishell, cmd->outfile_array, true);
+	if (cmd->here_doc_delim && cmd->is_heredoc)
+		cmd->here_doc_delim = delete_quotes_double_array(minishell, cmd->here_doc_delim, false);
 }

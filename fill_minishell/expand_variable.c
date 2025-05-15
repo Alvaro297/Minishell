@@ -30,7 +30,6 @@ static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 		i++;
 	var_name = ft_strndup(str + 1, i - 1);
 	var_value = get_env_value(minishell->env_vars, var_name);
-	free(var_name);
 	*len = i;
 	if (var_value == NULL)
 		return (NULL); // Devuelve NULL si la variable no existe
