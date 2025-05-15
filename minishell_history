@@ -295,3 +295,13 @@ echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
 echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
 echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
 echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola < que > tal
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > que
+echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > que

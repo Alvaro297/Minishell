@@ -41,7 +41,7 @@ char	**get_outfiles(t_minishell *minishell, char **command_splited)
 		{
 			if (is_redirected(command_splited[c + 1]) || is_env_var_null(minishell, command_splited[c + 1]))
 				break;
-			outfile_array[c1] = command_splited[c + 1];
+			outfile_array[c1] = ft_strdup(command_splited[c + 1]);
 			c++;
 			c1++;
 		}

@@ -21,7 +21,7 @@ int		count_characters(char *array)
 	return (count);
 }
 
-char	*delete_quotes_array(t_minishell *minishell, char *array, bool is_not_here_doc)
+char	*delete_quotes_array(t_minishell *minishell, char *array, bool is_not_here_doc, bool is_iofile)
 {
 	char		*tmp;
 	char		*to_free = NULL;
@@ -32,7 +32,8 @@ char	*delete_quotes_array(t_minishell *minishell, char *array, bool is_not_here_
 	if (is_not_here_doc)
 	{
 		to_free = ft_quote_printf(minishell, array);
-		free(array);
+		if (is_iofile)
+			free(array);
 		array = to_free;
 	}
 	quotes.in_double_quote = false;
@@ -76,7 +77,7 @@ char	**delete_quotes_double_array(t_minishell *minishell, char **double_array, b
 	while (double_array[i])
 	{
 		char *old_str = double_array[i];
-		tmp[i] = delete_quotes_array(minishell, old_str, is_not_here_doc);
+		tmp[i] = delete_quotes_array(minishell, old_str, is_not_here_doc, false);
 		free(old_str);
 		i++;
 	}
@@ -88,11 +89,11 @@ char	**delete_quotes_double_array(t_minishell *minishell, char **double_array, b
 void	delete_quotes(t_minishell *minishell, t_cmd *cmd)
 {
 	if (cmd->cmd)
-		cmd->cmd = delete_quotes_array(minishell, cmd->cmd, true);
+		cmd->cmd = delete_quotes_array(minishell, cmd->cmd, true, false);
 	if (cmd->infile)
-		cmd->infile = delete_quotes_array(minishell, cmd->infile, true);
+		cmd->infile = delete_quotes_array(minishell, cmd->infile, true, true);
 	if (cmd->outfile)
-		cmd->outfile = delete_quotes_array(minishell, cmd->outfile, true);
+		cmd->outfile = delete_quotes_array(minishell, cmd->outfile, true, true);
 	if (cmd->args)
 		cmd->args = delete_quotes_double_array(minishell, cmd->args, true);
 	if (cmd->outfile_array)
