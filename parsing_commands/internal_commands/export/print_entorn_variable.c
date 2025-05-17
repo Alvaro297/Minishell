@@ -90,22 +90,23 @@ static t_env *duplicate_env_list(t_env *env)
 
 void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell)
 {
-	char	*output;
+	char	*output = NULL;
 	t_env	*env;
 	t_env	*sorted_env;
+	t_env	*iter;
 
 	env = duplicate_env_list(minishell->env_vars);
 	sorted_env = insertion_sort(env);
-	while (sorted_env)
+	iter = sorted_env;
+	while (iter)
 	{
 		if (current_cmd->is_pipe)
-			output = join_all(sorted_env);
+			output = join_all(iter);
 		else
-			printf("declare -x %s=\'%s\'\n", sorted_env->name, sorted_env->value);
-		sorted_env = sorted_env->next;
+			printf("declare -x %s=\'%s\'\n", iter->name, iter->value);
+		iter = iter->next;
 	}
 	if (output)
 		minishell->output = output;
-	free(env);
-	free(sorted_env);
+	free_env_list(sorted_env);
 }

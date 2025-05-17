@@ -82,7 +82,7 @@ void set_env(t_env **env, char *name, char *value)
 
 bool	is_env_var_null(t_minishell *minishell, char *arg)
 {
-	char	*expanded_value;
+	char *expanded_value;
 	size_t	i;
 	size_t	start;
 
@@ -98,8 +98,8 @@ bool	is_env_var_null(t_minishell *minishell, char *arg)
 				start++;
 			if (start == i + 1)
 				return (false);
-			expanded_value = get_env_value(minishell->env_vars, ft_strndup(arg + i + 1, start - i - 1));
-			if (expanded_value != NULL)
+			expanded_value = ft_strndup(arg + i + 1, start - i - 1);
+			if (get_env_value(minishell->env_vars, expanded_value) != NULL)
 				return (false);
 			i = start - 1;
 		}

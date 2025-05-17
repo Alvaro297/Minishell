@@ -137,6 +137,7 @@ void	add_to_history(t_minishell *minishell, char *input);
 void	manage_signals(void);
 //** Free Minishell **//
 void	free_double_array(void **double_array);
+void	free_env_list(t_env *env);
 //**PIPEX **/
 void	redir(t_minishell *minishell);
 void	rediroutput(t_cmd *cmd);
