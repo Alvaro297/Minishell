@@ -20,6 +20,8 @@ static void	init_minishell(t_minishell *minishell)
 	minishell->input = NULL;
 	minishell->cmds = NULL;
 	minishell->output = NULL;
+	minishell->pids = NULL;
+	minishell->history_file = get_history_file();
 	minishell->howmanycmd = 0;
 	minishell->last_exit_status = 0;
 }

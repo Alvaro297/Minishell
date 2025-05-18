@@ -9,24 +9,18 @@ void	free_cmd_list(t_cmd *cmd)
 	while (cmd)
 	{
 		tmp = cmd->next;
-		free(cmd->cmd);
+		if (cmd->cmd)
+			free(cmd->cmd);
 		if (cmd->args)
-		{
 			free_double_array((void **)cmd->args);
-			free(cmd->args);
-		}
 		if (cmd->outfile_array)
-		{
 			free_double_array((void **)cmd->outfile_array);
-			free(cmd->outfile_array);
-		}
 		if (cmd->here_doc_delim)
-		{
 			free_double_array((void **)cmd->here_doc_delim);
-			free(cmd->here_doc_delim);
-		}
-		free(cmd->infile);
-		free(cmd->outfile);
+		if (cmd->infile)
+			free(cmd->infile);
+		if (cmd->outfile)
+			free(cmd->outfile);
 		free(cmd);
 		cmd = tmp;
 	}
@@ -35,7 +29,7 @@ void	free_cmd_list(t_cmd *cmd)
 void	free_all(t_minishell *minishell)
 {
 	if (!minishell)
-		return;
+		return ;
 	if (minishell->history)
 		free_double_array((void **)minishell->history);
 	if (minishell->current_dir)
@@ -52,6 +46,5 @@ void	free_all(t_minishell *minishell)
 		free(minishell->pids);
 	if (minishell->history_file)
 		free(minishell->history_file);
-	free(minishell);
 }
 

@@ -3,7 +3,7 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c \
 			error_control/error_control.c fill_minishell/fill_minishell.c \
 			fill_minishell/expand_variable.c fill_minishell/outfile_array.c \
 			fill_minishell/quote_variable.c free_minishell/free_double_array.c \
-			free_minishell/free_export.c \
+			fill_minishell/get_history_file.c free_minishell/free_export.c \
 			fill_minishell/expand_variable2.c \
 			history/load_history.c \
 			parsing_commands/internal_commands/export/export_command.c \

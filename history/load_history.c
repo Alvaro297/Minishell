@@ -56,9 +56,9 @@ void	load_history(t_minishell *minishell)
 	int		count;
 
 	count = 0;
-	if (access(HISTORY_FILE, F_OK) == -1)
+	if (access(minishell->history_file, F_OK) == -1)
 		return ;
-	fd = open(HISTORY_FILE, O_RDONLY);
+	fd = open(minishell->history_file, O_RDONLY);
 	if (fd == -1)
 		return;
 	while ((line = get_next_line(fd)) != NULL)
@@ -93,7 +93,7 @@ void	add_to_history(t_minishell *minishell, char *input)
 		return;
 	}
 	minishell->history[i + 1] = NULL;
-	fd = open(HISTORY_FILE, O_WRONLY | O_APPEND | O_CREAT, 0644);
+	fd = open(minishell->history_file, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd == -1)
 	{
 		perror("open");

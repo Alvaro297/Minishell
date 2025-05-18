@@ -4,6 +4,7 @@ void signals_ignore(void)
 {
 	struct sigaction sa;
 
+	memset(&sa, 0, sizeof(sa));
 	sa.sa_handler = SIG_IGN;
 	sa.sa_flags = SA_RESTART;
 	sigemptyset(&sa.sa_mask);
@@ -31,6 +32,7 @@ void	manage_signals(void)
 {
 	struct sigaction sa;
 
+	memset(&sa, 0, sizeof(sa));
 	sa.sa_handler = handle_sigint;
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
@@ -42,6 +44,7 @@ void	manage_signals_heredoc(void)
 {
 	struct sigaction sa;
 
+	memset(&sa, 0, sizeof(sa));
 	sa.sa_handler = handle_sigint_heredoc;
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);

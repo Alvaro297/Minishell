@@ -1,340 +1,54 @@
-          cat pipex/pipex.c | grep pipex
-echo hola > t.txt
-echo hola
-cat pipex/pipex.c
-< minishell.log cat
-cat hola > hola.txt | ls -l > hola2.txt
-cat hola
-ls
-echo hola > hola.txt | ls -l > hola2.txt
-cat hola.txt 
-cat hola2.txt 
-echo que tal >> hola.txt
-cat hola.txt echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola2
-echo hola3
 
-echo hola5
-echo hola5
-echo hola5
-echo hola5
-echo hola5
-echo hola5
-echo hola
-echo hola
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola"
-echo "hola" |
-echo "hola"
-echo hola
-echo hola
-echo hola
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-export
-echo hola que tal
-hola
-hola que tal
-export hola
-echo hola que tal
-echo hola que tal > hola.txt
-< hola1.txt echo hola que tal 
-< hola1.txt echo hola que tal > hola1.txt > hola2.txt
-< hola1.txt echo hola que tal > hola1.txt > hola2.txt
-< hola1.txt echo hola que tal > hola1.txt > hola2.txt
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-echo hola que tal >hola1.txt
-e
-e
-echo hola que tal >hola1.txt
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola que tal
-< prueba3.txt <<$HOLA echo hola que tal > prueba1.txt > prueba2.txt >>Append
-< prueba3.txt <<$HOLA echo hola que tal > prueba1.txt > prueba2.txt >>Append
-< prueba3.txt <<$HOLA echo hola que tal > prueba1.txt > prueba2.txt >>Append
-< prueba3.txt <<$HOLA echo hola que tal > prueba1.txt > prueba2.txt >>Append
-< prueba3.txt <<$HOLA echo hola que tal > prueba1.txt > prueba2.txt >>Append
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal > hola1.txt
-echo hola que tal > hola1.txt > hola2.txt >>hola3.txt
-< adios echo hola que tal > hola1.txt > hola2.txt >>hola3.txt
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-hola
-cat hola
+cd ..
+cd ..
+mkdir -p test/a test/b
+cd test/a
+mkdir -p testdir/child
+cd testdir/childs
+cd testdir/childs
+mkdir -p testdir/child
+cd testdir/childs
+cd testdir/child
+pwd
+mkdir -p testdir/child
+pwd
+rm -rf ../testdir
+ls
+cd ..
+pwd
+cd Minishell
+mkdir -p testdir/child
+mkdir -p testdir/child
+cd testdir/child
+rm -rf ../testdir
+pwd
+cd ..
+pwd
+cd ..
+pwd
+rm -rf testdir
+rm -rf testdir
+echo hola que tal ~USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
+echo hola que tal $USER
 cat main.c | grep include
-cat main.c | grep include
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal  estas
-echo hola que tal  estas             $USER
-echo hola que tal  estas             $USER
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-process_redirection
-echo hola
-process_redirection
-process_redirection
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-process_redirection
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-echo hola
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-Minishell: echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt
-Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt
-echo hola
-echo hola
-echo hola
-echo hola
-echo hola
-Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt
-Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-Minishell: echo hola que tal  estas             $USR < prueba > prueba1.txt > prueba2.txt << $END
-Minishell: echo hola que tal  estas             $USR < prueba > prueba1.txt > prueba2.txt << $END
-Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-Minishell: echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER > prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola
-echo hola que tal  estas             << $END
-echo hola que tal  estas             << $END
-echo hola que tal  estas             << $END
-echo hola que tal  estas        $END
-echo hola que tal  estas        $END
-echo hola que tal  estas        $END
-echo hola que tal  estas        $END
-echo hola que tal  estas        $USER
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt > prueba2.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt << $END
-echo hola que tal  estas             $USER < prueba > prueba1.txt
-echo hola que tal  estas             $USER < pruebaprueba1.txt
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola < prueba2
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola < prueba2
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj
-echo hola que tal  estas             $USER
-echo hola que tal  estas             $USER
-echo hola que tal  estas             $USER
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj
-echo hola que tal  estas             $USER
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > hola < que > tal
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj < que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > que
-echo hola que tal  estas             $USER < pruebagadjogsdfpbjsdfpj > que
-echo hola que tal  estas             $USER 
-echo hola que tal  estas             $USER 
-echo hola que tal  estas             $USER 
-echo hola que tal  estas             $USER 
-echo hola que tal  estas             $USER 
-export
-echo hola que tal  estas             $USER 
-echo hola que tal  estas             $USER 
-echo hola que tal  estas             $USER 
-export
-export
-export
-export
-export
-export
-echo $USER
-export
-export
-export
-echo $USER
-echo $USER
-echo $USER
-echo $USER
-echo $END
-echo $USER
-echo $USER
