@@ -646,3 +646,25 @@ cat hola2.txt
 echo que tal >> hola.txt
 cat hola.txt 
 echo hola
+export
+< t.txt cat | grep pipex > t.txt
+cat t.txt
+cat t.txt
+export
+echo hola
+echo hola > hola.txt | ls -l > hola2.txt
+          cat pipex/pipex.c | grep pipex | wc -l
+< pipex/pipex.c cat | grep pipex
+echo hola que tal | grep hola
+          cat pipex/pipex.c | grep pipex | wc -l
+echo hola
+cat <<EOF
+cat <<EOF
+cat <<EOF
+cat <<EOF
+cat <<EOF
+cat pipex/pipex.c | grep p <<EOF
+cat pipex/pipex.c | grep p <<EOF
+cat pipex/pipex.c | grep p <<EOF
+cat pipex/pipex.c | grep p <<EOF
+cat pipex/pipex.c | grep p <<EOF

@@ -17,6 +17,7 @@
 # define INVALID_CHARACTERS "!@#$%^&*()-+=[]{}\\|;:'\"<>/?`~ "
 # define INVALID_CHARACTERSV "!@#$%^&*()[]{}\\|;:'\",.<>/?`~ "
 # define HISTORY_FILE "./minishell_history"
+#define TMP_HEREDOC "/tmp/.heredoc_tmp"
 
 typedef struct s_indices
 {
@@ -137,6 +138,9 @@ void	manage_signals(void);
 //** Free Minishell **//
 void	free_double_array(void **double_array);
 //**PIPEX **/
+void sigint_heredoc_handler(int sig);
+int process_heredoc(const char *delimiter);
+int handle_heredoc(const char *delimiter);
 void	redir(t_minishell *minishell);
 void	rediroutput(t_cmd *cmd);
 void	redirimput(t_cmd *cmd);
