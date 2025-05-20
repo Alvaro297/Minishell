@@ -22,7 +22,7 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c \
 			delete_quotes/delete_quotes.c \
 			pipex/pipex.c pipex/utils.c pipex/libutils.c \
 			pipex/ft_split.c pipex/ft_fd.c pipex/utils2.c \
-			pipex/execute.c
+			pipex/execute.c pipex/here_doc.c
 
 NAME = Minishell
 

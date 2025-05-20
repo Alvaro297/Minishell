@@ -186,9 +186,11 @@ void	execute_all(t_minishell *minishell)
 {
 	int	**pfd;
 	int	i;
+	int	c;
 	pid_t *pids;
 	t_cmd	*current_cmd;
 	int	std_out;
+	int	heredoc_fd;
 
 	current_cmd = minishell->cmds;
 	std_out = dup(STDOUT_FILENO);
@@ -213,7 +215,21 @@ void	execute_all(t_minishell *minishell)
 			if (i == 0)
 				first_child(minishell, current_cmd, pfd);
 			else if (i == minishell->howmanycmd - 1)
-				last_child(minishell, current_cmd, pfd, std_out);
+			{
+				if (current_cmd->here_doc_delim[0])
+				{
+					c = 0;
+					while (minishell->cmds->here_doc_delim[c])
+					{
+						heredoc_fd = handle_heredoc(minishell->cmds->here_doc_delim[c]);
+						dup2(heredoc_fd, STDIN_FILENO);
+						close(heredoc_fd);
+						c++;
+					}
+				}
+				else
+					last_child(minishell, current_cmd, pfd, std_out);
+			}
 			else
 				execute_command(minishell, current_cmd, pfd, i);
 		}

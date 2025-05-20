@@ -81,6 +81,23 @@ void	rediroutput(t_cmd *cmd)
 		close(fdo);
 	}
 }
+/*
+void	here_docs(t_minishell *minishell, t_cmd *cmd)
+{
+	int	*fd;
+
+	if (cmd->is_heredoc)
+	{
+		if (pipe(fd) != 0)
+		{
+			perror("pipe");
+			return ;
+		}
+		
+
+	}
+}
+*/
 
 void	no_pipes(t_minishell *minishell)
 {
@@ -88,11 +105,21 @@ void	no_pipes(t_minishell *minishell)
 	pid_t	pid;
 	int	stdo;
 	int stdi;
+	int heredoc_fd;
+	int	i;
 
+	i = 0;
 	stdo = dup(STDOUT_FILENO);
 	stdi = dup(STDIN_FILENO);
 	redirimput(minishell->cmds);
 	rediroutput(minishell->cmds);
+	while (minishell->cmds->here_doc_delim[i])
+	{
+		heredoc_fd = handle_heredoc(minishell->cmds->here_doc_delim[i]);
+		dup2(heredoc_fd, STDIN_FILENO);
+		close(heredoc_fd);
+		i++;
+	}
 	if (is_builtin(minishell->cmds))
 		internal_commands(minishell->cmds, minishell);
 	else
@@ -109,6 +136,8 @@ void	no_pipes(t_minishell *minishell)
 	close (stdi);
 	//close (fd);
 }
+
+
 /*
 void	redir(int *p_fd, t_minishell *minishell, int i)
 {
