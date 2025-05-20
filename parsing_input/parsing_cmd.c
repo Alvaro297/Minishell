@@ -98,7 +98,7 @@ static void	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_da
 	tmp->outfile_array = get_outfiles(minishell, command_splited);
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->is_heredoc = is_heredoc(command_splited);
-	tmp->here_doc_delim = here_doc_delim(data->input);
+	tmp->here_doc_delim = here_doc_delim(data->command);
 	tmp->next = NULL;
 	delete_quotes(minishell, tmp);
 	free_double_array((void **)command_splited);
@@ -111,7 +111,6 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	char			**parsed_input;
 	t_quotes		quotes;
 	t_parse_data	data;
-	int			i;
 
 	if (minishell->cmds)
 		delete_cmds(minishell->cmds);
@@ -120,7 +119,6 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	parsed_input = split_commands(input, 0, &quotes);
 	data.position = 0;
 	data.array_commands = parsed_input;
-	data.input = input;
 	while (parsed_input[data.position])
 	{
 		data.command = parsed_input[data.position];
@@ -131,9 +129,6 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 		else
 			break ;
 	}
-	i = 0;
-	while (parsed_input[i] != NULL)
-		free(parsed_input[i++]);
-	free(parsed_input);
+	free_double_array((void **)parsed_input);
 	return (head);
 }

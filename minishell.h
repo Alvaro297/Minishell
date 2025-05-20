@@ -140,9 +140,8 @@ void	manage_signals(void);
 void	free_double_array(void **double_array);
 void	free_env_list(t_env *env);
 //**PIPEX **/
-void sigint_heredoc_handler(int sig);
-int process_heredoc(const char *delimiter);
-int handle_heredoc(const char *delimiter);
+void	sigint_heredoc_handler(int sig);
+int		handle_heredoc(char **delimiter);
 void	redir(t_minishell *minishell);
 void	rediroutput(t_cmd *cmd);
 void	redirimput(t_cmd *cmd);

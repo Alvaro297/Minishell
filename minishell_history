@@ -668,3 +668,60 @@ cat pipex/pipex.c | grep p <<EOF
 cat pipex/pipex.c | grep p <<EOF
 cat pipex/pipex.c | grep p <<EOF
 cat pipex/pipex.c | grep p <<EOF
+echo hola que tal | grep hola
+echo hola que tal | grep hola
+echo hola que tal
+echo hola que tal
+cat pipex/pipex.c | grep p <<EOF
+cat pipex/pipex.c | grep p <<$USER
+cat pipex/pipex.c | grep p <<$USER
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+export
+echo hola |
+echo hola &
+echo hola ||
+echo hola | |
+echo hola &&
+echo hola ||
+echo hola ||
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER <<EOF
+cat pipex/pipex.c | grep p <<$USER
+cat pipex/pipex.c | grep p <<$USER
+cat pipex/pipex.c | grep p <<$USER
+cat pipex/pipex.c | grep p <<$USER
+cat pipex/pipex.c | grep p <<$USER
+cat pipex/pipex.c | grep p <<$USER
+cat pipex/pipex.c | grep p <<$USER
+cat pipex/pipex.c | grep p <<$USER
+cat pipex/pipex.c | grep <<$USER << hola
+cat pipex/pipex.c | grep <<$USER << hola
+make
+cat pipex/pipex.c | grep <<$USER << hola
+cat pipex/pipex.c | grep <<$USER << hola
+cat pipex/pipex.c | grep <<$USER << hola | grep
+cat pipex/pipex.c | grep <<$USER << hola | grep p
+cat pipex/pipex.c | grep p <<$USER << hola | grep p
+cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep ASGDFASDFG
+cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep ASGDFASDFG
+cat pipex/pipex.c | grep <<$USER << hola
+cat pipex/pipex.c | grep <<$USER << hol
+cat pipex/pipex.c | grep <<$USER << hol
+grep <<$USER << hol
+echo <<$USER << hol
+echo <<$USER << hol
+echo <<$USER << hol
+cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
+cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
+cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG

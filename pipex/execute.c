@@ -14,16 +14,16 @@ void	closefds(t_minishell *minishell, int **fd)
 }
 
 void logadd(const char *log_entry) {
-    // Abrir el archivo en modo de anexado ("a")
-    FILE *file = fopen("minishell.log", "a");
-    if (file == NULL) {
-        perror("No se pudo abrir el archivo");
-        return;
-    }
-    // Escribir la entrada de log en una nueva línea
-    fprintf(file, "%s\n", log_entry);
-    // Cerrar el archivo
-    fclose(file);
+	// Abrir el archivo en modo de anexado ("a")
+	FILE *file = fopen("minishell.log", "a");
+	if (file == NULL) {
+		perror("No se pudo abrir el archivo");
+		return;
+	}
+	// Escribir la entrada de log en una nueva línea
+	fprintf(file, "%s\n", log_entry);
+	// Cerrar el archivo
+	fclose(file);
 }
 
 void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
@@ -186,7 +186,6 @@ void	execute_all(t_minishell *minishell)
 {
 	int	**pfd;
 	int	i;
-	int	c;
 	pid_t *pids;
 	t_cmd	*current_cmd;
 	int	std_out;
@@ -212,24 +211,16 @@ void	execute_all(t_minishell *minishell)
 		pids[i] = fork();
 		if (pids[i] == 0)
 		{
+			if (current_cmd->here_doc_delim && current_cmd->here_doc_delim[0])
+			{
+				heredoc_fd = handle_heredoc(current_cmd->here_doc_delim);
+				dup2(heredoc_fd, STDIN_FILENO);
+				close(heredoc_fd);
+			}
 			if (i == 0)
 				first_child(minishell, current_cmd, pfd);
 			else if (i == minishell->howmanycmd - 1)
-			{
-				if (current_cmd->here_doc_delim[0])
-				{
-					c = 0;
-					while (minishell->cmds->here_doc_delim[c])
-					{
-						heredoc_fd = handle_heredoc(minishell->cmds->here_doc_delim[c]);
-						dup2(heredoc_fd, STDIN_FILENO);
-						close(heredoc_fd);
-						c++;
-					}
-				}
-				else
-					last_child(minishell, current_cmd, pfd, std_out);
-			}
+				last_child(minishell, current_cmd, pfd, std_out);
 			else
 				execute_command(minishell, current_cmd, pfd, i);
 		}
@@ -246,4 +237,12 @@ void	execute_all(t_minishell *minishell)
 		waitpid(pids[i], &minishell->last_exit_status, 0);
 		i++;
 	}
+	free(pids);
+	i = 0;
+	while (i < minishell->howmanycmd - 1)
+	{
+		free(pfd[i]);
+		i++;
+	}
+	free(pfd);
 }

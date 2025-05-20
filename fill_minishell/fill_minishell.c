@@ -12,43 +12,6 @@
 
 #include "../minishell.h"
 
-void	print_cmds(t_cmd *cmds)
-{
-	int i;
-	while (cmds)
-	{
-		printf("  Comando: %s\n", cmds->cmd ? cmds->cmd : "(null)");
-		printf("  Args: ");
-		if (cmds->args)
-		{
-			for (i = 0; cmds->args[i]; i++)
-				printf("[%s] ", cmds->args[i]);
-		}
-		printf("\n");
-		printf("  Infile: %s\n", cmds->infile ? cmds->infile : "(null)");
-		printf("  Outfile: %s\n", cmds->outfile ? cmds->outfile : "(null)");
-		printf("  Outfile_array: ");
-		if (cmds->outfile_array)
-		{
-			for (i = 0; cmds->outfile_array[i]; i++)
-				printf("[%s] ", cmds->outfile_array[i]);
-		}
-		printf("\n");
-		printf("  Outfile_modes: %d\n", cmds->outfile_modes);
-		printf("  is_pipe: %d\n", cmds->is_pipe);
-		printf("  is_heredoc: %d\n", cmds->is_heredoc);
-		printf("  Here_doc_delim: ");
-		if (cmds->here_doc_delim)
-		{
-			for (i = 0; cmds->here_doc_delim[i]; i++)
-				printf("[%s] ", cmds->here_doc_delim[i]);
-		}
-		printf("\n");
-		printf("-------------------------\n");
-		cmds = cmds->next;
-	}
-}
-
 static void	fill_minishell_help(t_minishell *minishell)
 {
 	char	cwd[PATH_MAX];
@@ -77,7 +40,6 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 		return ;
 	}
 	minishell->cmds = parsing_input(minishell, input);
-	print_cmds(minishell->cmds);
 	minishell->output = NULL;
 	minishell->howmanycmd = howmanycmds(minishell->cmds);
 	if (input && *input)
