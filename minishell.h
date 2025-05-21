@@ -139,6 +139,7 @@ void	manage_signals(void);
 //** Free Minishell **//
 void	free_double_array(void **double_array);
 void	free_env_list(t_env *env);
+void	free_cmd_list(t_cmd *cmd);
 //**PIPEX **/
 void	sigint_heredoc_handler(int sig);
 int		handle_heredoc(char **delimiter);

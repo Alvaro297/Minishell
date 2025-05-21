@@ -59,7 +59,7 @@ void	minishell(char **envp)
 		if (minishell.cmds == NULL)
 			continue ;
 		execute_all(&minishell);
-		free(input);	
+		free(input);
 	}
 	free_all(&minishell);
 }

@@ -725,3 +725,25 @@ echo <<$USER << hol
 cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
 cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
 cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
+echo hola
+echo <<$USER << hol
+cat <<hola
+echo <<$USER << hol
+cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
+cat <<EOF
+echo hola <noexiste
+<NOEXISTE echo hola
++
++
++
+ashfd
+ashfd
+echo hola
+ashfd
+ashfd
+trh
+ashfd
++
++
++
++

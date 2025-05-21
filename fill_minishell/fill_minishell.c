@@ -30,7 +30,7 @@ static void	fill_minishell_help(t_minishell *minishell)
 }
 
 void	fill_minishell(char *input, t_minishell *minishell, char **envp)
-{	
+{
 	if (minishell->env_vars == NULL)
 		minishell->env_vars = init_env(envp);
 	minishell->input = ft_quote_printf(minishell, input);
