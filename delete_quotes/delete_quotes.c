@@ -98,6 +98,4 @@ void	delete_quotes(t_minishell *minishell, t_cmd *cmd)
 		cmd->args = delete_quotes_double_array(minishell, cmd->args, true);
 	if (cmd->outfile_array)
 		cmd->outfile_array = delete_quotes_double_array(minishell, cmd->outfile_array, true);
-	if (cmd->here_doc_delim && cmd->is_heredoc)
-		cmd->here_doc_delim = delete_quotes_double_array(minishell, cmd->here_doc_delim, false);
 }
