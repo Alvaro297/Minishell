@@ -55,8 +55,6 @@ typedef struct s_cmd
 	char	**outfile_array; // Array de archivos de salida si hay múltiples redirecciones.
 	int		outfile_modes; // Modo de redirección: 2 para ">>", 1 para ">", 0 para ninguno.
 	bool	is_pipe;       // Indica si el comando está seguido por un pipe (|).
-	bool	is_heredoc;	   // Indica si el comando utiliza un heredoc (<<).
-	char	**here_doc_delim; // Array de delimitadores para heredoc.
 	struct s_cmd *next;    // Puntero al siguiente comando en una lista enlazada (para pipes).
 }	t_cmd;
 
@@ -71,6 +69,7 @@ typedef struct s_minishell
 	char	*current_dir;  // Directorio actual del shell.
 	char	*history_file; // Ruta al archivo de historial.
 	int		last_exit_status; // Código de salida del último comando ejecutado.
+	char	**here_doc_delim; // Array de delimitadores para heredoc.
 	int		howmanycmd;    // Número de comandos en la línea de entrada.
 } t_minishell;
 
