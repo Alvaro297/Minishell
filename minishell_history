@@ -769,3 +769,8 @@ echo $$USER
 echo $$USER
 echo $$
 echo $$ USER
+echo $$ USER
+
+
+echo $$ USER
+echo $$ USER

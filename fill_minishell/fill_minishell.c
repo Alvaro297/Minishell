@@ -49,6 +49,11 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 	if (minishell->env_vars == NULL)
 		minishell->env_vars = init_env(envp);
 	minishell->input = ft_quote_printf(minishell, input, true);
+	if (input && *input)
+	{
+		add_history(input);
+		add_to_history(minishell, input);
+	}
 	if (minishell->input == NULL)
 	{
 		if (minishell->cmds)
@@ -71,10 +76,5 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 	minishell->heredoc_sd = is_in_sd_quotes(minishell->here_doc_delim);
 	if (minishell->here_doc_delim)
 		minishell->here_doc_delim = delete_quotes_double_array(minishell, minishell->here_doc_delim, false);
-	if (input && *input)
-	{
-		add_history(input);
-		add_to_history(minishell, input);
-	}
 	fill_minishell_help(minishell);
 }
