@@ -780,3 +780,5 @@ echo hola
 echo hola
 echo hola
 echo hola
+cat <<Hola | cat <<Adios
+echo <<

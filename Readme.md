@@ -66,10 +66,10 @@ Yo el mensaje de error en mi codigo ya lo muestro sin que de ningun fallo (Luego
 Igual hay que preguntar el tema del here_doc el error ese porque creo que lanzamos el mensaje de error y ya. Nos quitamos de problemas
 Hay que hacer $_ que es el ultimo argumento del comando (Es facil y me encargo yo)
 ## Queda:
-	Here_docs: Pablete
+	Here_docs: Pablete (Casi)
 	$?: Pablete
 	Errores: Ambos
 		Yo (Martín): sacare en el parseo los mensajes de error tipo el del here_doc.
-		Tu (Pablete): el codigo de error y errores de comandos mal escritos.
+		Tu (Pablete): el codigo de error y errores de comandos mal escritos. | |
 	$_: Yo (Martín)
 	Normi: Ambos
