@@ -70,6 +70,7 @@ typedef struct s_minishell
 	char	*history_file; // Ruta al archivo de historial.
 	int		last_exit_status; // Código de salida del último comando ejecutado.
 	char	**here_doc_delim; // Array de delimitadores para heredoc.
+	bool	heredoc_sd;      // Indica si esta entre comillas simples.
 	int		howmanycmd;    // Número de comandos en la línea de entrada.
 } t_minishell;
 
@@ -80,7 +81,7 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp);
 void	free_all(t_minishell *minishell);
 char	*get_history_file(void);
 /* Expand_variable */
-char	*ft_quote_printf(t_minishell *minishell, char *str);
+char	*ft_quote_printf(t_minishell *minishell, char *str, bool is_input);
 void	append_expanded_variable(char **result, size_t *j, char *expanded);
 void	append_expanded_variable_no_quotes(char **result, size_t *j, char *expanded);
 /* Quote */
@@ -120,6 +121,7 @@ bool	is_redirected(char *command_splited);
 int		ft_count_command_splited(char **command_splited);
 int		ft_count_newarray(char **command_splited, int i, t_quotes *quotes, int count_total_array);
 char	**process_redirection(char **command_splited);
+char	**delete_quotes_double_array(t_minishell *minishell, char **double_array, bool is_not_here_doc);
 //** Cmds **//
 char	**get_outfiles(t_minishell *minishell, char **command_splited);
 void	delete_cmds(t_cmd *cmd);

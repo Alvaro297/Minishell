@@ -211,9 +211,9 @@ void	execute_all(t_minishell *minishell)
 		pids[i] = fork();
 		if (pids[i] == 0)
 		{
-			if (current_cmd->here_doc_delim && current_cmd->here_doc_delim[0])
+			if (minishell->here_doc_delim && minishell->here_doc_delim[0])
 			{
-				heredoc_fd = handle_heredoc(current_cmd->here_doc_delim);
+				heredoc_fd = handle_heredoc(minishell->here_doc_delim);
 				dup2(heredoc_fd, STDIN_FILENO);
 				close(heredoc_fd);
 			}

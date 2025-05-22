@@ -31,8 +31,6 @@ void	delete_cmds(t_cmd *cmd)
 			free(current->outfile);
 		if (current->outfile_array)
 			free_double_array((void **) current->outfile_array);
-		if (current->here_doc_delim)
-			free_double_array((void **) current->here_doc_delim);
 		free(current);
 		current = next;
 	}

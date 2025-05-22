@@ -1,11 +1,13 @@
 {
 	"files.associations": {
+		".fantomasignore": "ignore",
 		"stdio.h": "c",
 		"readline.h": "c",
 		"minishell.h": "c",
 		"libft.h": "c",
 		"cstdlib": "c",
 		"signal.h": "c",
-		"type_traits": "c"
+		"type_traits": "c",
+		"pipex.h": "c"
 	}
 }

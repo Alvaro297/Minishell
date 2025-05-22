@@ -31,7 +31,7 @@ char	*delete_quotes_array(t_minishell *minishell, char *array, bool is_not_here_
 
 	if (is_not_here_doc)
 	{
-		to_free = ft_quote_printf(minishell, array);
+		to_free = ft_quote_printf(minishell, array, false);
 		if (is_iofile)
 			free(array);
 		array = to_free;

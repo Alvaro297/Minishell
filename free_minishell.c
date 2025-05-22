@@ -43,7 +43,7 @@ void	free_all(t_minishell *minishell)
 	if (minishell->pids)
 		free(minishell->pids);
 	if (minishell->here_doc_delim)
-		free_double_array((void **)cmd->here_doc_delim);
+		free_double_array((void **)minishell->here_doc_delim);
 	if (minishell->history_file)
 		free(minishell->history_file);
 }

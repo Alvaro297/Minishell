@@ -89,7 +89,8 @@ static void	ft_quote_printf_loop(t_minishell *minishell, char *str, t_quotes *qu
 			ft_quote_printf_help(result, indices, str);
 			continue ;
 		}
-		if ((!quotes->in_single_quote && str[indices->i] == '$'))
+		if (!quotes->in_single_quote && (str[indices->i] == '$' && str[indices->i + 1] != '\0'
+					&& str[indices->i + 1] != ' ' && str[indices->i + 1] != '$'))
 		{
 			if (ft_quote_printf_ev(minishell, str, indices, result, quotes))
 				continue ;
@@ -100,13 +101,13 @@ static void	ft_quote_printf_loop(t_minishell *minishell, char *str, t_quotes *qu
 	}
 }
 
-char	*ft_quote_printf(t_minishell *minishell, char *str)
+char	*ft_quote_printf(t_minishell *minishell, char *str, bool is_input)
 {
 	t_quotes	quotes;
 	char		*result;
 	t_indices	indices;
 
-	if (minishell->input != NULL)
+	if (minishell->input != NULL && is_input)
 	{
 		free(minishell->input);
 		minishell->input = NULL;

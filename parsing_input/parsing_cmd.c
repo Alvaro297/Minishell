@@ -75,8 +75,6 @@ void init_cmd(t_cmd *cmd)
 	cmd->outfile = NULL;
 	cmd->outfile_array = NULL;
 	cmd->outfile_modes = 0;
-	cmd->is_heredoc = false;
-	cmd->here_doc_delim = NULL;
 	cmd->next = NULL;
 }
 
@@ -114,7 +112,8 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 		delete_cmds(minishell->cmds);
 	quotes.in_single_quote = false;
 	quotes.in_double_quote = false;
-	parsed_input = split_commands(input, 0, &quotes);
+	data.input = ft_strdup(input);
+	parsed_input = split_commands(data.input, 0, &quotes);
 	data.position = 0;
 	data.array_commands = parsed_input;
 	while (parsed_input[data.position])
@@ -127,6 +126,7 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 		else
 			break ;
 	}
+	free(data.input);
 	free_double_array((void **)parsed_input);
 	return (head);
 }

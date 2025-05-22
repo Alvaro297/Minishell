@@ -29,13 +29,26 @@ static void	fill_minishell_help(t_minishell *minishell)
 	}
 }
 
+bool	is_in_sd_quotes(char **here_doc_delim)
+{
+	int	i;
+
+	i = 0;
+	while (here_doc_delim[i])
+		i++;
+	if (i != 0 && here_doc_delim[i - 1][0] == '\''
+			&& here_doc_delim[i - 1][ft_strlen(here_doc_delim[i - 1]) - 1] == '\'')
+	{
+		return (true);
+	}
+	return (false);
+}
+
 void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 {
-	char	*tmp;
-
 	if (minishell->env_vars == NULL)
 		minishell->env_vars = init_env(envp);
-	minishell->input = ft_quote_printf(minishell, input);
+	minishell->input = ft_quote_printf(minishell, input, true);
 	if (minishell->input == NULL)
 	{
 		if (minishell->cmds)
@@ -50,10 +63,14 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 	minishell->output = NULL;
 	minishell->howmanycmd = howmanycmds(minishell->cmds);
 	if (minishell->here_doc_delim)
+	{
 		free_double_array((void **) minishell->here_doc_delim);
-	minishell->here_doc_delim = here_doc_delim(minishell->input);
+		minishell->here_doc_delim = NULL;
+	}
+	minishell->here_doc_delim = here_doc_delim(input);
+	minishell->heredoc_sd = is_in_sd_quotes(minishell->here_doc_delim);
 	if (minishell->here_doc_delim)
-		minishell->here_doc_delim = delete_quotes_double_array(minishell, cmd->here_doc_delim, false);
+		minishell->here_doc_delim = delete_quotes_double_array(minishell, minishell->here_doc_delim, false);
 	if (input && *input)
 	{
 		add_history(input);
