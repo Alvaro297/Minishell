@@ -53,3 +53,23 @@ Primero gestionar los pipes creando bien los porcesos hijos y despues ya gestion
 
 No estoy seguro de si tengo que usar nuestras env_vars en pipex o puedo usar envp. Aunque pase env_vars a char** execve sigue dando problemas, y no consigo que funcione igual con env_vars que con envp. De momento lo dejo con envp, hasta implementar el pipex, y despues sii es necesario (que creo que si, ya que podemos usar variables que hayamos definido a posteriori) hago los cambios necesarios para que funcione con nuestras variables de entorno, que no creo que sea dificil.
 Por otra parte el problema de open: Permission denied me esta volviendoo loco, no entiendo que carajo puede estar pasando ya que aunque no haya redirecciones ni archivos en el comando sigue dando ese error, no hay forma de quitarselo.
+
+## 23/05/2025
+
+Hola Pablete el error lo he localizado pero hay un problema con los putos heredocs
+cat << hola | cat << |
+-bash: syntax error near unexpected token `|'
+> hola
+Si te fijas aqui se mete al here_doc de manera correcta pero anteriormente hay un problema y lo muestra.
+Asi que hay que hacer los here_docs anteriores pero al final no va a hacer nada de nada da igual si hay redirecciones o lo que sea. Es exactamente lo mismo que lanzar un comando vacio (el resultado).
+Yo el mensaje de error en mi codigo ya lo muestro sin que de ningun fallo (Luego lo modificare en el tuyo) Pero el comando se lanza como si no hubiese ningun here_doc y hay que ver como evitar eso.
+Igual hay que preguntar el tema del here_doc el error ese porque creo que lanzamos el mensaje de error y ya. Nos quitamos de problemas
+Hay que hacer $_ que es el ultimo argumento del comando (Es facil y me encargo yo)
+## Queda:
+	Here_docs: Pablete
+	$?: Pablete
+	Errores: Ambos
+		Yo (Martín): sacare en el parseo los mensajes de error tipo el del here_doc.
+		Tu (Pablete): el codigo de error y errores de comandos mal escritos.
+	$_: Yo (Martín)
+	Normi: Ambos

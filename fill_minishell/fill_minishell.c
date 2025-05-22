@@ -34,6 +34,8 @@ bool	is_in_sd_quotes(char **here_doc_delim)
 	int	i;
 
 	i = 0;
+	if (here_doc_delim == NULL)
+		return (false);
 	while (here_doc_delim[i])
 		i++;
 	if (i != 0 && here_doc_delim[i - 1][0] == '\''
