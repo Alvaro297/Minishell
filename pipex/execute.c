@@ -37,7 +37,7 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
 	//fd = open_f(cmd->outfile, 1);
 	if (cmd->infile)
 		redirimput(cmd);
-	else
+	else if (!cmd->is_heredoc)
 		dup2(pfd[minishell->howmanycmd - 2][0], STDIN_FILENO);
 	if (cmd->outfile)
 		rediroutput(cmd);
@@ -109,7 +109,7 @@ void	execute_command(t_minishell *minishell, t_cmd *cmd, int ** pfd, int i)
 	logadd("ESTOY EN EL n HIJO:\n");
 	if (cmd->infile)
 		redirimput(cmd);
-	else
+	else if (!cmd->is_heredoc)
 		dup2(pfd[i - 1][0], STDIN_FILENO);
 	if (cmd->outfile)
 		rediroutput(cmd);
@@ -138,7 +138,7 @@ int	**create_pipes(t_minishell *minishell)
 	}
 	return (fd);
 }
-
+/*
 void	executebuiltin(t_minishell *minishell)
 {
 	int	**pfd;
@@ -159,6 +159,7 @@ void	executebuiltin(t_minishell *minishell)
 	current_cmd = current_cmd->next;
 	while (i < minishell->howmanycmd)
 	{
+		if ()
 		logadd("ESTOY EN LA N EJECUCIÖN:\n");
 		pids[i - 1] = fork();
 		if (pids[i - 1] == 0)
@@ -180,7 +181,7 @@ void	executebuiltin(t_minishell *minishell)
 		waitpid(pids[i], &minishell->last_exit_status, 0);
 		i++;
 	}
-}
+}*/
 
 void	execute_all(t_minishell *minishell)
 {
@@ -189,7 +190,8 @@ void	execute_all(t_minishell *minishell)
 	pid_t *pids;
 	t_cmd	*current_cmd;
 	int	std_out;
-	int	heredoc_fd;
+	int	*heredoc_fds;
+	int	j;
 
 	current_cmd = minishell->cmds;
 	std_out = dup(STDOUT_FILENO);
@@ -204,18 +206,20 @@ void	execute_all(t_minishell *minishell)
 		return ;
 	}*/
 	i = 0;
+	j = 0;
 	pids = malloc(sizeof(pid_t) * minishell->howmanycmd);
 	pfd = create_pipes(minishell);
+	heredoc_fds = manage_heredocs(minishell);
 	while (i < minishell->howmanycmd)
 	{
 		pids[i] = fork();
 		if (pids[i] == 0)
 		{
-			if (current_cmd->here_doc_delim && current_cmd->here_doc_delim[0])
+			if (current_cmd->is_heredoc)
 			{
-				heredoc_fd = handle_heredoc(current_cmd->here_doc_delim);
-				dup2(heredoc_fd, STDIN_FILENO);
-				close(heredoc_fd);
+				dup2(heredoc_fds[j], STDIN_FILENO);
+				close(heredoc_fds[j]);
+				j++;
 			}
 			if (i == 0)
 				first_child(minishell, current_cmd, pfd);

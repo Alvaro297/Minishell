@@ -747,3 +747,9 @@ ashfd
 +
 +
 +
+echo hola
+echo hola <<EOF
+echo hola
+echo hola <<EOF
+cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
+cat <<EOF | grep <<EOF2
