@@ -24,13 +24,24 @@ void	delete_cmds(t_cmd *cmd)
 		if (current->cmd)
 			free(current->cmd);
 		if (current->args)
+		{
 			free_double_array((void **) current->args);
+			current->args = NULL;
+		}
 		if (current->infile)
 			free(current->infile);
 		if (current->outfile)
 			free(current->outfile);
+		if (current->here_doc_delim)
+		{
+			free_double_array((void **) current->here_doc_delim);
+			current->here_doc_delim = NULL;
+		}
 		if (current->outfile_array)
+		{
 			free_double_array((void **) current->outfile_array);
+			current->outfile_array = NULL;
+		}
 		free(current);
 		current = next;
 	}

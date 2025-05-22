@@ -753,3 +753,30 @@ echo hola
 echo hola <<EOF
 cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
 cat <<EOF | grep <<EOF2
+echo hola
+echo hola
+echo hola
+cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
+cat pipex/pipex.h
+echo hola
+echo hola | grep j
+echo hola
+echo adios
+cat Makefile
+cat Makefile
+echo hola <noexiste
+echo hola <noexiste >existe >existe2 <noexiste2<<ALL
+echo hola <noexiste >existe >existe2 <noexiste2
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola | echo que tal
+echo hola | echo que tal
+echo hola | echo que tal
+echo hola
+echo hola
+echo hola
+echo hola

@@ -93,6 +93,8 @@ static void	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_da
 	tmp->is_pipe = have_pipe(data->array_commands, data->position);
 	tmp->outfile = find_outfile(minishell, command_splited);
 	tmp->infile = find_infile(minishell, command_splited);
+	tmp->is_heredoc = is_heredoc(command_splited);
+	tmp->here_doc_delim = here_doc_delim(data->command);
 	tmp->outfile_array = get_outfiles(minishell, command_splited);
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->next = NULL;

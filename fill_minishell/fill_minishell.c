@@ -29,21 +29,79 @@ static void	fill_minishell_help(t_minishell *minishell)
 	}
 }
 
-bool	is_in_sd_quotes(char **here_doc_delim)
+bool	is_in_sd_quotes(t_cmd *cmds)
 {
-	int	i;
+	t_cmd	*current_cmd;
+	int		i;
+	bool	inside_quotes;
 
-	i = 0;
-	if (here_doc_delim == NULL)
-		return (false);
-	while (here_doc_delim[i])
-		i++;
-	if (i != 0 && here_doc_delim[i - 1][0] == '\''
-			&& here_doc_delim[i - 1][ft_strlen(here_doc_delim[i - 1]) - 1] == '\'')
+	current_cmd = cmds;
+	inside_quotes = false;
+	while (current_cmd != NULL)
 	{
-		return (true);
+		if (current_cmd->is_heredoc && current_cmd->here_doc_delim)
+		{
+			i = 0;
+			while (current_cmd->here_doc_delim[i])
+			{
+				if (i != 0 && current_cmd->here_doc_delim[i - 1][0] == '\''
+						&& current_cmd->here_doc_delim[i - 1][ft_strlen(current_cmd->here_doc_delim[i - 1]) - 1] == '\'')
+					inside_quotes = true;
+				else
+					inside_quotes = false;
+				i++;
+			}
+		}
+		current_cmd = current_cmd->next;
 	}
-	return (false);
+	return (inside_quotes);
+}
+
+void	printf_cmd(t_cmd *cmds)
+{
+    t_cmd	*current_cmd;
+    int		i;
+
+    current_cmd = cmds;
+    while (current_cmd != NULL)
+    {
+        printf("--------\n");
+        printf("Command: %s\n", current_cmd->cmd ? current_cmd->cmd : "(null)");
+
+        // Argumentos
+        if (current_cmd->args)
+        {
+            for (i = 0; current_cmd->args[i]; i++)
+                printf("Arg[%d]: %s\n", i, current_cmd->args[i]);
+        }
+
+        // Redirecciones de entrada y salida
+        if (current_cmd->infile)
+            printf("Infile: %s\n", current_cmd->infile);
+        if (current_cmd->outfile)
+            printf("Outfile: %s\n", current_cmd->outfile);
+
+        // Heredocs
+        if (current_cmd->is_heredoc && current_cmd->here_doc_delim)
+        {
+            for (i = 0; current_cmd->here_doc_delim[i]; i++)
+                printf("Heredoc delim[%d]: %s\n", i, current_cmd->here_doc_delim[i]);
+        }
+
+        // Outfiles múltiples (si tienes soporte)
+        if (current_cmd->outfile_array)
+        {
+            for (i = 0; current_cmd->outfile_array[i]; i++)
+                printf("Outfile_array[%d]: %s\n", i, current_cmd->outfile_array[i]);
+        }
+
+        // Pipe
+        printf("Is pipe: %s\n", current_cmd->is_pipe ? "yes" : "no");
+
+        // Siguiente comando
+        current_cmd = current_cmd->next;
+    }
+    printf("--------\n");
 }
 
 void	fill_minishell(char *input, t_minishell *minishell, char **envp)
@@ -69,14 +127,7 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 	minishell->cmds = parsing_input(minishell, input);
 	minishell->output = NULL;
 	minishell->howmanycmd = howmanycmds(minishell->cmds);
-	if (minishell->here_doc_delim)
-	{
-		free_double_array((void **) minishell->here_doc_delim);
-		minishell->here_doc_delim = NULL;
-	}
-	minishell->here_doc_delim = here_doc_delim(input);
-	minishell->heredoc_sd = is_in_sd_quotes(minishell->here_doc_delim);
-	if (minishell->here_doc_delim)
-		minishell->here_doc_delim = delete_quotes_double_array(minishell, minishell->here_doc_delim, false);
+	minishell->heredoc_sd = is_in_sd_quotes(minishell->cmds);
+	printf_cmd(minishell->cmds);
 	fill_minishell_help(minishell);
 }

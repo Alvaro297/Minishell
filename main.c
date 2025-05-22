@@ -22,7 +22,6 @@ static void	init_minishell(t_minishell *minishell)
 	minishell->output = NULL;
 	minishell->pids = NULL;
 	minishell->history_file = get_history_file();
-	minishell->here_doc_delim = NULL;
 	minishell->heredoc_sd = false;
 	minishell->howmanycmd = 0;
 	minishell->last_exit_status = 0;

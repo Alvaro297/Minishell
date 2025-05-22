@@ -42,8 +42,6 @@ void	free_all(t_minishell *minishell)
 		free_env_list(minishell->env_vars);
 	if (minishell->pids)
 		free(minishell->pids);
-	if (minishell->here_doc_delim)
-		free_double_array((void **)minishell->here_doc_delim);
 	if (minishell->history_file)
 		free(minishell->history_file);
 }

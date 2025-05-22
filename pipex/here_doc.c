@@ -90,7 +90,7 @@ int	*manage_heredocs(t_minishell *minishell)
 	t_cmd *cmd;
 	int	i;
 	int	*fd;
-	int	fdopen;
+	//int	fdopen;
 
 	cmd = minishell->cmds;
 	i = 0;
