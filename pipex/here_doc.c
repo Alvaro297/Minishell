@@ -74,7 +74,6 @@ int handle_heredoc(char **delimiters)
 		i++;
 	}
 	close(final_fd);
-
 	int fd = open(final_tmp, O_RDONLY);
 	unlink(final_tmp);
 	free(final_tmp);
@@ -91,6 +90,7 @@ int	*manage_heredocs(t_minishell *minishell)
 	t_cmd *cmd;
 	int	i;
 	int	*fd;
+	int	fdopen;
 
 	cmd = minishell->cmds;
 	i = 0;
