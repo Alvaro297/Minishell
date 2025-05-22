@@ -743,44 +743,13 @@ ashfd
 ashfd
 trh
 ashfd
-ashfd
-ashfd
++
++
++
++
+echo hola
+echo hola <<EOF
+echo hola
+echo hola <<EOF
 cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
-cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
-cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
-cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
-cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
-cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
-cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
-cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
-cat pipex/pipex.c | grep ASDGASDGADSF <<'$USER' | grep
-cat pipex/pipex.c | grep ASDGASDGADSF <<'$USER'
-cat pipex/pipex.c | grep ASDGASDGADSF <<$USER
-echo $$
-make
-echo $
-echo $
-echo $ 
-echo $  hola
-echo $  hola
-echo $$
-echo $$USER
-echo $$USER
-echo $$USER
-echo $$
-echo $$ USER
-echo $$ USER
-
-
-echo $$ USER
-echo $$ USER
-cat <<
-cat << <
-cat << <
-cat <<
-cat <<
-cat <<
-cat <<
-cat <<
-cat <<
-cat <<
+cat <<EOF | grep <<EOF2

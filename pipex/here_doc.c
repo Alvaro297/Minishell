@@ -34,10 +34,14 @@ static int process_heredoc(const char *delimiter, char *tmpfile)
 
 int handle_heredoc(char **delimiters)
 {
-	char	*final_tmp = ft_strjoin(TMP_HEREDOC, "_final");
-	int		final_fd = open(final_tmp, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	char	*final_tmp;
+	int		final_fd;
 	int		i;
+	char *suffix; 
+	char *tmp;
 
+	final_tmp = ft_strjoin(TMP_HEREDOC, "_final");
+	final_fd = open(final_tmp, O_CREAT | O_WRONLY | O_TRUNC, 0600);
 	if (final_fd < 0)
 	{
 		perror("open final heredoc");
@@ -47,8 +51,8 @@ int handle_heredoc(char **delimiters)
 	i = 0;
 	while (delimiters[i])
 	{
-		char *suffix = ft_itoa(i);
-		char *tmp = ft_strjoin(TMP_HEREDOC, suffix);
+		suffix = ft_itoa(i);
+		tmp = ft_strjoin(TMP_HEREDOC, suffix);
 		free(suffix);
 
 		if (process_heredoc(delimiters[i], tmp) < 0)
@@ -80,4 +84,25 @@ int handle_heredoc(char **delimiters)
 		return -1;
 	}
 	return fd;
+}
+
+int	*manage_heredocs(t_minishell *minishell)
+{
+	t_cmd *cmd;
+	int	i;
+	int	*fd;
+
+	cmd = minishell->cmds;
+	i = 0;
+	fd = malloc(sizeof(int) * minishell->howmanycmd);
+	while (cmd)
+	{
+		if (cmd->is_heredoc)
+		{
+			fd[i] = handle_heredoc(cmd->here_doc_delim);
+			i++;
+		}
+		cmd = cmd->next;
+	}
+	return (fd);
 }
