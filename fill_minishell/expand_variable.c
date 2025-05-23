@@ -20,13 +20,8 @@ static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 
 	if (str[0] != '$')
 		return (ft_strdup(str));
-	if (str[1] == '?')
-	{
-		*len = 2;
-		return (ft_itoa(minishell->last_exit_status));
-	}
 	i = 1;
-	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
+	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_' || str[i] == '?'))
 		i++;
 	var_name = ft_strndup(str + 1, i - 1);
 	var_value = get_env_value(minishell->env_vars, var_name);
@@ -120,13 +115,6 @@ char	*ft_quote_printf(t_minishell *minishell, char *str, bool is_input)
 	ft_quote_printf_loop(minishell, str, &quotes, &indices, &result);
 	result[indices.j] = '\0';
 	if (quotes.in_single_quote || quotes.in_double_quote)
-	{
-		free(result);
-		result = NULL;
-		if (quotes.in_single_quote)
-			write(2, "minishell: unclosed single quote\n", 34);
-		else
-			write(2, "minishell: unclosed double quote\n", 34);
-	}
+		handle_unclosed_quotes(minishell, quotes, &result);
 	return (result);
 }

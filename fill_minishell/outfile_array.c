@@ -21,7 +21,7 @@ static int	get_size(char **input)
 	return (count);
 }
 
-char	**get_outfiles(t_minishell *minishell, char **command_splited)
+char	**get_outfiles(char **command_splited)
 {
 	char	**outfile_array;
 	int		c;
@@ -39,8 +39,6 @@ char	**get_outfiles(t_minishell *minishell, char **command_splited)
 		if ((!ft_strncmp(command_splited[c], ">", 1) && ft_strlen(command_splited[c]) == 1)
 				|| (!ft_strncmp(command_splited[c], ">>", 2) && ft_strlen(command_splited[c]) == 2))
 		{
-			if (is_redirected(command_splited[c + 1]) || is_env_var_null(minishell, command_splited[c + 1]))
-				break;
 			outfile_array[c1] = ft_strdup(command_splited[c + 1]);
 			c++;
 			c1++;

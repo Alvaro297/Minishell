@@ -39,11 +39,9 @@ static t_env *find_env_var(t_env *env, char *name)
 		if (ft_strncmp(env->name, name, ft_strlen(name)) == 0 &&
 			ft_strlen(name) == ft_strlen(env->name))
 			return env;
-		if (env->next == NULL)
-			break;
 		env = env->next;
 	}
-	return env;
+	return (NULL);
 }
 
 static t_env *create_env_var(char *name, char *value)
@@ -62,13 +60,17 @@ static t_env *create_env_var(char *name, char *value)
 	return new;
 }
 
-void set_env(t_env **env, char *name, char *value)
+void	set_env(t_env **env, char *name, char *value)
 {
 	t_env *tmp;
-
-	value = trim_quotes(value);
+	t_env *last;
+	
+	last = NULL;
 	tmp = find_env_var(*env, name);
-	if (tmp && ft_strncmp(tmp->name, name, ft_strlen(name)) == 0)
+	if (!(name && value && ft_strcmp(name, "_") == 0 &&
+			((value[0] == '"' && value[1] == '\0') || (value[0] == '\'' && value[1] == '\0'))))
+			value = trim_quotes(value);
+	if (tmp)
 	{
 		free(tmp->value);
 		tmp->value = value ? ft_strdup(value) : NULL;
@@ -77,7 +79,12 @@ void set_env(t_env **env, char *name, char *value)
 	if (*env == NULL)
 		*env = create_env_var(name, value);
 	else
-		tmp->next = create_env_var(name, value);
+	{
+		last = *env;
+		while (last->next)
+			last = last->next;
+		last->next = create_env_var(name, value);
+	}
 }
 
 bool	is_env_var_null(t_minishell *minishell, char *arg)

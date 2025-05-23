@@ -23,8 +23,6 @@ static int ft_count_words(char *command, t_quotes *quotes, int c)
 	}
 	if (i > 0 && command[i - 1] != c)
 		count++;
-	if (quotes->in_single_quote || quotes->in_double_quote)
-		return (-1);
 	return (count);
 }
 
@@ -95,11 +93,6 @@ char	**split_modified(char *command, int c)
 	quotes.in_single_quote = false;
 	quotes.in_double_quote = false;
 	count_words = ft_count_words(command, &quotes, c);
-	if (count_words == -1)
-	{
-		ft_putstr_fd("Error: unclosed quotes\n", 2);
-		return (NULL);
-	}
 	result = malloc(sizeof(char *) * (count_words + 1));
 	if (!result)
 		return (NULL);

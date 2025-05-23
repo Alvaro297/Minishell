@@ -29,9 +29,9 @@ bool	check_redir_syntax(char *input)
 	{
 		if ((input[c] == '>' || input[c] == '<') &&
 				(input[c + 1] == '<'))
-            return (false);
+			return (false);
 		if (input[c] == '<' && input[c + 1] == '>')
-            return false;
+			return false;
 	}
 	return (true);
 }
@@ -42,11 +42,11 @@ bool	check_pipes(char *input)
 
 	c = 0;
 	if (input[0] == '|' || input[ft_strlen(input) - 1] == '|')
-        return (false);
+		return (false);
 	while (input[c] != '\0')
 	{
 		 if (input[c] == '|' && input[c+1] == '|')
-            return (false);
+			return (false);
 	}
 	return (true);
 }
@@ -55,18 +55,18 @@ bool	check_syntax(char *input)
 {
 	if (!check_quotes(input))
 	{
-        printf("Error: Comillas no balanceadas.\n");
-        return (false);
-  }
-  if (!check_redir_syntax(input))
+		printf("Error: Comillas no balanceadas.\n");
+		return (false);
+	}
+	if (!check_redir_syntax(input))
 	{
-        printf("Error: Sintaxis incorrecta en redirección.\n");
-        return (false);
-  }
-  if (!check_pipes(input))
+		printf("Error: Sintaxis incorrecta en redirección.\n");
+		return (false);
+	}
+	if (!check_pipes(input))
 	{
-        printf("Error: Sintaxis incorrecta en pipes.\n");
-        return (false);
-  }
+		printf("Error: Sintaxis incorrecta en pipes.\n");
+		return (false);
+	}
 	return (true);
 }

@@ -111,10 +111,10 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 	minishell->input = ft_quote_printf(minishell, input, true);
 	if (input && *input)
 	{
+		set_special_var(minishell);
 		add_history(input);
 		add_to_history(minishell, input);
 	}
-	set_special_var(minishell);
 	if (minishell->input == NULL)
 	{
 		if (minishell->cmds)

@@ -12,21 +12,6 @@
 
 #include "minishell.h"
 
-static void	init_minishell(t_minishell *minishell)
-{
-	minishell->env_vars = NULL;
-	minishell->history = NULL;
-	minishell->current_dir = NULL;
-	minishell->input = NULL;
-	minishell->cmds = NULL;
-	minishell->output = NULL;
-	minishell->pids = NULL;
-	minishell->history_file = get_history_file();
-	minishell->heredoc_sd = false;
-	minishell->howmanycmd = 0;
-	minishell->last_exit_status = 0;
-}
-
 static bool	exitMinishell(char *input)
 {
 	if(ft_strcmp(input, "exit") == 0)

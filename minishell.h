@@ -82,6 +82,7 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp);
 void	free_all(t_minishell *minishell);
 char	*get_history_file(void);
 void	set_special_var(t_minishell *minishell);
+void	set_special_var_inputNull(t_minishell *minishell, char *result);
 /* Expand_variable */
 char	*ft_quote_printf(t_minishell *minishell, char *str, bool is_input);
 void	append_expanded_variable(char **result, size_t *j, char *expanded);
@@ -119,21 +120,28 @@ int		internal_commands(t_cmd *current_cmd, t_minishell *minishell);
 char	**split_modified(char *command, int c);
 bool	is_heredoc(char **command_splited);
 char	**here_doc_delim(char *input);
+int		ft_count_heredocs(char **command_splited);
 bool	is_redirected(char *command_splited);
 int		ft_count_command_splited(char **command_splited);
 int		ft_count_newarray(char **command_splited, int i, t_quotes *quotes, int count_total_array);
 char	**process_redirection(char **command_splited);
 char	**delete_quotes_double_array(t_minishell *minishell, char **double_array, bool is_not_here_doc);
 //** Cmds **//
-char	**get_outfiles(t_minishell *minishell, char **command_splited);
+char	**get_outfiles(char **command_splited);
 void	delete_cmds(t_cmd *cmd);
 void	append_cmds(t_cmd **cmds, t_cmd *new_cmd);
 char	*find_command(t_minishell *minishell, char **command_splited);
 char	**find_args(t_minishell *minishell, char **command_splited);
-char	*find_infile(t_minishell *minishell, char **command_splited);
-char	*find_outfile(t_minishell *minishell, char **command_splited);
+char	*find_infile(char **command_splited);
+char	*find_outfile(char **command_splited);
 int		is_append(char **command_splited);
 bool	have_pipe(char **command, int position);
+//** Errors **//
+bool	controled_errors(t_minishell *minishell, char **command_splited, t_parse_data *command);
+void	handle_unclosed_quotes(t_minishell *minishell, t_quotes quotes, char **result);
+//** Init Minishell **//
+void	init_minishell(t_minishell *minishell);
+void	init_cmd(t_cmd *cmd);
 //** History **//
 void	load_history(t_minishell *minishell);
 void	add_to_history(t_minishell *minishell, char *input);

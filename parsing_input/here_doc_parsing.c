@@ -14,7 +14,7 @@ bool	is_heredoc(char **command_splited)
 	return (false);
 }
 
-static int	ft_count_heredocs(char **command_splited)
+int		ft_count_heredocs(char **command_splited)
 {
 	int	count;
 	int	i;
@@ -84,12 +84,6 @@ char	**here_doc_delim(char *input)
 	split_input_inic = split_modified(input, ' ');
 	split_input_inic = process_redirection(split_input_inic);
 	count_heredocs = ft_count_heredocs(split_input_inic);
-	if (count_heredocs == -1)
-	{
-		ft_putstr_fd("Syntax error near unexpected token\n", 2);
-		free_double_array((void **)split_input_inic);
-		return (NULL);
-	}
 	heredocs_delim = malloc(sizeof(char *) * (count_heredocs + 1));
 	if (!heredocs_delim)
 	{

@@ -827,3 +827,77 @@ echo hola que tal
 echo hola que tal
 echo hola que tal
 echo hola que tal
+| echo hola
+echo hola
+echo $_
+echo hola
+export
+export
+echo hola"
+echo $?
+echo hola |
+echo $?
+echo hola << <
+echo hola << <
+echo hola << <
+echo hola << <
+echo hola $?
+export
+echo hola $?
+echo hola $?
+echo hola $?
+echo hola << <
+echo hola $?
+export ?=34
+export
+export $?
+echo $?
+export
+export ?=34
+export USER=patata
+echo $USER
+export USER=pat
+export
+export ?=12
+export '?'=12
+echo hola << <
+echo $?
+export
+echo $?
+echo hola << <
+export
+echo $?
+export
+export
+echo $?
+echo $?
+export
+echo $?
+echo $?
+echo hola << <
+echo $?
+echo $?
+echo hola << <
+echo $?
+echo hola << ""
+echo hola << ""
+echo hola << ""
+echo hola << ""
+echo hola << ""
+echo hola << ""
+echo "hoal
+echo $_"
+echo $_
+echo "
+echo $_
+echo hola que tal > prueba bien y tu
+echo $_
+echo << <
+echo > <
+echo > 
+><
+echo  |
+echo  | 
+><
+echo $?
+export

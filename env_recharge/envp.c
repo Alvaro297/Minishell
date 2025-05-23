@@ -18,6 +18,7 @@ t_env	*init_env(char **envp)
 		head = new;
 		envp++;
 	}
+	set_env(&head, "?", "0");
 	return (head);
 }
 
