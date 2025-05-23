@@ -85,31 +85,44 @@ static bool parsed_name_validation(char *var_name)
 	return (true);
 }
 
-int		handle_export(t_cmd *current_cmd, t_minishell *minishell)
+static int	export_one_var(t_cmd *cmd, t_minishell *mini, int i)
 {
-	int		i;
-	char	*var_name;
-	char	*var_check;
-
-	i = 0;
-	while (current_cmd->args[++i])
+	char *var_name;
+	char *var_check;
+	
+	var_check = ft_strchr(cmd->args[i], '=');
+	var_name = parsed_variable_name(cmd->args[i]);
+	if (var_check && cmd->args[i][0] != '=')
 	{
-		var_name = parsed_variable_name(current_cmd->args[i]);
-		var_check = ft_strchr(current_cmd->args[i], '=');
-		if (var_check != NULL && current_cmd->args[i][0] != '=')
-		{
-			var_check++;
-			if (parsed_name_validation(var_name) && parsed_value_validation(var_check))
-				set_env(&minishell->env_vars, var_name, var_check);
-		}
-		else if (var_check == NULL && var_name != NULL)
-			if (parsed_name_validation(var_name))
-				set_env(&minishell->env_vars, var_name, NULL);
-		free(var_name);
+		var_check++;
+		if (parsed_name_validation(var_name)
+			&& parsed_value_validation(var_check))
+			set_env(&mini->env_vars, var_name, var_check);
+		else
+			return (printf("export: `%s': not a valid identifier\n", cmd->args[i]), free(var_name), 1);
 	}
-	if (current_cmd->is_pipe && current_cmd->args[1])
-		minishell->output = ft_strdup("");
-	if (!minishell->cmds->args[1])
-		print_entorn_variable(current_cmd, minishell);
+	else if (!var_check && var_name)
+	{
+		if (parsed_name_validation(var_name))
+			set_env(&mini->env_vars, var_name, NULL);
+		else
+			return (printf("export: `%s': not a valid identifier\n", cmd->args[i]), free(var_name), 1);
+	}
+	else
+		return (printf("export: `%s': not a valid identifier\n", cmd->args[i]), free(var_name), 1);
+	free(var_name);
+	return (0);
+}
+
+int	handle_export(t_cmd *cmd, t_minishell *mini)
+{
+	int i = 0, ret = 0;
+	while (cmd->args[++i])
+		if ((ret = export_one_var(cmd, mini, i)))
+			return (ret);
+	if (cmd->is_pipe && cmd->args[1])
+		mini->output = ft_strdup("");
+	if (!mini->cmds->args[1])
+		print_entorn_variable(cmd, mini);
 	return (0);
 }

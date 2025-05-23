@@ -114,6 +114,7 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 		add_history(input);
 		add_to_history(minishell, input);
 	}
+	set_special_var(minishell);
 	if (minishell->input == NULL)
 	{
 		if (minishell->cmds)

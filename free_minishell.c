@@ -15,6 +15,8 @@ void	free_cmd_list(t_cmd *cmd)
 			free_double_array((void **)cmd->args);
 		if (cmd->outfile_array)
 			free_double_array((void **)cmd->outfile_array);
+		if (cmd->here_doc_delim)
+			free_double_array((void **)cmd->here_doc_delim);
 		if (cmd->infile)
 			free(cmd->infile);
 		if (cmd->outfile)

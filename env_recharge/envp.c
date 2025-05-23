@@ -8,18 +8,14 @@ t_env	*init_env(char **envp)
 	
 	while (*envp)
 	{
-		if (ft_strncmp(*envp, "_=", 2) != 0)
-		{
-					
-			new = malloc(sizeof(t_env));
-			sep = ft_strchr(*envp, '=');
-			if (!new || !sep)
-				return NULL;
-			new->name = ft_strndup(*envp, sep - *envp);	// Nombre de la variable
-			new->value = ft_strdup(sep + 1);			// Valor de la variable
-			new->next = head;
-			head = new;
-		}
+		new = malloc(sizeof(t_env));
+		sep = ft_strchr(*envp, '=');
+		if (!new || !sep)
+			return NULL;
+		new->name = ft_strndup(*envp, sep - *envp);	// Nombre de la variable
+		new->value = ft_strdup(sep + 1);			// Valor de la variable
+		new->next = head;
+		head = new;
 		envp++;
 	}
 	return (head);

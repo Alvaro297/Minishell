@@ -782,3 +782,48 @@ echo hola
 echo hola
 cat <<Hola | cat <<Adios
 echo <<
+cat "|" wc
+export ="hoal"
+export
+export
+export ="hoal"
+export =hoal
+export =hoal
+export
+export
+export
+echo hola
+echo hola
+export
+echo $_
+echo 
+echo 
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo $_
+echo $_
+echo hola que tal
+echo $_
+echo hola que tal
+echo $_
+echo $_
+echo hola que tal
+echo $_
+echo $_
+echo hola que tal
+echo $_
+echo hola que tal
+echo hola que tal
+echo hola que tal
+echo hola que tal
+echo hola que tal
+echo hola que tal
+echo hola que tal

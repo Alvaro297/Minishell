@@ -74,6 +74,8 @@ void init_cmd(t_cmd *cmd)
 	cmd->infile = NULL;
 	cmd->outfile = NULL;
 	cmd->outfile_array = NULL;
+	cmd->is_heredoc = false;
+	cmd->here_doc_delim = NULL;
 	cmd->outfile_modes = 0;
 	cmd->next = NULL;
 }

@@ -71,5 +71,4 @@ Hay que hacer $_ que es el ultimo argumento del comando (Es facil y me encargo y
 	Errores: Ambos
 		Yo (Martín): sacare en el parseo los mensajes de error tipo el del here_doc.
 		Tu (Pablete): el codigo de error y errores de comandos mal escritos. | |
-	$_: Yo (Martín)
 	Normi: Ambos
