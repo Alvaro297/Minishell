@@ -753,3 +753,4 @@ echo hola
 echo hola <<EOF
 cat pipex/pipex.c | grep ASDGASDGADSF <<$USER << hola | grep <<+ASGDFASDFG
 cat <<EOF | grep <<EOF2
+cat <<EOF | cat <<EOF2
