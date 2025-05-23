@@ -128,6 +128,6 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 	minishell->output = NULL;
 	minishell->howmanycmd = howmanycmds(minishell->cmds);
 	minishell->heredoc_sd = is_in_sd_quotes(minishell->cmds);
-	printf_cmd(minishell->cmds);
+//	printf_cmd(minishell->cmds);
 	fill_minishell_help(minishell);
 }

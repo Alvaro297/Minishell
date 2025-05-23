@@ -35,7 +35,7 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
 	else
 		logadd("NO HAY CMD");
 	//fd = open_f(cmd->outfile, 1);
-	if (cmd->infile)
+	if (cmd->infile && !cmd->is_heredoc)
 		redirimput(cmd);
 	else if (!cmd->is_heredoc)
 		dup2(pfd[minishell->howmanycmd - 2][0], STDIN_FILENO);
@@ -49,8 +49,6 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
 	closefds(minishell, pfd);
 	execute(minishell, cmd);
 }
-
- 
 
 void	first_child(t_minishell *minishell, t_cmd *cmd, int **pfd)
 {
@@ -107,7 +105,7 @@ void	first_cmd_builtin(t_minishell *minishell, t_cmd *cmd, int **pfd)
 void	execute_command(t_minishell *minishell, t_cmd *cmd, int ** pfd, int i)
 {
 	logadd("ESTOY EN EL n HIJO:\n");
-	if (cmd->infile)
+	if (cmd->infile && !cmd->is_heredoc)
 		redirimput(cmd);
 	else if (!cmd->is_heredoc)
 		dup2(pfd[i - 1][0], STDIN_FILENO);
@@ -190,11 +188,13 @@ void	execute_all(t_minishell *minishell)
 	pid_t *pids;
 	t_cmd	*current_cmd;
 	int	std_out;
+	int	std_in;
 	int	*heredoc_fds;
 	int	j;
 
 	current_cmd = minishell->cmds;
 	std_out = dup(STDOUT_FILENO);
+	std_in = dup(STDIN_FILENO);
 	if (minishell->howmanycmd == 1)
 	{
 		no_pipes(minishell);
@@ -212,15 +212,15 @@ void	execute_all(t_minishell *minishell)
 	heredoc_fds = manage_heredocs(minishell);
 	while (i < minishell->howmanycmd)
 	{
+		if (current_cmd->is_heredoc)
+		{
+			dup2(heredoc_fds[j], STDIN_FILENO);
+			close(heredoc_fds[j]);
+			j++;
+		}
 		pids[i] = fork();
 		if (pids[i] == 0)
 		{
-			if (current_cmd->is_heredoc)
-			{
-				dup2(heredoc_fds[j], STDIN_FILENO);
-				close(heredoc_fds[j]);
-				j++;
-			}
 			if (i == 0)
 				first_child(minishell, current_cmd, pfd);
 			else if (i == minishell->howmanycmd - 1)
@@ -233,6 +233,9 @@ void	execute_all(t_minishell *minishell)
 		current_cmd = current_cmd->next;
 		i++;
 	}
+	dup2(std_in, STDIN_FILENO);
+	close (std_in);
+	free (heredoc_fds);
 	closefds(minishell, pfd);
 	i = 0;
 	while (i < minishell->howmanycmd)//TODO hacer una funcion que se quede con el primer codigo de error si los hay.

@@ -104,5 +104,6 @@ int	*manage_heredocs(t_minishell *minishell)
 		}
 		cmd = cmd->next;
 	}
+	cmd = minishell->cmds;
 	return (fd);
 }

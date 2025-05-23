@@ -782,3 +782,27 @@ echo hola
 echo hola
 cat <<Hola | cat <<Adios
 echo <<
+cat <<Hola | cat <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | sort
+cat <<Hola | grep <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+:wqa
