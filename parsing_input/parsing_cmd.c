@@ -111,7 +111,7 @@ static void	parse_input_loop(t_minishell *minishell, t_cmd **head, char **parsed
 		if (!is_all_ok)
 		{
 			free_cmd_list(*head);
-			head = NULL;
+			*head = NULL;
 			break ;
 		}
 		append_cmds(head, new_cmd);
@@ -139,5 +139,7 @@ t_cmd	*parsing_input(t_minishell *minishell, char *input)
 	parse_input_loop(minishell, &head, parsed_input);
 	free(data.input);
 	free_double_array((void **)parsed_input);
+	if (head == NULL)
+		return (NULL);
 	return (head);
 }

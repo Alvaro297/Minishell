@@ -901,3 +901,66 @@ echo  |
 ><
 echo $?
 export
+echo ||
+| echo
+| echo
+export "
+echo "hola que tal
+| echo
+echo | |
+echo | hola << < 
+echo hola | hola << < 
+echo hola << <
+echo hola << <
+| echo
+| echo
+| echo
+| echo
+| echo
+| echo
+| echo
+| echo
+| echo
+| echo
+| echo
+| echo
+| echo
+| echo
+echo | hola << < 
+echo | hola << < 
+echo | hola << < 
+echo | hola << < 
+echo | hola << < 
+echo | hola << < 
+echo | hola << < 
+echo $?
+echo $?
+echo $?
+echo | hola << < 
+echo $?
+echo $?
+export
+export
+export
+export
+export |
+export |
+export |
+export |
+export
+echo $?
+export | echo hola << <
+echo $?
+export | |
+export | 
+export | 
+export | 
+export |  |
+export |  echo hola
+export |<
+export | <
+export | <
+export | 
+export |   
+export |   
+export |   echo hola

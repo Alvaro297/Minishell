@@ -72,22 +72,38 @@ static bool	find_outfile_check_error(t_minishell *minishell, char **command_spli
 	return (true);
 }
 
+static int	is_all_spaces(const char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ' && *str != '\t')
+			return 0;
+		str++;
+	}
+	return 1;
+}
+
 static bool	check_pipes(char **array_commands, int position)
 {
 	int		position_pipe;
 
 	position_pipe = position + 1;
-	if (position == 0)
+	if (array_commands[position_pipe])
 	{
-		if (ft_strncmp(array_commands[position], "|", 1) == 0)
-			return (printf("Syntax error near unexpected token '|'\n"), false);
+		if (ft_strncmp(array_commands[position_pipe], "|", 1) == 0 &&
+					 (!array_commands[position_pipe + 1] ||
+						array_commands[position_pipe + 1][0] == '\0' ||
+						is_all_spaces(array_commands[position_pipe + 1])))
+			return (printf("Syntax error near unexpected token3 'newline'\n"), false);
+		else if (position_pipe == 1 && array_commands[position][0] == '\0')
+		{
+			if (ft_strncmp(array_commands[position_pipe], "|", 1) == 0)
+				return (printf("Syntax error near unexpected token '|'\n"), false);
+		}
+		else if (array_commands[position_pipe][0] == '|' &&
+					array_commands[position_pipe + 1][0] == '|')
+			return (printf("Syntax error near unexpected token2 '|'\n"), false);
 	}
-	else if (ft_strncmp(array_commands[position_pipe], "|", 1) == 0 &&
-				ft_strncmp(array_commands[position_pipe + 1], "|", 1) == 0)
-		return (printf("Syntax error near unexpected token '|'\n"), false);
-	else if (ft_strncmp(array_commands[position_pipe], "|", 1) == 0 &&
-				!array_commands[position_pipe + 1])
-		return (printf("Syntax error near unexpected token 'newline'\n"), false);
 	return (true);
 }
 

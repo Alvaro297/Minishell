@@ -12,23 +12,6 @@
 
 #include "../minishell.h"
 
-static void	fill_minishell_help(t_minishell *minishell)
-{
-	char	cwd[PATH_MAX];
-
-	if (getcwd(cwd, sizeof(cwd)) != NULL)
-	{
-		if (minishell->current_dir)
-			free(minishell->current_dir);
-		minishell->current_dir = ft_strdup(cwd);
-	}
-	else
-	{
-		perror("getcwd");
-		exit(EXIT_FAILURE);
-	}
-}
-
 bool	is_in_sd_quotes(t_cmd *cmds)
 {
 	t_cmd	*current_cmd;
@@ -55,6 +38,26 @@ bool	is_in_sd_quotes(t_cmd *cmds)
 		current_cmd = current_cmd->next;
 	}
 	return (inside_quotes);
+}
+
+static void	fill_minishell_help(t_minishell *minishell)
+{
+	char	cwd[PATH_MAX];
+	
+	minishell->output = NULL;
+	minishell->howmanycmd = howmanycmds(minishell->cmds);
+	minishell->heredoc_sd = is_in_sd_quotes(minishell->cmds);
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+	{
+		if (minishell->current_dir)
+			free(minishell->current_dir);
+		minishell->current_dir = ft_strdup(cwd);
+	}
+	else
+	{
+		perror("getcwd");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	printf_cmd(t_cmd *cmds)
@@ -126,9 +129,9 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 		return ;
 	}
 	minishell->cmds = parsing_input(minishell, input);
-	minishell->output = NULL;
-	minishell->howmanycmd = howmanycmds(minishell->cmds);
-	minishell->heredoc_sd = is_in_sd_quotes(minishell->cmds);
+	if (minishell->cmds == NULL)
+		return (free(input));
+
 	printf_cmd(minishell->cmds);
 	fill_minishell_help(minishell);
 }
