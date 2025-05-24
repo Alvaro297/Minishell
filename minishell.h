@@ -144,8 +144,9 @@ void	free_env_list(t_env *env);
 void	free_cmd_list(t_cmd *cmd);
 //**PIPEX **/
 void	sigint_heredoc_handler(int sig);
-int		handle_heredoc(char **delimiter);
-int	*manage_heredocs(t_minishell *minishell);
+int		handle_heredoc(t_minishell *minishell, char **delimiter, bool heredoc_sd);
+char	*ft_quote_printf_here_doc(t_minishell *minishell, char *str);
+int		*manage_heredocs(t_minishell *minishell);
 void	redir(t_minishell *minishell);
 void	rediroutput(t_cmd *cmd);
 void	redirimput(t_cmd *cmd);

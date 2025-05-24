@@ -78,6 +78,36 @@ void init_cmd(t_cmd *cmd)
 	cmd->next = NULL;
 }
 
+static int	is_quoted_delim(const char *delim)
+{
+	size_t len = ft_strlen(delim);
+	if (len >= 2 && 
+		(delim[0] == '\'' && delim[len - 1] == '\''))
+		return 1;
+	return 0;
+}
+
+bool	is_in_sd_quotes(t_cmd *cmds)
+{
+	t_cmd	*current_cmd;
+	int		i;
+
+	current_cmd = cmds;
+	while (current_cmd != NULL)
+	{
+		if (current_cmd->is_heredoc && current_cmd->here_doc_delim)
+		{
+			// Busca el último delimitador
+			for (i = 0; current_cmd->here_doc_delim[i]; i++)
+				;
+			if (i > 0 && is_quoted_delim(current_cmd->here_doc_delim[i - 1]))
+				return (true);
+		}
+		current_cmd = current_cmd->next;
+	}
+	return (false);
+}
+
 static void	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_data *data)
 {
 	t_cmd	*tmp;
@@ -98,6 +128,7 @@ static void	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_da
 	tmp->outfile_array = get_outfiles(minishell, command_splited);
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->next = NULL;
+	minishell->heredoc_sd = is_in_sd_quotes(tmp);
 	delete_quotes(minishell, tmp);
 	free_double_array((void **)command_splited);
 }

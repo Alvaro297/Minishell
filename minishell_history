@@ -806,3 +806,34 @@ echo <<Hola | cat <<Adios
 echo <<Hola | cat <<Adios
 echo <<Hola | cat <<Adios
 :wqa
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+cat <<'Adios'
+cat <<'Adios'
+cat <<Adios
+cat <<Adios
+cat <<'Adios'
+cat <<'Adios'
+cat <<'Adios'
+cat <<'Adios'
+cat <<'Adios'
+cat <<Adios
+cat <<Adios
+cat <<'Adios'
+cat <<'Adios'
+cat <<'Adios'
+cat <<Adios
+cat <<Adios
+cat <<'Adios'
+cat <<'Adios'
+cat <<Adios

@@ -29,33 +29,7 @@ static void	fill_minishell_help(t_minishell *minishell)
 	}
 }
 
-bool	is_in_sd_quotes(t_cmd *cmds)
-{
-	t_cmd	*current_cmd;
-	int		i;
-	bool	inside_quotes;
 
-	current_cmd = cmds;
-	inside_quotes = false;
-	while (current_cmd != NULL)
-	{
-		if (current_cmd->is_heredoc && current_cmd->here_doc_delim)
-		{
-			i = 0;
-			while (current_cmd->here_doc_delim[i])
-			{
-				if (i != 0 && current_cmd->here_doc_delim[i - 1][0] == '\''
-						&& current_cmd->here_doc_delim[i - 1][ft_strlen(current_cmd->here_doc_delim[i - 1]) - 1] == '\'')
-					inside_quotes = true;
-				else
-					inside_quotes = false;
-				i++;
-			}
-		}
-		current_cmd = current_cmd->next;
-	}
-	return (inside_quotes);
-}
 
 void	printf_cmd(t_cmd *cmds)
 {
@@ -127,7 +101,6 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 	minishell->cmds = parsing_input(minishell, input);
 	minishell->output = NULL;
 	minishell->howmanycmd = howmanycmds(minishell->cmds);
-	minishell->heredoc_sd = is_in_sd_quotes(minishell->cmds);
 //	printf_cmd(minishell->cmds);
 	fill_minishell_help(minishell);
 }
