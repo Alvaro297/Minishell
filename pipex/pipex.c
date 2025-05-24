@@ -122,11 +122,13 @@ void	no_pipes(t_minishell *minishell)
 		internal_commands(minishell->cmds, minishell);
 	else
 	{
+		signals_ignore();
 		pid = fork();
 		if (!pid)
 			execute(minishell, minishell->cmds);
 		else
 			waitpid(pid, &minishell->last_exit_status, 0);
+		signals_default();
 	}
 	dup2(stdo, STDOUT_FILENO);
 	dup2(stdi, STDIN_FILENO);

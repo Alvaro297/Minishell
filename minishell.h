@@ -147,6 +147,8 @@ void	load_history(t_minishell *minishell);
 void	add_to_history(t_minishell *minishell, char *input);
 //** Signals **//
 void	manage_signals(void);
+void	signals_ignore(void);
+void	signals_default(void);
 //** Free Minishell **//
 void	free_double_array(void **double_array);
 void	free_env_list(t_env *env);

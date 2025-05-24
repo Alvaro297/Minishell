@@ -69,6 +69,8 @@ Hay que hacer $_ que es el ultimo argumento del comando (Es facil y me encargo y
 	Here_docs: Pablete (Casi)
 	$?: Pablete
 	Errores: Ambos
-		Yo (Martín): sacare en el parseo los mensajes de error tipo el del here_doc.
-		Tu (Pablete): el codigo de error y errores de comandos mal escritos. | |
+		Yo (Martín): Se ha sacado el parseo de los comandos y de la tuberia |
+		Tu (Pablete): el codigo de error.
 	Normi: Ambos
+	Señales del here_doc: Ambos
+	Señales de minishell dentro de otra (Hecho)

@@ -210,6 +210,7 @@ void	execute_all(t_minishell *minishell)
 	pids = malloc(sizeof(pid_t) * minishell->howmanycmd);
 	pfd = create_pipes(minishell);
 	heredoc_fds = manage_heredocs(minishell);
+	signals_ignore();
 	while (i < minishell->howmanycmd)
 	{
 		pids[i] = fork();
@@ -241,6 +242,7 @@ void	execute_all(t_minishell *minishell)
 		waitpid(pids[i], &minishell->last_exit_status, 0);
 		i++;
 	}
+	signals_default();
 	free(pids);
 	i = 0;
 	while (i < minishell->howmanycmd - 1)
