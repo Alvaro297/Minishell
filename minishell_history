@@ -973,3 +973,53 @@ export |   echo hola
 ./Minishell 
 ./Minishell 
 ps
+mkdir -p test/a
+cd test/a
+cd ..
+cd test/a
+cd ..
+pwd
+cd test/a
+mkdir -p test/a
+cd test/a
+pwd
+cd test/a
+mkdir -p test/a
+cd test/a
+cd test/a
+mkdir -p test/a
+cd test/a
+cd ..
+cd ..
+ls
+pwd
+cd ..+
+cd ..
+pwd
+cd CommonCore/
+mkdir -p test/a
+cd test/a
+pwd
+cd ..
+pwd
+cd ..
+cd test/a
+mkdir -p test/a
+cd test/a
+cd ..
+mkdir -p test/a
+cd test/a
+mkdir -p test/a
+cd test/a
+pwd
+cd ..
+pwd
+cd ..
+pwd
+mkdir -p test/a
+cd test/a
+pwd
+cd ..
+pwd
+cd ..
+pwd

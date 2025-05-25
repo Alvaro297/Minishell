@@ -43,21 +43,24 @@ bool	is_in_sd_quotes(t_cmd *cmds)
 static void	fill_minishell_help(t_minishell *minishell)
 {
 	char	cwd[PATH_MAX];
-	
+	char	*previous_pwd;
+
 	minishell->output = NULL;
 	minishell->howmanycmd = howmanycmds(minishell->cmds);
 	minishell->heredoc_sd = is_in_sd_quotes(minishell->cmds);
+	previous_pwd = minishell->current_dir;
 	if (getcwd(cwd, sizeof(cwd)) != NULL)
-	{
-		if (minishell->current_dir)
-			free(minishell->current_dir);
 		minishell->current_dir = ft_strdup(cwd);
-	}
 	else
 	{
-		perror("getcwd");
-		exit(EXIT_FAILURE);
+		perror("minishell: warning: getcwd failed (directory might have been removed)");
+		if (previous_pwd)
+			minishell->current_dir = ft_strdup(previous_pwd);
+		else
+			minishell->current_dir = ft_strdup("");
 	}
+	if (previous_pwd)
+		free(previous_pwd);
 }
 
 void	printf_cmd(t_cmd *cmds)

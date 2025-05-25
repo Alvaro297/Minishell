@@ -14,11 +14,15 @@
 
 static void	handle_cd_help(t_minishell *minishell, char *path, char *cwd)
 {
-	printf("handle_cd_help: path = %s\n", path);
 	free(path);
 	set_env(&minishell->env_vars, "OLDPWD", getenv("PWD"));
-	getcwd(cwd, sizeof(cwd));
-	printf("handle_cd_help: new cwd = %s\n", cwd);
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
+	{
+		perror("minishell: cd: getcwd");
+		set_env(&minishell->env_vars, "PWD", path);
+	}
+	else
+		set_env(&minishell->env_vars, "PWD", cwd);
 	set_env(&minishell->env_vars, "PWD", cwd);
 }
 
