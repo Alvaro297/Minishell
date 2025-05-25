@@ -192,6 +192,7 @@ void	execute_all(t_minishell *minishell)
 	int	std_out;
 	int	*heredoc_fds;
 	int	j;
+	int	status;
 
 	current_cmd = minishell->cmds;
 	std_out = dup(STDOUT_FILENO);
@@ -239,7 +240,15 @@ void	execute_all(t_minishell *minishell)
 	while (i < minishell->howmanycmd)//TODO hacer una funcion que se quede con el primer codigo de error si los hay.
 	{
 		logadd("EN EL PADRE ESPERANDO\n");
-		waitpid(pids[i], &minishell->last_exit_status, 0);
+		waitpid(pids[i], &status, 0);
+		if (WIFEXISTED(status))
+			minishell->last_exit_status = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
+			minishell->last_exit_status = WTERMSIG(status) + 128;
+		else
+			minishell->last_exit_status = 1;
+		set_env(&minishell->env_vars, "?",
+			ft_itoa(minishell->last_exit_status));
 		i++;
 	}
 	signals_default();
