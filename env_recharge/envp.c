@@ -47,7 +47,7 @@ static void	delete_env_help(t_env *prev, t_env *tmp, char *name)
 {
 	t_env *to_free;
 
-	while (tmp != NULL)
+	while (tmp->next != NULL)
 	{
 		if (ft_strncmp(tmp->name, name, ft_strlen(name)) == 0 &&
 				ft_strlen(name) == ft_strlen(tmp->name))

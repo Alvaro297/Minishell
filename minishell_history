@@ -865,3 +865,16 @@ cat <<
 echo $?
 cot
 echo $?
+echo hola
+eee
+unset PWD
+echo hola
+unset PWD
+export
+unset
+unset PWD
+export
+unset USER
+export
+unset PWD
+unset PWD
