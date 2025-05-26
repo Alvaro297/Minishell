@@ -22,7 +22,7 @@ t_env	*init_env(char **envp)
 	return (head);
 }
 
-char	*get_env_value(t_env *env, char *var_name)
+char	*get_env_value(t_env *env, char *var_name, bool free_var)
 {
 	int j;
 	
@@ -34,12 +34,14 @@ char	*get_env_value(t_env *env, char *var_name)
 		if (ft_strncmp(env->name, var_name, j) == 0 &&
 				(int)ft_strlen(env->name) == j)
 				{
-					free(var_name);
+					if (free_var)
+						free(var_name);
 					return (env->value);
 				}
 		env = env->next;
 	}
-	free(var_name);
+	if (free_var)
+		free(var_name);
 	return (NULL);
 }
 

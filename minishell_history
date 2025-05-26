@@ -893,3 +893,51 @@ cd
 cd
 cd $PWD
 cd $PWD
+cd $PWD
+unset PWD
+export
+unset USER
+export
+cd
+cd $PWD
+cd
+export
+unset USER
+cd $USER
+cd $USER
+unset USER
+cd $USER
+unset USER
+cd hola
+echo $USER
+cd $USER
+cd
+cd
+cd
+cd
+cd
+cd
+cd $PATH
+cd $INEX
+cd -
+cd ~
+echo $HOME
+cd $HOME
+pwd
+cd
+pwd
+cd $OLDPWD
+pwd
+unset PWD
+cd ..
+pwd
+unset PWD
+pwd
+unset PWD
+export
+cd ..
+unset PWD
+pwd
+cd ..
+cd ..
+pwd

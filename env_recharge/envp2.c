@@ -106,7 +106,7 @@ bool	is_env_var_null(t_minishell *minishell, char *arg)
 			if (start == i + 1)
 				return (false);
 			expanded_value = ft_strndup(arg + i + 1, start - i - 1);
-			if (get_env_value(minishell->env_vars, expanded_value) != NULL)
+			if (get_env_value(minishell->env_vars, expanded_value, true) != NULL)
 				return (false);
 			i = start - 1;
 		}

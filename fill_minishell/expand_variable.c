@@ -24,7 +24,7 @@ static char *expand_variable(t_minishell *minishell, char *str, size_t *len)
 	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_' || str[i] == '?'))
 		i++;
 	var_name = ft_strndup(str + 1, i - 1);
-	var_value = get_env_value(minishell->env_vars, var_name);
+	var_value = get_env_value(minishell->env_vars, var_name, true);
 	*len = i;
 	if (var_value == NULL)
 		return (NULL); // Devuelve NULL si la variable no existe

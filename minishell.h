@@ -95,7 +95,7 @@ void	ft_sd_quote_printf_mod3(char *str, t_quotes *quotes);
 bool	is_within_quotes(const char *str, const char *pos);
 //** Envp **//
 t_env	*init_env(char **envp);
-char	*get_env_value(t_env *env, char *name);
+char	*get_env_value(t_env *env, char *name, bool free_var);
 t_env	*get_env(t_env *env, char *var_name);
 void	set_env(t_env **env, char *name, char *value);
 void	delete_env(t_env **env, char *name);

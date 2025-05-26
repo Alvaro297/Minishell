@@ -18,7 +18,7 @@ static char *expand_variable_here_doc(t_minishell *minishell, char *str, size_t 
 	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
 		i++;
 	var_name = ft_strndup(str + 1, i - 1);
-	var_value = get_env_value(minishell->env_vars, var_name);
+	var_value = get_env_value(minishell->env_vars, var_name, true);
 	*len = i;
 	if (var_value == NULL)
 		return (NULL);

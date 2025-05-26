@@ -14,35 +14,42 @@
 
 static void	handle_cd_help(t_minishell *minishell, char *path, char *cwd)
 {
+	char *oldpwd;
+
+	oldpwd = getenv("PWD");
 	free(path);
-	set_env(&minishell->env_vars, "OLDPWD", getenv("PWD"));
+	if (oldpwd != NULL)
+		set_env(&minishell->env_vars, "OLDPWD", oldpwd);
+	else
+		set_env(&minishell->env_vars, "OLDPWD", "");
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
-	{
-		perror("minishell: cd: getcwd");
 		set_env(&minishell->env_vars, "PWD", path);
-	}
 	else
 		set_env(&minishell->env_vars, "PWD", cwd);
-	set_env(&minishell->env_vars, "PWD", cwd);
 }
 
 static char	*cd_path(t_cmd *current_cmd, t_minishell *minishell)
 {
 	char	*path;
+	char	*env_home;
 
 	if ((current_cmd->args[1] &&
 		(((current_cmd->args[1][0] == '~' && current_cmd->args[1][1] == '\0')
 			|| (current_cmd->args[1][0] == '-' && current_cmd->args[1][1] == '-' && current_cmd->args[1][2] == '\0'))))
 		|| !current_cmd->args[1])
 	{
-		path = get_env_value(minishell->env_vars, "HOME");
-		printf("cd_path: HOME path = %s\n", path);
+		env_home = get_env_value(minishell->env_vars, "HOME", false);
+		if (env_home)
+			path = ft_strdup(env_home);
+		else
+			path = NULL;
 	}
 	else
 	{
-		path = current_cmd->args[1] ? ft_strdup(current_cmd->args[1]) :
-			get_env_value(minishell->env_vars, "HOME");
-		printf("cd_path: specified path = %s\n", path);
+		if (current_cmd->args[1])
+			path = ft_strdup(current_cmd->args[1]);
+		else
+			path = NULL;
 	}
 	return (path);
 }
