@@ -18,6 +18,9 @@ int	handle_unset(t_cmd *current_cmd, t_minishell *minishell)
 
 	i = 1;
 	while (current_cmd->args[i])
+	{
 		delete_env(&minishell->env_vars, current_cmd->args[i]);
+		i++;
+	}
 	return (0);
 }

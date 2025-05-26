@@ -878,3 +878,18 @@ unset USER
 export
 unset PWD
 unset PWD
+export
+unset ?
+unset ?
+unset ?
+unset PWD
+unset PWD
+exportr
+export
+export
+unset PWD
+export
+cd 
+cd
+cd $PWD
+cd $PWD
