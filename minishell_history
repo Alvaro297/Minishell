@@ -837,3 +837,31 @@ cat <<Adios
 cat <<'Adios'
 cat <<'Adios'
 cat <<Adios
+cat <<'Adios'
+cat <<'Adios'
+cat <<'Adios'
+cat <<Adios
+cat <<'Adios'
+cat <<Adios
+cat <<Adios | cat <<Hola
+cat <<Adios > prueba | <prueba cat <<Hola >prueba1
+cat <<Adios > prueba | <prueba cat <<Hola 
+echo hola
+echo hola
+echo hola
+echo hola
+echo hola
+cat <prueba
+cat <prueba
+echo hola
+cat <<Adios > prueba | <prueba cat <<Hola 
+echo hola | echo adios
+echo hola
+echo hola
+echo $?
+cat <<Adios
+echo $?
+cat <<
+echo $?
+cot
+echo $?

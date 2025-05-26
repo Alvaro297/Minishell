@@ -27,8 +27,8 @@ bool	is_in_sd_quotes(t_cmd *cmds)
 			i = 0;
 			while (current_cmd->here_doc_delim[i])
 			{
-				if (i != 0 && current_cmd->here_doc_delim[i - 1][0] == '\''
-						&& current_cmd->here_doc_delim[i - 1][ft_strlen(current_cmd->here_doc_delim[i - 1]) - 1] == '\'')
+				if (current_cmd->here_doc_delim[i][0] == '\''
+						&& current_cmd->here_doc_delim[i][ft_strlen(current_cmd->here_doc_delim[i]) - 1] == '\'')
 					inside_quotes = true;
 				else
 					inside_quotes = false;
@@ -47,7 +47,6 @@ static void	fill_minishell_help(t_minishell *minishell)
 
 	minishell->output = NULL;
 	minishell->howmanycmd = howmanycmds(minishell->cmds);
-	minishell->heredoc_sd = is_in_sd_quotes(minishell->cmds);
 	previous_pwd = minishell->current_dir;
 	if (getcwd(cwd, sizeof(cwd)) != NULL)
 		minishell->current_dir = ft_strdup(cwd);

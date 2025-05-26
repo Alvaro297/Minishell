@@ -120,7 +120,10 @@ void	no_pipes(t_minishell *minishell)
 		close(heredoc_fd);
 	}
 	if (is_builtin(minishell->cmds))
-		internal_commands(minishell->cmds, minishell);
+	{
+		minishell->last_exit_status = internal_commands(minishell->cmds, minishell);
+		set_env(&minishell->env_vars, "?", ft_itoa(minishell->last_exit_status));
+	}
 	else
 	{
 		signals_ignore();

@@ -114,6 +114,7 @@ int		error_management(t_minishell *minishell);
 //** Parsing Input **//
 void	delete_quotes(t_minishell *minishell, t_cmd *cmd);
 t_cmd	*parsing_input(t_minishell *minishell, char *input);
+bool	is_in_sd_quotes(t_cmd *cmds);
 bool	check_name_arg(char	*name);
 bool	is_builtin(t_cmd	*builtin);
 int		internal_commands(t_cmd *current_cmd, t_minishell *minishell);
