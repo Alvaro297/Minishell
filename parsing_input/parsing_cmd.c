@@ -90,6 +90,7 @@ static bool	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_da
 	tmp->outfile_array = get_outfiles(command_splited);
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->next = NULL;
+	minishell->heredoc_sd = is_in_sd_quotes(tmp);
 	delete_quotes(minishell, tmp);
 	free_double_array((void **)command_splited);
 	return (true);

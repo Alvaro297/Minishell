@@ -115,7 +115,7 @@ void	no_pipes(t_minishell *minishell)
 	rediroutput(minishell->cmds);
 	if (minishell->cmds->here_doc_delim && minishell->cmds->is_heredoc)
 	{
-		heredoc_fd = handle_heredoc(minishell->cmds->here_doc_delim);
+		heredoc_fd = handle_heredoc(minishell, minishell->cmds->here_doc_delim, minishell->heredoc_sd);
 		dup2(heredoc_fd, STDIN_FILENO);
 		close(heredoc_fd);
 	}

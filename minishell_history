@@ -782,256 +782,58 @@ echo hola
 echo hola
 cat <<Hola | cat <<Adios
 echo <<
-cat "|" wc
-export ="hoal"
-export
-export
-export ="hoal"
-export =hoal
-export =hoal
-export
-export
-export
-echo hola
-echo hola
-export
-echo $_
-echo 
-echo 
-echo
-echo
-echo
-echo
-echo
-echo
-echo
-echo
-echo
-echo
-echo $_
-echo $_
-echo hola que tal
-echo $_
-echo hola que tal
-echo $_
-echo $_
-echo hola que tal
-echo $_
-echo $_
-echo hola que tal
-echo $_
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-echo hola que tal
-| echo hola
-echo hola
-echo $_
-echo hola
-export
-export
-echo hola"
-echo $?
-echo hola |
-echo $?
-echo hola << <
-echo hola << <
-echo hola << <
-echo hola << <
-echo hola $?
-export
-echo hola $?
-echo hola $?
-echo hola $?
-echo hola << <
-echo hola $?
-export ?=34
-export
-export $?
-echo $?
-export
-export ?=34
-export USER=patata
-echo $USER
-export USER=pat
-export
-export ?=12
-export '?'=12
-echo hola << <
-echo $?
-export
-echo $?
-echo hola << <
-export
-echo $?
-export
-export
-echo $?
-echo $?
-export
-echo $?
-echo $?
-echo hola << <
-echo $?
-echo $?
-echo hola << <
-echo $?
-echo hola << ""
-echo hola << ""
-echo hola << ""
-echo hola << ""
-echo hola << ""
-echo hola << ""
-echo "hoal
-echo $_"
-echo $_
-echo "
-echo $_
-echo hola que tal > prueba bien y tu
-echo $_
-echo << <
-echo > <
-echo > 
-><
-echo  |
-echo  | 
-><
-echo $?
-export
-echo ||
-| echo
-| echo
-export "
-echo "hola que tal
-| echo
-echo | |
-echo | hola << < 
-echo hola | hola << < 
-echo hola << <
-echo hola << <
-| echo
-| echo
-| echo
-| echo
-| echo
-| echo
-| echo
-| echo
-| echo
-| echo
-| echo
-| echo
-| echo
-| echo
-echo | hola << < 
-echo | hola << < 
-echo | hola << < 
-echo | hola << < 
-echo | hola << < 
-echo | hola << < 
-echo | hola << < 
-echo $?
-echo $?
-echo $?
-echo | hola << < 
-echo $?
-echo $?
-export
-export
-export
-export
-export |
-export |
-export |
-export |
-export
-echo $?
-export | echo hola << <
-echo $?
-export | |
-export | 
-export | 
-export | 
-export |  |
-export |  echo hola
-export |<
-export | <
-export | <
-export | 
-export |   
-export |   
-export |   echo hola
-./Minishell 
-./Minishell 
-./Minishell 
-./Minishell 
-./Minishell 
-./Minishell 
-./Minishell 
-./Minishell 
-ps
-mkdir -p test/a
-cd test/a
-cd ..
-cd test/a
-cd ..
-pwd
-cd test/a
-mkdir -p test/a
-cd test/a
-pwd
-cd test/a
-mkdir -p test/a
-cd test/a
-cd test/a
-mkdir -p test/a
-cd test/a
-cd ..
-cd ..
-ls
-pwd
-cd ..+
-cd ..
-pwd
-cd CommonCore/
-mkdir -p test/a
-cd test/a
-pwd
-cd ..
-pwd
-cd ..
-cd test/a
-mkdir -p test/a
-cd test/a
-cd ..
-mkdir -p test/a
-cd test/a
-mkdir -p test/a
-cd test/a
-pwd
-cd ..
-pwd
-cd ..
-pwd
-mkdir -p test/a
-cd test/a
-pwd
-cd ..
-pwd
-cd ..
-pwd
-./Minishell 
-ps
-./Minishell 
-export | <
-export |
-echo hola
-echo $?
-ls -l
-echo $?
-sleep 50000
-env
-env prueba
+cat <<Hola | cat <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | cat <<Adios
+cat <<Hola | echo <<Adios
+cat <<Hola | sort
+cat <<Hola | grep <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+:wqa
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+echo <<Hola | cat <<Adios
+cat <<'Adios'
+cat <<'Adios'
+cat <<Adios
+cat <<Adios
+cat <<'Adios'
+cat <<'Adios'
+cat <<'Adios'
+cat <<'Adios'
+cat <<'Adios'
+cat <<Adios
+cat <<Adios
+cat <<'Adios'
+cat <<'Adios'
+cat <<'Adios'
+cat <<Adios
+cat <<Adios
+cat <<'Adios'
+cat <<'Adios'
+cat <<Adios
