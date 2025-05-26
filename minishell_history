@@ -1023,3 +1023,15 @@ cd ..
 pwd
 cd ..
 pwd
+./Minishell 
+ps
+./Minishell 
+export | <
+export |
+echo hola
+echo $?
+ls -l
+echo $?
+sleep 50000
+env
+env prueba

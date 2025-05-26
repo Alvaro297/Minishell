@@ -129,9 +129,8 @@ void	no_pipes(t_minishell *minishell)
 			execute(minishell, minishell->cmds);
 		else
 		{
-			logadd("EN EL PADRE ESPERANDO\n");
 			waitpid(pid, &status, 0);
-			if (WIFEXISTED(status))
+			if (WIFEXITED(status))
 				minishell->last_exit_status = WEXITSTATUS(status);
 			else if (WIFSIGNALED(status))
 				minishell->last_exit_status = WTERMSIG(status) + 128;
@@ -139,7 +138,6 @@ void	no_pipes(t_minishell *minishell)
 				minishell->last_exit_status = 1;
 			set_env(&minishell->env_vars, "?",
 				ft_itoa(minishell->last_exit_status));
-			i++;
 		}
 		signals_default();
 	}
@@ -239,7 +237,7 @@ void	pipex(t_minishell *minishell)
 				redir(fd, minishell, i);
 				execute(minishell, cmd);
 			}
-			i++;
+			i++;pipex/pipex.c
 			cmd = cmd->next;
 		}
 		closefds(fd, minishell->howmanycmd * 3, minishell->howmanycmd * 3);

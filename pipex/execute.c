@@ -241,7 +241,7 @@ void	execute_all(t_minishell *minishell)
 	{
 		logadd("EN EL PADRE ESPERANDO\n");
 		waitpid(pids[i], &status, 0);
-		if (WIFEXISTED(status))
+		if (WIFEXITED(status))
 			minishell->last_exit_status = WEXITSTATUS(status);
 		else if (WIFSIGNALED(status))
 			minishell->last_exit_status = WTERMSIG(status) + 128;
