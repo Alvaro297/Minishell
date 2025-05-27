@@ -10,33 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "../../../minishell.h"
+#include "../../../minishell.h"
 
-static t_env *insert_sorted(t_env *sorted_env, t_env *new_node)
+static t_env	*insert_sorted(t_env *sorted_env, t_env *new_node)
 {
-	t_env *current;
+	t_env	*current;
 
-	if (sorted_env == NULL ||
-			ft_strncmp(new_node->name, sorted_env->name, ft_strlen(new_node->name)) < 0)
+	if (sorted_env == NULL
+		|| ft_strncmp(new_node->name,
+			sorted_env->name, ft_strlen(new_node->name)) < 0)
 	{
 		new_node->next = sorted_env;
 		return (new_node);
 	}
 	current = sorted_env;
-	while (current->next != NULL &&
-			ft_strncmp(new_node->name, current->next->name, ft_strlen(new_node->name)) > 0)
+	while (current->next != NULL
+		&& ft_strncmp(new_node->name,
+			current->next->name, ft_strlen(new_node->name)) > 0)
 		current = current->next;
 	new_node->next = current->next;
 	current->next = new_node;
 	return (sorted_env);
 }
 
-static t_env *insertion_sort(t_env *env)
+static t_env	*insertion_sort(t_env *env)
 {
-	t_env *sorted_env = NULL;
-	t_env *current;
-	t_env *next;
+	t_env	*sorted_env;
+	t_env	*current;
+	t_env	*next;
 
+	sorted_env = NULL;
 	current = env;
 	while (current != NULL)
 	{
@@ -63,13 +66,16 @@ static char	*join_all(t_env *sorted_env)
 	return (output);
 }
 
-static t_env *duplicate_env_list(t_env *env)
+static t_env	*duplicate_env_list(t_env *env)
 {
-	t_env *new_list = NULL;
-	t_env *current = env;
-	t_env *new_node;
-	t_env *last = NULL;
+	t_env	*new_list;
+	t_env	*current;
+	t_env	*new_node;
+	t_env	*last;
 
+	new_list = NULL;
+	last = NULL;
+	current = env;
 	while (current)
 	{
 		new_node = malloc(sizeof(t_env));
@@ -90,11 +96,12 @@ static t_env *duplicate_env_list(t_env *env)
 
 void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell)
 {
-	char	*output = NULL;
+	char	*output;
 	t_env	*env;
 	t_env	*sorted_env;
 	t_env	*iter;
 
+	output = NULL;
 	env = duplicate_env_list(minishell->env_vars);
 	sorted_env = insertion_sort(env);
 	iter = sorted_env;
