@@ -37,12 +37,14 @@ int	handle_env(t_cmd *current_cmd, t_minishell *minishell)
 		tmp = tmp->next;
 		}
 		if (current_cmd->is_pipe)
-			minishell->output = output;
+			minishell->output = ft_strdup(output);
+		free(output);
 		return (0);
 	}
 	else
 	{
 		print_env_error(current_cmd->args[1]);
+		free(output);
 		return (1);
 	}
 }

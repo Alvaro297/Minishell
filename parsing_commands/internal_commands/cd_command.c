@@ -17,7 +17,6 @@ static void	handle_cd_help(t_minishell *minishell, char *path, char *cwd)
 	char *oldpwd;
 
 	oldpwd = getenv("PWD");
-	free(path);
 	if (oldpwd != NULL)
 		set_env(&minishell->env_vars, "OLDPWD", oldpwd);
 	else
@@ -90,5 +89,6 @@ int		handle_cd(t_cmd *current_cmd, t_minishell *minishell)
 		return (1);
 	}
 	handle_cd_help(minishell, path, cwd);
+	free(path);
 	return (0);
 }

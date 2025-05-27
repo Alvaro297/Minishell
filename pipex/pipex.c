@@ -108,6 +108,7 @@ void	no_pipes(t_minishell *minishell)
 	int		stdo;
 	int 	stdi;
 	int 	heredoc_fd;
+	char	*string_exit_status;
 
 	stdo = dup(STDOUT_FILENO);
 	stdi = dup(STDIN_FILENO);
@@ -122,7 +123,9 @@ void	no_pipes(t_minishell *minishell)
 	if (is_builtin(minishell->cmds))
 	{
 		minishell->last_exit_status = internal_commands(minishell->cmds, minishell);
-		set_env(&minishell->env_vars, "?", ft_itoa(minishell->last_exit_status));
+		string_exit_status = ft_itoa(minishell->last_exit_status);
+		set_env(&minishell->env_vars, "?", string_exit_status);
+		free(string_exit_status);
 	}
 	else
 	{

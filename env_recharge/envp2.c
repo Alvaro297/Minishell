@@ -27,9 +27,9 @@ static char *trim_quotes(char *value)
 			perror("malloc");
 			exit(EXIT_FAILURE);
 		}
-		return trimmed_value;
+		return (trimmed_value);
 	}
-	return value;
+	return (value);
 }
 
 static t_env *find_env_var(t_env *env, char *name)

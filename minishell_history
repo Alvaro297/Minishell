@@ -941,3 +941,27 @@ pwd
 cd ..
 cd ..
 pwd
+env
+env
+env
+env
+unset PWD
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+unset PWD
+cd ..
+pwd
+cd Minishell
