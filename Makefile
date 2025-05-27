@@ -8,6 +8,7 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c \
 			fill_minishell/expand_variable2.c fill_minishell/set_special_var.c fill_minishell/quote_printf_here_doc.c \
 			history/load_history.c init_minishell/init_minishell.c \
 			parsing_commands/internal_commands/export/export_command.c \
+			parsing_commands/internal_commands/export/export_command2.c \
 			parsing_commands/internal_commands/export/print_entorn_variable.c \
 			parsing_commands/internal_commands/cd_command.c \
 			parsing_commands/internal_commands/echo_command.c \

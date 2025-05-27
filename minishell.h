@@ -107,6 +107,7 @@ int		handle_cd(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_pwd(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_echo(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_export(t_cmd *current_cmd, t_minishell *minishell);
+int		export_one_var(t_cmd *cmd, t_minishell *mini, int i);
 void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_env(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_unset(t_cmd *current_cmd, t_minishell *minishell);
