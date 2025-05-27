@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../minishell.h"
+#include "../minishell.h"
 
-int count_commands(const char *input)
+int	count_commands(const char *input)
 {
 	int count;
 	int i;
@@ -28,7 +28,8 @@ int count_commands(const char *input)
 			quotes.in_single_quote = !quotes.in_single_quote;
 		else if (input[i] == '"' && !quotes.in_single_quote)
 			quotes.in_double_quote = !quotes.in_double_quote;
-		if (input[i] == '|' && !quotes.in_single_quote && !quotes.in_double_quote)
+		if (input[i] == '|' && !quotes.in_single_quote
+				&& !quotes.in_double_quote)
 			count += 2;
 		i++;
 	}
@@ -50,7 +51,8 @@ static char **split_commands(const char *input, int i, t_quotes *quotes)
 			quotes->in_single_quote = !quotes->in_single_quote;
 		else if (input[i] == '"' && !quotes->in_single_quote)
 			quotes->in_double_quote = !quotes->in_double_quote;
-		if (input[i] == '|' && !quotes->in_single_quote && !quotes->in_double_quote)
+		if (input[i] == '|' && !quotes->in_single_quote
+				&& !quotes->in_double_quote)
 		{
 			commands[cmd_index++] = ft_strndup(input + start, i - start);
 			commands[cmd_index++] = ft_strndup(input + i, 1);
@@ -64,7 +66,8 @@ static char **split_commands(const char *input, int i, t_quotes *quotes)
 	return (commands);
 }
 
-static bool	parse_input_help(t_minishell *minishell, t_cmd **new_cmd, t_parse_data *data)
+static bool	parse_input_help(t_minishell *minishell, t_cmd **new_cmd,
+		t_parse_data *data)
 {
 	t_cmd	*tmp;
 	char	**command_splited;

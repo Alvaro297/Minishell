@@ -1,6 +1,18 @@
-# include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_cmd_split_modified.c                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-27 13:09:24 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-27 13:09:24 by alvamart         ###   ########.com      */
+/*                                                                            */
+/* ************************************************************************** */
 
-static int ft_count_words(char *command, t_quotes *quotes, int c)
+#include "../minishell.h"
+
+static int	ft_count_words(char *command, t_quotes *quotes, int c)
 {
 	size_t	i;
 	int		count;
@@ -12,7 +24,8 @@ static int ft_count_words(char *command, t_quotes *quotes, int c)
 	while (command[i])
 	{
 		ft_sd_quote_printf_mod(command, quotes, i);
-		if (command[i] == c && !quotes->in_single_quote && !quotes->in_double_quote)
+		if (command[i] == c && !quotes->in_single_quote
+			&& !quotes->in_double_quote)
 		{
 			count++;
 			while (command[i] == c)
@@ -26,10 +39,10 @@ static int ft_count_words(char *command, t_quotes *quotes, int c)
 	return (count);
 }
 
-static char *get_next_word_help(char *start, char **command, t_quotes *quotes)
+static char	*get_next_word_help(char *start, char **command, t_quotes *quotes)
 {
-	size_t word_len;
-	char *word;
+	size_t	word_len;
+	char	*word;
 
 	word_len = 0;
 	word = malloc((*command - start) + 1);
@@ -45,16 +58,19 @@ static char *get_next_word_help(char *start, char **command, t_quotes *quotes)
 	return (word);
 }
 
-static char *get_next_word(char **command, t_quotes *quotes)
+static char	*get_next_word(char **command, t_quotes *quotes)
 {
 	char	*start;
 	size_t	len;
 
 	len = 0;
-	while (**command && (**command == ' ' || **command == '\t' || **command == '\n'))
+	while (**command && (**command == ' '
+			|| **command == '\t' || **command == '\n'))
 		(*command)++;
 	start = *command;
-	while (**command && (!(**command == ' ' || **command == '\t' || **command == '\n') || quotes->in_single_quote || quotes->in_double_quote))
+	while (**command && (!(**command == ' ' || **command == '\t'
+				|| **command == '\n') || quotes->in_single_quote
+			|| quotes->in_double_quote))
 	{
 		ft_sd_quote_printf_mod3(*command, quotes);
 		(*command)++;
@@ -65,7 +81,7 @@ static char *get_next_word(char **command, t_quotes *quotes)
 	return (NULL);
 }
 
-static char **split_modified_help(char **result, char *command)
+static char	**split_modified_help(char **result, char *command)
 {
 	int			i;
 	t_quotes	quotes;
@@ -86,8 +102,8 @@ static char **split_modified_help(char **result, char *command)
 
 char	**split_modified(char *command, int c)
 {
-	int		count_words;
-	char	**result;
+	int			count_words;
+	char		**result;
 	t_quotes	quotes;
 
 	quotes.in_single_quote = false;

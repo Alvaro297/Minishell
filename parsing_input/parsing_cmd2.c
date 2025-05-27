@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../minishell.h"
+#include "../minishell.h"
 
 bool	is_redirected(char *command_splited)
 {
-	if (ft_strncmp(command_splited, "<", 1) == 0 ||
-			ft_strncmp(command_splited, ">", 1) == 0 ||
-			ft_strncmp(command_splited, ">>", 2) == 0 ||
-			ft_strncmp(command_splited, "<<", 2) == 0)
-			return (true);
+	if (ft_strncmp(command_splited, "<", 1) == 0
+		|| ft_strncmp(command_splited, ">", 1) == 0
+		|| ft_strncmp(command_splited, ">>", 2) == 0
+		|| ft_strncmp(command_splited, "<<", 2) == 0)
+		return (true);
 	return (false);
 }
 
@@ -44,7 +44,8 @@ char	*find_command(t_minishell *minishell, char **command_splited)
 	return (NULL);
 }
 
-static char	**find_args_help(t_minishell *minishell, char **command_splited, int count)
+static char	**find_args_help(t_minishell *minishell,
+	char **command_splited, int count)
 {
 	char	**args;
 	int		i;
@@ -77,7 +78,7 @@ char	**find_args(t_minishell *minishell, char **command_splited)
 {
 	int		i;
 	int		count;
-	
+
 	count = 0;
 	i = 0;
 	while (command_splited[i])
