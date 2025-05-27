@@ -965,3 +965,14 @@ unset PWD
 cd ..
 pwd
 cd Minishell
+cd
+pwd
+cd -
+cd
+cd
+cd
+cd
+cd
+pwd
+pwd
+cd

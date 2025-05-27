@@ -74,7 +74,7 @@ int		handle_cd(t_cmd *current_cmd, t_minishell *minishell)
 	char	*path;
 	char	cwd[1024];
 
-	if (current_cmd->args[2])
+	if (current_cmd->args[1] && current_cmd->args[2])
 	{
 		write(2, "minishell: cd: too many arguments\n", 34);
 		return (1);
