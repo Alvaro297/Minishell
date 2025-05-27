@@ -1,55 +1,51 @@
 #include "../minishell.h"
 
-void sigint_heredoc_handler(int sig)
+void	read_and_append_tmp_file(char *tmp, int final_fd)
 {
-	(void)sig;
-	write(1, "\n", 1);
-	exit(1);
+	int		tmp_fd;
+	char	buf[4096];
+	ssize_t	n;
+
+	tmp_fd = open(tmp, O_RDONLY);
+	if (tmp_fd >= 0)
+	{
+		while ((n = read(tmp_fd, buf, sizeof(buf))) > 0)
+			write(final_fd, buf, n);
+		close(tmp_fd);
+	}
+	unlink(tmp);
+	free(tmp);
 }
 
-static int process_heredoc(t_minishell *minishell, const char *delimiter, char *tmpfile, bool heredoc_sd)
+void	write_tmp_heredocs_to_final(t_minishell *minishell,
+	char **delimiters, bool heredoc_sd, int final_fd)
 {
-	char *line;
-	char *expanded;
+	int		i;
+	char	*suffix;
+	char	*tmp;
 
-	expanded = NULL;
-	int fd = open(tmpfile, O_CREAT | O_WRONLY | O_TRUNC, 0600);
-	if (fd < 0)
+	i = 0;
+	while (delimiters[i])
 	{
-		perror("open");
-		return -1;
-	}
-	signal(SIGINT, sigint_heredoc_handler);
-	while (1)
-	{
-		line = readline("> ");
-		if (!line || strcmp(line, delimiter) == 0)
+		suffix = ft_itoa(i);
+		tmp = ft_strjoin(TMP_HEREDOC, suffix);
+		free(suffix);
+		if (process_heredoc(minishell, delimiters[i], tmp, heredoc_sd) < 0)
 		{
-			free(line);
-			break;
+			free(tmp);
+			i++;
+			continue;
 		}
-		if (!heredoc_sd)
-		{
-			expanded = ft_quote_printf_here_doc(minishell, line);
-			dprintf(fd, "%s\n", expanded);
-		}
-		else
-			dprintf(fd, "%s\n", line);
-		if (expanded)
-			free(expanded);
-		free(line);
+		read_and_append_tmp_file(tmp, final_fd);
+		i++;
 	}
-	close(fd);
-	return 0;
 }
 
-int handle_heredoc(t_minishell *minishell, char **delimiters, bool heredoc_sd)
+int	handle_heredoc(t_minishell *minishell, char **delimiters, bool heredoc_sd)
 {
 	char	*final_tmp;
 	int		final_fd;
-	int		i;
-	char *suffix; 
-	char *tmp;
+	int		fd;
 
 	final_tmp = ft_strjoin(TMP_HEREDOC, "_final");
 	final_fd = open(final_tmp, O_CREAT | O_WRONLY | O_TRUNC, 0600);
@@ -57,43 +53,19 @@ int handle_heredoc(t_minishell *minishell, char **delimiters, bool heredoc_sd)
 	{
 		perror("open final heredoc");
 		free(final_tmp);
-		return -1;
+		return (-1);
 	}
-	i = 0;
-	while (delimiters[i])
-	{
-		suffix = ft_itoa(i);
-		tmp = ft_strjoin(TMP_HEREDOC, suffix);
-		free(suffix);
-
-		if (process_heredoc(minishell, delimiters[i], tmp, heredoc_sd) < 0)
-		{
-			free(tmp);
-			continue;
-		}
-		int tmp_fd = open(tmp, O_RDONLY);
-		if (tmp_fd >= 0)
-		{
-			char buf[4096];
-			ssize_t n;
-			while ((n = read(tmp_fd, buf, sizeof(buf))) > 0)
-				write(final_fd, buf, n);
-			close(tmp_fd);
-		}
-		unlink(tmp);
-		free(tmp);
-		i++;
-	}
+	write_tmp_heredocs_to_final(minishell, delimiters, heredoc_sd, final_fd);
 	close(final_fd);
-	int fd = open(final_tmp, O_RDONLY);
+	fd = open(final_tmp, O_RDONLY);
 	unlink(final_tmp);
 	free(final_tmp);
 	if (fd < 0)
 	{
 		perror("open final heredoc");
-		return -1;
+		return (-1);
 	}
-	return fd;
+	return (fd);
 }
 
 int	*manage_heredocs(t_minishell *minishell)

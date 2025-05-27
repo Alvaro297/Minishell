@@ -976,3 +976,16 @@ cd
 pwd
 pwd
 cd
+cat <<Adios > prueba | <prueba cat <<Hola 
+cat <<Adios > prueba | <prueba cat <<Hola 
+cat <<Adios > prueba | <prueba cat <<Hola 
+cd
+pwd
+cd minishell
+unset PWD
+cd
+pwd
+cd
+echo hola
+cat hola
+cat <<Adios > prueba

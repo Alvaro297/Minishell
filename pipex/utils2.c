@@ -16,6 +16,19 @@ int	howmanycmds(t_cmd *cmd)
 	return (i);
 }
 
+void	free_pipe_fds(int **pfd, int count)
+{
+	int	i;
+
+	i = 0;
+	while (i < count - 1)
+	{
+		free(pfd[i]);
+		i++;
+	}
+	free(pfd);
+}
+
 char	**returntoenvp(t_env *env)
 {
 	char	**envchar;

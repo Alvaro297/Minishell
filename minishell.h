@@ -24,6 +24,15 @@ typedef struct s_indices
 	size_t	j;
 } t_indices;
 
+typedef struct s_exec
+{
+	int		**pfd;
+	int		*heredoc_fds;
+	pid_t	*pids;
+	int		i;
+	int		j;
+}	t_exec;
+
 typedef struct s_quotes
 {
 	bool	in_single_quote;
@@ -156,8 +165,16 @@ void	free_env_list(t_env *env);
 void	free_cmd_list(t_cmd *cmd);
 //**PIPEX **/
 void	sigint_heredoc_handler(int sig);
+int process_heredoc(t_minishell *minishell, const char *delimiter, char *tmpfile, bool heredoc_sd);
 int		handle_heredoc(t_minishell *minishell, char **delimiter, bool heredoc_sd);
+void	free_pipe_fds(int **pfd, int count);
+int	**create_pipes(t_minishell *minishell);
 char	*ft_quote_printf_here_doc(t_minishell *minishell, char *str);
+void	first_child(t_minishell *minishell, t_cmd *cmd, int **pfd);
+void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out);
+void	execute_command(t_minishell *minishell, t_cmd *cmd, int ** pfd, int i);
+void	closefds(t_minishell *minishell, int **fd);
+void	execute_all(t_minishell *minishell);
 int		*manage_heredocs(t_minishell *minishell);
 void	redir(t_minishell *minishell);
 void	rediroutput(t_cmd *cmd);
