@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-27 12:59:39 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-27 12:59:39 by alvamart         ###   ########.com      */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 #include "../minishell.h"
 
 int	howmanycmds(t_cmd *cmd)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!cmd)
 		return (0);
@@ -16,29 +28,44 @@ int	howmanycmds(t_cmd *cmd)
 	return (i);
 }
 
+static int	env_list_size(t_env *env)
+{
+	int	count;
+
+	count = 0;
+	while (env)
+	{
+		count++;
+		env = env->next;
+	}
+	return (count);
+}
+
+static char	*env_to_str(t_env *env)
+{
+	char	*tmp;
+	char	*result;
+
+	tmp = ft_strjoin(env->name, "=");
+	result = ft_strjoin(tmp, env->value);
+	free(tmp);
+	return (result);
+}
+
 char	**returntoenvp(t_env *env)
 {
 	char	**envchar;
 	int		count;
 	int		i;
-	char	*tmp;
 
-	count = 0;
-	t_env *iter = env;
-	while (iter)
-	{
-		count++;
-		iter = iter->next;
-	}
+	count = env_list_size(env);
 	envchar = malloc(sizeof(char *) * (count + 1));
 	if (!envchar)
 		return (NULL);
 	i = 0;
 	while (env)
 	{
-		tmp = ft_strjoin(env->name, "=");
-		envchar[i] = ft_strjoin(tmp, env->value);
-		free(tmp);
+		envchar[i] = env_to_str(env);
 		env = env->next;
 		i++;
 	}

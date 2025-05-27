@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_args.c                                     :+:      :+:    :+:   */
+/*   handle_sig_here_doc.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-02-26 18:31:32 by alvamart          #+#    #+#             */
-/*   Updated: 2025-02-26 18:31:32 by alvamart         ###   ########.fr       */
+/*   Created: 2025-05-27 12:28:03 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-27 12:28:03 by alvamart         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-bool	check_name_arg(char	*name)
+static void	handle_sigint_heredoc(int sig)
 {
-	t_quotes	quotes;
-	size_t		i;
-	int			j;
+	(void)sig;
+	printf("\n");
+	exit(1);
+}
 
-	i = 0;
-	quotes.in_double_quote = false;
-	quotes.in_single_quote = false;
-	while (name[i])
-	{
-		ft_sd_quote_printf(name, &quotes, &i);
-		if (!quotes.in_single_quote && !quotes.in_double_quote)
-		{
-			j = 0;
-			while (INVALID_CHARACTERS[j])
-			{
-				if (INVALID_CHARACTERS[j] == name[i])
-					return (false);
-				j++;
-			}
-		}
-		i++;
-	}
-	return (true);
+void	manage_signals_heredoc(void)
+{
+	struct sigaction	sa;
+
+	memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = handle_sigint_heredoc;
+	sa.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sa, NULL);
+	sa.sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, &sa, NULL);
 }

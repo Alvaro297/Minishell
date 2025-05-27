@@ -114,6 +114,8 @@ int		error_management(t_minishell *minishell);
 //** Parsing Input **//
 void	delete_quotes(t_minishell *minishell, t_cmd *cmd);
 t_cmd	*parsing_input(t_minishell *minishell, char *input);
+void	fill_cmd_fields(t_minishell *minishell, t_cmd *tmp,
+		char **command_splited, t_parse_data *data);
 bool	is_in_sd_quotes(t_cmd *cmds);
 bool	check_name_arg(char	*name);
 bool	is_builtin(t_cmd	*builtin);
@@ -150,6 +152,7 @@ void	add_to_history(t_minishell *minishell, char *input);
 void	manage_signals(void);
 void	signals_ignore(void);
 void	signals_default(void);
+void	manage_signals_heredoc(void);
 //** Free Minishell **//
 void	free_double_array(void **double_array);
 void	free_env_list(t_env *env);

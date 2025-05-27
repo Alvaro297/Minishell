@@ -95,3 +95,20 @@ char	**find_args(t_minishell *minishell, char **command_splited)
 	}
 	return (find_args_help(minishell, command_splited, count));
 }
+
+void	fill_cmd_fields(t_minishell *minishell, t_cmd *tmp,
+		char **command_splited, t_parse_data *data)
+{
+	tmp->cmd = find_command(minishell, command_splited);
+	tmp->args = find_args(minishell, command_splited);
+	tmp->is_pipe = have_pipe(data->array_commands, data->position);
+	tmp->outfile = find_outfile(command_splited);
+	tmp->infile = find_infile(command_splited);
+	tmp->is_heredoc = is_heredoc(command_splited);
+	tmp->here_doc_delim = here_doc_delim(data->command);
+	tmp->outfile_array = get_outfiles(command_splited);
+	tmp->outfile_modes = is_append(command_splited);
+	tmp->next = NULL;
+	minishell->heredoc_sd = is_in_sd_quotes(tmp);
+	delete_quotes(minishell, tmp);
+}

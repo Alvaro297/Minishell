@@ -976,3 +976,10 @@ cd
 pwd
 pwd
 cd
+unset HOME
+cd
+pwd
+cdç
+cd
+cd /
+pwd

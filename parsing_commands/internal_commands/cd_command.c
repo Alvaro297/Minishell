@@ -34,7 +34,8 @@ static char	*cd_path(t_cmd *current_cmd, t_minishell *minishell)
 
 	if ((current_cmd->args[1] &&
 		(((current_cmd->args[1][0] == '~' && current_cmd->args[1][1] == '\0')
-			|| (current_cmd->args[1][0] == '-' && current_cmd->args[1][1] == '-' && current_cmd->args[1][2] == '\0'))))
+			|| (current_cmd->args[1][0] == '-' && current_cmd->args[1][1] == '-' 
+				&& current_cmd->args[1][2] == '\0'))))
 		|| !current_cmd->args[1])
 	{
 		env_home = get_env_value(minishell->env_vars, "HOME", false);

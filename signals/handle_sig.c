@@ -1,8 +1,20 @@
-# include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_sig.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-27 12:25:43 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-27 12:25:43 by alvamart         ###   ########.com      */
+/*                                                                            */
+/* ************************************************************************** */
 
-void signals_ignore(void)
+#include "../minishell.h"
+
+void	signals_ignore(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	memset(&sa, 0, sizeof(sa));
 	sa.sa_handler = SIG_IGN;
@@ -14,7 +26,7 @@ void signals_ignore(void)
 
 void	signals_default(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	memset(&sa, 0, sizeof(sa));
 	sa.sa_handler = SIG_DFL;
@@ -33,31 +45,12 @@ static void	handle_sigint(int sig)
 	rl_redisplay();
 }
 
-static void	handle_sigint_heredoc(int sig)
-{
-	(void)sig;
-	printf("\n");
-	exit(1);
-}
-
 void	manage_signals(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	memset(&sa, 0, sizeof(sa));
 	sa.sa_handler = handle_sigint;
-	sa.sa_flags = SA_RESTART;
-	sigaction(SIGINT, &sa, NULL);
-	sa.sa_handler = SIG_IGN;
-	sigaction(SIGQUIT, &sa, NULL);
-}
-
-void	manage_signals_heredoc(void)
-{
-	struct sigaction sa;
-
-	memset(&sa, 0, sizeof(sa));
-	sa.sa_handler = handle_sigint_heredoc;
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
 	sa.sa_handler = SIG_IGN;

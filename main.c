@@ -12,9 +12,9 @@
 
 #include "minishell.h"
 
-static bool	exitMinishell(char *input)
+static bool	exit_minishell(char *input)
 {
-	if(ft_strcmp(input, "exit") == 0)
+	if (ft_strcmp(input, "exit") == 0)
 		return (true);
 	if (input == NULL)
 	{
@@ -35,13 +35,12 @@ void	minishell(char **envp)
 	while (1)
 	{
 		input = readline("Minishell: ");
-		if (exitMinishell(input))
+		if (exit_minishell(input))
 		{
 			free(input);
 			break ;
 		}
 		fill_minishell(input, &minishell, envp);
-		//error_management(&minishell);
 		if (minishell.cmds == NULL)
 			continue ;
 		execute_all(&minishell);
@@ -52,7 +51,7 @@ void	minishell(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc >= 2 || ft_strcmp(argv[0],"./Minishell"))
+	if (argc >= 2 || ft_strcmp(argv[0], "./Minishell"))
 	{
 		printf("Bad arguments in the program\n");
 		return (EXIT_SUCCESS);
