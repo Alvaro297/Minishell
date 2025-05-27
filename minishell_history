@@ -989,3 +989,6 @@ cd
 echo hola
 cat hola
 cat <<Adios > prueba
+cat <<Adios > prueba
+cat <<Adios > prueba
+cat prueba

@@ -44,8 +44,8 @@ void	setup_redirections_and_heredoc(t_minishell *minishell)
 {
 	int	heredoc_fd;
 
-	redirimput(minishell->cmds);
-	rediroutput(minishell->cmds);
+	if (!minishell->cmds->is_heredoc)
+		redirimput(minishell->cmds);
 	if (minishell->cmds->here_doc_delim && minishell->cmds->is_heredoc)
 	{
 		heredoc_fd = handle_heredoc(minishell,
@@ -53,6 +53,7 @@ void	setup_redirections_and_heredoc(t_minishell *minishell)
 		dup2(heredoc_fd, STDIN_FILENO);
 		close(heredoc_fd);
 	}
+	rediroutput(minishell->cmds);
 }
 
 void	no_pipes(t_minishell *minishell)
