@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-static char	*trim_quotes(char *value)
+char	*trim_quotes(char *value)
 {
 	char	*trimmed_value;
 
@@ -30,7 +30,7 @@ static char	*trim_quotes(char *value)
 	return (value);
 }
 
-static t_env	*find_env_var(t_env *env, char *name)
+t_env	*find_env_var(t_env *env, char *name)
 {
 	while (env)
 	{
@@ -42,7 +42,7 @@ static t_env	*find_env_var(t_env *env, char *name)
 	return (NULL);
 }
 
-static t_env	*create_env_var(char *name, char *value)
+t_env	*create_env_var(char *name, char *value)
 {
 	t_env	*new;
 

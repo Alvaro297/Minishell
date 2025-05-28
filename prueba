@@ -1,28 +1,61 @@
-total 172
--rwxrwxrwx 1 alvaro alvaro  2374 May 28 18:13 Makefile
--rwxrwxrwx 1 alvaro alvaro 77456 May 28 20:15 Minishell
--rwxrwxrwx 1 alvaro alvaro  5134 May 25 14:39 Readme.md
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 cmds
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 delete_quotes
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 env_recharge
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 error_control
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 fill_minishell
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 free_minishell
--rwxrwxrwx 1 alvaro alvaro  1967 May 28 19:04 free_minishell.c
--rwxrwxrwx 1 alvaro alvaro  2552 May 28 20:15 free_minishell.o
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 history
--rwxrwxrwx 1 alvaro alvaro     0 May 28 18:26 hola
--rwxrwxrwx 1 alvaro alvaro  2374 May 28 18:26 hola2
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 init_minishell
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 libft_minishell
--rwxrwxrwx 1 alvaro alvaro  1792 May 28 19:22 main.c
--rwxrwxrwx 1 alvaro alvaro  3048 May 28 20:15 main.o
--rwxrwxrwx 1 alvaro alvaro  7857 May 28 20:02 minishell.h
--rwxrwxrwx 1 alvaro alvaro 24609 May 28 20:15 minishell.log
--rwxrwxrwx 1 alvaro alvaro 26569 May 28 20:15 minishell_history
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 parsing_commands
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 parsing_input
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 pipex
--rwxrwxrwx 1 alvaro alvaro     0 May 28 20:15 prueba
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 20:15 signals
-drwxrwxrwx 1 alvaro alvaro  4096 May 28 18:13 supp
+SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c env_recharge/envp3.c \
+			error_control/check_archives.c error_control/check_syntax.c \
+			error_control/error_control.c  error_control/controled_errors_parsing.c \
+			error_control/controled_errors_parsing2.c fill_minishell/fill_minishell.c \
+			fill_minishell/expand_variable.c fill_minishell/outfile_array.c \
+			fill_minishell/quote_variable.c free_minishell/free_double_array.c \
+			fill_minishell/get_history_file.c free_minishell/free_export.c \
+			fill_minishell/expand_variable2.c fill_minishell/set_special_var.c fill_minishell/quote_printf_here_doc.c \
+			history/load_history.c init_minishell/init_minishell.c \
+			parsing_commands/internal_commands/export/export_command.c \
+			parsing_commands/internal_commands/export/export_commands2.c \
+			parsing_commands/internal_commands/export/print_entorn_variable.c \
+			parsing_commands/internal_commands/cd_command.c \
+			parsing_commands/internal_commands/echo_command.c \
+			parsing_commands/internal_commands/env_command.c \
+			parsing_commands/internal_commands/pwd_command.c \
+			parsing_commands/internal_commands/unset_command.c \
+			parsing_commands/command_type.c parsing_input/checker_args.c \
+			parsing_input/parsing_cmd.c parsing_input/parsing_cmd2.c \
+			parsing_input/parsing_cmd3.c parsing_input/parsing_cmd_split_modified.c \
+			parsing_input/here_doc_parsing.c parsing_input/process_redirections.c \
+			parsing_input/process_redirection2.c \
+			signals/handle_sig.c signals/handle_sig_here_doc.c main.c free_minishell.c \
+			delete_quotes/delete_quotes.c delete_quotes/delete_quotes2.c \
+			pipex/pipex.c pipex/utils.c pipex/libutils.c \
+			pipex/ft_split.c pipex/ft_fd.c pipex/utils2.c \
+			pipex/execute.c pipex/here_doc.c
+
+NAME = Minishell
+
+RM = rm -rf
+
+CC = gcc 
+
+CFLAGS = -Wall -Wextra -Werror
+VALGRIND_VALE	:=	./supp/new_supp.supp
+VFLAGS			:=	--leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --suppressions=$(VALGRIND_VALE)
+
+LIBFT = libft_minishell/
+
+OBJ = $(SRC:.c=.o)
+
+$(NAME): $(OBJ)
+	@make -sC libft_minishell/
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)libft.a -lreadline
+
+clean:
+	$(RM) $(OBJ)
+	make clean -sC $(LIBFT)
+
+fclean: clean
+	$(RM) $(NAME)
+	$(RM) $(LIBFTPATH)
+	make clean -sC $(LIBFT) 
+
+valgrind: re
+	valgrind $(VFLAGS) ./$(NAME)
+
+re: fclean all
+
+all: $(NAME)

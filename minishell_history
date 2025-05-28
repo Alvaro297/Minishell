@@ -1086,3 +1086,51 @@ ca
 <Makefile >prueba
 ls -l | cat >prueba
 ls -l | cat >prueba
+ls -l | <<EOF
+<<EOF
+<<EOF
+<<EOF
+<<EOF
+<<EOF
+<<EOF
+ca
+<<eof
+hola
+ca <<END
+echo hola
+cat <<EOF
+cat <<EOF
+cat <<EOF
+cat <<EOF
+cat >prueba | echo hola
+<Makefile cat >prueba | echo hola
+ca
+ls -l
+ca
+ca
+ca
+ca
+ca
+<<EOF
+<prueba >adios
+cat <<EOF
+cat <<EOF
+cat <<EOF
+ls -l
+cat <<EOF
+<Makefile cat >prueba 
+cat <<EOF
+<Makefile cat >prueba 
+ca
+<<EOF
+<<EOF
+<<EOF
+ca
+<Makefile cat >prueba 
+<<EOF
+<<EOF
+<<EOF
+<<EOF
+hoal
+ls -l | <<EOF
+ls -l | <<EOF

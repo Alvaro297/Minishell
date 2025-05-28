@@ -48,7 +48,7 @@ bool	check_redir_syntax(char *input)
 	return (true);
 }
 
-bool	check_pipes(char *input)
+static bool	check_pipes2(char *input)
 {
 	int	c;
 
@@ -75,7 +75,7 @@ bool	check_syntax(char *input)
 		printf("Error: Sintaxis incorrecta en redirección.\n");
 		return (false);
 	}
-	if (!check_pipes(input))
+	if (!check_pipes2(input))
 	{
 		printf("Error: Sintaxis incorrecta en pipes.\n");
 		return (false);

@@ -47,6 +47,6 @@ char	**delete_quotes_double_array(t_minishell *minishell,
 		i++;
 	}
 	tmp[i] = NULL;
-	free(double_array);
+	free_double_array((void **) double_array);
 	return (tmp);
 }

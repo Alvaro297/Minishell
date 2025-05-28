@@ -4,7 +4,8 @@ void sigint_heredoc_handler(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-	exit(1);
+	rl_replace_line("", 0);
+    rl_done = 1;
 }
 
 static int process_heredoc(t_minishell *minishell, const char *delimiter, char *tmpfile, bool heredoc_sd)
@@ -40,7 +41,8 @@ static int process_heredoc(t_minishell *minishell, const char *delimiter, char *
 		free(line);
 	}
 	close(fd);
-	return 0;
+	signal(SIGINT, SIG_DFL);
+	return (0);
 }
 
 int handle_heredoc(t_minishell *minishell, char **delimiters, bool heredoc_sd)

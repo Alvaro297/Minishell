@@ -42,13 +42,6 @@ typedef struct s_quotes
 	bool	in_double_quote;
 }	t_quotes;
 
-typedef struct s_quote_ctx
-{
-	t_minishell	*minishell;
-	t_quotes	*quotes;
-	t_indices	*indices;
-	char		**result;
-}	t_quote_ctx;
 
 typedef struct s_parse_data
 {
@@ -94,6 +87,14 @@ typedef struct s_minishell
 	int		howmanycmd;
 }	t_minishell;
 
+typedef struct s_quote_ctx
+{
+	t_minishell	*minishell;
+	t_quotes	*quotes;
+	t_indices	*indices;
+	char		**result;
+}	t_quote_ctx;
+
 int		ft_strcmp(char *s1, char *s2);
 //void	command_type(t_minishell *minishell);
 //** Fill_minishell **//
@@ -113,10 +114,15 @@ int		ft_sd_quote_printf_mod(char *str, t_quotes *quotes, size_t i);
 char	*ft_sd_quote_printf_mod2(char *str, t_quotes *quotes);
 void	ft_sd_quote_printf_mod3(char *str, t_quotes *quotes);
 bool	is_within_quotes(const char *str, const char *pos);
+char	*delete_quotes_array(t_minishell *minishell, char *array,
+		bool is_not_here_doc, bool is_iofile);
 //** Envp **//
 t_env	*init_env(char **envp);
 char	*get_env_value(t_env *env, char *name, bool free_var);
 t_env	*get_env(t_env *env, char *var_name);
+t_env	*create_env_var(char *name, char *value);
+t_env	*find_env_var(t_env *env, char *name);
+char	*trim_quotes(char *value);
 void	set_env(t_env **env, char *name, char *value);
 void	delete_env(t_env **env, char *name);
 bool	is_readonly(t_minishell *minishell, char *var);
@@ -173,6 +179,7 @@ bool	controled_errors(t_minishell *minishell,
 void	handle_unclosed_quotes(t_minishell *minishell,
 			t_quotes quotes, char **result);
 bool	check_pipes(char **array_commands, int position);
+int		is_all_spaces(const char *str);
 //** Init Minishell **//
 void	init_minishell(t_minishell *minishell);
 void	init_cmd(t_cmd *cmd);

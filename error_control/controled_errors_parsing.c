@@ -88,7 +88,7 @@ static bool	find_outfile_check_error(t_minishell *minishell,
 	return (true);
 }
 
-static int	is_all_spaces(const char *str)
+int	is_all_spaces(const char *str)
 {
 	while (*str)
 	{

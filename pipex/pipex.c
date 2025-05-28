@@ -30,7 +30,8 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 			ft_putstr_fd("pipex: command not found: ", 2);
 			minishell->last_exit_status = 127;
 			ft_putendl_fd(cmd->args[0], 2);
-			free(path);
+			if (path != NULL)
+				free(path);
 			free_double_array((void **) split_envs);
 			free_all(minishell);
 			exit(127);
@@ -50,16 +51,14 @@ static void	execute_no_pipes(t_minishell *minishell, t_cmd *cmd, int std_out, in
 	else
 	{
 		if (cmd->args[0] != NULL)
-			path = getpath(cmd->args[0], split_envs);
+			path = getpath(ft_strdup(cmd->args[0]), split_envs);
 		if (cmd->args[0] == NULL || execve(path, cmd->args, split_envs) == -1)
 		{
 			ft_putstr_fd("pipex: command not found: ", 2);
 			minishell->last_exit_status = 127;
 			ft_putendl_fd(cmd->args[0], 2);
-			if (path == NULL)
-				free(path);
+			free(path);
 			free_double_array((void **) split_envs);
-			free_all(minishell);
 			if (std_out > 2)
 				close(std_out);
 			if (std_in > 2)
