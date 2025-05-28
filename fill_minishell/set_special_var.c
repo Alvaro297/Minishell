@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_special_var.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-28 18:55:58 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-28 18:55:58 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-void	set_special_var_inputNull(t_minishell *minishell, char *result)
+void	set_special_var_input_null(t_minishell *minishell, char *result)
 {
 	char	**command_splited;
 	int		i;
@@ -23,6 +35,16 @@ void	set_special_var_inputNull(t_minishell *minishell, char *result)
 	if (last_arg)
 		free(last_arg);
 	free_double_array((void **)command_splited);
+}
+
+static void	set_last_arg_env(t_minishell *minishell, char *last_arg)
+{
+	if (last_arg)
+		set_env(&minishell->env_vars, "_", last_arg);
+	else
+		set_env(&minishell->env_vars, "_", "");
+	if (last_arg)
+		free(last_arg);
 }
 
 void	set_special_var(t_minishell *minishell)
@@ -50,10 +72,5 @@ void	set_special_var(t_minishell *minishell)
 		}
 		current_cmd = current_cmd->next;
 	}
-	if (last_arg)
-		set_env(&minishell->env_vars, "_", last_arg);
-	else
-		set_env(&minishell->env_vars, "_", "");
-	if (last_arg)
-		free(last_arg);
+	set_last_arg_env(minishell, last_arg);
 }

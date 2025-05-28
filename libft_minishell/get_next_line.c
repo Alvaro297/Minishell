@@ -83,7 +83,7 @@ static char	*ft_get_line(int fd, char *tline)
 			return (NULL);
 		}
 		line[bytesread] = '\0';
-		if (!tline) // Si tline es NULL, asignamos directamente line
+		if (!tline)
 			tline = ft_strdup(line);
 		else
 			tline = ft_strjoin_free(tline, line);

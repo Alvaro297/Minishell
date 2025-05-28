@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../minishell.h"
+#include "../minishell.h"
 
-static int	history_realloc_and_store(t_minishell *minishell, char *line, int count)
+static int	history_realloc_and_store(t_minishell *minishell,
+	char *line, int count)
 {
 	int		old_count;
 	char	**new_history;
@@ -22,10 +23,10 @@ static int	history_realloc_and_store(t_minishell *minishell, char *line, int cou
 		while (minishell->history[old_count])
 			old_count++;
 	new_history = ft_realloc(
-		minishell->history,
-		(old_count + 1) * sizeof(char *),
-		(count + 2) * sizeof(char *)
-	);
+			minishell->history,
+			(old_count + 1) * sizeof(char *),
+			(count + 2) * sizeof(char *)
+			);
 	if (!new_history)
 		return (0);
 	minishell->history = new_history;
@@ -60,15 +61,18 @@ void	load_history(t_minishell *minishell)
 		return ;
 	fd = open(minishell->history_file, O_RDONLY);
 	if (fd == -1)
-		return;
-	while ((line = get_next_line(fd)) != NULL)
+		return ;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
 		load_history_line(minishell, line, &count);
+		line = get_next_line(fd);
+	}
 	close(fd);
 }
 
-void	add_to_history(t_minishell *minishell, char *input)
+static void	add_to_history_mem(t_minishell *minishell, char *input)
 {
-	int		fd;
 	int		i;
 	char	**new_history;
 
@@ -76,23 +80,30 @@ void	add_to_history(t_minishell *minishell, char *input)
 	while (minishell->history && minishell->history[i])
 		i++;
 	new_history = ft_realloc(
-		minishell->history,
-		(i + 1) * sizeof(char *),
-		(i + 2) * sizeof(char *)
-	);
+			minishell->history,
+			(i + 1) * sizeof(char *),
+			(i + 2) * sizeof(char *)
+			);
 	if (!new_history)
 	{
 		perror("ft_realloc");
-		return;
+		return ;
 	}
 	minishell->history = new_history;
 	minishell->history[i] = ft_strdup(input);
 	if (!minishell->history[i])
 	{
 		perror("ft_strdup");
-		return;
+		return ;
 	}
 	minishell->history[i + 1] = NULL;
+}
+
+void	add_to_history(t_minishell *minishell, char *input)
+{
+	int	fd;
+
+	add_to_history_mem(minishell, input);
 	fd = open(minishell->history_file, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd == -1)
 	{
@@ -100,10 +111,6 @@ void	add_to_history(t_minishell *minishell, char *input)
 		return ;
 	}
 	if (write(fd, input, ft_strlen(input)) == -1 || write(fd, "\n", 1) == -1)
-	{
 		perror("write");
-		close(fd);
-		return ;
-	}
-	close(fd); 
+	close(fd);
 }

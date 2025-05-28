@@ -44,7 +44,7 @@ int	ft_sd_quote_printf(char *str, t_quotes *quotes, size_t *i)
 	return (0);
 }
 
-char *ft_sd_quote_printf_mod2(char *str, t_quotes *quotes)
+char	*ft_sd_quote_printf_mod2(char *str, t_quotes *quotes)
 {
 	if (*str == '\'' && !(quotes->in_double_quote))
 	{
@@ -58,6 +58,7 @@ char *ft_sd_quote_printf_mod2(char *str, t_quotes *quotes)
 	}
 	return (str);
 }
+
 void	ft_sd_quote_printf_mod3(char *str, t_quotes *quotes)
 {
 	if (*str == '\'' && !(quotes->in_double_quote))
@@ -72,12 +73,11 @@ void	ft_sd_quote_printf_mod3(char *str, t_quotes *quotes)
 	}
 }
 
-
-bool is_within_quotes(const char *str, const char *pos)
+bool	is_within_quotes(const char *str, const char *pos)
 {
-	bool in_single_quote;
-	bool in_double_quote;
-	const char *p;
+	bool		in_single_quote;
+	bool		in_double_quote;
+	const char	*p;
 
 	p = str;
 	in_double_quote = false;

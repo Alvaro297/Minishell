@@ -26,6 +26,58 @@ char	*init_shlvl(void)
 	return (ft_strdup("1"));
 }
 
+t_env	*get_env(t_env *env, char *var_name)
+{
+	size_t	len;
+
+	len = ft_strlen(var_name);
+	while (env)
+	{
+		if (ft_strncmp(env->name, var_name, len) == 0
+			&& ft_strlen(env->name) == len)
+			return (env);
+		env = env->next;
+	}
+	return (NULL);
+}
+
+static void	update_env_value(t_env *tmp, char *value)
+{
+	if (tmp->value)
+		free(tmp->value);
+	if (value)
+		tmp->value = ft_strdup(value);
+	else
+		tmp->value = NULL;
+}
+
+void	set_env(t_env **env, char *name, char *value)
+{
+	t_env	*tmp;
+	t_env	*last;
+
+	last = NULL;
+	tmp = find_env_var(*env, name);
+	if (!(name && value && ft_strcmp(name, "_") == 0
+			&& ((value[0] == '"' && value[1] == '\0')
+				|| (value[0] == '\'' && value[1] == '\0'))))
+		value = trim_quotes(value);
+	if (tmp)
+	{
+		update_env_value(tmp, value);
+		return ;
+	}
+	if (*env == NULL)
+		*env = create_env_var(name, value);
+	else
+	{
+		last = *env;
+		while (last->next)
+			last = last->next;
+		last->next = create_env_var(name, value);
+	}
+}
+
 t_env	*init_env_without_env(void)
 {
 	t_env	*head;

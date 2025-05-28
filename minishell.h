@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-28 20:43:55 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-28 20:43:55 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include <readline/history.h>
+# include <readline/history.h>
 # include <readline/readline.h>
 # include <sys/wait.h>
 # include <signal.h>
@@ -12,23 +24,31 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <fcntl.h>
-#include <errno.h>
+# include <errno.h>
 
 # define INVALID_CHARACTERS "!@#$%^&*()-+=[]{}\\|;:'\"<>/?`~ "
 # define INVALID_CHARACTERSV "!@#$%^&*()[]{}\\|;:'\",.<>/?`~ "
-#define TMP_HEREDOC "/tmp/.heredoc_tmp"
+# define TMP_HEREDOC "/tmp/.heredoc_tmp"
 
 typedef struct s_indices
 {
 	size_t	i;
 	size_t	j;
-} t_indices;
+}	t_indices;
 
 typedef struct s_quotes
 {
 	bool	in_single_quote;
 	bool	in_double_quote;
-} t_quotes;
+}	t_quotes;
+
+typedef struct s_quote_ctx
+{
+	t_minishell	*minishell;
+	t_quotes	*quotes;
+	t_indices	*indices;
+	char		**result;
+}	t_quote_ctx;
 
 typedef struct s_parse_data
 {
@@ -38,55 +58,55 @@ typedef struct s_parse_data
 	char	*input;
 }	t_parse_data;
 
-
 typedef struct s_env
 {
-	char	*name;          // Nombre de la variable de entorno (ej: "PATH", "HOME").
-	char	*value;         // Valor de la variable de entorno (ej: "/usr/bin", "/home/user").
-	struct s_env *next; // Puntero al siguiente nodo en la lista enlazada de variables de entorno.
-} t_env;
+	char			*name;
+	char			*value;
+	struct s_env	*next;
+}	t_env;
 
 typedef struct s_cmd
 {
-	char	*cmd;          // Nombre del comando (ej: "ls", "echo", "grep").
-	char	**args;        // Array de argumentos del comando (ej: ["ls", "-l", NULL]).
-	char	*infile;       // Archivo de entrada para redirección (<).
-	char	*outfile;      // Archivo de salida para redirección (> o >>).
-	char	**outfile_array; // Array de archivos de salida si hay múltiples redirecciones.
-	int		outfile_modes; // Modo de redirección: 2 para ">>", 1 para ">", 0 para ninguno.
-	bool	is_heredoc;   // Indica si el comando tiene un heredoc.
-	char	**here_doc_delim; // Array de delimitadores para heredoc.
-	bool	is_pipe;       // Indica si el comando está seguido por un pipe (|).
-	struct s_cmd *next;    // Puntero al siguiente comando en una lista enlazada (para pipes).
+	char			*cmd;
+	char			**args;
+	char			*infile;
+	char			*outfile;
+	char			**outfile_array;
+	int				outfile_modes;
+	bool			is_heredoc;
+	char			**here_doc_delim;
+	bool			is_pipe;
+	struct s_cmd	*next;
 }	t_cmd;
 
 typedef struct s_minishell
 {
-	char	*input;        // Entrada del usuario (línea de comando completa).
-	t_cmd	*cmds;         // Lista enlazada de comandos parseados.
-	pid_t	*pids;         // Array de PIDs para procesos hijos.
-	char	*output;       // Salida del comando (si se almacena en memoria).
-	char	**history;     // Historial de comandos.
-	t_env	*env_vars;     // Lista enlazada de variables de entorno.
-	char	*current_dir;  // Directorio actual del shell.
-	char	*history_file; // Ruta al archivo de historial.
-	int		last_exit_status; // Código de salida del último comando ejecutado.
-	bool	heredoc_sd;      // Indica si esta entre comillas simples.
-	int		howmanycmd;    // Número de comandos en la línea de entrada.
-} t_minishell;
+	char	*input;
+	t_cmd	*cmds;
+	pid_t	*pids;
+	char	*output;
+	char	**history;
+	t_env	*env_vars;
+	char	*current_dir;
+	char	*history_file;
+	int		last_exit_status;
+	bool	heredoc_sd;
+	int		howmanycmd;
+}	t_minishell;
 
-int	ft_strcmp(char *s1, char *s2);
+int		ft_strcmp(char *s1, char *s2);
 //void	command_type(t_minishell *minishell);
 //** Fill_minishell **//
 void	fill_minishell(char *input, t_minishell *minishell, char **envp);
 void	free_all(t_minishell *minishell);
 char	*get_history_file(void);
 void	set_special_var(t_minishell *minishell);
-void	set_special_var_inputNull(t_minishell *minishell, char *result);
+void	set_special_var_input_null(t_minishell *minishell, char *result);
 /* Expand_variable */
 char	*ft_quote_printf(t_minishell *minishell, char *str, bool is_input);
 void	append_expanded_variable(char **result, size_t *j, char *expanded);
-void	append_expanded_variable_no_quotes(char **result, size_t *j, char *expanded);
+void	append_expanded_variable_no_quotes(char **result,
+			size_t *j, char *expanded);
 /* Quote */
 int		ft_sd_quote_printf(char *str, t_quotes *quotes, size_t *i);
 int		ft_sd_quote_printf_mod(char *str, t_quotes *quotes, size_t i);
@@ -121,7 +141,7 @@ int		error_management(t_minishell *minishell);
 void	delete_quotes(t_minishell *minishell, t_cmd *cmd);
 t_cmd	*parsing_input(t_minishell *minishell, char *input);
 void	fill_cmd_fields(t_minishell *minishell, t_cmd *tmp,
-		char **command_splited, t_parse_data *data);
+			char **command_splited, t_parse_data *data);
 bool	is_in_sd_quotes(t_cmd *cmds);
 bool	check_name_arg(char	*name);
 bool	is_builtin(t_cmd	*builtin);
@@ -132,11 +152,13 @@ char	**here_doc_delim(char *input);
 int		ft_count_heredocs(char **command_splited);
 bool	is_redirected(char *command_splited);
 int		ft_count_command_splited(char **command_splited);
-int		ft_count_newarray(char **command_splited, int i, t_quotes *quotes, int count_total_array);
+int		ft_count_newarray(char **command_splited, int i,
+			t_quotes *quotes, int count_total_array);
 char	**process_redirection(char **command_splited);
-char	**delete_quotes_double_array(t_minishell *minishell, char **double_array, bool is_not_here_doc);
+char	**delete_quotes_double_array(t_minishell *minishell,
+			char **double_array, bool is_not_here_doc);
 //** Cmds **//
-char	**get_outfiles(char **command_splited);
+char	**get_outfiles(char **command_splited, int c1);
 void	delete_cmds(t_cmd *cmd);
 void	append_cmds(t_cmd **cmds, t_cmd *new_cmd);
 char	*find_command(t_minishell *minishell, char **command_splited);
@@ -146,8 +168,11 @@ char	*find_outfile(char **command_splited);
 int		is_append(char **command_splited);
 bool	have_pipe(char **command, int position);
 //** Errors **//
-bool	controled_errors(t_minishell *minishell, char **command_splited, t_parse_data *command);
-void	handle_unclosed_quotes(t_minishell *minishell, t_quotes quotes, char **result);
+bool	controled_errors(t_minishell *minishell,
+			char **command_splited, t_parse_data *command);
+void	handle_unclosed_quotes(t_minishell *minishell,
+			t_quotes quotes, char **result);
+bool	check_pipes(char **array_commands, int position);
 //** Init Minishell **//
 void	init_minishell(t_minishell *minishell);
 void	init_cmd(t_cmd *cmd);
@@ -165,7 +190,8 @@ void	free_env_list(t_env *env);
 void	free_cmd_list(t_cmd *cmd);
 //**PIPEX **/
 void	sigint_heredoc_handler(int sig);
-int		handle_heredoc(t_minishell *minishell, char **delimiter, bool heredoc_sd);
+int		handle_heredoc(t_minishell *minishell,
+			char **delimiter, bool heredoc_sd);
 char	*ft_quote_printf_here_doc(t_minishell *minishell, char *str);
 int		*manage_heredocs(t_minishell *minishell);
 void	redir(t_minishell *minishell);
@@ -187,5 +213,4 @@ char	*getpath(char *cmd, char **env);
 int		open_f(char *file, int sw, t_cmd *cmd);
 //**  Pipex prueba**//
 int		pipex_prueba(t_minishell *minishell);
-
 #endif 

@@ -106,7 +106,7 @@ void	fill_cmd_fields(t_minishell *minishell, t_cmd *tmp,
 	tmp->infile = find_infile(command_splited);
 	tmp->is_heredoc = is_heredoc(command_splited);
 	tmp->here_doc_delim = here_doc_delim(data->command);
-	tmp->outfile_array = get_outfiles(command_splited);
+	tmp->outfile_array = get_outfiles(command_splited, 0);
 	tmp->outfile_modes = is_append(command_splited);
 	tmp->next = NULL;
 	minishell->heredoc_sd = is_in_sd_quotes(tmp);

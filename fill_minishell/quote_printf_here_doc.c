@@ -1,7 +1,19 @@
-# include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quote_printf_here_doc.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-28 18:58:54 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-28 18:58:54 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../minishell.h"
 
-static char *expand_variable_here_doc(t_minishell *minishell, char *str, size_t *len)
+static char	*expand_variable_here_doc(t_minishell *minishell,
+		char *str, size_t *len)
 {
 	char	*var_name;
 	char	*var_value;
@@ -25,7 +37,8 @@ static char *expand_variable_here_doc(t_minishell *minishell, char *str, size_t 
 	return (ft_strdup(var_value));
 }
 
-static int ft_quote_printf_ev_here_doc(t_minishell *minishell, char *str, t_indices *indices, char **result)
+static int	ft_quote_printf_ev_here_doc(t_minishell *minishell, char *str,
+		t_indices *indices, char **result)
 {
 	char	*expanded;
 	size_t	len;
@@ -39,7 +52,6 @@ static int ft_quote_printf_ev_here_doc(t_minishell *minishell, char *str, t_indi
 	else
 		append_expanded_variable_no_quotes(result, &indices->j, "");
 	indices->i += len;
-	printf("Expanded: %s\n", *result); // Debugging line
 	return (expanded != NULL);
 }
 
@@ -62,12 +74,13 @@ static void	ft_quote_printf_help(char **result, t_indices *indices, char *str)
 	indices->i++;
 }
 
-static void	ft_quote_printf_loop_here_doc(t_minishell *minishell, char *str, t_indices *indices, char **result)
+static void	ft_quote_printf_loop_here_doc(t_minishell *minishell, char *str,
+		t_indices *indices, char **result)
 {
 	while (str[indices->i] != '\0')
 	{
 		if (str[indices->i] == '$' && str[indices->i + 1] != '\0'
-					&& str[indices->i + 1] != ' ' && str[indices->i + 1] != '$')
+			&& str[indices->i + 1] != ' ' && str[indices->i + 1] != '$')
 		{
 			if (ft_quote_printf_ev_here_doc(minishell, str, indices, result))
 				continue ;
@@ -86,6 +99,5 @@ char	*ft_quote_printf_here_doc(t_minishell *minishell, char *str)
 	indices.j = 0;
 	ft_quote_printf_loop_here_doc(minishell, str, &indices, &result);
 	result[indices.j] = '\0';
-	printf("Result: %s\n", result); // Debugging line
 	return (result);
 }

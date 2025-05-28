@@ -1,10 +1,16 @@
-# include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_control.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-28 20:13:45 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-28 20:13:45 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*int	error_control(t_minishell minishell)
-{
-//TODO discutir con Alvaro los codigos de error para cada comando(esta funcion sería para diferenciar entre distintos errores, pero igual no es necesario y podemos poner como código de error -1 sea cual sea el error del input)
-//Para los comandos que se ejecutan con execve podríamos conservar el código de error que nos da execve(creo que siempre es -1 pero no estoy seguro, y para los builtins tenemos que decidir nosotros que código de error ponemos.)
-}**/
+#include "../minishell.h"
 
 void	ft_error(t_minishell *minishell)
 {
@@ -24,7 +30,6 @@ void	ft_error(t_minishell *minishell)
 	free(minishell->input);
 	free(minishell->pids);
 	free(minishell->output);
-	//minishell.last_exit_status = -1;
 	printf("error");
 }
 /*

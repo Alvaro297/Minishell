@@ -1,4 +1,16 @@
-# include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_minishell.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-28 18:49:41 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-28 18:49:41 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../minishell.h"
 
 void	init_minishell(t_minishell *minishell)
 {
@@ -18,7 +30,7 @@ void	init_minishell(t_minishell *minishell)
 void	init_cmd(t_cmd *cmd)
 {
 	if (!cmd)
-		return;
+		return ;
 	cmd->cmd = NULL;
 	cmd->args = NULL;
 	cmd->is_pipe = false;
