@@ -194,13 +194,13 @@ void	execute_all(t_minishell *minishell)
 	int	status;
 
 	current_cmd = minishell->cmds;
-	std_out = dup(STDOUT_FILENO);
-	std_in = dup(STDIN_FILENO);
 	if (minishell->howmanycmd == 1)
 	{
 		no_pipes(minishell);
 		return ;
 	}
+	std_out = dup(STDOUT_FILENO);
+	std_in = dup(STDIN_FILENO);
 	/*if (is_builtin(minishell->cmds))
 	{
 		executebuiltin(minishell);

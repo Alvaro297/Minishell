@@ -983,3 +983,19 @@ cdç
 cd
 cd /
 pwd
+export
+export
+./Minishell 
+export
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2 | <<EOF
+<<EOF

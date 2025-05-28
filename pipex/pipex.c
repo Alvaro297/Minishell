@@ -142,15 +142,18 @@ void	no_pipes(t_minishell *minishell)
 				minishell->last_exit_status = WTERMSIG(status) + 128;
 			else
 				minishell->last_exit_status = 1;
-			set_env(&minishell->env_vars, "?",
-				ft_itoa(minishell->last_exit_status));
+			string_exit_status = ft_itoa(minishell->last_exit_status);
+			set_env(&minishell->env_vars, "?", string_exit_status);
+			free(string_exit_status);
 		}
 		signals_default();
 	}
 	dup2(stdo, STDOUT_FILENO);
 	dup2(stdi, STDIN_FILENO);
-	close (stdo);
-	close (stdi);
+	if (stdo > 2)
+		close(stdo);
+	if (stdi > 2)
+		close(stdi);
 	//close (fd);
 }
 

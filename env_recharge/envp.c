@@ -2,9 +2,10 @@
 
 t_env	*init_env(char **envp)
 {
-	t_env *head = NULL;
-	t_env *new;
-	char *sep;
+	t_env	*head = NULL;
+	t_env	*new;
+	char	*sep;
+	char	*var_value;
 	
 	while (*envp)
 	{
@@ -19,6 +20,9 @@ t_env	*init_env(char **envp)
 		envp++;
 	}
 	set_env(&head, "?", "0");
+	var_value = init_shlvl();
+	set_env(&head, "SHLVL", var_value);
+	free(var_value);
 	return (head);
 }
 

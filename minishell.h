@@ -101,6 +101,8 @@ void	set_env(t_env **env, char *name, char *value);
 void	delete_env(t_env **env, char *name);
 bool	is_readonly(t_minishell *minishell, char *var);
 bool	is_env_var_null(t_minishell *minishell, char *arg);
+char	*init_shlvl(void);
+t_env	*init_env_without_env(void);
 //** Internal_commands **//
 int		howmanycmds(t_cmd *cmd);
 int		handle_cd(t_cmd *current_cmd, t_minishell *minishell);
@@ -109,6 +111,9 @@ int		handle_echo(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_export(t_cmd *current_cmd, t_minishell *minishell);
 int		export_one_var(t_cmd *cmd, t_minishell *mini, int i);
 void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell);
+bool	parsed_value_validation(char *var_value);
+bool	parsed_name_validation(char *var_name);
+char	*parsed_variable_name(char *str);
 int		handle_env(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_unset(t_cmd *current_cmd, t_minishell *minishell);
 int		error_management(t_minishell *minishell);

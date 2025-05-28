@@ -12,7 +12,7 @@
 
 #include "../../../minishell.h"
 
-static char	*parsed_variable_name(char *str)
+char	*parsed_variable_name(char *str)
 {
 	char	*equal_pos;
 	char	*var_name;
@@ -35,7 +35,7 @@ static char	*parsed_variable_name(char *str)
 	return (var_name);
 }
 
-static bool	parsed_value_validation(char *var_value)
+bool	parsed_value_validation(char *var_value)
 {
 	int	i;
 	int	j;
@@ -63,7 +63,7 @@ static bool	parsed_value_validation(char *var_value)
 	return (true);
 }
 
-static bool	parsed_name_validation(char *var_name)
+bool	parsed_name_validation(char *var_name)
 {
 	int	i;
 	int	j;
