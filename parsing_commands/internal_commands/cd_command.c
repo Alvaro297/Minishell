@@ -15,14 +15,27 @@
 static void	handle_cd_help(t_minishell *minishell, char *path, char *cwd)
 {
 	char	*oldpwd;
+	char	*new_pwd;
 
+	new_pwd = NULL;
 	oldpwd = getenv("PWD");
 	if (oldpwd != NULL)
 		set_env(&minishell->env_vars, "OLDPWD", oldpwd);
 	else
 		set_env(&minishell->env_vars, "OLDPWD", "");
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
-		set_env(&minishell->env_vars, "PWD", path);
+	{
+		oldpwd = get_env_value(minishell->env_vars, "PWD", false);
+		if (oldpwd && oldpwd[0] && ft_strncmp(path, "..", 2) == 0
+			&& ft_strlen(path) == 2)
+		{
+			new_pwd = ft_strjoin(oldpwd, "/..");
+			set_env(&minishell->env_vars, "PWD", new_pwd);
+			free(new_pwd);
+		}
+		else
+			set_env(&minishell->env_vars, "PWD", "..");
+	}
 	else
 		set_env(&minishell->env_vars, "PWD", cwd);
 }
