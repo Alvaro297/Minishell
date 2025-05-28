@@ -189,6 +189,7 @@ void	execute_all(t_minishell *minishell)
 	t_cmd	*current_cmd;
 	int	std_out;
 	int	std_in;
+	char	*tmp;
 	int	*heredoc_fds;
 	int	j;
 	int	status;
@@ -250,8 +251,9 @@ void	execute_all(t_minishell *minishell)
 			minishell->last_exit_status = WTERMSIG(status) + 128;
 		else
 			minishell->last_exit_status = 1;
-		set_env(&minishell->env_vars, "?",
-			ft_itoa(minishell->last_exit_status));
+		tmp = ft_itoa(minishell->last_exit_status);
+		set_env(&minishell->env_vars, "?", tmp);
+		free(tmp);
 		i++;
 	}
 	signals_default();

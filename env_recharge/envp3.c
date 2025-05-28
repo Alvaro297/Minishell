@@ -21,7 +21,6 @@ char	*init_shlvl(void)
 	if (shlvl)
 	{
 		shlvl_value = ft_atoi(shlvl) + 1;
-		free(shlvl);
 		return (ft_itoa(shlvl_value));
 	}
 	return (ft_strdup("1"));

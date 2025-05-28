@@ -94,15 +94,15 @@ static bool	check_pipes(char **array_commands, int position)
 					 (!array_commands[position_pipe + 1] ||
 						array_commands[position_pipe + 1][0] == '\0' ||
 						is_all_spaces(array_commands[position_pipe + 1])))
-			return (printf("Syntax error near unexpected token3 'newline'\n"), false);
+			return (ft_putstr_fd("Syntax error near unexpected token3 'newline'\n", 2), false);
 		else if (position_pipe == 1 && array_commands[position][0] == '\0')
 		{
 			if (ft_strncmp(array_commands[position_pipe], "|", 1) == 0)
-				return (printf("Syntax error near unexpected token '|'\n"), false);
+				return (ft_putstr_fd("Syntax error near unexpected token '|'\n", 2), false);
 		}
 		else if (array_commands[position_pipe][0] == '|' &&
 					array_commands[position_pipe + 1][0] == '|')
-			return (printf("Syntax error near unexpected token2 '|'\n"), false);
+			return (ft_putstr_fd("Syntax error near unexpected token2 '|'\n", 2), false);
 	}
 	return (true);
 }

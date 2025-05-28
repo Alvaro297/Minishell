@@ -135,7 +135,6 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 	minishell->cmds = parsing_input(minishell, input);
 	if (minishell->cmds == NULL)
 		return (free(input));
-
 	printf_cmd(minishell->cmds);
 	fill_minishell_help(minishell);
 }

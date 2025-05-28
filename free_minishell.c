@@ -41,7 +41,9 @@ void	free_all(t_minishell *minishell)
 	if (!minishell)
 		return ;
 	if (minishell->history)
+	{
 		free_double_array((void **)minishell->history);
+	}
 	if (minishell->current_dir)
 		free(minishell->current_dir);
 	if (minishell->input)

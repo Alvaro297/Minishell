@@ -29,8 +29,41 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 		{
 			ft_putstr_fd("pipex: command not found: ", 2);
 			minishell->last_exit_status = 127;
-
 			ft_putendl_fd(cmd->args[0], 2);
+			free(path);
+			free_double_array((void **) split_envs);
+			free_all(minishell);
+			exit(127);
+		}
+	}
+}
+
+static void	execute_no_pipes(t_minishell *minishell, t_cmd *cmd, int std_out, int std_in)
+{
+	char	*path;
+	char	**split_envs;
+	
+	path = NULL;
+	split_envs = returntoenvp(minishell->env_vars);
+	if (is_builtin(cmd))
+		internal_commands(cmd, minishell);
+	else
+	{
+		if (cmd->args[0] != NULL)
+			path = getpath(cmd->args[0], split_envs);
+		if (cmd->args[0] == NULL || execve(path, cmd->args, split_envs) == -1)
+		{
+			ft_putstr_fd("pipex: command not found: ", 2);
+			minishell->last_exit_status = 127;
+			ft_putendl_fd(cmd->args[0], 2);
+			if (path == NULL)
+				free(path);
+			free_double_array((void **) split_envs);
+			free_all(minishell);
+			if (std_out > 2)
+				close(std_out);
+			if (std_in > 2)
+				close(std_in);
 			exit(127);
 		}
 	}
@@ -110,16 +143,16 @@ void	no_pipes(t_minishell *minishell)
 	int 	heredoc_fd;
 	char	*string_exit_status;
 
-	stdo = dup(STDOUT_FILENO);
-	stdi = dup(STDIN_FILENO);
-	redirimput(minishell->cmds);
-	rediroutput(minishell->cmds);
 	if (minishell->cmds->here_doc_delim && minishell->cmds->is_heredoc)
 	{
 		heredoc_fd = handle_heredoc(minishell, minishell->cmds->here_doc_delim, minishell->heredoc_sd);
 		dup2(heredoc_fd, STDIN_FILENO);
 		close(heredoc_fd);
 	}
+	stdo = dup(STDOUT_FILENO);
+	stdi = dup(STDIN_FILENO);
+	redirimput(minishell->cmds);
+	rediroutput(minishell->cmds);
 	if (is_builtin(minishell->cmds))
 	{
 		minishell->last_exit_status = internal_commands(minishell->cmds, minishell);
@@ -132,7 +165,7 @@ void	no_pipes(t_minishell *minishell)
 		signals_ignore();
 		pid = fork();
 		if (!pid)
-			execute(minishell, minishell->cmds);
+			execute_no_pipes(minishell, minishell->cmds, stdo, stdi);
 		else
 		{
 			waitpid(pid, &status, 0);
@@ -156,6 +189,7 @@ void	no_pipes(t_minishell *minishell)
 		close(stdi);
 	//close (fd);
 }
+
 
 
 /*

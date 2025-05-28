@@ -24,6 +24,7 @@ static bool	exit_minishell(char *input)
 	return (false);
 }
 
+
 void	minishell(char **envp)
 {
 	char		*input;

@@ -999,3 +999,90 @@ export
 <Makefile cat >hola >hola2
 <Makefile cat >hola >hola2 | <<EOF
 <<EOF
+<<EOF
+echo hola
+<<EOF
+echo hola
+echo hola
+echo $SHLVL
+echo hola
+echo hola
+echo hola
+<<EOF
+cat <<EOF
+cat <<EOF
+<<EOF
+echo hola
+echo <<EOF
+<<EOF
+<<EOF
+<<EOF
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+echo hola ||
+echo hola ||
+echo hola ||
+echo hola ||
+<makefile >prueba
+echo hola ||
+echo hola ||
+echo hola ||
+echo hola ||
+echo hola ||
+echo hola ||
+echo hola que tal ||
+<makefile >prueba
+echo hola que tal ||
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+echo hola que tal ||
+<makefile >prueba
+<makefile >prueba
+echo hola que tal ||
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<<EOF
+<<EOF
+<<EOF
+<<EOF
+<makefile >prueba
+echo $?
+ca >prueba
+ca >prueba
+ca >prueba
+cat >prueba
+echo hola >prueba
+echo hola >prueba
+ca >prueba
+<Makefile cat >prueba
+ca >prueba
+ca >prueba
+export hola=hh
+export
+ca
+export
+echo $hola
+ca
+ca
+<<EOF
+<Makefile cat >prueba
+ca
+cat <<EOF >prueba
+ca
+ca
+ca
+ca
+<Makefile >prueba
+<Makefile >prueba
+<Makefile >prueba
+<Makefile >prueba
+ls -l | cat >prueba
+ls -l | cat >prueba
