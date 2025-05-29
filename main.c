@@ -12,15 +12,16 @@
 
 #include "minishell.h"
 
-static bool	exit_minishell(char *input)
+static bool	exit_minishell(char *input, int interactive)
 {
-	if (ft_strcmp(input, "exit") == 0)
-		return (true);
 	if (input == NULL)
 	{
-		printf("exit\n");
+		if (interactive)
+			printf("exit\n");
 		return (true);
 	}
+	if (ft_strcmp(input, "exit") == 0)
+		return (true);
 	return (false);
 }
 
@@ -39,8 +40,16 @@ void	minishell(char **envp)
 		if (interactive)
 			input = readline("Minishell: ");
 		else
+		{
 			input = get_next_line(STDIN_FILENO);
-		if (exit_minishell(input))
+			if (input)
+			{
+				size_t len = ft_strlen(input);
+				if (len > 0 && input[len - 1] == '\n')
+					input[len - 1] = '\0';
+			}
+		}
+		if (exit_minishell(input, interactive))
 		{
 			free(input);
 			break ;

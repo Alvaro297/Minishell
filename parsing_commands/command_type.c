@@ -15,7 +15,7 @@
 int	internal_commands(t_cmd *current_cmd, t_minishell *minishell)
 {
 	if (ft_strncmp(current_cmd->cmd, "exit", 4) == 0)
-		return (exit(0), 0);
+		return (handle_exit(current_cmd));
 	else if (ft_strncmp(current_cmd->cmd, "pwd", 3) == 0)
 		return (handle_pwd(current_cmd, minishell));
 	else if (ft_strncmp(current_cmd->cmd, "cd", 2) == 0)

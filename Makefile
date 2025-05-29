@@ -15,6 +15,7 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c env_recharge/envp3.c
 			parsing_commands/internal_commands/env_command.c \
 			parsing_commands/internal_commands/pwd_command.c \
 			parsing_commands/internal_commands/unset_command.c \
+			parsing_commands/internal_commands/exit_command.c \
 			parsing_commands/command_type.c parsing_input/checker_args.c \
 			parsing_input/parsing_cmd.c parsing_input/parsing_cmd2.c \
 			parsing_input/parsing_cmd3.c parsing_input/parsing_cmd_split_modified.c \
