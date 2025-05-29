@@ -27,7 +27,7 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c env_recharge/envp3.c
 			pipex/ft_split.c pipex/ft_fd.c pipex/utils2.c \
 			pipex/execute.c pipex/here_doc.c
 
-NAME = Minishell
+NAME = minishell
 
 RM = rm -rf
 

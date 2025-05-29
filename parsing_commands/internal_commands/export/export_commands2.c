@@ -36,8 +36,7 @@ int	export_one_var(t_cmd *cmd, t_minishell *mini, int i)
 	if (var_check && cmd->args[i][0] != '=')
 	{
 		var_check++;
-		if (parsed_name_validation(var_name)
-			&& parsed_value_validation(var_check))
+		if (parsed_name_validation(var_name))
 			return (export_set_env(mini, var_name, var_check));
 		else
 			return (export_invalid_identifier(cmd->args[i], var_name));
@@ -45,7 +44,7 @@ int	export_one_var(t_cmd *cmd, t_minishell *mini, int i)
 	else if (!var_check && var_name)
 	{
 		if (parsed_name_validation(var_name))
-			return (export_set_env(mini, var_name, NULL));
+			return (export_set_env(mini, var_name, ""));
 		else
 			return (export_invalid_identifier(cmd->args[i], var_name));
 	}

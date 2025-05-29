@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+int g_exit_status = 0;
+
 static bool	exit_minishell(char *input, int interactive)
 {
 	if (input == NULL)
@@ -40,15 +42,7 @@ void	minishell(char **envp)
 		if (interactive)
 			input = readline("Minishell: ");
 		else
-		{
 			input = get_next_line(STDIN_FILENO);
-			if (input)
-			{
-				size_t len = ft_strlen(input);
-				if (len > 0 && input[len - 1] == '\n')
-					input[len - 1] = '\0';
-			}
-		}
 		if (exit_minishell(input, interactive))
 		{
 			free(input);
@@ -61,15 +55,16 @@ void	minishell(char **envp)
 		free(input);
 	}
 	free_all(&minishell);
+	exit(g_exit_status);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc >= 2 || ft_strcmp(argv[0], "./Minishell"))
+	if (argc >= 2 || ft_strcmp(argv[0], "./minishell"))
 	{
 		printf("Bad arguments in the program\n");
 		return (EXIT_SUCCESS);
 	}
 	minishell(envp);
-	return (EXIT_SUCCESS);
+	return (g_exit_status);
 }

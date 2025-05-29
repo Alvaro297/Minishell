@@ -74,6 +74,7 @@ bool	parsed_name_validation(char *var_name)
 	while (var_name[i])
 	{
 		j = 0;
+		printf("Hola: %s\n", var_name);
 		while (INVALID_CHARACTERS[j])
 		{
 			if (INVALID_CHARACTERS[j] == var_name[i])

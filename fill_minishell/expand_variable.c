@@ -78,6 +78,8 @@ static void	ft_quote_printf_help(char **result, t_indices *indices, char *str)
 
 static void	ft_quote_printf_loop(char *str, t_quote_ctx *ctx)
 {
+	while (str[ctx->indices->i] == ' ')
+		ctx->indices->i++;
 	while (str[ctx->indices->i] != '\0')
 	{
 		if (ft_sd_quote_printf_mod(str, ctx->quotes, ctx->indices->i))
@@ -123,6 +125,11 @@ char	*ft_quote_printf(t_minishell *minishell, char *str, bool is_input)
 	ctx.result = &result;
 	ft_quote_printf_loop(str, &ctx);
 	result[indices.j] = '\0';
+	if (indices.j == 0 && !quotes.in_single_quote && !quotes.in_double_quote)
+	{
+		free(result);
+		result = NULL;
+	}
 	if (quotes.in_single_quote || quotes.in_double_quote)
 		handle_unclosed_quotes(minishell, quotes, &result);
 	return (result);
