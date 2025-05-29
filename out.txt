@@ -1,7 +1,0 @@
-hola mundo
-El valor de HOME es: /root
-comillas 'simples' y \dobles\
-
-hola
-mundo
-fin de test
