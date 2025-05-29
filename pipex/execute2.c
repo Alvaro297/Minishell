@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: paperez- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/29 18:33:26 by paperez-          #+#    #+#             */
+/*   Updated: 2025/05/29 18:33:28 by paperez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	init_execution(t_minishell *minishell, t_exec *e)
@@ -36,6 +48,7 @@ void	fork_all_processes(t_minishell *minishell, t_cmd *cmd,
 		e->i++;
 	}
 }
+
 void	restore_std_and_cleanup(t_minishell *minishell,
 	t_exec *e, int std_in)
 {
@@ -44,6 +57,7 @@ void	restore_std_and_cleanup(t_minishell *minishell,
 	free(e->heredoc_fds);
 	closefds(minishell, e->pfd);
 }
+
 void	wait_all_children(t_minishell *minishell, pid_t *pids)
 {
 	int	i;

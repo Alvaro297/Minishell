@@ -992,3 +992,4 @@ cat <<Adios > prueba
 cat <<Adios > prueba
 cat <<Adios > prueba
 cat prueba
+echo <<EOF

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   no_pipes.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: paperez- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/29 18:12:42 by paperez-          #+#    #+#             */
+/*   Updated: 2025/05/29 18:13:20 by paperez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	handle_fork_status(t_minishell *minishell, pid_t pid)
 {
-	int	status;
 	char	*exit_str;
+	int		status;
 
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
@@ -24,7 +36,8 @@ void	execute_single_builtin_or_fork(t_minishell *minishell)
 
 	if (is_builtin(minishell->cmds))
 	{
-		minishell->last_exit_status = internal_commands(minishell->cmds, minishell);
+		minishell->last_exit_status
+			= internal_commands(minishell->cmds, minishell);
 		exit_str = ft_itoa(minishell->last_exit_status);
 		set_env(&minishell->env_vars, "?", exit_str);
 		free(exit_str);
@@ -70,4 +83,3 @@ void	no_pipes(t_minishell *minishell)
 	close(stdo);
 	close(stdi);
 }
-

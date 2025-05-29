@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: paperez- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/29 18:31:00 by paperez-          #+#    #+#             */
+/*   Updated: 2025/05/29 18:31:22 by paperez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 #include "../minishell.h"
 
 int	howmanycmds(t_cmd *cmd)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!cmd)
 		return (0);
@@ -29,32 +41,40 @@ void	free_pipe_fds(int **pfd, int count)
 	free(pfd);
 }
 
-char	**returntoenvp(t_env *env)
+int	count_envs(t_env *env)
 {
-	char	**envchar;
+	t_env	*iter;
 	int		count;
-	int		i;
-	char	*tmp;
 
-	count = 0;
-	t_env *iter = env;
+	iter = env;
 	while (iter)
 	{
 		count++;
 		iter = iter->next;
 	}
+	return (count);
+}
+
+char	**returntoenvp(t_env *env)
+{
+	t_env	*iter;
+	char	**envchar;
+	char	*tmp;
+	int		count;
+
+	count = count_envs(env);
 	envchar = malloc(sizeof(char *) * (count + 1));
 	if (!envchar)
 		return (NULL);
-	i = 0;
+	count = 0;
 	while (env)
 	{
 		tmp = ft_strjoin(env->name, "=");
-		envchar[i] = ft_strjoin(tmp, env->value);
+		envchar[count] = ft_strjoin(tmp, env->value);
 		free(tmp);
 		env = env->next;
-		i++;
+		count++;
 	}
-	envchar[i] = NULL;
+	envchar[count] = NULL;
 	return (envchar);
 }
