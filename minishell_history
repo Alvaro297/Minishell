@@ -1586,3 +1586,9 @@ cat <<ls
 cat <<ls
 echo hola
 cat <<ls
+cat <<ls
+cat <<ls
+<<ls
+echo $?
+echo $?
+<<ls <<ls2
