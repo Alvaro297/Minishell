@@ -104,8 +104,6 @@ void	no_pipes(t_minishell *minishell)
 	execute_single_builtin_or_fork(minishell);
 	dup2(stdo, STDOUT_FILENO);
 	dup2(stdi, STDIN_FILENO);
-	if (stdo > 2)
-		close(stdo);
-	if (stdi > 2)
-		close(stdi);
+	close(stdo);
+	close(stdi);
 }

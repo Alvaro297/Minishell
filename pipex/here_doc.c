@@ -90,7 +90,8 @@ int	*manage_heredocs(t_minishell *minishell)
 	t_cmd	*cmd;
 	int		i;
 	int		*fd;
-
+	
+	manage_signals_heredoc();
 	cmd = minishell->cmds;
 	i = 0;
 	fd = malloc(sizeof(int) * minishell->howmanycmd);

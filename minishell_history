@@ -1427,3 +1427,22 @@ echo $?
 eecho $?
 echo $?
 echo $?
+echo <<
+echo <<EOF
+echo <<EOF
+echo hola
+cat pipex/pipex.c
+echo <<EOF
+cat pipex/pipex.c
+echo <<EOF
+echo $?
+echo <<EOF
+cat <<eof
+cat <<eof
+echo hola
+cat <<eof
+cat <<eof
+cat <<eof | cat <<eof2
+cat <<eof | cat <<eof2
+cat <<eof | cat <<eof2
+cat <<eof
