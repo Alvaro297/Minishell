@@ -12,15 +12,23 @@
 
 #include "../../minishell.h"
 
-int	handle_pwd(t_cmd *current_cmd, t_minishell *minishell)
+int	handle_pwd(t_minishell *minishell)
 {
 	char	*cwd;
+	char	*env_pwd;
 
 	cwd = getcwd(NULL, 0);
 	if (cwd == NULL)
 	{
-		perror("minishell: pwd");
-		return (1);
+		env_pwd = get_env_value(minishell->env_vars, "PWD", false);
+		if (env_pwd)
+			printf("%s\n", env_pwd);
+		else
+			perror("minishell: pwd");
+		if (env_pwd)
+			return (0);
+		else
+			return (1);
 	}
 	printf("%s\n", cwd);
 	free(cwd);

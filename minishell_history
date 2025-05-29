@@ -1592,3 +1592,6 @@ cat <<ls
 echo $?
 echo $?
 <<ls <<ls2
+<<ls <<ls2
+echo hola
+echo hola

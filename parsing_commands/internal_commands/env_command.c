@@ -19,7 +19,7 @@ static void	print_env_error(char *arg)
 	ft_putstr_fd("’: No such file or directory\n", 2);
 }
 
-static void	print_env_vars(t_cmd *current_cmd, t_env *env)
+static void	print_env_vars(t_env *env)
 {
 	while (env)
 	{
@@ -35,7 +35,7 @@ int	handle_env(t_cmd *current_cmd, t_minishell *minishell)
 	tmp = minishell->env_vars;
 	if (!current_cmd->args[1])
 	{
-		print_env_vars(current_cmd, tmp);
+		print_env_vars(tmp);
 		return (0);
 	}
 	print_env_error(current_cmd->args[1]);

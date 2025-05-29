@@ -144,7 +144,7 @@ t_env	*init_env_without_env(void);
 //** Internal_commands **//
 int		howmanycmds(t_cmd *cmd);
 int		handle_cd(t_cmd *current_cmd, t_minishell *minishell);
-int		handle_pwd(t_cmd *current_cmd, t_minishell *minishell);
+int		handle_pwd( t_minishell *minishell);
 int		handle_echo(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_exit(t_cmd *cmd);
 int		handle_export(t_cmd *current_cmd, t_minishell *minishell);
