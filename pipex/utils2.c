@@ -57,7 +57,6 @@ int	count_envs(t_env *env)
 
 char	**returntoenvp(t_env *env)
 {
-	t_env	*iter;
 	char	**envchar;
 	char	*tmp;
 	int		count;

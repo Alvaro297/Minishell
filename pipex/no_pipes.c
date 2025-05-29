@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
+/*
 void	handle_fork_status(t_minishell *minishell, pid_t pid)
 {
 	char	*exit_str;
@@ -25,6 +25,30 @@ void	handle_fork_status(t_minishell *minishell, pid_t pid)
 	else
 		minishell->last_exit_status = 1;
 	exit_str = ft_itoa(minishell->last_exit_status);
+	set_env(&minishell->env_vars, "?", exit_str);
+	free(exit_str);
+}
+*/
+void	handle_fork_status(t_minishell *minishell, pid_t pid)
+{
+	char	*exit_str;
+	int		status;
+	int		exit_code;
+
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		exit_code = WEXITSTATUS(status);
+	else if (WIFSIGNALED(status))
+	{
+		int signo = WTERMSIG(status);
+		exit_code = signo + 128;	
+	}
+	else
+		exit_code = 1;
+
+	minishell->last_exit_status = exit_code;
+
+	exit_str = ft_itoa(exit_code);
 	set_env(&minishell->env_vars, "?", exit_str);
 	free(exit_str);
 }

@@ -993,3 +993,26 @@ cat <<Adios > prueba
 cat <<Adios > prueba
 cat prueba
 echo <<EOF
+echo hola
+echo <<EOF
+echo hola $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+cat
+cat
+echo $?
+echo $?
+cat
+cat
+echo $?
+echo $?
+cat pipex/pipex.c
+cat
+cat

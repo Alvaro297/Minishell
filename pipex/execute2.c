@@ -62,6 +62,7 @@ void	wait_all_children(t_minishell *minishell, pid_t *pids)
 {
 	int	i;
 	int	status;
+	int	sign;
 
 	i = 0;
 	while (i < minishell->howmanycmd)
@@ -70,7 +71,10 @@ void	wait_all_children(t_minishell *minishell, pid_t *pids)
 		if (WIFEXITED(status))
 			minishell->last_exit_status = WEXITSTATUS(status);
 		else if (WIFSIGNALED(status))
-			minishell->last_exit_status = WTERMSIG(status) + 128;
+		{
+			sign = WTERMSIG(status);
+			minishell->last_exit_status = sign + 128;
+		}
 		else
 			minishell->last_exit_status = 1;
 		set_env(&minishell->env_vars, "?",
