@@ -1595,3 +1595,13 @@ echo $?
 <<ls <<ls2
 echo hola
 echo hola
+<<ls <<ls2
+ec
+<<ls <<ls2
+ec
+echo hola
+cat 
+ca
+echo hola
+ca
+ca <<ls

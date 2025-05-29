@@ -31,6 +31,7 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 			ft_putendl_fd(cmd->args[0], 2);
 			free(path);
 			free_double_array((void **) split_envs);
+			free_all(minishell);
 			exit(127);
 		}
 	}
