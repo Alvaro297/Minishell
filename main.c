@@ -28,13 +28,18 @@ void	minishell(char **envp)
 {
 	char		*input;
 	t_minishell	minishell;
+	int			interactive;
 
 	init_minishell(&minishell);
 	load_history(&minishell);
 	manage_signals();
+	interactive = isatty(STDIN_FILENO);
 	while (1)
 	{
-		input = readline("Minishell: ");
+		if (interactive)
+			input = readline("Minishell: ");
+		else
+			input = get_next_line(STDIN_FILENO);
 		if (exit_minishell(input))
 		{
 			free(input);

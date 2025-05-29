@@ -1134,3 +1134,44 @@ ca
 hoal
 ls -l | <<EOF
 ls -l | <<EOF
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo hola mundo
+
+echo "prueba minishell"
+
+echo $HOME
+
+echo hola mundo
+
+echo "prueba minishell"
+
+echo $HOME
+
+echo hola mundo
+
+echo "prueba minishell"
+
+echo $HOME
+
+echo hola mundo
+echo "prueba minishell"
+echo $HOME
+echo hola mundo
+echo "prueba minishell"
+echo $HOME
+echo hola mundo
+echo "prueba minishell"
+echo $HOME
+echo hola mundo
+echo "prueba minishell"
+echo $HOME
+echo hola mundo
+echo hola mundo
+
+echo hola mundo
+
