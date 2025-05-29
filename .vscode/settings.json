@@ -8,6 +8,7 @@
 		"cstdlib": "c",
 		"signal.h": "c",
 		"type_traits": "c",
-		"pipex.h": "c"
+		"pipex.h": "c",
+		"errno.h": "c"
 	}
 }

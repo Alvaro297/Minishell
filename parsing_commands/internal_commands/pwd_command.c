@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../minishell.h"
+#include "../../minishell.h"
 
 int	handle_pwd(t_cmd *current_cmd, t_minishell *minishell)
 {

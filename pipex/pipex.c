@@ -29,6 +29,12 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 			ft_putstr_fd("pipex: command not found: ", 2);
 			minishell->last_exit_status = 127;
 			ft_putendl_fd(cmd->args[0], 2);
+			free(path);
+			free_double_array((void **) split_envs);
+			if (std_out > 2)
+				close(std_out);
+			if (std_in > 2)
+				close(std_in);
 			exit(127);
 		}
 	}

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_syntax.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-28 20:35:23 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-28 20:35:23 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-bool check_quotes(char *input)
+bool	check_quotes(char *input)
 {
 	int	single_quotes;
 	int	double_quotes;
@@ -27,16 +39,16 @@ bool	check_redir_syntax(char *input)
 		return (false);
 	while (input[c] != '\0')
 	{
-		if ((input[c] == '>' || input[c] == '<') &&
-				(input[c + 1] == '<'))
+		if ((input[c] == '>' || input[c] == '<')
+			&& (input[c + 1] == '<'))
 			return (false);
 		if (input[c] == '<' && input[c + 1] == '>')
-			return false;
+			return (false);
 	}
 	return (true);
 }
 
-bool	check_pipes(char *input)
+static bool	check_pipes2(char *input)
 {
 	int	c;
 
@@ -45,7 +57,7 @@ bool	check_pipes(char *input)
 		return (false);
 	while (input[c] != '\0')
 	{
-		 if (input[c] == '|' && input[c+1] == '|')
+		if (input[c] == '|' && input[c + 1] == '|')
 			return (false);
 	}
 	return (true);
@@ -63,7 +75,7 @@ bool	check_syntax(char *input)
 		printf("Error: Sintaxis incorrecta en redirección.\n");
 		return (false);
 	}
-	if (!check_pipes(input))
+	if (!check_pipes2(input))
 	{
 		printf("Error: Sintaxis incorrecta en pipes.\n");
 		return (false);

@@ -1,4 +1,16 @@
-# include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_history_file.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-28 19:03:42 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-28 19:03:42 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../minishell.h"
 
 char	*get_history_file(void)
 {
@@ -8,7 +20,7 @@ char	*get_history_file(void)
 
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
-		fprintf(stderr, "Error: Can't get current directory for history file.\n");
+		ft_putstr_fd("Error: Can't get current directory for file.\n", 2);
 		return (NULL);
 	}
 	len = ft_strlen(cwd) + ft_strlen("/minishell_history") + 1;

@@ -1,6 +1,19 @@
-# include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_variable2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-28 19:06:03 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-28 19:06:03 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	append_expanded_variable_no_quotes(char **result, size_t *j, char *expanded)
+#include "../minishell.h"
+
+void	append_expanded_variable_no_quotes(char **result,
+		size_t *j, char *expanded)
 {
 	size_t		len;
 	size_t		current_len;

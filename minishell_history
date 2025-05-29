@@ -976,43 +976,454 @@ cd
 pwd
 pwd
 cd
-cat <<Adios > prueba | <prueba cat <<Hola 
-cat <<Adios > prueba | <prueba cat <<Hola 
-cat <<Adios > prueba | <prueba cat <<Hola 
+unset HOME
 cd
 pwd
-cd minishell
-unset PWD
+cdç
 cd
+cd /
 pwd
-cd
+export
+export
+./Minishell 
+export
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2
+<Makefile cat >hola >hola2 | <<EOF
+<<EOF
+<<EOF
 echo hola
-cat hola
-cat <<Adios > prueba
-cat <<Adios > prueba
-cat <<Adios > prueba
-cat prueba
-echo <<EOF
+<<EOF
+echo hola
+echo hola
+echo $SHLVL
+echo hola
+echo hola
+echo hola
+<<EOF
+cat <<EOF
+cat <<EOF
+<<EOF
 echo hola
 echo <<EOF
-echo hola $?
+<<EOF
+<<EOF
+<<EOF
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+echo hola ||
+echo hola ||
+echo hola ||
+echo hola ||
+<makefile >prueba
+echo hola ||
+echo hola ||
+echo hola ||
+echo hola ||
+echo hola ||
+echo hola ||
+echo hola que tal ||
+<makefile >prueba
+echo hola que tal ||
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+echo hola que tal ||
+<makefile >prueba
+<makefile >prueba
+echo hola que tal ||
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<makefile >prueba
+<<EOF
+<<EOF
+<<EOF
+<<EOF
+<makefile >prueba
+echo $?
+ca >prueba
+ca >prueba
+ca >prueba
+cat >prueba
+echo hola >prueba
+echo hola >prueba
+ca >prueba
+<Makefile cat >prueba
+ca >prueba
+ca >prueba
+export hola=hh
+export
+ca
+export
+echo $hola
+ca
+ca
+<<EOF
+<Makefile cat >prueba
+ca
+cat <<EOF >prueba
+ca
+ca
+ca
+ca
+<Makefile >prueba
+<Makefile >prueba
+<Makefile >prueba
+<Makefile >prueba
+ls -l | cat >prueba
+ls -l | cat >prueba
+ls -l | <<EOF
+<<EOF
+<<EOF
+<<EOF
+<<EOF
+<<EOF
+<<EOF
+ca
+<<eof
+hola
+ca <<END
+echo hola
+cat <<EOF
+cat <<EOF
+cat <<EOF
+cat <<EOF
+cat >prueba | echo hola
+<Makefile cat >prueba | echo hola
+ca
+ls -l
+ca
+ca
+ca
+ca
+ca
+<<EOF
+<prueba >adios
+cat <<EOF
+cat <<EOF
+cat <<EOF
+ls -l
+cat <<EOF
+<Makefile cat >prueba 
+cat <<EOF
+<Makefile cat >prueba 
+ca
+<<EOF
+<<EOF
+<<EOF
+ca
+<Makefile cat >prueba 
+<<EOF
+<<EOF
+<<EOF
+<<EOF
+hoal
+ls -l | <<EOF
+ls -l | <<EOF
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo $HOME
+echo hola mundo
+
+echo "prueba minishell"
+
+echo $HOME
+
+echo hola mundo
+
+echo "prueba minishell"
+
+echo $HOME
+
+echo hola mundo
+
+echo "prueba minishell"
+
+echo $HOME
+
+echo hola mundo
+echo "prueba minishell"
+echo $HOME
+echo hola mundo
+echo "prueba minishell"
+echo $HOME
+echo hola mundo
+echo "prueba minishell"
+echo $HOME
+echo hola mundo
+echo "prueba minishell"
+echo $HOME
+echo hola mundo
+echo hola mundo
+
+echo hola mundo
+
+echo hola mundo
+export VAR1="hola"
+export VAR2='mundo'
+echo "$VAR1 $VAR2"
+echo 'El valor de HOME es:' "$HOME"
+echo "comillas 'simples' y \"dobles\""
+echo "" | cat
+echo $VAR1 | grep h
+echo $VAR2 | grep o
+echo "fin de test"
+export VAR1="hola"
+export VAR2='mundo'
+echo "$VAR1 $VAR2"
+echo 'El valor de HOME es:' "$HOME"
+echo "comillas 'simples' y \"dobles\""
+echo "" | cat
+echo $VAR1 | grep h
+echo $VAR2 | grep o
+echo "fin de test"
+export VAR1="hola"
+export VAR2='mundo'
+echo "$VAR1 $VAR2"
+echo 'El valor de HOME es:' "$HOME"
+echo "comillas 'simples' y \"dobles\""
+echo "" | cat
+echo $VAR1 | grep h
+echo $VAR2 | grep o
+echo "fin de test"
+export VAR1="hola"
+export VAR2='mundo'
+echo "$VAR1 $VAR2"
+echo 'El valor de HOME es:' "$HOME"
+echo "comillas 'simples' y \"dobles\""
+echo "" | cat
+echo $VAR1 | grep h
+echo $VAR2 | grep o
+echo "fin de test"
+export VAR1="hola"
+export VAR2='mundo'
+echo "$VAR1 $VAR2"
+echo 'El valor de HOME es:' "$HOME"
+echo "comillas 'simples' y \"dobles\""
+echo "" | cat
+cat < prueba | grep h
+echo $VAR2 | grep o
+echo "fin de test"
+export VAR1="hola"
+export VAR2='mundo'
+echo "$VAR1 $VAR2"
+echo 'El valor de HOME es:' "$HOME"
+echo "comillas 'simples' y \"dobles\""
+echo "" | cat
+cat < prueba | grep h
+echo $VAR2 | grep o
+echo "fin de test"
+export VAR1="hola"
+export VAR2='mundo'
+echo "$VAR1 $VAR2"
+echo 'El valor de HOME es:' "$HOME"
+echo "comillas 'simples' y \"dobles\""
+echo "" | cat
+echo $VAR1 | grep h
+echo $VAR2 | grep o
+echo "fin de test"
+echo hello world
+echo 0HELLO
+exit 100
+exit 42 world
+echo $?
+exit hello
+exit 100
+exit hello
+echo hello world
+echo hello world
+echo hello world
+export VAR1="hola"
+export VAR2='mundo'
+echo "$VAR1 $VAR2"
+echo 'El valor de HOME es:' "$HOME"
+echo "comillas 'simples' y \"dobles\""
+echo "" | cat
+echo $VAR1 | grep h
+echo $VAR2 | grep o
+echo "fin de test"
+export VAR1="hola"
+export VAR2='mundo'
+echo "$VAR1 $VAR2"
+echo 'El valor de HOME es:' "$HOME"
+echo "comillas 'simples' y \"dobles\""
+echo "" | cat
+echo $VAR1 | grep h
+echo $VAR2 | grep o
+echo "fin de test"
+echo hola
+echo hello world
+echo hello''world
+echo 'hello world'
+exit 298
+echo $
+echo $$USER
+export $INEX
+exit 298
+exit 298
+echo $SHLVL
+./minishell
+echo $SHLVL
+./minishell
+./minishell
+./minishell
+./minishell
+./minishell
+./minishell
+./minishell
+./minishell
+./minishell
+./minishell
+./minishell
+./minishell
+./minishell
+echo $SHLVL
+ps
+export
+echo $PWD
+cd ..
+pwd
+cd ..
+pwd
+export
+ls
+ls $a
+clear
+sleep 123
+echo $=
 echo $?
 echo $?
+ls -l
+make re
+clear
+cat << 'EOF'
+cat << 'EOF'
+cat << l | cat << l1
+cat << l 
+cat << lassd+asd
+cat << $USER
+alvamart
+"  "
+  
+   
+ 
+ 
+ 
+ 
+ 
+    
+export RATA=rata
+export RATA=ls
+$RATA -l
+export CMD="grep pattern"
+export CMD="grep pattern"
+export CMD=grep pattern
+export CMD=grep pattern
+export CMD=grep pattern
+export CMD=grep
+export
+export CMD=grep pattern
+export CMD="grep pattern"
+export CMD="grep
+export CMD="grep"
+export CMD="gre"
+export
+echo $?
+export CMD="grep pattern"
+export CMD="grep pattern"
+echo hola
+echo hola
+export CMD="grep pattern"
+export CMD="grep pattern"
+export CMD="grep pattern"
+export
+echo hola
+echo hola
+echo hola
+export CMD="grep pattern"
+export CMD=grep pattern
+export CMD=grep pattern=hola
+export
+export CMD
+export CMD
+export CMD="grep pattern"
+export CMD=grep pattern
+export CMD
+export CMD=
+export
+export
+echo $?
+cat <<EOF
+echo hola
+ca
+export CMD
+echo $CMD hola
+export CMD
+echo $CMD hola
+export CMD
+echo $CMD hola
+echo $CMD hola
+echo $CMD hola
+echo $CMDhola
+echo $CMD hola
+export CMD
+echo $CMD hola
+echo $CMD hola
+echo $CMD hola
+export
+export CMD
+echo $CMD hola
+export CMD
+echo $CMD hola
+export CMD="grep pattern"
+echo $CMD hola
+echo $?
+ech
+echo $?
+export CMD= "grep pattern"
+export CMD1
+export 1CMD
+export
+echo $?
+export
+echo $?
+export
+echo $?
+        
+  
+ 
+ 
+        
+        
+        
+        
+           
+echo
+echo
+        
+echo $?
+export hola=hola2@
+export
+eecho $?
 echo $?
 echo $?
+eecho $?
 echo $?
 echo $?
-echo $?
-echo $?
-echo $?
-cat
-cat
-echo $?
-echo $?
-cat
-cat
-echo $?
-echo $?
-cat pipex/pipex.c
-cat
-cat

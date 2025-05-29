@@ -12,15 +12,18 @@
 
 #include "minishell.h"
 
-static bool	exitMinishell(char *input)
+int g_exit_status = 0;
+
+static bool	exit_minishell(char *input, int interactive)
 {
-	if(ft_strcmp(input, "exit") == 0)
-		return (true);
 	if (input == NULL)
 	{
-		printf("exit\n");
+		if (interactive)
+			printf("exit\n");
 		return (true);
 	}
+	if (ft_strcmp(input, "exit") == 0)
+		return (true);
 	return (false);
 }
 
@@ -28,35 +31,40 @@ void	minishell(char **envp)
 {
 	char		*input;
 	t_minishell	minishell;
+	int			interactive;
 
 	init_minishell(&minishell);
 	load_history(&minishell);
 	manage_signals();
+	interactive = isatty(STDIN_FILENO);
 	while (1)
 	{
-		input = readline("Minishell: ");
-		if (exitMinishell(input))
+		if (interactive)
+			input = readline("Minishell: ");
+		else
+			input = get_next_line(STDIN_FILENO);
+		if (exit_minishell(input, interactive))
 		{
 			free(input);
 			break ;
 		}
 		fill_minishell(input, &minishell, envp);
-		//error_management(&minishell);
 		if (minishell.cmds == NULL)
 			continue ;
 		execute_all(&minishell);
 		free(input);
 	}
 	free_all(&minishell);
+	exit(g_exit_status);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc >= 2 || ft_strcmp(argv[0],"./Minishell"))
+	if (argc >= 2 || ft_strcmp(argv[0], "./minishell"))
 	{
 		printf("Bad arguments in the program\n");
 		return (EXIT_SUCCESS);
 	}
 	minishell(envp);
-	return (EXIT_SUCCESS);
+	return (g_exit_status);
 }

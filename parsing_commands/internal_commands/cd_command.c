@@ -10,19 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../minishell.h"
+#include "../../minishell.h"
 
 static void	handle_cd_help(t_minishell *minishell, char *path, char *cwd)
 {
-	char *oldpwd;
+	char	*oldpwd;
+	char	*new_pwd;
 
+	new_pwd = NULL;
 	oldpwd = getenv("PWD");
 	if (oldpwd != NULL)
 		set_env(&minishell->env_vars, "OLDPWD", oldpwd);
 	else
 		set_env(&minishell->env_vars, "OLDPWD", "");
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
-		set_env(&minishell->env_vars, "PWD", path);
+	{
+		oldpwd = get_env_value(minishell->env_vars, "PWD", false);
+		if (oldpwd && oldpwd[0] && ft_strncmp(path, "..", 2) == 0
+			&& ft_strlen(path) == 2)
+		{
+			new_pwd = ft_strjoin(oldpwd, "/..");
+			set_env(&minishell->env_vars, "PWD", new_pwd);
+			free(new_pwd);
+		}
+		else
+			set_env(&minishell->env_vars, "PWD", "..");
+	}
 	else
 		set_env(&minishell->env_vars, "PWD", cwd);
 }
@@ -32,9 +45,12 @@ static char	*cd_path(t_cmd *current_cmd, t_minishell *minishell)
 	char	*path;
 	char	*env_home;
 
-	if ((current_cmd->args[1] &&
-		(((current_cmd->args[1][0] == '~' && current_cmd->args[1][1] == '\0')
-			|| (current_cmd->args[1][0] == '-' && current_cmd->args[1][1] == '-' && current_cmd->args[1][2] == '\0'))))
+	if ((current_cmd->args[1]
+			&& (((current_cmd->args[1][0] == '~'
+					&& current_cmd->args[1][1] == '\0')
+			|| (current_cmd->args[1][0] == '-'
+			&& current_cmd->args[1][1] == '-'
+		&& current_cmd->args[1][2] == '\0'))))
 		|| !current_cmd->args[1])
 	{
 		env_home = get_env_value(minishell->env_vars, "HOME", false);
@@ -69,7 +85,7 @@ static int	error_cd(char *path)
 	return (0);
 }
 
-int		handle_cd(t_cmd *current_cmd, t_minishell *minishell)
+int	handle_cd(t_cmd *current_cmd, t_minishell *minishell)
 {
 	char	*path;
 	char	cwd[1024];

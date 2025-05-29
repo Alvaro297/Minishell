@@ -82,6 +82,7 @@ int	handle_heredoc(t_minishell *minishell, char **delimiters, bool heredoc_sd)
 		return (-1);
 	}
 	return (fd);
+	return (fd);
 }
 
 int	*manage_heredocs(t_minishell *minishell)

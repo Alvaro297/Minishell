@@ -1,8 +1,21 @@
-# include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   controled_errors_parsing2.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-05-28 20:14:26 by alvamart          #+#    #+#             */
+/*   Updated: 2025-05-28 20:14:26 by alvamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	handle_unclosed_quotes(t_minishell *minishell, t_quotes quotes, char **result)
+#include "../minishell.h"
+
+void	handle_unclosed_quotes(t_minishell *minishell,
+		t_quotes quotes, char **result)
 {
-	set_special_var_inputNull(minishell, *result);
+	set_special_var_input_null(minishell, *result);
 	free(*result);
 	*result = NULL;
 	if (quotes.in_single_quote)
@@ -10,4 +23,44 @@ void	handle_unclosed_quotes(t_minishell *minishell, t_quotes quotes, char **resu
 	else
 		write(2, "minishell: unclosed double quote\n", 34);
 	set_env(&minishell->env_vars, "?", "2");
+}
+
+static bool	check_pipe_newline(char **array_commands, int position_pipe)
+{
+	if (ft_strncmp(array_commands[position_pipe], "|", 1) == 0
+		&& (!array_commands[position_pipe + 1]
+			|| array_commands[position_pipe + 1][0] == '\0'
+		|| is_all_spaces(array_commands[position_pipe + 1])))
+	{
+		ft_putstr_fd("Syntax error near unexpected token 'newline'\n", 2);
+		return (false);
+	}
+	return (true);
+}
+
+bool	check_pipes(char **array_commands, int position)
+{
+	int		position_pipe;
+
+	position_pipe = position + 1;
+	if (array_commands[position_pipe])
+	{
+		if (!check_pipe_newline(array_commands, position_pipe))
+			return (false);
+		else if (position_pipe == 1 && array_commands[position][0] == '\0')
+		{
+			if (ft_strncmp(array_commands[position_pipe], "|", 1) == 0)
+			{
+				ft_putstr_fd("Syntax error near unexpected token '|'\n", 2);
+				return (false);
+			}
+		}
+		else if (array_commands[position_pipe][0] == '|' &&
+					array_commands[position_pipe + 1][0] == '|')
+		{
+			ft_putstr_fd("Syntax error near unexpected token2 '|'\n", 2);
+			return (false);
+		}
+	}
+	return (true);
 }

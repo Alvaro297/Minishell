@@ -28,31 +28,17 @@ void	handle_echo_help(t_minishell *minishell, int i, int newline)
 	}
 	if (newline)
 		echo_print = ft_strjoin_free(echo_print, "\n");
-	//if (minishell->cmds->is_pipe)
-		//minishell->output = echo_print;
-	//else
-		while (echo_print)
-		{
-			write(STDOUT_FILENO, &echo_print, 1);
-			echo_print++;
-		}
+	while (echo_print)
+	{
+		write(STDOUT_FILENO, &echo_print, 1);
+		echo_print++;
+	}
 }
 
-int	handle_echo(t_cmd *current_cmd, t_minishell *minishell)
+static void	print_echo_args(t_cmd *current_cmd, int i)
 {
-	int		i;
-	int		j;
-	bool	newline;
+	int	j;
 
-	i = 1;
-	newline = true;
-	if (minishell->input != NULL &&
-			ft_strncmp(current_cmd->args[i], "-n", 2) == 0 &&
-			ft_strlen(current_cmd->args[i]) == 2)
-	{
-		i++;
-		newline = false;
-	}
 	while (current_cmd->args[i] != NULL)
 	{
 		j = 0;
@@ -65,6 +51,23 @@ int	handle_echo(t_cmd *current_cmd, t_minishell *minishell)
 			write(STDOUT_FILENO, " ", 1);
 		i++;
 	}
+}
+
+int	handle_echo(t_cmd *current_cmd, t_minishell *minishell)
+{
+	int		i;
+	bool	newline;
+
+	i = 1;
+	newline = true;
+	if (minishell->input != NULL
+		&& ft_strncmp(current_cmd->args[i], "-n", 2) == 0
+		&& ft_strlen(current_cmd->args[i]) == 2)
+	{
+		i++;
+		newline = false;
+	}
+	print_echo_args(current_cmd, i);
 	if (newline)
 		write(STDOUT_FILENO, "\n", 1);
 	return (0);

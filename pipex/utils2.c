@@ -17,6 +17,7 @@ int	howmanycmds(t_cmd *cmd)
 {
 	int	i;
 
+
 	i = 0;
 	if (!cmd)
 		return (0);
