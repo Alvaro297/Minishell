@@ -109,11 +109,6 @@ char	*ft_quote_printf(t_minishell *minishell, char *str, bool is_input)
 	t_indices	indices;
 	t_quote_ctx	ctx;
 
-	if (minishell->input != NULL && is_input)
-	{
-		free(minishell->input);
-		minishell->input = NULL;
-	}
 	result = ft_strdup("");
 	quotes.in_single_quote = false;
 	quotes.in_double_quote = false;
@@ -125,12 +120,6 @@ char	*ft_quote_printf(t_minishell *minishell, char *str, bool is_input)
 	ctx.result = &result;
 	ft_quote_printf_loop(str, &ctx);
 	result[indices.j] = '\0';
-	if (indices.j == 0 && !quotes.in_single_quote && !quotes.in_double_quote)
-	{
-		free(result);
-		result = NULL;
-	}
-	if (quotes.in_single_quote || quotes.in_double_quote)
-		handle_unclosed_quotes(minishell, quotes, &result);
+	ft_quote_printf_cleanup(minishell, quotes, &result, is_input);
 	return (result);
 }

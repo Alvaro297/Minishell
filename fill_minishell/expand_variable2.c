@@ -58,3 +58,21 @@ void	append_expanded_variable(char **result, size_t *j, char *expanded)
 	*result = adapted_result;
 	*j += len + 2;
 }
+
+void	ft_quote_printf_cleanup(t_minishell *minishell,
+		t_quotes quotes, char **result, bool is_input)
+{
+	if (minishell->input != NULL && is_input)
+	{
+		free(minishell->input);
+		minishell->input = NULL;
+	}
+	if (*result && **result == '\0'
+		&& !quotes.in_single_quote && !quotes.in_double_quote)
+	{
+		free(*result);
+		*result = NULL;
+	}
+	if (quotes.in_single_quote || quotes.in_double_quote)
+		handle_unclosed_quotes(minishell, quotes, result);
+}

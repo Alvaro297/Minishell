@@ -85,7 +85,6 @@ void	set_special_var(t_minishell *minishell)
 		}
 		current_cmd = current_cmd->next;
 	}
-	printf("last_arg: %d\n", g_signal);
 	set_last_arg_env(minishell, last_arg);
 	set_env_ask(minishell, g_signal);
 }

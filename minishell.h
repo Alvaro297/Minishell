@@ -34,7 +34,7 @@ typedef struct s_indices
 {
 	size_t	i;
 	size_t	j;
-} t_indices;
+}	t_indices;
 
 typedef struct s_exec
 {
@@ -50,7 +50,6 @@ typedef struct s_quotes
 	bool	in_single_quote;
 	bool	in_double_quote;
 }	t_quotes;
-
 
 typedef struct s_parse_data
 {
@@ -114,6 +113,8 @@ void	free_all(t_minishell *minishell);
 char	*get_history_file(void);
 void	set_special_var(t_minishell *minishell);
 void	set_special_var_input_null(t_minishell *minishell, char *result);
+void	ft_quote_printf_cleanup(t_minishell *minishell, t_quotes quotes,
+			char **result, bool is_input);
 /* Expand_variable */
 char	*ft_quote_printf(t_minishell *minishell, char *str, bool is_input);
 void	append_expanded_variable(char **result, size_t *j, char *expanded);
@@ -126,7 +127,7 @@ char	*ft_sd_quote_printf_mod2(char *str, t_quotes *quotes);
 void	ft_sd_quote_printf_mod3(char *str, t_quotes *quotes);
 bool	is_within_quotes(const char *str, const char *pos);
 char	*delete_quotes_array(t_minishell *minishell, char *array,
-		bool is_not_here_doc, bool is_iofile);
+			bool is_not_here_doc, bool is_iofile);
 //** Envp **//
 t_env	*init_env(char **envp);
 char	*get_env_value(t_env *env, char *name, bool free_var);
@@ -209,14 +210,16 @@ void	free_env_list(t_env *env);
 void	free_cmd_list(t_cmd *cmd);
 //**PIPEX **/
 void	sigint_heredoc_handler(int sig);
-int process_heredoc(t_minishell *minishell, const char *delimiter, char *tmpfile, bool heredoc_sd);
-int		handle_heredoc(t_minishell *minishell, char **delimiter, bool heredoc_sd);
+int		process_heredoc(t_minishell *minishell,
+			const char *delimiter, char *tmpfile, bool heredoc_sd);
+int		handle_heredoc(t_minishell *minishell,
+			char **delimiter, bool heredoc_sd);
 void	free_pipe_fds(int **pfd, int count);
-int	**create_pipes(t_minishell *minishell);
+int		**create_pipes(t_minishell *minishell);
 char	*ft_quote_printf_here_doc(t_minishell *minishell, char *str);
 void	first_child(t_minishell *minishell, t_cmd *cmd, int **pfd);
 void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out);
-void	execute_command(t_minishell *minishell, t_cmd *cmd, int ** pfd, int i);
+void	execute_command(t_minishell *minishell, t_cmd *cmd, int **pfd, int i);
 void	closefds(t_minishell *minishell, int **fd);
 void	execute_all(t_minishell *minishell);
 int		*manage_heredocs(t_minishell *minishell);

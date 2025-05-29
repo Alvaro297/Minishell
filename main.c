@@ -27,16 +27,10 @@ static bool	exit_minishell(char *input, int interactive)
 	return (false);
 }
 
-void	minishell(char **envp)
+static void	minishell_loop(t_minishell *minishell, char **envp, int interactive)
 {
-	char		*input;
-	t_minishell	minishell;
-	int			interactive;
+	char	*input;
 
-	init_minishell(&minishell);
-	load_history(&minishell);
-	manage_signals();
-	interactive = isatty(STDIN_FILENO);
 	while (1)
 	{
 		if (interactive)
@@ -48,12 +42,27 @@ void	minishell(char **envp)
 			free(input);
 			break ;
 		}
-		fill_minishell(input, &minishell, envp);
-		if (minishell.cmds == NULL)
+		fill_minishell(input, minishell, envp);
+		if (minishell->cmds == NULL)
+		{
+			free(input);
 			continue ;
-		execute_all(&minishell);
+		}
+		execute_all(minishell);
 		free(input);
 	}
+}
+
+void	minishell(char **envp)
+{
+	t_minishell	minishell;
+	int			interactive;
+
+	init_minishell(&minishell);
+	load_history(&minishell);
+	manage_signals();
+	interactive = isatty(STDIN_FILENO);
+	minishell_loop(&minishell, envp, interactive);
 	free_all(&minishell);
 }
 

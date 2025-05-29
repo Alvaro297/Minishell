@@ -22,10 +22,7 @@ int	handle_pwd(t_cmd *current_cmd, t_minishell *minishell)
 		perror("minishell: pwd");
 		return (1);
 	}
-	if (current_cmd->is_pipe)
-		minishell->output = cwd;
-	else
-		printf("%s\n", cwd);
+	printf("%s\n", cwd);
 	free(cwd);
 	return (0);
 }
