@@ -1521,3 +1521,68 @@ export | grep var=
 export
 export | grep v
 export | grep var
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+export | grep var
+export var=patata
+export | grep var=
+cat <<ls
+cat <<ls
+cat <<ls
+echo $var
+echo $?
+echo $?
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+ls
+eec
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+echo $SHLVL
+cat <<ls
+cat <<ls
+echo hola
+cat << as
+cat < las
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+echo hola
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+cat <<ls
+echo hola
+cat <<ls

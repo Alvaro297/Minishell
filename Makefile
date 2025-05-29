@@ -21,7 +21,7 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c env_recharge/envp3.c
 			parsing_input/parsing_cmd3.c parsing_input/parsing_cmd_split_modified.c \
 			parsing_input/here_doc_parsing.c parsing_input/process_redirections.c \
 			parsing_input/process_redirection2.c \
-			signals/handle_sig.c signals/handle_sig_here_doc.c main.c free_minishell.c \
+			signals/handle_sig.c main.c free_minishell.c \
 			delete_quotes/delete_quotes.c delete_quotes/delete_quotes2.c \
 			pipex/pipex.c pipex/utils.c pipex/libutils.c \
 			pipex/ft_split.c pipex/ft_fd.c pipex/utils2.c \

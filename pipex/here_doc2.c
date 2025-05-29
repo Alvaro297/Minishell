@@ -15,8 +15,8 @@
 void	sigint_heredoc_handler(int sig)
 {
 	(void)sig;
-	write(1, "\n", 1);
 	g_signal = 130;
+	close(0);
 }
 
 static void	process_heredoc_help(bool heredoc_sd,
@@ -55,11 +55,10 @@ int	process_heredoc(t_minishell *minishell,
 		line = readline("> ");
 		if (g_signal == 130)
 		{
-			write(1, "\n", 1);
 			close(fd);
 			unlink(tmpfile);
 			g_signal = 0;
-			return (1);
+			return (-1);
 		}
 		if (!line || strcmp(line, delimiter) == 0)
 		{

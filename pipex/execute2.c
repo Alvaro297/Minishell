@@ -81,7 +81,7 @@ void	wait_all_children(t_minishell *minishell, pid_t *pids)
 			ft_itoa(minishell->last_exit_status));
 		i++;
 	}
-	signals_default();
+	manage_signals();
 	free(pids);
 }
 

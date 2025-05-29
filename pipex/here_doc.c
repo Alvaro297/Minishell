@@ -49,8 +49,7 @@ void	write_tmp_heredocs_to_final(t_minishell *minishell,
 		if (process_heredoc(minishell, delimiters[i], tmp, heredoc_sd) < 0)
 		{
 			free (tmp);
-			i++;
-			continue ;
+			break ;
 		}
 		read_and_append_tmp_file(tmp, final_fd);
 		i++;
@@ -90,7 +89,6 @@ int	*manage_heredocs(t_minishell *minishell)
 	int		i;
 	int		*fd;
 	
-	manage_signals_heredoc();
 	cmd = minishell->cmds;
 	i = 0;
 	fd = malloc(sizeof(int) * minishell->howmanycmd);

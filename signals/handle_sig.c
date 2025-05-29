@@ -36,7 +36,7 @@ void	signals_default(void)
 	sigaction(SIGQUIT, &sa, NULL);
 }
 
-static void	handle_sigint(int sig)
+void	handle_sigint(int sig)
 {
 	(void)sig;
 	printf("\n");

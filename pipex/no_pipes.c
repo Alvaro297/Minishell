@@ -73,7 +73,7 @@ void	execute_single_builtin_or_fork(t_minishell *minishell)
 		if (!pid)
 			execute(minishell, minishell->cmds);
 		handle_fork_status(minishell, pid);
-		signals_default();
+		manage_signals();
 	}
 }
 
