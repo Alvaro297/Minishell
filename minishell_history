@@ -1446,3 +1446,78 @@ cat <<eof | cat <<eof2
 cat <<eof | cat <<eof2
 cat <<eof | cat <<eof2
 cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+echo hola
+echo hola
+echo $?
+echo $?
+cat <<eof
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+[A
+echo $?
+echo $?
+$?
+$?
+$?
+$?
+$?
+$?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+echo $?
+sleep 132
+export CMD="process heredoc"
+export
+                  
+             
+export var=patata
+export | grep var
+export | grep var
+export var=patata
+echo $var
+export | var=
+export | grep var=
+1
+export | grep var=
+export
+export | grep v
+export | grep var

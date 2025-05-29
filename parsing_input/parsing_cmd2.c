@@ -111,4 +111,9 @@ void	fill_cmd_fields(t_minishell *minishell, t_cmd *tmp,
 	tmp->next = NULL;
 	minishell->heredoc_sd = is_in_sd_quotes(tmp);
 	delete_quotes(minishell, tmp);
+	printf("Command: %s\n", tmp->cmd);
+	for (int i = 0; tmp->args[i]; i++)
+	{
+		printf("Arg %d: %s\n", i, tmp->args[i]);
+	}
 }

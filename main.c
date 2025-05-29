@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int g_exit_status = 0;
+int	g_signal = 0;
 
 static bool	exit_minishell(char *input, int interactive)
 {
@@ -55,7 +55,6 @@ void	minishell(char **envp)
 		free(input);
 	}
 	free_all(&minishell);
-	exit(g_exit_status);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -66,5 +65,5 @@ int	main(int argc, char **argv, char **envp)
 		return (EXIT_SUCCESS);
 	}
 	minishell(envp);
-	return (g_exit_status);
+	return (EXIT_SUCCESS);
 }

@@ -51,21 +51,6 @@ static t_env	*insertion_sort(t_env *env)
 	return (sorted_env);
 }
 
-static char	*join_all(t_env *sorted_env)
-{
-	char	*output;
-
-	output = ft_strdup("");
-	output = ft_strjoin_free(output, "declare -x ");
-	output = ft_strjoin_free(output, sorted_env->name);
-	output = ft_strjoin_free(output, "=");
-	output = ft_strjoin_free(output, "\'");
-	output = ft_strjoin_free(output, sorted_env->value);
-	output = ft_strjoin_free(output, "\'");
-	output = ft_strjoin_free(output, "\n");
-	return (output);
-}
-
 static t_env	*duplicate_env_list(t_env *env)
 {
 	t_env	*new_list;
@@ -94,26 +79,19 @@ static t_env	*duplicate_env_list(t_env *env)
 	return (new_list);
 }
 
-void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell)
+void	print_entorn_variable(t_minishell *minishell)
 {
-	char	*output;
 	t_env	*env;
 	t_env	*sorted_env;
 	t_env	*iter;
 
-	output = NULL;
 	env = duplicate_env_list(minishell->env_vars);
 	sorted_env = insertion_sort(env);
 	iter = sorted_env;
 	while (iter)
 	{
-		if (current_cmd->is_pipe)
-			output = join_all(iter);
-		else
-			printf("declare -x %s=\'%s\'\n", iter->name, iter->value);
+		printf("declare -x %s=\'%s\'\n", iter->name, iter->value);
 		iter = iter->next;
 	}
-	if (output)
-		minishell->output = output;
 	free_env_list(sorted_env);
 }

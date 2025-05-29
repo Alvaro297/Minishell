@@ -32,7 +32,9 @@ t_env	*init_env(char **envp)
 		head = new;
 		envp++;
 	}
-	set_env(&head, "?", "0");
+	var_value = ft_itoa(g_signal);
+	set_env(&head, "?", ft_strdup(var_value));
+	free(var_value);
 	var_value = init_shlvl();
 	set_env(&head, "SHLVL", var_value);
 	free(var_value);

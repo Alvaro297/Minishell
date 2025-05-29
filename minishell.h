@@ -104,6 +104,8 @@ typedef struct s_quote_ctx
 	char		**result;
 }	t_quote_ctx;
 
+extern int	g_signal;
+
 int		ft_strcmp(char *s1, char *s2);
 //void	command_type(t_minishell *minishell);
 //** Fill_minishell **//
@@ -146,7 +148,7 @@ int		handle_echo(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_exit(t_cmd *cmd);
 int		handle_export(t_cmd *current_cmd, t_minishell *minishell);
 int		export_one_var(t_cmd *cmd, t_minishell *mini, int i);
-void	print_entorn_variable(t_cmd *current_cmd, t_minishell *minishell);
+void	print_entorn_variable(t_minishell *minishell);
 bool	parsed_value_validation(char *var_value);
 bool	parsed_name_validation(char *var_name);
 char	*parsed_variable_name(char *str);

@@ -47,6 +47,19 @@ static void	set_last_arg_env(t_minishell *minishell, char *last_arg)
 		free(last_arg);
 }
 
+void	set_env_ask(t_minishell *minishell, int g_signal_now)
+{
+	char	*ask_value;
+
+	if (g_signal_now == 130)
+	{
+		ask_value = ft_itoa(g_signal_now);
+		set_env(&minishell->env_vars, "?", ask_value);
+		free(ask_value);
+		g_signal = 0;
+	}
+}
+
 void	set_special_var(t_minishell *minishell)
 {
 	t_cmd	*current_cmd;
@@ -72,5 +85,7 @@ void	set_special_var(t_minishell *minishell)
 		}
 		current_cmd = current_cmd->next;
 	}
+	printf("last_arg: %d\n", g_signal);
 	set_last_arg_env(minishell, last_arg);
+	set_env_ask(minishell, g_signal);
 }

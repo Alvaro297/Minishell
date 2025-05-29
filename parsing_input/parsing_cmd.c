@@ -76,10 +76,6 @@ static bool	parse_input_help(t_minishell *minishell, t_cmd **new_cmd,
 	*new_cmd = tmp;
 	command_splited = split_modified(data->command, ' ');
 	command_splited = process_redirection(command_splited);
-	printf("Command: %s\n", data->command);
-	for (int i = 0; command_splited[i] != NULL; i++) {
-    	printf("Command Splited[%d]: %s\n", i, command_splited[i]);
-	}
 	if (!controled_errors(minishell, command_splited, data))
 	{
 		free_double_array((void **)command_splited);
