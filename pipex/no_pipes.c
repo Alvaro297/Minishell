@@ -6,7 +6,7 @@
 /*   By: paperez- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 18:12:42 by paperez-          #+#    #+#             */
-/*   Updated: 2025/05/29 18:13:20 by paperez-         ###   ########.fr       */
+/*   Updated: 2025/05/29 20:04:57 by paperez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void	no_pipes(t_minishell *minishell)
 	execute_single_builtin_or_fork(minishell);
 	dup2(stdo, STDOUT_FILENO);
 	dup2(stdi, STDIN_FILENO);
-	close(stdo);
-	close(stdi);
+	if (stdo > 2)
+		close(stdo);
+	if (stdi > 2)
+		close(stdi);
 }
