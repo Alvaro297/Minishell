@@ -64,42 +64,27 @@ char	*get_env_value(t_env *env, char *var_name, bool free_var)
 	return (NULL);
 }
 
-static void	delete_env_help(t_env *prev, t_env *tmp, char *name)
+void	delete_env(t_env **env, char *name)
 {
-	t_env	*to_free;
+	t_env	*tmp;
+	t_env	*prev;
 
-	while (tmp->next != NULL)
+	tmp = *env;
+	prev = NULL;
+	while (tmp)
 	{
-		if (ft_strncmp(tmp->name, name, ft_strlen(name)) == 0
-			&& ft_strlen(name) == ft_strlen(tmp->name))
+		if (ft_strcmp(tmp->name, name) == 0)
 		{
 			if (prev)
 				prev->next = tmp->next;
-			to_free = tmp;
-			tmp = tmp->next;
-			free(to_free->name);
-			free(to_free->value);
-			free(to_free);
+			else
+				*env = tmp->next;
+			free(tmp->name);
+			free(tmp->value);
+			free(tmp);
 			return ;
 		}
 		prev = tmp;
 		tmp = tmp->next;
 	}
-}
-
-void	delete_env(t_env **env, char *name)
-{
-	t_env	*tmp;
-
-	tmp = *env;
-	if (ft_strncmp(tmp->name, name, ft_strlen(name)) == 0
-		&& ft_strlen(name) == ft_strlen(tmp->name))
-	{
-		*env = tmp->next;
-		free(tmp->name);
-		free(tmp->value);
-		free(tmp);
-	}
-	else
-		delete_env_help(tmp, tmp->next, name);
 }

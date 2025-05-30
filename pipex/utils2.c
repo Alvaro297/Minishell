@@ -47,6 +47,7 @@ int	count_envs(t_env *env)
 	int		count;
 
 	iter = env;
+	count = 0;
 	while (iter)
 	{
 		count++;
@@ -61,6 +62,8 @@ char	**returntoenvp(t_env *env)
 	char	*tmp;
 	int		count;
 
+	envchar = NULL;
+	tmp = NULL;
 	count = count_envs(env);
 	envchar = malloc(sizeof(char *) * (count + 1));
 	if (!envchar)

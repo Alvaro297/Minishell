@@ -63,6 +63,7 @@ void	wait_all_children(t_minishell *minishell, pid_t *pids)
 	int	i;
 	int	status;
 	int	sign;
+	char	*exit_status;
 
 	i = 0;
 	while (i < minishell->howmanycmd)
@@ -77,8 +78,10 @@ void	wait_all_children(t_minishell *minishell, pid_t *pids)
 		}
 		else
 			minishell->last_exit_status = 1;
+		exit_status = ft_itoa(minishell->last_exit_status);
 		set_env(&minishell->env_vars, "?",
-			ft_itoa(minishell->last_exit_status));
+			exit_status);
+		free(exit_status);
 		i++;
 	}
 	manage_signals();
@@ -93,13 +96,13 @@ void	execute_all(t_minishell *minishell)
 	t_exec	e;
 
 	current_cmd = minishell->cmds;
-	std_out = dup(STDOUT_FILENO);
-	std_in = dup(STDIN_FILENO);
 	if (minishell->howmanycmd == 1)
 	{
 		no_pipes(minishell);
 		return ;
 	}
+	std_out = dup(STDOUT_FILENO);
+	std_in = dup(STDIN_FILENO);
 	init_execution(minishell, &e);
 	fork_all_processes(minishell, current_cmd, &e, std_out);
 	restore_std_and_cleanup(minishell, &e, std_in);

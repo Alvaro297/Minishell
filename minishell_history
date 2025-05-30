@@ -1605,3 +1605,64 @@ ca
 echo hola
 ca
 ca <<ls
+ls -la
+pwd
+whoami
+echo hola > test.txt
+cat < test.txt
+echo adiós >> test.txt
+cat test.txt
+cat test.txt
+ls -l | grep minishell
+ls -l | grep minishell
+ps aux | grep bash | wc -l
+ps aux | grep bash | wc -l
+export PRUEBA=hola
+echo $PRUEBA
+unset PRUEBA
+echo $PRUEBA
+echo $PRUEBA
+unset PRUEBA
+echo $PRUEBA
+export
+unset PATH
+echo $PATH
+export PRUEBA=prueba
+unset PATH
+unset PRUEBA
+export
+unset PRUEBA
+unset PATH
+echo $PATH
+export PRUEBA=prueba
+echo $PRUEBA
+unset PRUEBA
+echo $PRUEBA
+pwd
+cd ..
+pwd
+cd -
+pwd
+cd -
+cd .. ..
+cd --
+pwd
+pwd
+cd ..
+cd -
+pwd
+cd --
+cd -
+cd -
+pwd
+cd --
+pwd
+cd -
+pwd
+cd -
+pwd
+cat <<EOF
+cat <<EOF
+cat <<EOF
+cat <<EOF
+cat <<EOF
