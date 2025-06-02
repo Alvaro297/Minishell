@@ -1696,3 +1696,99 @@ cat | cat
 echo hola | cat
 echo hola | ca
 caca | cat
+echo hola
+cat pipex/pipex.c | grep pi | wc -l
+echo hola
+cat pipex/pipex.c | grep pi | wc -l
+echo hola | cat
+cat pipex/pipex.c | grep pi | wc -l
+echo hola
+cat pipex/pipex.c | grep pi | wc -l
+cat pipex/pipex.c | grep pi | wc -l
+echo hola
+cat pipex/pipex.c | grep pi | wc -l
+echo hola
+echo hola
+echo hola
+cat pipex/pipex.c | grep pi | wc -l
+cat pipex/pipex.c | grep pi | wc -l
+cat pipex/pipex.c | grep pi | wc -l
+cat pipex/pipex.c | grep pi | w -l
+cat pipex/pipex.c | grep pi | w
+cat pipex/pipex.c | grep pi | sdfa
+echo hola | cat
+cat
+cat
+echo $?
+cat <<EOF
+<<EOF
+cat <<EOF
+echo $?
+cat <<EOF
+echo $?
+cat <<EOF
+echo $?
+echo hola | cat
+cat pipex/pipex.c | grep pi | sdfa
+cat pipex/pipex.c | grep pi | sdfa
+echo hola | cat
+echo hola | cat
+cat pipex/pipex.c | grep pi | sdfa
+cat pipex/pipex.c | grep pi
+cat pipex/pipex.c | grep pi | sdfa
+echo $?
+cat pipex/pipex.c | grep pi | sdfa
+echo $?
+echo hola | cat
+cat pipex/pipex.c | grep pi | sdfa
+echo hola | cat
+echo hola | grep pi
+cat pipex/pipex.c | grep pi | wc -l
+cat pipex/pipex.c | grep pi | wc -l
+cat pipex/pipex.c | grep pi | sdfa
+cat pipex/pipex.c | grep pi | wc -l
+cat pipex/pipex.c | grep pi | sdfa
+cat pipex/pipex.c | grep pi | wc -l
+echo hola | grep pi
+cat pipex/pipex.c | grep pi | wc -l
+echo hola | grep pi
+cat pipex/pipex.c | grep pi | wc -l
+echo hola | grep pi
+cat pipex/pipex.c | grep pi | wc -l
+echo hola | grep pi
+cat pipex/pipex.c | grep pi | wc -l
+echo hola | grep pi
+cat pipex/pipex.c | grep pi | wc -l
+cat pipex/pipex.c | grep pi | sdfa
+echo hola | grep pi
+echo hola | grep pi
+cat pipex/pipex.c | grep pi | sdfa
+cat pipex/pipex.c | grep pi | wc -l
+echo hola | grep pi
+echo hola | cat
+echo hola | cat
+cat pipex/pipex.c | grep pi | wc -l
+echo hola | grep pi
+cat pipex/pipex.c | grep pi | wc -l
+echo hola | grep pi
+echo hola | gre
+cat pipex/pipex.c | grep pi | wc -l
+echo hola | gre
+cat pipex/pipex.c | grep pi | wc -l
+echo hola | gre
+echo hola | grep pu
+echo hola | grep pu
+echo hola | grep pu
+echo hola | grep pu
+echo hola | grep pu | cat | cat
+echo hola | echo hola | echo hola | cat
+echo hola | echo hola | echo hola | grep
+echo hola | echo hola | echo hola | grep
+<<eof
+<<eof
+<<eof
+<<eof
+<<
+<<EOF
+<<EOF
+<<EOF

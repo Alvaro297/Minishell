@@ -93,6 +93,8 @@ typedef struct s_minishell
 	int		last_exit_status;
 	bool	heredoc_sd;
 	int		howmanycmd;
+	int		std_in;
+	int		std_out;
 }	t_minishell;
 
 typedef struct s_quote_ctx
@@ -205,6 +207,7 @@ void	signals_ignore(void);
 void	signals_default(void);
 void	handle_sigint(int sig);
 //** Free Minishell **//
+void	free_exec(t_exec *e);
 void	free_double_array(void **double_array);
 void	free_env_list(t_env *env);
 void	free_cmd_list(t_cmd *cmd);
@@ -217,9 +220,9 @@ int		handle_heredoc(t_minishell *minishell,
 void	free_pipe_fds(int **pfd, int count);
 int		**create_pipes(t_minishell *minishell);
 char	*ft_quote_printf_here_doc(t_minishell *minishell, char *str);
-void	first_child(t_minishell *minishell, t_cmd *cmd, int **pfd);
-void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out);
-void	execute_command(t_minishell *minishell, t_cmd *cmd, int **pfd, int i);
+void	first_child(t_minishell *minishell, t_cmd *cmd, t_exec *e);
+void	last_child(t_minishell *minishell, t_cmd *cmd, t_exec *e);
+void	execute_command(t_minishell *minishell, t_cmd *cmd, t_exec *e);
 void	closefds(t_minishell *minishell, int **fd);
 void	execute_all(t_minishell *minishell);
 int		*manage_heredocs(t_minishell *minishell);
@@ -228,7 +231,7 @@ void	rediroutput(t_cmd *cmd);
 void	redirimput(t_cmd *cmd);
 void	no_pipes(t_minishell *minishell);
 void	execute(t_minishell *minishell, t_cmd *cmd);
-void	execute_more_commands(t_minishell *minishell, t_cmd *cmd);
+void	execute_more_commands(t_minishell *minishell, t_cmd *cmd, t_exec *e);
 void	execute_all(t_minishell *minishell);
 void	pipex(t_minishell *minishell);
 void	ft_putstr_fd(char *s, int fd);

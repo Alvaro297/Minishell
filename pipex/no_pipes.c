@@ -34,19 +34,18 @@ void	handle_fork_status(t_minishell *minishell, pid_t pid)
 	char	*exit_str;
 	int		status;
 	int		exit_code;
-	int		signo;
 
-	signo = 0;
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		exit_code = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
 	{
-		signo = WTERMSIG(status);
-		exit_code = signo + 128;
+		int signo = WTERMSIG(status);
+		exit_code = signo + 128;	
 	}
 	else
 		exit_code = 1;
+
 	minishell->last_exit_status = exit_code;
 	exit_str = ft_itoa(exit_code);
 	set_env(&minishell->env_vars, "?", exit_str);
@@ -71,13 +70,9 @@ void	execute_single_builtin_or_fork(t_minishell *minishell)
 		signals_ignore();
 		pid = fork();
 		if (!pid)
-		{
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
 			execute(minishell, minishell->cmds);
-		}
 		handle_fork_status(minishell, pid);
-		manage_signals();
+		signals_default();
 	}
 }
 
@@ -99,15 +94,10 @@ void	setup_redirections_and_heredoc(t_minishell *minishell)
 
 void	no_pipes(t_minishell *minishell)
 {
-	int	stdo;
-	int	stdi;
-
-	stdo = dup(STDOUT_FILENO);
-	stdi = dup(STDIN_FILENO);
 	setup_redirections_and_heredoc(minishell);
 	execute_single_builtin_or_fork(minishell);
-	dup2(stdo, STDOUT_FILENO);
-	dup2(stdi, STDIN_FILENO);
-	close(stdo);
-	close(stdi);
+	dup2(minishell->std_out, STDOUT_FILENO);
+	dup2(minishell->std_in, STDIN_FILENO);
+	close(minishell->std_out);
+	close(minishell->std_in);
 }

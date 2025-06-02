@@ -25,3 +25,21 @@ void	free_env_list(t_env *env)
 		env = tmp;
 	}
 }
+
+void	free_exec(t_exec *e)
+{
+	int	i;
+
+	i = 0;
+	while (e->pfd[i])
+	{
+		free(e->pfd[i]);
+		i++;
+	}
+	if(e->pfd)
+		free(e->pfd);
+	if (e->heredoc_fds)
+		free(e->heredoc_fds);
+	if (e->pids)
+		free(e->pids);
+}

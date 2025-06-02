@@ -83,7 +83,6 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 			free_cmd_list(minishell->cmds);
 			minishell->cmds = NULL;
 		}
-		free(input);
 		return ;
 	}
 	minishell->cmds = parsing_input(minishell, input);

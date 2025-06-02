@@ -13,7 +13,7 @@
 #include "pipex.h"
 #include "../minishell.h"
 
-void	execute_more_commands(t_minishell *minishell, t_cmd *cmd)
+void	execute_more_commands(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 {
 	char	*path;
 	char	**split_envs;
@@ -24,11 +24,16 @@ void	execute_more_commands(t_minishell *minishell, t_cmd *cmd)
 		int ret = internal_commands(cmd, minishell);
 		free_double_array((void **) split_envs);
 		free_all(minishell);
+		dup2(minishell->std_out, STDIN_FILENO);
+		close(minishell->std_in);
+		dup2(minishell->std_out, STDOUT_FILENO);
+		close(minishell->std_out);
+		free_exec(e);
 		exit(ret);
 	}
 	else
 	{
-		path = getpath(cmd->args[0], split_envs);
+		path = getpath(ft_strdup(cmd->args[0]), split_envs);
 		if (execve(path, cmd->args, split_envs) == -1)
 		{
 			ft_putstr_fd("pipex: command not found: ", 2);
@@ -36,10 +41,14 @@ void	execute_more_commands(t_minishell *minishell, t_cmd *cmd)
 			ft_putendl_fd(cmd->args[0], 2);
 			free(path);
 			free_double_array((void **) split_envs);
+			free_exec(e);
 			free_all(minishell);
+			close(minishell->std_in);
+			close(minishell->std_out);
 			exit(127);
 		}
 	}
+
 }
 
 void	execute(t_minishell *minishell, t_cmd *cmd)
@@ -61,6 +70,8 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 			free(path);
 			free_double_array((void **) split_envs);
 			free_all(minishell);
+			close(minishell->std_in);
+			close(minishell->std_out);
 			exit(127);
 		}
 	}
