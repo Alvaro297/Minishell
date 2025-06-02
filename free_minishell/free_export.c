@@ -36,7 +36,7 @@ void	free_exec(t_exec *e)
 		free(e->pfd[i]);
 		i++;
 	}
-	if(e->pfd)
+	if (e->pfd)
 		free(e->pfd);
 	if (e->heredoc_fds)
 		free(e->heredoc_fds);

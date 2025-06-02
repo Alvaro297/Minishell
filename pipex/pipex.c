@@ -13,16 +13,37 @@
 #include "pipex.h"
 #include "../minishell.h"
 
-void	execute_more_commands(t_minishell *minishell, t_cmd *cmd, t_exec *e)
+static void	handle_external_command(t_minishell *minishell, t_cmd *cmd,
+		t_exec *e, char **split_envs)
 {
 	char	*path;
+
+	path = getpath(ft_strdup(cmd->args[0]), split_envs);
+	if (execve(path, cmd->args, split_envs) == -1)
+	{
+		ft_putstr_fd("pipex: command not found: ", 2);
+		minishell->last_exit_status = 127;
+		ft_putendl_fd(cmd->args[0], 2);
+		free(path);
+		free_double_array((void **)split_envs);
+		free_exec(e);
+		free_all(minishell);
+		close(minishell->std_in);
+		close(minishell->std_out);
+		exit(127);
+	}
+}
+
+void	execute_more_commands(t_minishell *minishell, t_cmd *cmd, t_exec *e)
+{
 	char	**split_envs;
+	int		ret;
 
 	split_envs = returntoenvp(minishell->env_vars);
 	if (is_builtin(cmd))
 	{
-		int ret = internal_commands(cmd, minishell);
-		free_double_array((void **) split_envs);
+		ret = internal_commands(cmd, minishell);
+		free_double_array((void **)split_envs);
 		free_all(minishell);
 		dup2(minishell->std_out, STDIN_FILENO);
 		close(minishell->std_in);
@@ -32,23 +53,7 @@ void	execute_more_commands(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 		exit(ret);
 	}
 	else
-	{
-		path = getpath(ft_strdup(cmd->args[0]), split_envs);
-		if (execve(path, cmd->args, split_envs) == -1)
-		{
-			ft_putstr_fd("pipex: command not found: ", 2);
-			minishell->last_exit_status = 127;
-			ft_putendl_fd(cmd->args[0], 2);
-			free(path);
-			free_double_array((void **) split_envs);
-			free_exec(e);
-			free_all(minishell);
-			close(minishell->std_in);
-			close(minishell->std_out);
-			exit(127);
-		}
-	}
-
+		handle_external_command(minishell, cmd, e, split_envs);
 }
 
 void	execute(t_minishell *minishell, t_cmd *cmd)

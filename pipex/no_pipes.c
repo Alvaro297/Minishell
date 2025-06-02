@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   no_pipes.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paperez- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alvamart <alvamart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 18:12:42 by paperez-          #+#    #+#             */
-/*   Updated: 2025/05/29 20:04:57 by paperez-         ###   ########.fr       */
+/*   Updated: 2025/06/02 22:08:13 by alvamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ void	handle_fork_status(t_minishell *minishell, pid_t pid)
 	char	*exit_str;
 	int		status;
 	int		exit_code;
+	int		signo;
 
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		exit_code = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
 	{
-		int signo = WTERMSIG(status);
-		exit_code = signo + 128;	
+		signo = WTERMSIG(status);
+		exit_code = signo + 128;
 	}
 	else
 		exit_code = 1;
-
 	minishell->last_exit_status = exit_code;
 	exit_str = ft_itoa(exit_code);
 	set_env(&minishell->env_vars, "?", exit_str);

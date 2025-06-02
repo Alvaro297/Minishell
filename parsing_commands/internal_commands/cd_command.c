@@ -45,7 +45,8 @@ static bool	is_home_cd_arg(t_cmd *current_cmd)
 	if (!current_cmd->args[1])
 		return (true);
 	if ((current_cmd->args[1][0] == '~' && current_cmd->args[1][1] == '\0')
-		|| (current_cmd->args[1][0] == '-' && current_cmd->args[1][1] == '-' && current_cmd->args[1][2] == '\0'))
+		|| (current_cmd->args[1][0] == '-'
+		&& current_cmd->args[1][1] == '-' && current_cmd->args[1][2] == '\0'))
 		return (true);
 	return (false);
 }

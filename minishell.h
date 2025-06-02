@@ -207,7 +207,7 @@ void	signals_ignore(void);
 void	signals_default(void);
 void	handle_sigint(int sig);
 void	process_heredoc_signals(struct sigaction *sa_old,
-		struct sigaction *sa_new);
+			struct sigaction *sa_new);
 int		heredoc_event_hook(void);
 void	sigint_heredoc_handler(int sig);
 //** Free Minishell **//

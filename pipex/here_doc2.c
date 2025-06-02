@@ -12,7 +12,6 @@
 
 #include "../minishell.h"
 
-
 static void	process_heredoc_help(bool heredoc_sd,
 		t_minishell *minishell, char *line, int fd)
 {

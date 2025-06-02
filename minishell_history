@@ -1841,3 +1841,12 @@ cat <<EOF | cat
 cat <<EOF | ca
 echo hola | cat
 cat <<EOF | ca
+cat <<EOF | ca
+cat <<EOF | ca
+cat <<EOF | caT
+cat <<EOF | cat
+cat <Makefile | cat
+cat <Makefile | ca
+ls -l | wc -l
+ls -l | wc -l > ejemplo2.txt>ejemplo1
+cat <Makefile | ca

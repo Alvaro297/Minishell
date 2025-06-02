@@ -6,7 +6,7 @@
 /*   By: alvamart <alvamart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 18:33:26 by paperez-          #+#    #+#             */
-/*   Updated: 2025/06/02 21:59:42 by alvamart         ###   ########.fr       */
+/*   Updated: 2025/06/02 22:08:41 by alvamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	fork_all_processes(t_minishell *minishell, t_cmd *cmd,
 			exit(0);
 		}
 		if (cmd->is_heredoc)
-            close(e->heredoc_fds[e->j - 1]);
+			close(e->heredoc_fds[e->j - 1]);
 		cmd = cmd->next;
 		e->i++;
 	}
@@ -110,8 +110,6 @@ void	execute_all(t_minishell *minishell)
 	restore_std_and_cleanup(minishell, &e);
 	wait_all_children(minishell, e.pids);
 	free_pipe_fds(e.pfd, minishell->howmanycmd);
-	//dup2(std_out, STDOUT_FILENO);
 	close(minishell->std_out);
 	close(minishell->std_in);
-	//closefds(minishell, e.pfd);
 }
