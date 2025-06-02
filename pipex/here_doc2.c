@@ -12,12 +12,6 @@
 
 #include "../minishell.h"
 
-void	sigint_heredoc_handler(int sig)
-{
-	(void)sig;
-	g_signal = 130;
-	close(0);
-}
 
 static void	process_heredoc_help(bool heredoc_sd,
 		t_minishell *minishell, char *line, int fd)
@@ -37,29 +31,22 @@ static void	process_heredoc_help(bool heredoc_sd,
 	free(line);
 }
 
-static void	process_heredoc_signals(struct sigaction *sa_old,
-		struct sigaction *sa_new)
-{
-	sigaction(SIGINT, NULL, sa_old);
-	sa_new->sa_handler = sigint_heredoc_handler;
-	memset(&sa_new->sa_mask, 0, sizeof(sa_new->sa_mask));
-	sa_new->sa_flags = 0;
-	sigaction(SIGINT, sa_new, NULL);
-}
-
 static int	process_heredoc_loop(t_minishell *minishell, const char *delimiter,
 								int fd, bool heredoc_sd)
 {
 	char	*line;
 
+	rl_event_hook = heredoc_event_hook;
 	while (1)
 	{
 		line = readline("> ");
 		if (g_signal == 130)
 		{
 			write(STDOUT_FILENO, "\n", 1);
+			free(line);
 			close(fd);
 			g_signal = 0;
+			rl_event_hook = NULL;
 			return (-2);
 		}
 		if (!line || strcmp(line, delimiter) == 0)
@@ -69,6 +56,7 @@ static int	process_heredoc_loop(t_minishell *minishell, const char *delimiter,
 		}
 		process_heredoc_help(heredoc_sd, minishell, line, fd);
 	}
+	rl_event_hook = NULL;
 	return (0);
 }
 

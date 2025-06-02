@@ -33,6 +33,7 @@ static void	minishell_loop(t_minishell *minishell, char **envp, int interactive)
 
 	while (1)
 	{
+		manage_signals();
 		if (interactive)
 			input = readline("Minishell: ");
 		else
@@ -60,7 +61,6 @@ void	minishell(char **envp)
 
 	init_minishell(&minishell);
 	load_history(&minishell);
-	manage_signals();
 	interactive = isatty(STDIN_FILENO);
 	minishell_loop(&minishell, envp, interactive);
 	free_all(&minishell);

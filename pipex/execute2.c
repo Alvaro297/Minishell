@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paperez- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alvamart <alvamart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 18:33:26 by paperez-          #+#    #+#             */
-/*   Updated: 2025/05/29 18:33:28 by paperez-         ###   ########.fr       */
+/*   Updated: 2025/06/02 21:59:42 by alvamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	fork_all_processes(t_minishell *minishell, t_cmd *cmd,
 			restore_std_and_cleanup(minishell, e);
 			exit(0);
 		}
-		close(minishell->std_in);
-		close(minishell->std_out);
+		if (cmd->is_heredoc)
+            close(e->heredoc_fds[e->j - 1]);
 		cmd = cmd->next;
 		e->i++;
 	}

@@ -206,6 +206,10 @@ void	manage_signals(void);
 void	signals_ignore(void);
 void	signals_default(void);
 void	handle_sigint(int sig);
+void	process_heredoc_signals(struct sigaction *sa_old,
+		struct sigaction *sa_new);
+int		heredoc_event_hook(void);
+void	sigint_heredoc_handler(int sig);
 //** Free Minishell **//
 void	free_exec(t_exec *e);
 void	free_double_array(void **double_array);
