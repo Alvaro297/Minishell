@@ -30,16 +30,26 @@ void	free_exec(t_exec *e)
 {
 	int	i;
 
-	i = 0;
-	while (e->pfd[i])
-	{
-		free(e->pfd[i]);
-		i++;
-	}
 	if (e->pfd)
+	{
+		i = 0;
+		while (e->pfd[i])
+		{
+			free(e->pfd[i]);
+			e->pfd[i] = NULL;
+			i++;
+		}
 		free(e->pfd);
+		e->pfd = NULL;
+	}
 	if (e->heredoc_fds)
+	{
 		free(e->heredoc_fds);
+		e->heredoc_fds = NULL;
+	}
 	if (e->pids)
+	{
 		free(e->pids);
+		e->pids = NULL;
+	}
 }

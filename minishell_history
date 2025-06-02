@@ -1850,3 +1850,6 @@ cat <Makefile | ca
 ls -l | wc -l
 ls -l | wc -l > ejemplo2.txt>ejemplo1
 cat <Makefile | ca
+cat <Makefile | ca
+cat <Makefile | ca
+cat <Makefile | ca
