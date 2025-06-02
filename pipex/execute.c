@@ -39,7 +39,7 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, int **pfd, int std_out)
 		close(std_out);
 	}
 	closefds(minishell, pfd);
-	execute(minishell, cmd);
+	execute_more_commands(minishell, cmd);
 }
 
 void	first_child(t_minishell *minishell, t_cmd *cmd, int **pfd)
@@ -51,7 +51,7 @@ void	first_child(t_minishell *minishell, t_cmd *cmd, int **pfd)
 	else
 		dup2(pfd[0][1], STDOUT_FILENO);
 	closefds(minishell, pfd);
-	execute(minishell, cmd);
+	execute_more_commands(minishell, cmd);
 }
 
 void	execute_command(t_minishell *minishell, t_cmd *cmd, int **pfd, int i)
@@ -65,7 +65,7 @@ void	execute_command(t_minishell *minishell, t_cmd *cmd, int **pfd, int i)
 	else
 		dup2(pfd[i][1], STDOUT_FILENO);
 	closefds(minishell, pfd);
-	execute(minishell, cmd);
+	execute_more_commands(minishell, cmd);
 }
 
 int	**create_pipes(t_minishell *minishell)

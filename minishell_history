@@ -1666,3 +1666,33 @@ cat <<EOF
 cat <<EOF
 cat <<EOF
 cat <<EOF
+dd
+dd
+dd
+dd
+echo $?
+dd
+./Mini
+./Minishell
+./minishell
+dd
+./minishell
+ 
+dd
+echo hola| cat
+echo hola | cat
+cat | cat
+cat | cat
+cat
+cat
+echo hola | cat
+echo hola
+echo hola | cat
+echo hola | cat
+echo hola | dd
+echo hola | cat
+cat | cat
+cat | cat
+echo hola | cat
+echo hola | ca
+caca | cat

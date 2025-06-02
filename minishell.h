@@ -228,6 +228,7 @@ void	rediroutput(t_cmd *cmd);
 void	redirimput(t_cmd *cmd);
 void	no_pipes(t_minishell *minishell);
 void	execute(t_minishell *minishell, t_cmd *cmd);
+void	execute_more_commands(t_minishell *minishell, t_cmd *cmd);
 void	execute_all(t_minishell *minishell);
 void	pipex(t_minishell *minishell);
 void	ft_putstr_fd(char *s, int fd);

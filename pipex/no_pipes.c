@@ -71,7 +71,11 @@ void	execute_single_builtin_or_fork(t_minishell *minishell)
 		signals_ignore();
 		pid = fork();
 		if (!pid)
+		{
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
 			execute(minishell, minishell->cmds);
+		}
 		handle_fork_status(minishell, pid);
 		manage_signals();
 	}

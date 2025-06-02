@@ -36,6 +36,8 @@ void	fork_all_processes(t_minishell *minishell, t_cmd *cmd,
 		e->pids[e->i] = fork();
 		if (e->pids[e->i] == 0)
 		{
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
 			if (e->i == 0)
 				first_child(minishell, cmd, e->pfd);
 			else if (e->i == minishell->howmanycmd - 1)
