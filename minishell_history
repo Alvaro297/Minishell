@@ -1980,3 +1980,58 @@ caer <<eof
 cat hola
 echo hola
 ./hola
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+echo hola
+echo hola
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+cat <<eof
+cat <<eof
+cat <<eof
+<<eof
+<<eof
+echo <<eof
+cat <<eof
+cat <<eof
+echo <<eof
+echo <<eof
+<<eof
+<<eof
+<<eof
+<<eof
+cat <<eof
+cat <<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+ca <<eof
+<<eof
+<<eof
+cat <<eof
+cat <<eof
+<<eof
+<<eof
+<<eof
+<<eof
+ca <<eof
+<<eof
+<<eof

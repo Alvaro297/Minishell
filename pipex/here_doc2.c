@@ -22,6 +22,7 @@ static void	process_heredoc_help(bool heredoc_sd,
 	{
 		expanded = ft_quote_printf_here_doc(minishell, line);
 		dprintf(fd, "%s\n", expanded);
+		free(expanded);
 	}
 	else
 		dprintf(fd, "%s\n", line);
@@ -55,6 +56,7 @@ static int	process_heredoc_loop(t_minishell *minishell, const char *delimiter,
 		}
 		process_heredoc_help(heredoc_sd, minishell, line, fd);
 	}
+	close(fd);
 	rl_event_hook = NULL;
 	return (0);
 }
