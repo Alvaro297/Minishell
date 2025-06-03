@@ -1858,3 +1858,125 @@ cat <Makefile | ca
 cat <Makefile | ca
 ls -l | wc -l > ejemplo2.txt>ejemplo1
 cat <<EOF | ca
+cat <<EOF | ca
+echo $?
+cat
+echo $?
+code .
+cat
+echo $?
+                   
+                                 
+ECH
+ECH
+ca
+echo $?
+cat <Makefile | ca
+ca <Makefile | cat
+ca
+export hola=hola
+export
+export $=hola
+export
+export
+export hola
+export
+export $hola
+unset hola
+export
+echo $_
+<< EOF
+cat <<EOF
+cat <<EOF
+ls -l | wc -l
+ls -l 
+<<eof
+<<eof
+<<eof
+ls -l 
+cat <<eof
+cat <<eof
+echo $?
+cat <<eof
+echo $?
+echo $?
+env
+export 12hola
+echo $?
+./minishell
+./minishell
+./minishell
+<<eof
+<<eof
+echo $SHLVL
+./minishell
+echo $SHLVL
+./minishell
+echo $SHLVL
+ps
+ps | wc -l
+ps | wc -l
+echo $SHLVL
+ls -ñ
+echo $?
+ls -gg
+echo $?
+ls -ggffd
+echo $?
+ls -n
+echo $
+echo $?
+ls -ñ
+ls --help
+./pepe
+echo $?
+./hola 
+echo $?
+./pepe
+./pepe
+echo $?
+ls -ñ
+echo $?
+<<eof
+<<eof
+./hola
+./hola
+<<eof
+echo $?
+<<eof
+<<eof
+<<eof
+<<eof
+./hola
+./pepe
+<<eof
+<<eof
+cat
+cat <<eof
+cat <<eof
+<<eof
+<<eof
+echo hola
+cat init_minishell/init_minishell.c
+ca
+caer
+caer <<eof
+caer <<eof
+caer <<eof
+caer <<eof
+<<
+<<eof
+<<eof
+<<eof
+<<eof
+<<
+<<
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+<<eof
+cat hola
+echo hola
+./hola

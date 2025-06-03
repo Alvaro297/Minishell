@@ -215,6 +215,7 @@ void	free_exec(t_exec *e, t_minishell *minishell);
 void	free_double_array(void **double_array);
 void	free_env_list(t_env *env);
 void	free_cmd_list(t_cmd *cmd);
+void	closestd(t_minishell *minishell);
 //**PIPEX **/
 void	sigint_heredoc_handler(int sig);
 int		process_heredoc(t_minishell *minishell,

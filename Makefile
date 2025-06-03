@@ -26,7 +26,7 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c env_recharge/envp3.c
 			pipex/pipex.c pipex/utils.c pipex/libutils.c \
 			pipex/ft_split.c pipex/ft_fd.c pipex/utils2.c \
 			pipex/execute.c pipex/here_doc.c pipex/here_doc2.c pipex/here_doc3.c \
-			pipex/execute2.c \
+			pipex/execute2.c pipex/execute3.c \
 			pipex/no_pipes.c
 
 

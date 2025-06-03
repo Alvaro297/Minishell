@@ -6,7 +6,7 @@
 /*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025-05-28 18:54:40 by alvamart          #+#    #+#             */
-/*   Updated: 2025-05-28 18:54:40 by alvamart         ###   ########.fr       */
+/*   Updated: 2025/06/03 18:32:01 by paperez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,10 @@ void	free_exec(t_exec *e, t_minishell *minishell)
 		free(e->pids);
 		e->pids = NULL;
 	}
+}
+
+void	closestd(t_minishell *minishell)
+{
+	close(minishell->std_in);
+	close(minishell->std_out);
 }

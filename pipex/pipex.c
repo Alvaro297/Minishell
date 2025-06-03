@@ -56,32 +56,6 @@ void	execute_more_commands(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 		handle_external_command(minishell, cmd, e, split_envs);
 }
 
-void	execute(t_minishell *minishell, t_cmd *cmd)
-{
-	char	*path;
-	char	**split_envs;
-
-	split_envs = returntoenvp(minishell->env_vars);
-	if (is_builtin(cmd))
-		internal_commands(cmd, minishell);
-	else
-	{
-		path = getpath(cmd->args[0], split_envs);
-		if (execve(path, cmd->args, split_envs) == -1)
-		{
-			ft_putstr_fd("pipex: command not found: ", 2);
-			minishell->last_exit_status = 127;
-			ft_putendl_fd(cmd->args[0], 2);
-			free(path);
-			free_double_array((void **) split_envs);
-			free_all(minishell);
-			close(minishell->std_in);
-			close(minishell->std_out);
-			exit(127);
-		}
-	}
-}
-
 void	redirimput(t_cmd *cmd)
 {
 	int	fdi;

@@ -55,6 +55,7 @@ char	*ft_itoa(int n)
 	char	*result;
 	int		i;
 
+	result = NULL;
 	if (n == 0)
 		return (ft_strdup("0"));
 	if (n == -2147483648)

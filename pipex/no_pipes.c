@@ -36,6 +36,8 @@ void	handle_fork_status(t_minishell *minishell, pid_t pid)
 	int		exit_code;
 	int		signo;
 
+	exit_code = 0;
+	status = 0;
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		exit_code = WEXITSTATUS(status);
@@ -70,7 +72,11 @@ void	execute_single_builtin_or_fork(t_minishell *minishell)
 		signals_ignore();
 		pid = fork();
 		if (!pid)
+		{
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
 			execute(minishell, minishell->cmds);
+		}
 		handle_fork_status(minishell, pid);
 		signals_default();
 	}
