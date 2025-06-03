@@ -30,10 +30,17 @@ static bool	ft_isnum(const char *str)
 	return (true);
 }
 
+static void	exit_with_code(t_minishell *minishell, int code)
+{
+	free_all(minishell);
+	closestd(minishell);
+	exit((unsigned char)code);
+}
+
 int	handle_exit(t_cmd *cmd, t_minishell *minishell)
 {
-	int		code;
-	int		argc;
+	int	code;
+	int	argc;
 
 	code = 0;
 	argc = 0;
@@ -42,19 +49,17 @@ int	handle_exit(t_cmd *cmd, t_minishell *minishell)
 	if (argc == 1)
 	{
 		printf("exit\n");
-		exit(0);
+		exit_with_code(minishell, 0);
 	}
 	if (argc == 2)
 	{
 		if (!ft_isnum(cmd->args[1]))
 		{
 			ft_putstr_fd("exit: numeric argument required\n", 2);
-			exit(2);
+			exit_with_code(minishell, 2);
 		}
 		code = ft_atoi(cmd->args[1]);
-		free_all(minishell);
-		closestd(minishell);
-		exit((unsigned char)code);
+		exit_with_code(minishell, code);
 	}
 	if (argc > 2)
 		return (ft_putstr_fd("exit: too many arguments\n", 2), 1);

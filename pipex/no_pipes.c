@@ -82,7 +82,6 @@ void	execute_single_builtin_or_fork(t_minishell *minishell)
 	}
 }
 
-
 static int	setup_redirections_and_heredoc(t_minishell *minishell)
 {
 	int	heredoc_fd;

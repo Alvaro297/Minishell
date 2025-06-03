@@ -78,22 +78,32 @@ int	redirimput(t_cmd *cmd)
 	return (1);
 }
 
-
-bool	rediroutput(t_cmd *cmd)
+static bool	open_all_outfiles(char **outfile_array, t_cmd *cmd)
 {
 	int	fdo;
 	int	i;
 
 	i = 0;
-	if (cmd->outfile_array != NULL)
+	while (outfile_array && outfile_array[i])
 	{
-		while (cmd->outfile_array[i])
+		fdo = open_f(outfile_array[i], 1, cmd);
+		if (fdo < 0)
 		{
-			fdo = open_f(cmd->outfile_array[i], 1, cmd);
-			close(fdo);
-			i++;
+			perror("open");
+			return (false);
 		}
+		close(fdo);
+		i++;
 	}
+	return (true);
+}
+
+bool	rediroutput(t_cmd *cmd)
+{
+	int	fdo;
+
+	if (!open_all_outfiles(cmd->outfile_array, cmd))
+		return (false);
 	if (cmd->outfile)
 	{
 		fdo = open_f(cmd->outfile, 1, cmd);
@@ -105,6 +115,7 @@ bool	rediroutput(t_cmd *cmd)
 		if (dup2(fdo, STDOUT_FILENO) < 0)
 		{
 			perror("dup2");
+			close(fdo);
 			return (false);
 		}
 		close(fdo);
