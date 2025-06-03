@@ -30,7 +30,7 @@ static bool	ft_isnum(const char *str)
 	return (true);
 }
 
-int	handle_exit(t_cmd *cmd)
+int	handle_exit(t_cmd *cmd, t_minishell *minishell)
 {
 	int		code;
 	int		argc;
@@ -52,6 +52,7 @@ int	handle_exit(t_cmd *cmd)
 			exit(2);
 		}
 		code = ft_atoi(cmd->args[1]);
+		free_all(minishell);
 		exit((unsigned char)code);
 	}
 	if (argc > 2)

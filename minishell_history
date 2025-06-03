@@ -2040,3 +2040,35 @@ ca <<eof
 echo $?
 echo $?
 <<eof
+echo "hola mundo"
+echo "hola mundo\\""hola"
+echo \'"hola"
+echo \'"hola"'
+echo >> exit
+echo "grep Makefile"
+echo | "grep Makefile"
+echo "hola" | "grep Makefile"
+<<
+<< heredoc
+<< >>
+<< | >>
+<< ||  >>
+<< ||  <<
+echo "echo hola" > out
+cat out
+echo "echo hola $1" hola > out
+cat out 
+echo "echo hola $1" echo "tus muertos" > out
+cat out 
+echo "echo hola $1" rev "tus muertos" > out
+cat out 
+echo "echo hola $1" rev  > out
+cat out 
+echo "echo hola $1;" rev  > out
+cat out 
+echo "echo hola $1" rev  > out
+cat | cat
+exit -1 
+exit -1 
+exit -1 
+exit -1 
