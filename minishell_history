@@ -2072,3 +2072,18 @@ exit -1
 exit -1 
 exit -1 
 exit -1 
+exit -1 
+pwd
+cd ..
+pwd
+ls-l
+ls -l
+pwd
+cd .
+cd ..
+pwd
+cd ..
+pwd
+cd ..
+pwd
+exit -1

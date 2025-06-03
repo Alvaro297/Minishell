@@ -53,6 +53,7 @@ int	handle_exit(t_cmd *cmd, t_minishell *minishell)
 		}
 		code = ft_atoi(cmd->args[1]);
 		free_all(minishell);
+		closestd(minishell);
 		exit((unsigned char)code);
 	}
 	if (argc > 2)
