@@ -6,7 +6,7 @@
 /*   By: alvamart <alvamart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:30:26 by paperez-          #+#    #+#             */
-/*   Updated: 2025/06/03 20:14:04 by alvamart         ###   ########.fr       */
+/*   Updated: 2025/06/03 20:35:18 by alvamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 		execute_ext(minishell, cmd, split_envs);
 	else
 	{
-		ft_putstr_fd("pipex: command not found: ", 2);
+		ft_putstr_fd("pipex: command not found:", 2);
 		minishell->last_exit_status = 127;
 		free_all(minishell);
 		closestd(minishell);

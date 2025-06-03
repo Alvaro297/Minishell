@@ -2035,3 +2035,8 @@ cat <<eof
 ca <<eof
 <<eof
 <<eof
+<<eof
+<<eof
+echo $?
+echo $?
+<<eof
