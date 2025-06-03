@@ -211,7 +211,7 @@ void	process_heredoc_signals(struct sigaction *sa_old,
 int		heredoc_event_hook(void);
 void	sigint_heredoc_handler(int sig);
 //** Free Minishell **//
-void	free_exec(t_exec *e);
+void	free_exec(t_exec *e, t_minishell *minishell);
 void	free_double_array(void **double_array);
 void	free_env_list(t_env *env);
 void	free_cmd_list(t_cmd *cmd);

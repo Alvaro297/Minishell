@@ -26,7 +26,7 @@ static void	handle_external_command(t_minishell *minishell, t_cmd *cmd,
 		ft_putendl_fd(cmd->args[0], 2);
 		free(path);
 		free_double_array((void **)split_envs);
-		free_exec(e);
+		free_exec(e, minishell);
 		free_all(minishell);
 		close(minishell->std_in);
 		close(minishell->std_out);
@@ -49,7 +49,7 @@ void	execute_more_commands(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 		close(minishell->std_in);
 		dup2(minishell->std_out, STDOUT_FILENO);
 		close(minishell->std_out);
-		free_exec(e);
+		free_exec(e, minishell);
 		exit(ret);
 	}
 	else

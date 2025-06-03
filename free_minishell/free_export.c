@@ -26,14 +26,14 @@ void	free_env_list(t_env *env)
 	}
 }
 
-void	free_exec(t_exec *e)
+void	free_exec(t_exec *e, t_minishell *minishell)
 {
 	int	i;
 
 	if (e->pfd)
 	{
 		i = 0;
-		while (e->pfd[i])
+		while (i < minishell->howmanycmd - 1)
 		{
 			free(e->pfd[i]);
 			e->pfd[i] = NULL;
