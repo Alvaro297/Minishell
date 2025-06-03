@@ -56,7 +56,7 @@ void	execute_more_commands(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 		handle_external_command(minishell, cmd, e, split_envs);
 }
 
-void	redirimput(t_cmd *cmd)
+int	redirimput(t_cmd *cmd)
 {
 	int	fdi;
 
@@ -66,15 +66,20 @@ void	redirimput(t_cmd *cmd)
 		if (fdi < 0)
 		{
 			perror("open");
-			return ;
+			return (0);
 		}
 		if (dup2(fdi, STDIN_FILENO) < 0)
+		{
 			perror("dup2");
+			return (0);
+		}
 		close(fdi);
 	}
+	return (1);
 }
 
-void	rediroutput(t_cmd *cmd)
+
+bool	rediroutput(t_cmd *cmd)
 {
 	int	fdo;
 	int	i;
@@ -95,10 +100,14 @@ void	rediroutput(t_cmd *cmd)
 		if (fdo < 0)
 		{
 			perror("open");
-			return ;
+			return (false);
 		}
 		if (dup2(fdo, STDOUT_FILENO) < 0)
+		{
 			perror("dup2");
+			return (false);
+		}
 		close(fdo);
 	}
+	return (true);
 }

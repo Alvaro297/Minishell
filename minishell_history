@@ -2087,3 +2087,24 @@ pwd
 cd ..
 pwd
 exit -1
+touch hola
+chmod 000 hola
+echo hola >hola
+echo $?
+echo hola > hola
+echo $?
+exit -1
+exit -1
+exit -1
+exit -1
+exit -1
+exit 127
+exit 126
+exit 126
+exit -1
+exit -1
+echo hola > hola
+export > hola
+ls -l > hola
+ls -l > hola
+echo $?

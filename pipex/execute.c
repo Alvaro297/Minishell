@@ -27,45 +27,57 @@ void	closefds(t_minishell *minishell, int **fd)
 
 void	last_child(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 {
+	int	all_ok;
+
+	all_ok = 1;
 	if (cmd->infile && !cmd->is_heredoc)
-		redirimput(cmd);
+		all_ok = redirimput(cmd);
 	else if (!cmd->is_heredoc)
 		dup2(e->pfd[minishell->howmanycmd - 2][0], STDIN_FILENO);
-	if (cmd->outfile)
-		rediroutput(cmd);
+	if (cmd->outfile && all_ok)
+		all_ok = rediroutput(cmd);
 	else
 	{
 		dup2(minishell->std_out, STDOUT_FILENO);
 		close(minishell->std_out);
 	}
 	closefds(minishell, e->pfd);
-	execute_more_commands(minishell, cmd, e);
+	if (all_ok)
+		execute_more_commands(minishell, cmd, e);
 }
 
 void	first_child(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 {
+	int	all_ok;
+	
+	all_ok = 1;
 	if (cmd->infile)
-		redirimput(cmd);
-	if (cmd->outfile)
-		rediroutput(cmd);
+		all_ok = redirimput(cmd);
+	if (cmd->outfile && all_ok)
+		all_ok = rediroutput(cmd);
 	else
 		dup2(e->pfd[0][1], STDOUT_FILENO);
 	closefds(minishell, e->pfd);
-	execute_more_commands(minishell, cmd, e);
+	if (all_ok)
+		execute_more_commands(minishell, cmd, e);
 }
 
 void	execute_command(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 {
+	int all_ok;
+	
+	all_ok = 1;
 	if (cmd->infile && !cmd->is_heredoc)
-		redirimput(cmd);
+		all_ok = redirimput(cmd);
 	else if (!cmd->is_heredoc)
 		dup2(e->pfd[e->i - 1][0], STDIN_FILENO);
-	if (cmd->outfile)
-		rediroutput(cmd);
+	if (cmd->outfile && all_ok)
+		all_ok = rediroutput(cmd);
 	else
 		dup2(e->pfd[e->i][1], STDOUT_FILENO);
 	closefds(minishell, e->pfd);
-	execute_more_commands(minishell, cmd, e);
+	if (all_ok)
+		execute_more_commands(minishell, cmd, e);
 }
 
 int	**create_pipes(t_minishell *minishell)

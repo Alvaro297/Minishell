@@ -82,12 +82,14 @@ void	execute_single_builtin_or_fork(t_minishell *minishell)
 	}
 }
 
-void	setup_redirections_and_heredoc(t_minishell *minishell)
+
+static int	setup_redirections_and_heredoc(t_minishell *minishell)
 {
 	int	heredoc_fd;
+	int	all_ok;
 
 	if (!minishell->cmds->is_heredoc)
-		redirimput(minishell->cmds);
+		all_ok = redirimput(minishell->cmds);
 	if (minishell->cmds->here_doc_delim && minishell->cmds->is_heredoc)
 	{
 		heredoc_fd = handle_heredoc(minishell,
@@ -95,15 +97,22 @@ void	setup_redirections_and_heredoc(t_minishell *minishell)
 		dup2(heredoc_fd, STDIN_FILENO);
 		close(heredoc_fd);
 	}
-	rediroutput(minishell->cmds);
+	if (all_ok)
+		all_ok = rediroutput(minishell->cmds);
+	return (all_ok);
 }
 
 void	no_pipes(t_minishell *minishell)
 {
-	setup_redirections_and_heredoc(minishell);
-	execute_single_builtin_or_fork(minishell);
-	dup2(minishell->std_out, STDOUT_FILENO);
-	dup2(minishell->std_in, STDIN_FILENO);
-	close(minishell->std_out);
-	close(minishell->std_in);
+	bool	fds_ok;
+
+	fds_ok = setup_redirections_and_heredoc_prueba (minishell);
+	if (fds_ok)
+	{
+		execute_single_builtin_or_fork(minishell);
+		dup2(minishell->std_out, STDOUT_FILENO);
+		dup2(minishell->std_in, STDIN_FILENO);
+		close(minishell->std_out);
+		close(minishell->std_in);
+	}
 }
