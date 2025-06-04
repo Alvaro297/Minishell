@@ -66,16 +66,16 @@ int	redirimput(t_cmd *cmd)
 		if (fdi < 0)
 		{
 			perror("open");
-			return (0);
+			return (false);
 		}
 		if (dup2(fdi, STDIN_FILENO) < 0)
 		{
 			perror("dup2");
-			return (0);
+			return (false);
 		}
 		close(fdi);
 	}
-	return (1);
+	return (true);
 }
 
 static bool	open_all_outfiles(char **outfile_array, t_cmd *cmd)

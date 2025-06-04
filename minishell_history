@@ -2123,3 +2123,40 @@ exit 127
 exit 130
 exit 1
 exit -1
+chmod 000 hola
+echo hola >hola
+echo hola >hola | cat >hola
+echo hola >hola | cat >hola
+echo hola >hola | cat >hola
+echo hola >hola | cat >hola
+echo hola >hola | cat >hola
+ls -l
+echo hola >hola | cat >hola
+echo hola >hola | cat >hola
+unset PATH
+echo $PATH
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+<eof
+<<eof
+eog
+<<eof
+cat <<eof | echo hola
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof
+cat <<
+cat <<
+cat <<

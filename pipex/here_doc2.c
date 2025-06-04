@@ -45,7 +45,6 @@ static int	process_heredoc_loop(t_minishell *minishell, const char *delimiter,
 			write(STDOUT_FILENO, "\n", 1);
 			free(line);
 			close(fd);
-			g_signal = 0;
 			rl_event_hook = NULL;
 			return (-2);
 		}
@@ -77,7 +76,6 @@ int	process_heredoc(t_minishell *minishell,
 	}
 	process_heredoc_signals(&sa_old, &sa_new);
 	ret = process_heredoc_loop(minishell, delimiter, fd, heredoc_sd);
-	close(fd);
 	if (ret == -2)
 		unlink(tmpfile);
 	sigaction(SIGINT, &sa_old, NULL);

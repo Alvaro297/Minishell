@@ -17,6 +17,8 @@ void	closefds(t_minishell *minishell, int **fd)
 	int	i;
 
 	i = 0;
+	if (!fd)
+		return ;
 	while (i < minishell->howmanycmd - 1)
 	{
 		close(fd[i][0]);
@@ -44,6 +46,11 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 	closefds(minishell, e->pfd);
 	if (all_ok)
 		execute_more_commands(minishell, cmd, e);
+	else
+	{
+		free_all(minishell);
+		free_exec(e, minishell);
+	}
 }
 
 void	first_child(t_minishell *minishell, t_cmd *cmd, t_exec *e)
@@ -60,6 +67,11 @@ void	first_child(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 	closefds(minishell, e->pfd);
 	if (all_ok)
 		execute_more_commands(minishell, cmd, e);
+	else
+	{
+		free_all(minishell);
+		free_exec(e, minishell);
+	}
 }
 
 void	execute_command(t_minishell *minishell, t_cmd *cmd, t_exec *e)
@@ -78,6 +90,11 @@ void	execute_command(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 	closefds(minishell, e->pfd);
 	if (all_ok)
 		execute_more_commands(minishell, cmd, e);
+	else
+	{
+		free_all(minishell);
+		free_exec(e, minishell);
+	}
 }
 
 int	**create_pipes(t_minishell *minishell)

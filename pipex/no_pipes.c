@@ -87,6 +87,7 @@ static int	setup_redirections_and_heredoc(t_minishell *minishell)
 	int	heredoc_fd;
 	int	all_ok;
 
+	all_ok = true;
 	if (!minishell->cmds->is_heredoc)
 		all_ok = redirimput(minishell->cmds);
 	if (minishell->cmds->here_doc_delim && minishell->cmds->is_heredoc)

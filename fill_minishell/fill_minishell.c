@@ -87,6 +87,6 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 	}
 	minishell->cmds = parsing_input(minishell, input);
 	if (minishell->cmds == NULL)
-		return (free(input));
+		return ;
 	fill_minishell_help(minishell);
 }

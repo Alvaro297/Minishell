@@ -49,7 +49,7 @@ void	write_tmp_heredocs_to_final(t_minishell *minishell,
 		if (process_heredoc(minishell, delimiters[i], tmp, heredoc_sd) < 0)
 		{
 			free (tmp);
-			break ;
+			return ;
 		}
 		read_and_append_tmp_file(tmp, final_fd);
 		i++;
