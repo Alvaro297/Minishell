@@ -2108,3 +2108,18 @@ export > hola
 ls -l > hola
 ls -l > hola
 echo $?
+echo $?
+ls -l > hola
+cat hola
+<eaif ls -l
+<a <b <c ls -l
+<a <b <c ls -l >hola
+cat hola
+export > hola
+cat hola
+exit 127
+cat hola
+exit 127
+exit 130
+exit 1
+exit -1

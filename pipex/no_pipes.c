@@ -105,7 +105,7 @@ void	no_pipes(t_minishell *minishell)
 {
 	bool	fds_ok;
 
-	fds_ok = setup_redirections_and_heredoc_prueba (minishell);
+	fds_ok = setup_redirections_and_heredoc(minishell);
 	if (fds_ok)
 	{
 		execute_single_builtin_or_fork(minishell);

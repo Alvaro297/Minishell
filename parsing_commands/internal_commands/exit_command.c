@@ -33,6 +33,8 @@ static bool	ft_isnum(const char *str)
 static void	exit_with_code(t_minishell *minishell, int code)
 {
 	free_all(minishell);
+	close(minishell->std_out);
+	close(minishell->std_in);
 	closestd(minishell);
 	exit((unsigned char)code);
 }
