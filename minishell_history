@@ -2164,3 +2164,20 @@ cat <<eof >hola
 echo hola <<eof
 ech hola <<eof
 cat <<eof >hola
+       
+echo $?
+echo hola >hola
+echo $?
+echo hola >hola
+echo $?
+echo hola >hola
+echo $?
+echo hola >hola | cat
+echo hola >hola | cat
+echo $?
+echo hola >hola | cat
+echo hola >hola | cat
+echo hola >hola | cat
+echo $?
+echo hola >hola | cat >hola
+echo $?

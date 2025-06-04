@@ -105,10 +105,18 @@ static int	setup_redirections_and_heredoc(t_minishell *minishell)
 void	no_pipes(t_minishell *minishell)
 {
 	bool	fds_ok;
+	char	*exit_status;
 
+	exit_status = NULL;
 	fds_ok = setup_redirections_and_heredoc(minishell);
 	if (fds_ok)
 		execute_single_builtin_or_fork(minishell);
+	else
+	{
+		exit_status = ft_itoa(1);
+		set_env(&minishell->env_vars, "?", exit_status);
+		free (exit_status);
+	}
 	dup2(minishell->std_out, STDOUT_FILENO);
 	dup2(minishell->std_in, STDIN_FILENO);
 	close(minishell->std_out);

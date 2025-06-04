@@ -50,6 +50,11 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 	{
 		free_all(minishell);
 		free_exec(e, minishell);
+		dup2(minishell->std_in, STDIN_FILENO);
+		close(minishell->std_in);
+		dup2(minishell->std_out, STDOUT_FILENO);
+		close(minishell->std_out);
+		exit(1);
 	}
 }
 
@@ -71,6 +76,11 @@ void	first_child(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 	{
 		free_all(minishell);
 		free_exec(e, minishell);
+		dup2(minishell->std_in, STDIN_FILENO);
+		close(minishell->std_in);
+		dup2(minishell->std_out, STDOUT_FILENO);
+		close(minishell->std_out);
+		exit(1);
 	}
 }
 
@@ -94,6 +104,11 @@ void	execute_command(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 	{
 		free_all(minishell);
 		free_exec(e, minishell);
+		dup2(minishell->std_in, STDIN_FILENO);
+		close(minishell->std_in);
+		dup2(minishell->std_out, STDOUT_FILENO);
+		close(minishell->std_out);
+		exit(1);
 	}
 }
 
