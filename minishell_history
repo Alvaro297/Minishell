@@ -2160,3 +2160,7 @@ cat <<eof
 cat <<
 cat <<
 cat <<
+cat <<eof >hola
+echo hola <<eof
+ech hola <<eof
+cat <<eof >hola

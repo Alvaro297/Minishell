@@ -108,11 +108,9 @@ void	no_pipes(t_minishell *minishell)
 
 	fds_ok = setup_redirections_and_heredoc(minishell);
 	if (fds_ok)
-	{
 		execute_single_builtin_or_fork(minishell);
-		dup2(minishell->std_out, STDOUT_FILENO);
-		dup2(minishell->std_in, STDIN_FILENO);
-		close(minishell->std_out);
-		close(minishell->std_in);
-	}
+	dup2(minishell->std_out, STDOUT_FILENO);
+	dup2(minishell->std_in, STDIN_FILENO);
+	close(minishell->std_out);
+	close(minishell->std_in);
 }
