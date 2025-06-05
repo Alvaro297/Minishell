@@ -2181,3 +2181,64 @@ echo hola >hola | cat
 echo $?
 echo hola >hola | cat >hola
 echo $?
+unset PATH
+cat <<eof
+echo $PATH
+>hola cat
+>test. cat
+>test.txt  cat
+cat >test.txt
+pwd
+unset PATH
+cat >test.txt
+unset PATH
+cat >test.txt
+unset PATH
+echo $PATH
+export
+cat >test.txt
+cat >test.txt
+unset PATH
+cat >test.txt
+unset PATH
+cat >test.txt
+unset PATH
+cat <<eof >test.txt
+unset PATH
+cat >test.txt
+unset PATH
+cat >test.txt
+cat >test.txt
+unset PATH
+cat >test.txt
+cat prueba >test.txt
+cat >test.txt
+unset PATH
+cat >test.txt
+cat >test.txt
+unset PATH
+cat >test.txt
+unset PATH
+cat >test.txt
+echo $PATH
+cat >test.txt
+echo $?
+echo $PATH
+unset PATH
+echo $PATH
+echo $PATH
+cat >test.txt
+ls -l
+unset PATH
+ls -l
+ls -l
+unset PATH
+ls -l
+unset PATH
+ls -l
+unset PATH
+ls -l
+cat <<eof
+/bin/cat <eof
+/bin/cat <<eof
+/bin/cat <<eof

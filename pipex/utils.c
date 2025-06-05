@@ -76,7 +76,11 @@ char	*getpath(char *cmd, char **env)
 	char	*fullpath;
 	int		i;
 
+	if (ft_strchr(cmd, '/') && access(cmd, F_OK | X_OK) == 0)
+		return (ft_strdup(cmd));
 	paths = ft_split(getpathaux("PATH", env), ':');
+	if (!paths)
+		return (NULL);
 	i = 0;
 	while (paths[i])
 	{
@@ -92,5 +96,5 @@ char	*getpath(char *cmd, char **env)
 		i++;
 	}
 	freeall(paths);
-	return (cmd);
+	return (NULL);
 }

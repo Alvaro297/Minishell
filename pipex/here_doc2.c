@@ -26,8 +26,6 @@ static void	process_heredoc_help(bool heredoc_sd,
 	}
 	else
 		dprintf(fd, "%s\n", line);
-	if (expanded)
-		free(expanded);
 	free(line);
 }
 
