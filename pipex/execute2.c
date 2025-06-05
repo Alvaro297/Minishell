@@ -35,11 +35,6 @@ void	restore_std_and_cleanup(t_minishell *minishell,
 		dup2(minishell->std_out, STDOUT_FILENO);
 		close(minishell->std_out);
 	}
-	if (e->heredoc_fds)
-	{
-		free(e->heredoc_fds);
-		e->heredoc_fds = NULL;
-	}
 	if (e->pfd)
 		closefds(minishell, e->pfd);
 }
@@ -67,8 +62,6 @@ void	fork_all_processes(t_minishell *minishell, t_cmd *cmd,
 			restore_std_and_cleanup(minishell, e);
 			exit(0);
 		}
-		if (cmd->is_heredoc)
-			restore_std_and_cleanup(minishell, e);
 		cmd = cmd->next;
 		e->i++;
 	}
@@ -120,6 +113,11 @@ void	execute_all(t_minishell *minishell)
 	fork_all_processes(minishell, current_cmd, &e);
 	restore_std_and_cleanup(minishell, &e);
 	wait_all_children(minishell, e.pids);
+	if (e.heredoc_fds)
+	{
+		free(e.heredoc_fds);
+		e.heredoc_fds = NULL;
+	}
 	free_pipe_fds(e.pfd, minishell->howmanycmd);
 	close(minishell->std_out);
 	close(minishell->std_in);

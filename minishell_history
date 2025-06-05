@@ -2325,3 +2325,49 @@ echo hola | grep <<eof
 echo hola | grep pi
 echo hola | cat
 echo hola | cat <<eof
+echo hola | cat <<eof
+ls -l | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+export | cat <<eof
+env | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+export | grep a
+echo hola | cat <<eof
+ls -l | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+cat <<eof1 | cat <<eof2 | cat <<eof3 | cat <<eof4 | cat <<eof5
+cat <<eof1 | cat <<eof2 | cat <<eof3 | cat <<eof4 | cat <<eof5
+cat <<eof1 | cat <<eof2
+cat <<eof1 | cat <<eof2
+echo hola | cat <<eof
+cat <<eof
+cat <<eof
+cat <<eof1 | cat <<eof2
+cat <<eof1 | cat <<eof2 <<eof3
+cat <<eof1 | cat <<eof2 <<eof3<<eof4<<eof5
+echo hola | cat <<eof
+env | cat <<eof
+env
+env <<eof
+export
+export <<eof
+cd .. | cat <<eof
+cd .. | cat <<eof
+cd .. | cat <<eof
+cat <<eof | grep a
+cd .. | cat <<eof | cat <<eof2
+cd .. | ca
+cd .. | ca <<eof
+cd .. | ca <<eof

@@ -22,6 +22,20 @@ static void	handle_external_command(t_minishell *minishell, t_cmd *cmd,
 	ext_command = ft_strdup(cmd->args[0]);
 	path = getpath(ext_command, split_envs);
 	free(ext_command);
+	if (!path)
+	{
+		ft_putstr_fd("pipex: command not found: ", 2);
+		minishell->last_exit_status = 127;
+		ft_putendl_fd(cmd->args[0], 2);
+		free(path);
+		free_double_array((void **)split_envs);
+		free_exec(e, minishell);
+		free_all(minishell);
+		close(minishell->std_in);
+		close(minishell->std_out);
+		exit(127);
+	}
+	signal(SIGPIPE, SIG_DFL);
 	if (execve(path, cmd->args, split_envs) == -1 ||
 			(cmd->is_heredoc))
 	{
@@ -46,14 +60,15 @@ void	execute_more_commands(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 	split_envs = returntoenvp(minishell->env_vars);
 	if (is_builtin(cmd))
 	{
+		signal(SIGPIPE, SIG_IGN);
 		ret = internal_commands(cmd, minishell);
 		free_double_array((void **)split_envs);
+		free_exec(e, minishell);
 		free_all(minishell);
 		dup2(minishell->std_out, STDIN_FILENO);
 		close(minishell->std_in);
 		dup2(minishell->std_out, STDOUT_FILENO);
 		close(minishell->std_out);
-		free_exec(e, minishell);
 		exit(ret);
 	}
 	else

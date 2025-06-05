@@ -12,53 +12,40 @@
 
 #include "../../minishell.h"
 
-void	handle_echo_help(t_minishell *minishell, int i, int newline)
+static int	print_echo_args(t_cmd *current_cmd, int i)
 {
-	char	*echo_print;
-	t_cmd	*current_cmd;
-
-	current_cmd = minishell->cmds;
-	echo_print = ft_strdup("");
-	while (current_cmd->args[i] != NULL)
-	{
-		echo_print = ft_strjoin_free(echo_print, current_cmd->args[i]);
-		if (current_cmd->args[i + 1] != NULL)
-			echo_print = ft_strjoin_free(echo_print, " ");
-		i++;
-	}
-	if (newline)
-		echo_print = ft_strjoin_free(echo_print, "\n");
-	while (echo_print)
-	{
-		write(STDOUT_FILENO, &echo_print, 1);
-		echo_print++;
-	}
-}
-
-static void	print_echo_args(t_cmd *current_cmd, int i)
-{
-	int	j;
+	int		j;
+	ssize_t	ret;
 
 	while (current_cmd->args[i] != NULL)
 	{
 		j = 0;
 		while (current_cmd->args[i][j] != '\0')
 		{
-			write(STDOUT_FILENO, &current_cmd->args[i][j], 1);
+			ret = write(STDOUT_FILENO, &current_cmd->args[i][j], 1);
+			if (ret == -1 && errno == EPIPE)
+				return (1);
 			j++;
 		}
 		if (current_cmd->args[i + 1] != NULL)
-			write(STDOUT_FILENO, " ", 1);
+		{
+			ret = write(STDOUT_FILENO, " ", 1);
+			if (ret == -1 && errno == EPIPE)
+				return (1);
+		}
 		i++;
 	}
+	return (0);
 }
 
 int	handle_echo(t_cmd *current_cmd, t_minishell *minishell)
 {
 	int		i;
 	bool	newline;
+	int		ret;
 
 	i = 1;
+	ret = 0;
 	newline = true;
 	if (minishell->input != NULL
 		&& ft_strncmp(current_cmd->args[i], "-n", 2) == 0
@@ -67,8 +54,8 @@ int	handle_echo(t_cmd *current_cmd, t_minishell *minishell)
 		i++;
 		newline = false;
 	}
-	print_echo_args(current_cmd, i);
-	if (newline)
+	ret = print_echo_args(current_cmd, i);
+	if (newline && ret == 0)
 		write(STDOUT_FILENO, "\n", 1);
-	return (0);
+	return (ret);
 }
