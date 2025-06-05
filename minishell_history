@@ -2263,3 +2263,65 @@ echo hola | cat <<eof
 cat <<eof<<eof2
 cat <<eof<<eof2 | ls -l
 echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | cat
+echo hola | cat
+echo hola | cat <<eof
+echo hola | cat
+echo hola | cat
+echo hola | cat
+echo hola | cat <<eof
+echo hola | cat 
+echo hola | cat
+echo hola | cat 
+echo hola | cat   
+echo hola | cat
+echo hola | cat
+echo hola | cat
+echo hola | cat 
+echo hola | cat
+echo hola | cat     
+echo hola | cat  <<eof
+echo hola | echo hola
+echo hola | grep pi
+echo hola | grep <<aaa
+echo hola | grep pi
+echo hola | grep <<aaa
+echo hola | grep pi
+echo hola | grep <<aaa
+echo hola | grep pi
+echo hola
+cat pipex/pipex.c | grep p
+echo hola | grep pi
+echo hola | grep <<aaa
+echo hola | grep <<aaa | cat <<eee
+echo hola | grep <<aaa | cat <<eee
+echo hola | grep <<aaa
+echo hola | grep <<aaa
+echo hola | grep <<aaa
+echo hola
+echo hola | grep pi
+echo hola | grep <<aaa
+echo hola | grep pi
+echo hola | grep <<aaa
+echo hola | grep pi
+echo hola | grep <<aaa
+echo hola | grep pi
+echo hola | grep <<aaa
+echo hola | grep <<aaa
+echo hola | grep <<aaa
+echo hola | grep <<aaa
+echo hola | grep <<aaa
+echo hola | cat <<eof
+echo hola | grep pi
+echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | cat <<eof
+echo hola | grep <<eof
+echo hola | grep <<eof
+echo hola | grep <<eof
+echo hola | grep pi
+echo hola | grep <<eof
+echo hola | grep pi
+echo hola | cat
+echo hola | cat <<eof
