@@ -29,7 +29,13 @@ void	restore_std_and_cleanup(t_minishell *minishell,
 	close(minishell->std_in);
 	dup2(minishell->std_out, STDOUT_FILENO);
 	close(minishell->std_out);
-	free(e->heredoc_fds);
+	if (e->heredoc_fds)
+	{
+		for (int k = 0; k < minishell->howmanycmd; k++)
+			if (e->heredoc_fds[k] >= 0)
+				close(e->heredoc_fds[k]);
+		free(e->heredoc_fds);
+	}
 	closefds(minishell, e->pfd);
 }
 
@@ -56,8 +62,6 @@ void	fork_all_processes(t_minishell *minishell, t_cmd *cmd,
 			restore_std_and_cleanup(minishell, e);
 			exit(0);
 		}
-		if (cmd->is_heredoc)
-			close(e->heredoc_fds[e->j - 1]);
 		cmd = cmd->next;
 		e->i++;
 	}

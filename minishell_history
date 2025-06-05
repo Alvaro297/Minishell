@@ -2242,3 +2242,24 @@ cat <<eof
 /bin/cat <eof
 /bin/cat <<eof
 /bin/cat <<eof
+echo hola | grep <<eof
+echo hola | ls -l >ej
+ech hola | ls -l >ej
+ech hola | ls -l >ej
+ech hola | ls -l >ej
+unset PATH
+cat <<eof
+echo hola | ls -l >ej
+echo hola | ls -l >ej
+unset PATH
+echo hola | ls -l >ej
+unset PATH
+echo hola | ls -l >ej
+echo hola | ls -l >ej
+unset PATH
+echo hola | ls -l >ej
+echo hola | cat <<eof
+echo hola | cat <<eof
+cat <<eof<<eof2
+cat <<eof<<eof2 | ls -l
+echo hola | cat <<eof

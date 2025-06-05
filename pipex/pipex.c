@@ -17,8 +17,11 @@ static void	handle_external_command(t_minishell *minishell, t_cmd *cmd,
 		t_exec *e, char **split_envs)
 {
 	char	*path;
+	char	*ext_command;
 
-	path = getpath(ft_strdup(cmd->args[0]), split_envs);
+	ext_command = ft_strdup(cmd->args[0]);
+	path = getpath(ext_command, split_envs);
+	free(ext_command);
 	if (execve(path, cmd->args, split_envs) == -1)
 	{
 		ft_putstr_fd("pipex: command not found: ", 2);
