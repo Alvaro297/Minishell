@@ -84,14 +84,18 @@ char	**find_args(t_minishell *minishell, char **command_splited)
 	while (command_splited[i])
 	{
 		if (is_redirected(command_splited[i]))
+		{
 			i++;
+			if (!command_splited[i] || is_redirected(command_splited[i]))
+				return (NULL);
+		}
 		else if (is_env_var_null(minishell, command_splited[i]))
 			i++;
 		else
+		{
 			count++;
-		if (!command_splited[i])
-			break ;
-		i++;
+			i++;
+		}
 	}
 	return (find_args_help(minishell, command_splited, count));
 }
@@ -101,6 +105,9 @@ void	fill_cmd_fields(t_minishell *minishell, t_cmd *tmp,
 {
 	tmp->cmd = find_command(minishell, command_splited);
 	tmp->args = find_args(minishell, command_splited);
+	printf("Args:\n");
+	for (int i = 0; tmp->args[i]; i++)
+		printf("args[%d] = %s\n", i, tmp->args[i]);
 	tmp->is_pipe = have_pipe(data->array_commands, data->position);
 	tmp->outfile = find_outfile(command_splited);
 	tmp->infile = find_infile(command_splited);

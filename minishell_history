@@ -2454,3 +2454,36 @@ echo  hola
 ls -l | wc
 echo <<eof >hola | cat <<eof1<<eof2 >hola1
 echo <<eof >hola | cat <<eof1<<eof2 >hola1
+echo hola $INEX
+echo hola $INEX tal
+echo hola $INEX tal
+echo hola $INEX tal
+echo hola $INEX tal
+echo hola $INEX tal
+echo hola $INEX tal
+echo hola $INEX tal
+echo hola $INEX tal
+echo hola $INEX tal
+echo hola $INEX tal
+echo hola $INEX tal
+echo hola $INEX tal
+echo hola $INEX tal <
+echo hola < <
+echo hola $INEX tal <
+export $INEX
+export 
+export $INEX
+$_
+export $INEX < $INEX1
+export $INEX > $USER2
+echo $?
+/bin/ls -l
+/bin/cat <<eof
+                       
+/bin/ls "-l"
+/bin/ls <<'ee'
+/bin/cat <<'ee'
+echo
+echo hola que tal
+echo hola que tal '\n'
+echo hola que tal $INEX
