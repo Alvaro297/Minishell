@@ -51,9 +51,14 @@ void	write_tmp_heredocs_to_final(t_minishell *minishell,
 			free (tmp);
 			return ;
 		}
-		read_and_append_tmp_file(tmp, final_fd);
+		if (delimiters[i + 1])
+		{
+			unlink(tmp);
+			free(tmp);
+		}
 		i++;
-	}
+	}		
+	read_and_append_tmp_file(tmp, final_fd);
 }
 
 int	handle_heredoc(t_minishell *minishell, char **delimiters, bool heredoc_sd)

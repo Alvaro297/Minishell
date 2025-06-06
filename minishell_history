@@ -2391,3 +2391,11 @@ echo hola <<eo | cat <<eof | cat <<eof1<<eof2
 echo hola <<eo | cat <<eof | cat <<eof1
 echo hola <<eo | cat <<eof | cat <<eof1<<eof2
 echo hola <<eo | cat <<eof | cat <<eof1<<eof2
+cat <<eo<<eof >hola1
+cat <<eof >hola | cat <<eof1 >hola2
+cat <<eo<<eof<<eof1
+cat <<eo<<eof<<eof1
+cat <<eo<<eof<<eof1
+cat <<eof >hola | cat <<eof1<<eof2 >hola1
+echo <<eof >hola | cat <<eof1<<eof2 >hola1
+echo <<eof >hola | cat <<eof1<<eof2 >hola1
