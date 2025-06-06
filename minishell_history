@@ -2399,3 +2399,23 @@ cat <<eo<<eof<<eof1
 cat <<eof >hola | cat <<eof1<<eof2 >hola1
 echo <<eof >hola | cat <<eof1<<eof2 >hola1
 echo <<eof >hola | cat <<eof1<<eof2 >hola1
+echo <<eof >hola | cat <<eof1<<eof2 >hola1
+chmod 000 hola1
+echo hola >hola1
+echo $?
+echo <<eof >hola | cat <<eof1<<eof2 >hola1
+echo hola >hola1
+export >hola1
+echo $?
+wc "|" ls
+wc "|" ls
+wc | ls -l
+ls -l | wc
+wc | ls -l
+cat
+cat
+echo hola
+wc | ls -l
+wc | ls -l
+echo $?
+wc "|" ls

@@ -224,7 +224,10 @@ int		process_heredoc(t_minishell *minishell,
 			const char *delimiter, char *tmpfile, bool heredoc_sd);
 int		handle_heredoc(t_minishell *minishell,
 			char **delimiter, bool heredoc_sd);
+void	error_command_external(t_minishell *minishell, char *path,
+			t_exec *e, char **split_envs);
 void	free_pipe_fds(int **pfd, int count);
+void	error_comand(t_minishell *minishell, t_exec *e);
 int		**create_pipes(t_minishell *minishell);
 char	*ft_quote_printf_here_doc(t_minishell *minishell, char *str);
 void	first_child(t_minishell *minishell, t_cmd *cmd, t_exec *e);

@@ -50,21 +50,16 @@ void	last_child(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 	if (all_ok)
 		execute_more_commands(minishell, cmd, e);
 	else
-	{
-		free_all(minishell);
-		free_exec(e, minishell);
-		dup2(minishell->std_in, STDIN_FILENO);
-		close(minishell->std_in);
-		dup2(minishell->std_out, STDOUT_FILENO);
-		close(minishell->std_out);
-		exit(1);
-	}
+		error_comand(minishell, e);
 }
 
 void	first_child(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 {
 	int	all_ok;
 
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGPIPE, SIG_DFL);
 	all_ok = 1;
 	if (cmd->infile)
 		all_ok = redirimput(cmd);
@@ -76,21 +71,16 @@ void	first_child(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 	if (all_ok)
 		execute_more_commands(minishell, cmd, e);
 	else
-	{
-		free_all(minishell);
-		free_exec(e, minishell);
-		dup2(minishell->std_in, STDIN_FILENO);
-		close(minishell->std_in);
-		dup2(minishell->std_out, STDOUT_FILENO);
-		close(minishell->std_out);
-		exit(1);
-	}
+		error_comand(minishell, e);
 }
 
 void	execute_command(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 {
 	int	all_ok;
 
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGPIPE, SIG_DFL);
 	all_ok = 1;
 	if (cmd->infile && !cmd->is_heredoc)
 		all_ok = redirimput(cmd);
@@ -104,15 +94,7 @@ void	execute_command(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 	if (all_ok)
 		execute_more_commands(minishell, cmd, e);
 	else
-	{
-		free_all(minishell);
-		free_exec(e, minishell);
-		dup2(minishell->std_in, STDIN_FILENO);
-		close(minishell->std_in);
-		dup2(minishell->std_out, STDOUT_FILENO);
-		close(minishell->std_out);
-		exit(1);
-	}
+		error_comand(minishell, e);
 }
 
 int	**create_pipes(t_minishell *minishell)

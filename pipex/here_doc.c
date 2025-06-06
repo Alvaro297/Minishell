@@ -57,7 +57,7 @@ void	write_tmp_heredocs_to_final(t_minishell *minishell,
 			free(tmp);
 		}
 		i++;
-	}		
+	}
 	read_and_append_tmp_file(tmp, final_fd);
 }
 
@@ -106,7 +106,6 @@ int	*manage_heredocs(t_minishell *minishell)
 				(minishell, cmd->here_doc_delim, minishell->heredoc_sd);
 			i++;
 			minishell->howmanyhd++;
-
 		}
 		cmd = cmd->next;
 	}

@@ -21,11 +21,15 @@ static void	process_heredoc_help(bool heredoc_sd,
 	if (!heredoc_sd)
 	{
 		expanded = ft_quote_printf_here_doc(minishell, line);
-		dprintf(fd, "%s\n", expanded);
+		write(fd, expanded, strlen(expanded));
+		write(fd, "\n", 1);
 		free(expanded);
 	}
 	else
-		dprintf(fd, "%s\n", line);
+	{
+		write(fd, line, strlen(line));
+		write(fd, "\n", 1);
+	}
 	free(line);
 }
 
