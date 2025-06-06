@@ -35,34 +35,6 @@ char	*parsed_variable_name(char *str)
 	return (var_name);
 }
 
-bool	parsed_value_validation(char *var_value)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	if (ft_isdigit(var_value[i]))
-		return (false);
-	if ((var_value[i] == '\'' && var_value[ft_strlen(var_value) - 1] == '\'')
-		|| (var_value[i] == '"' && var_value[ft_strlen(var_value) - 1] == '"'))
-		return (true);
-	else
-	{
-		while (var_value[i])
-		{
-			j = 0;
-			while (INVALID_CHARACTERSV[j])
-			{
-				if (INVALID_CHARACTERSV[j] == var_value[i])
-					return (false);
-				j++;
-			}
-			i++;
-		}
-	}
-	return (true);
-}
-
 bool	parsed_name_validation(char *var_name)
 {
 	int	i;

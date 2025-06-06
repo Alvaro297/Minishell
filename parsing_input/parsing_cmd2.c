@@ -105,9 +105,6 @@ void	fill_cmd_fields(t_minishell *minishell, t_cmd *tmp,
 {
 	tmp->cmd = find_command(minishell, command_splited);
 	tmp->args = find_args(minishell, command_splited);
-	printf("Args:\n");
-	for (int i = 0; tmp->args[i]; i++)
-		printf("args[%d] = %s\n", i, tmp->args[i]);
 	tmp->is_pipe = have_pipe(data->array_commands, data->position);
 	tmp->outfile = find_outfile(command_splited);
 	tmp->infile = find_infile(command_splited);
@@ -115,7 +112,7 @@ void	fill_cmd_fields(t_minishell *minishell, t_cmd *tmp,
 	tmp->here_doc_delim = here_doc_delim(data->command);
 	tmp->outfile_array = get_outfiles(command_splited, 0);
 	tmp->outfile_modes = is_append(command_splited);
-	tmp->next = NULL;
 	minishell->heredoc_sd = is_in_sd_quotes(tmp);
+	tmp->next = NULL;
 	delete_quotes(minishell, tmp);
 }

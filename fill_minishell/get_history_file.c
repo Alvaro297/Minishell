@@ -14,23 +14,24 @@
 
 char	*get_history_file(void)
 {
-	char	cwd[PATH_MAX];
-	char	*history_file;
-	size_t	len;
+	char		*home;
+	char		*history_file;
+	size_t		len;
 
-	if (getcwd(cwd, sizeof(cwd)) == NULL)
+	home = getenv("HOME");
+	if (!home)
 	{
-		ft_putstr_fd("Error: Can't get current directory for file.\n", 2);
+		ft_putstr_fd("Error: HOME not set for history file.\n", 2);
 		return (NULL);
 	}
-	len = ft_strlen(cwd) + ft_strlen("/minishell_history") + 1;
+	len = ft_strlen(home) + ft_strlen("/minishell_history") + 1;
 	history_file = malloc(len);
 	if (!history_file)
 	{
 		perror("malloc");
 		return (NULL);
 	}
-	ft_strlcpy(history_file, cwd, len);
+	ft_strlcpy(history_file, home, len);
 	ft_strlcat(history_file, "/minishell_history", len);
 	return (history_file);
 }

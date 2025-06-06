@@ -25,6 +25,17 @@ void	handle_unclosed_quotes(t_minishell *minishell,
 	set_env(&minishell->env_vars, "?", "2");
 }
 
+static int	is_all_spaces(const char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ' && *str != '\t')
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
 static bool	check_pipe_newline(char **array_commands, int position_pipe)
 {
 	if (ft_strncmp(array_commands[position_pipe], "|", 1) == 0

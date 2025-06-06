@@ -88,15 +88,14 @@ static bool	find_outfile_check_error(t_minishell *minishell,
 	return (true);
 }
 
-int	is_all_spaces(const char *str)
+static bool	set_exit_code_and_return(t_minishell *minishell, int code)
 {
-	while (*str)
-	{
-		if (*str != ' ' && *str != '\t')
-			return (0);
-		str++;
-	}
-	return (1);
+	char *exit_code;
+	
+	exit_code = ft_itoa(code);
+	set_env(&minishell->env_vars, "?", exit_code);
+	free(exit_code);
+	return (false);
 }
 
 bool	controled_errors(t_minishell *minishell,
@@ -104,18 +103,17 @@ bool	controled_errors(t_minishell *minishell,
 {
 	bool	success;
 
-	success = true;
 	success = here_doc_delim_check_error(data->command);
 	if (!success)
-		return (set_env(&minishell->env_vars, "?", ft_itoa(2)), false);
+		return (set_exit_code_and_return(minishell, 2));
 	success = find_outfile_check_error(minishell, command_splited);
 	if (!success)
-		return (set_env(&minishell->env_vars, "?", ft_itoa(2)), false);
+		return (set_exit_code_and_return(minishell, 2));
 	success = find_infile_check_error(minishell, command_splited);
 	if (!success)
-		return (set_env(&minishell->env_vars, "?", ft_itoa(2)), false);
+		return (set_exit_code_and_return(minishell, 2));
 	success = check_pipes(data->array_commands, data->position);
 	if (!success)
-		return (set_env(&minishell->env_vars, "?", ft_itoa(2)), false);
+		return (set_exit_code_and_return(minishell, 2));
 	return (true);
 }

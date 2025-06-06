@@ -126,9 +126,7 @@ void	append_expanded_variable_no_quotes(char **result,
 /* Quote */
 int		ft_sd_quote_printf(char *str, t_quotes *quotes, size_t *i);
 int		ft_sd_quote_printf_mod(char *str, t_quotes *quotes, size_t i);
-char	*ft_sd_quote_printf_mod2(char *str, t_quotes *quotes);
 void	ft_sd_quote_printf_mod3(char *str, t_quotes *quotes);
-bool	is_within_quotes(const char *str, const char *pos);
 char	*delete_quotes_array(t_minishell *minishell, char *array,
 			bool is_not_here_doc, bool is_iofile);
 //** Envp **//
@@ -140,7 +138,6 @@ t_env	*find_env_var(t_env *env, char *name);
 char	*trim_quotes(char *value);
 void	set_env(t_env **env, char *name, char *value);
 void	delete_env(t_env **env, char *name);
-bool	is_readonly(t_minishell *minishell, char *var);
 bool	is_env_var_null(t_minishell *minishell, char *arg);
 char	*init_shlvl(void);
 t_env	*init_env_without_env(void);
@@ -151,14 +148,12 @@ int		handle_pwd( t_minishell *minishell);
 int		handle_echo(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_exit(t_cmd *cmd, t_minishell *minishell);
 int		handle_export(t_cmd *current_cmd, t_minishell *minishell);
-int		export_one_var(t_cmd *cmd, t_minishell *mini, int i);
-void	print_entorn_variable(t_minishell *minishell);
-bool	parsed_value_validation(char *var_value);
-bool	parsed_name_validation(char *var_name);
-char	*parsed_variable_name(char *str);
 int		handle_env(t_cmd *current_cmd, t_minishell *minishell);
 int		handle_unset(t_cmd *current_cmd, t_minishell *minishell);
-int		error_management(t_minishell *minishell);
+int		export_one_var(t_cmd *cmd, t_minishell *mini, int i);
+void	print_entorn_variable(t_minishell *minishell);
+bool	parsed_name_validation(char *var_name);
+char	*parsed_variable_name(char *str);
 //** Parsing Input **//
 void	delete_quotes(t_minishell *minishell, t_cmd *cmd);
 t_cmd	*parsing_input(t_minishell *minishell, char *input);
@@ -195,7 +190,6 @@ bool	controled_errors(t_minishell *minishell,
 void	handle_unclosed_quotes(t_minishell *minishell,
 			t_quotes quotes, char **result);
 bool	check_pipes(char **array_commands, int position);
-int		is_all_spaces(const char *str);
 //** Init Minishell **//
 void	init_minishell(t_minishell *minishell);
 void	init_cmd(t_cmd *cmd);
@@ -254,6 +248,4 @@ char	**ft_split(char const *s, char c);
 char	*getpathaux(char *path, char **env);
 char	*getpath(char *cmd, char **env);
 int		open_f(char *file, int sw, t_cmd *cmd);
-//**  Pipex prueba**//
-int		pipex_prueba(t_minishell *minishell);
 #endif 

@@ -32,17 +32,3 @@ void	ft_error(t_minishell *minishell)
 	free(minishell->output);
 	printf("error");
 }
-/*
-int	error_management(t_minishell *minishell)
-{
-	int c;
-
-	c = 0;
-	if (minishell->input == NULL || minishell->input == 0)
-		return (1);
-	if (!check_syntax(minishell))
-		return (1);
-	if (handle_redirection(minishell) != 0)
-		return (1);
-	return (0);
-}*/
