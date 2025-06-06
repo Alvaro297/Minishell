@@ -2419,3 +2419,31 @@ wc | ls -l
 wc | ls -l
 echo $?
 wc "|" ls
+wc "|" ls
+wc | ls -l
+echo hoola | cat
+wc | ls -l
+bin/ls/
+/bin/ls/
+/bin/ls
+/bin/ls "pipex/"
+wc
+echo -n  hola
+echo  hola
+ls -ln
+/bin/ls "pi/"
+echo $?
+cat lol.c | cat > lol.c
+cat lol.c
+ppwd
+pwd
+cd ..
+pwd
+/bin/ls
+cd Minishell/
+ppwd
+pwd
+/bin/ls
+ls  
+unset PATH
+ls  

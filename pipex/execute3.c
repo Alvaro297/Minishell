@@ -68,13 +68,12 @@ void	error_comand(t_minishell *minishell, t_exec *e)
 	exit(1);
 }
 
-void	error_command_external(t_minishell *minishell, char *path,
+void	error_command_external(t_minishell *minishell, t_cmd *cmd,
 		t_exec *e, char **split_envs)
 {
 	ft_putstr_fd("pipex: command not found: ", 2);
 	minishell->last_exit_status = 127;
 	ft_putendl_fd(cmd->args[0], 2);
-	free(path);
 	free_double_array((void **)split_envs);
 	free_exec(e, minishell);
 	free_all(minishell);

@@ -224,7 +224,7 @@ int		process_heredoc(t_minishell *minishell,
 			const char *delimiter, char *tmpfile, bool heredoc_sd);
 int		handle_heredoc(t_minishell *minishell,
 			char **delimiter, bool heredoc_sd);
-void	error_command_external(t_minishell *minishell, char *path,
+void	error_command_external(t_minishell *minishell, t_cmd *cmd,
 			t_exec *e, char **split_envs);
 void	free_pipe_fds(int **pfd, int count);
 void	error_comand(t_minishell *minishell, t_exec *e);
