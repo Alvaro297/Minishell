@@ -13,12 +13,6 @@
 #include "pipex.h"
 #include "../minishell.h"
 
-void	exitaux(void)
-{
-	ft_putstr("./pipex infile cmd cmd outfile\n");
-	exit(0);
-}
-
 int	open_f(char *file, int sw, t_cmd *cmd)
 {
 	int	r;
@@ -69,10 +63,20 @@ char	*getpathaux(char *path, char **env)
 	return (NULL);
 }
 
+char	*joinpath(char **paths, char *cmd, int i)
+{
+	char	*eachpath;
+	char	*fullpath;
+
+	eachpath = ft_strjoin(paths[i], "/");
+	fullpath = ft_strjoin(eachpath, cmd);
+	free (eachpath);
+	return (fullpath);
+}
+
 char	*getpath(char *cmd, char **env)
 {
 	char	**paths;
-	char	*eachpath;
 	char	*fullpath;
 	int		i;
 
@@ -84,9 +88,7 @@ char	*getpath(char *cmd, char **env)
 	i = 0;
 	while (paths[i])
 	{
-		eachpath = ft_strjoin(paths[i], "/");
-		fullpath = ft_strjoin(eachpath, cmd);
-		free (eachpath);
+		fullpath = joinpath(paths, cmd, i);
 		if (access(fullpath, F_OK | X_OK) == 0)
 		{
 			freeall(paths);

@@ -30,10 +30,10 @@ static void	handle_external_command(t_minishell *minishell, t_cmd *cmd,
 	signal(SIGPIPE, SIG_DFL);
 	if (execve(path, cmd->args, split_envs) == -1
 		|| (cmd->is_heredoc))
-		{
-			error_command_external(minishell, cmd, e, split_envs);
-			free (path);
-		}
+	{
+		error_command_external(minishell, cmd, e, split_envs);
+		free (path);
+	}
 }
 
 void	execute_more_commands(t_minishell *minishell, t_cmd *cmd, t_exec *e)

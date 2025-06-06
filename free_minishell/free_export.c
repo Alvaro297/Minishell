@@ -56,20 +56,6 @@ void	free_exec(t_exec *e, t_minishell *minishell)
 
 void	free_exec_builtin(t_exec *e, t_minishell *minishell)
 {
-	int	i;
-
-	if (e->pfd)
-	{
-		i = 0;
-		while (i < minishell->howmanycmd - 1)
-		{
-			free(e->pfd[i]);
-			e->pfd[i] = NULL;
-			i++;
-		}
-		free(e->pfd);
-		e->pfd = NULL;
-	}
 	if (e->heredoc_fds)
 	{
 		while (e->j < minishell->howmanyhd)
@@ -77,14 +63,8 @@ void	free_exec_builtin(t_exec *e, t_minishell *minishell)
 			close(e->heredoc_fds[e->j]);
 			e->j++;
 		}
-		free(e->heredoc_fds);
-		e->heredoc_fds = NULL;
 	}
-	if (e->pids)
-	{
-		free(e->pids);
-		e->pids = NULL;
-	}
+	free_exec(e, minishell);
 }
 
 void	closestd(t_minishell *minishell)

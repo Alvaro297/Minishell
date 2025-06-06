@@ -2447,3 +2447,10 @@ pwd
 ls  
 unset PATH
 ls  
+unset PATH
+ls  
+ls  
+echo  hola
+ls -l | wc
+echo <<eof >hola | cat <<eof1<<eof2 >hola1
+echo <<eof >hola | cat <<eof1<<eof2 >hola1
