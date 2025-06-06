@@ -2371,3 +2371,23 @@ cd .. | cat <<eof | cat <<eof2
 cd .. | ca
 cd .. | ca <<eof
 cd .. | ca <<eof
+echo hola
+echo hola | cat
+echo hola | cat <<eof
+echo hola | cat <<eof <<eof1
+echo hola <<eo | cat <<eof <<eof1
+echo hola <<eo | cat <<eof <<eof1 >hola1
+echo hola | cat <<eof <<eof1 >hola1
+echo hola <<eo | cat <<eof <<eof1 >hola1
+echo hola <<eo | cat <<eof <<eof1 >o1
+echo hola <<eo | cat <<eof <<eof1
+echo hola <<eo | cat <<eof | cat <<eof1
+echo hola <<eo | cat <<eof | cat <<eof1
+echo hola <<eo | cat <<eof <<eof1
+echo hola <<eo | cat <<eof | cat <<eof1
+echo hola <<eo | cat <<eof | cat <<eof1
+echo hola <<eo | cat <<eof | cat <<eof1
+echo hola <<eo | cat <<eof | cat <<eof1<<eof2
+echo hola <<eo | cat <<eof | cat <<eof1
+echo hola <<eo | cat <<eof | cat <<eof1<<eof2
+echo hola <<eo | cat <<eof | cat <<eof1<<eof2

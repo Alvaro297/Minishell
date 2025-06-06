@@ -93,6 +93,7 @@ typedef struct s_minishell
 	int		last_exit_status;
 	bool	heredoc_sd;
 	int		howmanycmd;
+	int		howmanyhd;
 	int		std_in;
 	int		std_out;
 }	t_minishell;
@@ -211,6 +212,7 @@ void	process_heredoc_signals(struct sigaction *sa_old,
 int		heredoc_event_hook(void);
 void	sigint_heredoc_handler(int sig);
 //** Free Minishell **//
+void	free_exec_builtin(t_exec *e, t_minishell *minishell);
 void	free_exec(t_exec *e, t_minishell *minishell);
 void	free_double_array(void **double_array);
 void	free_env_list(t_env *env);

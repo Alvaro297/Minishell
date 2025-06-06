@@ -90,6 +90,7 @@ int	*manage_heredocs(t_minishell *minishell)
 	int		*fd;
 
 	cmd = minishell->cmds;
+	minishell->howmanyhd = 0;
 	i = 0;
 	fd = malloc(sizeof(int) * minishell->howmanycmd);
 	while (cmd)
@@ -99,6 +100,8 @@ int	*manage_heredocs(t_minishell *minishell)
 			fd[i] = handle_heredoc
 				(minishell, cmd->here_doc_delim, minishell->heredoc_sd);
 			i++;
+			minishell->howmanyhd++;
+
 		}
 		cmd = cmd->next;
 	}

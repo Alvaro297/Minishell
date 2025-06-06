@@ -63,7 +63,7 @@ void	execute_more_commands(t_minishell *minishell, t_cmd *cmd, t_exec *e)
 		signal(SIGPIPE, SIG_IGN);
 		ret = internal_commands(cmd, minishell);
 		free_double_array((void **)split_envs);
-		free_exec(e, minishell);
+		free_exec_builtin(e, minishell);
 		free_all(minishell);
 		dup2(minishell->std_out, STDIN_FILENO);
 		close(minishell->std_in);
