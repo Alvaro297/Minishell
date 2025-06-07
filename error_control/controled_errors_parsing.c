@@ -90,8 +90,8 @@ static bool	find_outfile_check_error(t_minishell *minishell,
 
 static bool	set_exit_code_and_return(t_minishell *minishell, int code)
 {
-	char *exit_code;
-	
+	char	*exit_code;
+
 	exit_code = ft_itoa(code);
 	set_env(&minishell->env_vars, "?", exit_code);
 	free(exit_code);

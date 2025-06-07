@@ -50,7 +50,7 @@ static int	process_heredoc_loop(t_minishell *minishell, const char *delimiter,
 			rl_event_hook = NULL;
 			return (-2);
 		}
-		if (!line || strcmp(line, delimiter) == 0)
+		if (!line || ft_strcmp(line, (char *) delimiter) == 0)
 		{
 			free(line);
 			break ;

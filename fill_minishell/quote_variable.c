@@ -57,4 +57,3 @@ void	ft_sd_quote_printf_mod3(char *str, t_quotes *quotes)
 		++str;
 	}
 }
-
