@@ -65,9 +65,9 @@ static void	fill_minishell_help(t_minishell *minishell)
 
 void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 {
-	if (minishell->env_vars == NULL)
+	if (minishell->env_vars == NULL && *envp != NULL)
 		minishell->env_vars = init_env(envp);
-	else if (minishell->env_vars == NULL && !envp)
+	else if (*envp == NULL && minishell->env_vars == NULL)
 		minishell->env_vars = init_env_without_env();
 	minishell->input = ft_quote_printf(minishell, input, true);
 	if (input && *input)

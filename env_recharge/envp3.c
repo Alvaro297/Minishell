@@ -88,10 +88,9 @@ t_env	*init_env_without_env(void)
 	if (getcwd(cwd, sizeof(cwd)))
 	{
 		set_env(&head, "PWD", cwd);
-		set_env(&head, "OLDPWD", cwd);
+		set_env(&head, "OLDPWD", "");
 	}
 	set_env(&head, "HOME", "/");
-	set_env(&head, "PATH", "");
 	set_env(&head, "_", "");
 	set_env(&head, "?", "0");
 	return (head);
