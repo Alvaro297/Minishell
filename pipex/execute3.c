@@ -6,7 +6,7 @@
 /*   By: alvamart <alvamart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:30:26 by paperez-          #+#    #+#             */
-/*   Updated: 2025/06/06 17:56:09 by alvamart         ###   ########.fr       */
+/*   Updated: 2025/06/08 13:55:40 by alvamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	error_execution(t_minishell *minishell, t_cmd *cmd,
 {
 	ft_putstr_fd("pipex: command not found: ", 2);
 	ft_putendl_fd(cmd->args[0], 2);
+	ft_putendl_fd("\n", 2);
 	minishell->last_exit_status = 127;
 	free(command);
 	free_double_array((void **)split_envs);
@@ -50,6 +51,7 @@ void	execute(t_minishell *minishell, t_cmd *cmd)
 	else if (cmd->args[0])
 		execute_ext(minishell, cmd, split_envs);
 	ft_putstr_fd("pipex: command not found:", 2);
+	ft_putstr_fd("\n", 2);
 	minishell->last_exit_status = 127;
 	free_all(minishell);
 	closestd(minishell);
@@ -74,6 +76,7 @@ void	error_command_external(t_minishell *minishell, t_cmd *cmd,
 	ft_putstr_fd("pipex: command not found: ", 2);
 	minishell->last_exit_status = 127;
 	ft_putendl_fd(cmd->args[0], 2);
+	ft_putstr_fd("\n", 2);
 	free_double_array((void **)split_envs);
 	free_exec(e, minishell);
 	free_all(minishell);

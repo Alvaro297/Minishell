@@ -77,7 +77,10 @@ int	process_heredoc(t_minishell *minishell,
 		return (-1);
 	}
 	process_heredoc_signals(&sa_old, &sa_new);
-	ret = process_heredoc_loop(minishell, delimiter, fd, heredoc_sd);
+	if (g_signal == 130)
+		ret = -2;
+	else
+		ret = process_heredoc_loop(minishell, delimiter, fd, heredoc_sd);
 	if (ret == -2)
 		unlink(tmpfile);
 	sigaction(SIGINT, &sa_old, NULL);

@@ -42,7 +42,7 @@ static void	set_last_arg_env(t_minishell *minishell, char *last_arg)
 	if (last_arg)
 		set_env(&minishell->env_vars, "_", last_arg);
 	else
-		set_env(&minishell->env_vars, "_", NULL);
+		set_env(&minishell->env_vars, "_", "");
 	if (last_arg)
 		free(last_arg);
 }
@@ -67,7 +67,7 @@ void	set_special_var(t_minishell *minishell)
 	char	*last_arg;
 
 	last_arg = NULL;
-	if (minishell->cmds == NULL || minishell->input == NULL)
+	if (minishell->input == NULL)
 		return ;
 	current_cmd = minishell->cmds;
 	while (current_cmd != NULL)

@@ -41,18 +41,24 @@ static int	print_echo_args(t_cmd *current_cmd, int i)
 int	handle_echo(t_cmd *current_cmd, t_minishell *minishell)
 {
 	int		i;
+	int		j;
 	bool	newline;
 	int		ret;
 
 	i = 1;
+	j = 1;
 	ret = 0;
 	newline = true;
-	if (minishell->input != NULL
-		&& ft_strncmp(current_cmd->args[i], "-n", 2) == 0
-		&& ft_strlen(current_cmd->args[i]) == 2)
+	if (minishell->input != NULL && current_cmd->args[i] != NULL
+		&& ft_strncmp(current_cmd->args[i], "-", 1) == 0)
 	{
-		i++;
-		newline = false;
+		while (current_cmd->args[i][j] == 'n')
+			j++;
+		if (current_cmd->args[i][j] == '\0')
+		{
+			newline = false;
+			i++;
+		}
 	}
 	ret = print_echo_args(current_cmd, i);
 	if (newline && ret == 0)
