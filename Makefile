@@ -4,6 +4,7 @@ SRC = 		cmds/cmd.c env_recharge/envp.c env_recharge/envp2.c env_recharge/envp3.c
 			error_control/controled_errors_parsing2.c fill_minishell/fill_minishell.c \
 			fill_minishell/expand_variable.c fill_minishell/outfile_array.c \
 			fill_minishell/quote_variable.c free_minishell/free_double_array.c \
+			fill_minishell/input_tabs.c \
 			fill_minishell/get_history_file.c free_minishell/free_export.c \
 			fill_minishell/expand_variable2.c fill_minishell/set_special_var.c fill_minishell/quote_printf_here_doc.c \
 			history/load_history.c init_minishell/init_minishell.c \

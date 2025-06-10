@@ -155,6 +155,7 @@ void	print_entorn_variable(t_minishell *minishell);
 bool	parsed_name_validation(char *var_name);
 char	*parsed_variable_name(char *str);
 //** Parsing Input **//
+char	*tabs_to_spaces(char *str);
 void	delete_quotes(t_minishell *minishell, t_cmd *cmd);
 t_cmd	*parsing_input(t_minishell *minishell, char *input);
 void	fill_cmd_fields(t_minishell *minishell, t_cmd *tmp,
