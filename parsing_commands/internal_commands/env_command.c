@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*   By: alvamart <alvamart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-02-26 18:31:51 by alvamart          #+#    #+#             */
-/*   Updated: 2025-02-26 18:31:51 by alvamart         ###   ########.fr       */
+/*   Created: 2025/02/26 18:31:51 by alvamart          #+#    #+#             */
+/*   Updated: 2025/06/10 19:20:47 by alvamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	print_env_vars(t_env *env)
 {
 	while (env)
 	{
-		printf("%s=%s\n", env->name, env->value);
+		if (env->value[0] != '\0')
+			printf("%s=%s\n", env->name, env->value);
 		env = env->next;
 	}
 }

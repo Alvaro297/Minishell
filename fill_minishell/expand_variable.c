@@ -60,7 +60,15 @@ static int	ft_quote_printf_ev(char *str, t_quote_ctx *ctx)
 static void	ft_quote_printf_help(char **result, t_indices *indices, char *str)
 {
 	char	*new_result;
+	size_t	i;
 
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '\t')
+			str[i] = ' ';
+		i++;
+	}
 	new_result = malloc(indices->j + 2);
 	if (new_result == NULL)
 	{
