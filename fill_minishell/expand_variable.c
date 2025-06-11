@@ -110,9 +110,9 @@ char	*ft_quote_printf(t_minishell *minishell, char *str, bool is_input)
 	t_indices	indices;
 	t_quote_ctx	ctx;
 
-	if(ft_strrchr(str, '\n') != NULL)
+	if (ft_strrchr(str, '\n') != NULL)
 	{
-		ft_putstr_fd("minishell: warning: newline at end of input\n", STDERR_FILENO);
+		ft_putstr_fd ("warning: newline at end of input\n", STDERR_FILENO);
 		result = ft_itoa(1);
 		set_env(&minishell->env_vars, "?", result);
 		return (free(result), NULL);
