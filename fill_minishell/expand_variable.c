@@ -21,7 +21,7 @@ static char	*expand_variable(t_minishell *minishell, char *str, size_t *len)
 	if (str[0] != '$')
 		return (ft_strdup(str));
 	i = 1;
-	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_' || str[i] == '?'))
+	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_' || (str[i] == '?' && i == 1)))
 		i++;
 	var_name = ft_strndup(str + 1, i - 1);
 	var_value = get_env_value(minishell->env_vars, var_name, true);
@@ -112,7 +112,7 @@ char	*ft_quote_printf(t_minishell *minishell, char *str, bool is_input)
 
 	if (ft_strrchr(str, '\n') != NULL)
 	{
-		ft_putstr_fd ("warning: newline at end of input\n", STDERR_FILENO);
+		write (2, "warning: newline at end of input\n", 34);
 		result = ft_itoa(1);
 		set_env(&minishell->env_vars, "?", result);
 		return (free(result), NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_printf_here_doc.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvamart <alvamart@student.42madrid.com>   #+#  +:+       +#+        */
+/*   By: alvamart <alvamart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-05-28 18:58:54 by alvamart          #+#    #+#             */
-/*   Updated: 2025-05-28 18:58:54 by alvamart         ###   ########.fr       */
+/*   Created: 2025/05/28 18:58:54 by alvamart          #+#    #+#             */
+/*   Updated: 2025/06/11 23:22:47 by alvamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ static void	ft_quote_printf_loop_here_doc(t_minishell *minishell, char *str,
 			if (ft_quote_printf_ev_here_doc(minishell, str, indices, result))
 				continue ;
 		}
+		if (str[indices->i] == '\0')
+			break;
 		ft_quote_printf_help(result, indices, str);
 	}
 }

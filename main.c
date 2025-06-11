@@ -51,6 +51,8 @@ static void	minishell_loop(t_minishell *minishell, char **envp, int interactive)
 		}
 		execute_all(minishell);
 		free(input);
+		free(minishell->input);
+		minishell->input = NULL;
 	}
 }
 

@@ -70,7 +70,7 @@ void	fill_minishell(char *input, t_minishell *minishell, char **envp)
 	else if (*envp == NULL && minishell->env_vars == NULL)
 		minishell->env_vars = init_env_without_env();
 	minishell->input = ft_quote_printf(minishell, input, true);
-	if (input && *input)
+	if (input && *input && ft_strrchr(input, '\n') == NULL)
 	{
 		set_special_var(minishell);
 		add_history(input);
