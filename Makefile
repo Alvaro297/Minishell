@@ -38,8 +38,7 @@ RM = rm -rf
 CC = gcc 
 
 CFLAGS = -Wall -Wextra -Werror
-VALGRIND_VALE	:=	./supp/new_supp.supp
-VFLAGS			:=	--leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --suppressions=$(VALGRIND_VALE)
+VFLAGS			:=	--leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes
 
 LIBFT = libft_minishell/
 
@@ -48,6 +47,13 @@ OBJ = $(SRC:.c=.o)
 $(NAME): $(OBJ)
 	@make -sC libft_minishell/
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT)libft.a -lreadline
+	@echo "\033[32m"
+	@echo "███╗   ███╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██╗     ██╗"
+	@echo "████╗ ████║██║████╗  ██║██║██╔════╝██║  ██║██╔════╝██║     ██║"
+	@echo "██╔████╔██║██║██╔██╗ ██║██║███████╗███████║█████╗  ██║     ██║"
+	@echo "██║╚██╔╝██║██║██║╚██╗██║██║╚════██║██╔══██║██╔══╝  ██║     ██║"
+	@echo "██║ ╚═╝ ██║██║██║ ╚████║██║███████║██║  ██║███████╗███████╗███████╗"
+	@echo "\033[0m"
 
 clean:
 	$(RM) $(OBJ)
