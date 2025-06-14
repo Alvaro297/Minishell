@@ -4,7 +4,7 @@ Este proyecto representa uno de los desafíos fundamentales de la escuela 42: el
 
 La finalización de Minishell demuestra un profundo conocimiento sobre el funcionamiento interno de los sistemas operativos tipo UNIX/Linux y una gran capacidad para gestionar problemas complejos de programación.
 
-(Video\Minishell_video.gif)
+(./Video/Minishell_video.gif)
 
 ---
 
